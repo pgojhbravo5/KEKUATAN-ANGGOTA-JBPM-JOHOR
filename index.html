@@ -1024,7 +1024,7 @@
         <!-- SPREADSHEET CARD -->
         <div class="card" style="border-left: 5px solid var(--bomba-gold)">
           <div class="card-title">
-            <span>SPREADSHEET BACKEND 🔒</span
+            <span>SPREADSHEET BACKEND</span
             ><span class="icon" style="background: #fef3c7; color: #92400e"
               >CLOUD</span
             >
@@ -1043,7 +1043,7 @@
             <button
               class="btn btn-secondary"
               style="font-size: 0.8rem; padding: 10px"
-              onclick="mintaPassword('BACKEND')"
+              onclick="bukaModalSpreadsheet()"
             >
               ⚙️ TETAPAN GOOGLE SPREADSHEET
             </button>
@@ -1505,7 +1505,11 @@
 
         <!-- TETAPAN PERANAN TERMASUK BKB (BILIK KAWALAN BALAI) -->
         <div
-          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px"
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+          "
         >
           <div class="form-group">
             <label>KETUA BALAI</label>
@@ -3068,6 +3072,10 @@
           return;
         }
 
+        if (logistikJentera.length < 350) {
+          initDataLogistik(true);
+        }
+
         let senaraiJenteraPenuh = [...logistikJentera];
 
         if (katFilter !== 'SEMUA') {
@@ -3390,6 +3398,9 @@
       }
 
       function bukaModalLogistikJentera() {
+        if (logistikJentera.length < 350) {
+          initDataLogistik(true);
+        }
         const sel = document.getElementById('logModalBalai');
         sel.innerHTML =
           '<option value="">-- PILIH BALAI BERTUGAS --</option>' +
@@ -4008,7 +4019,7 @@
         const url = localStorage.getItem('jbpm_spreadsheet_url');
         if (url) spreadsheetApiUrl = url;
 
-        if (logistikJentera.length < 200) {
+        if (logistikJentera.length < 350) {
           initDataLogistik(true);
         }
       }
@@ -4069,6 +4080,9 @@
           if (d.logistikJentera && d.logistikJentera.length > 0) {
             logistikJentera = d.logistikJentera;
           }
+          if (logistikJentera.length < 350) {
+            initDataLogistik(true);
+          }
           if (d.logistikBertugas) logistikBertugas = d.logistikBertugas;
           if (d.senaraiNamaMaster) senaraiNamaMaster = d.senaraiNamaMaster;
           if (d.senaraiBalaiMaster) senaraiBalaiMaster = d.senaraiBalaiMaster;
@@ -4079,7 +4093,9 @@
           muatSemuaDropdownMaster();
           kemaskiniSemuaPaparan();
           paparAlert(
-            'DATA DITARIK! (' + logistikJentera.length + ' JENTERA)',
+            'DATA DITARIK! (' +
+              logistikJentera.length +
+              ' JENTERA KESELURUHAN)',
             'BERJAYA'
           );
         } catch (err) {
