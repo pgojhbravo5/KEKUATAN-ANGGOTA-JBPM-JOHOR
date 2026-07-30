@@ -1021,10 +1021,10 @@
 
     <div class="main-container">
       <div class="sidebar no-print">
-        <!-- SPREADSHEET CARD -->
+        <!-- SPREADSHEET CARD (PASSWORD REMOVED) -->
         <div class="card" style="border-left: 5px solid var(--bomba-gold)">
           <div class="card-title">
-            <span>SPREADSHEET BACKEND 🔒</span
+            <span>SPREADSHEET BACKEND</span
             ><span class="icon" style="background: #fef3c7; color: #92400e"
               >CLOUD</span
             >
@@ -1043,7 +1043,7 @@
             <button
               class="btn btn-secondary"
               style="font-size: 0.8rem; padding: 10px"
-              onclick="mintaPassword('BACKEND')"
+              onclick="bukaModalSpreadsheet()"
             >
               ⚙️ TETAPAN GOOGLE SPREADSHEET
             </button>
@@ -1098,7 +1098,7 @@
           </button>
         </div>
 
-        <!-- MASTER REGISTRATION CARD (FOKUS: PENDAFTARAN ANGGOTA TERMASUK NO TELEFON) -->
+        <!-- MASTER REGISTRATION CARD -->
         <div class="card">
           <div class="card-title">
             <span>PENDAFTARAN ANGGOTA & MASTER</span
@@ -1910,7 +1910,7 @@
       </div>
     </div>
 
-    <!-- MODAL PASSWORD -->
+    <!-- MODAL PASSWORD (HANYA UNTUK OPERASI TERKAWAL MASTER) -->
     <div class="modal-overlay" id="passwordModal">
       <div class="modal" style="max-width: 420px">
         <div class="modal-header">
@@ -1989,7 +1989,7 @@
       </div>
     </div>
 
-    <!-- MODAL SPREADSHEET -->
+    <!-- MODAL SPREADSHEET (BEBAS TERUS DIAKSES) -->
     <div class="modal-overlay" id="spreadsheetModal">
       <div class="modal" style="max-width: 650px">
         <div class="modal-header">
@@ -2185,7 +2185,7 @@
         logistikJentera = [];
         let idCounter = 1000;
 
-        // 1. FRT / LFRT / CFRT / RFRT (85 Units)
+        // 1. FRT / LFRT / CFRT / RFRT
         const frtData = [
           [
             'CFRT * 019',
@@ -2482,7 +2482,7 @@
           });
         });
 
-        // 2. EMRS (20 Units)
+        // 2. EMRS
         const emrsData = [
           ['J2-01', 'BMP 3537', 'TOYOTA HIACE EMRS'],
           ['J2-02', 'BNH 9581', 'TOYOTA HIACE EMRS'],
@@ -2519,7 +2519,7 @@
           });
         });
 
-        // 3. Water Tanker (12 Units)
+        // 3. Water Tanker
         const wtData = [
           ['J5-01', 'BMS 5928 / T-BD9282', 'SCANIA WT 20000L'],
           ['J5-02', 'BMV 1317 / T-BD9284', 'SCANIA WT 20000L'],
@@ -2548,7 +2548,7 @@
           });
         });
 
-        // 4. KHAS / BOMPA (22 Units)
+        // 4. KHAS / BOMPA
         const khasData = [
           ['J10-01', 'WSG 3646', 'KOMUNIKASI', 'COMMUNICATION TENDER'],
           ['J11-01', 'BJS 3513', 'HPPM', 'HIGH PRESSURE PUMP'],
@@ -2587,7 +2587,7 @@
           });
         });
 
-        // 5. BOT & ASET AIR (45 Units)
+        // 5. BOT & ASET AIR
         const boatPlates = [
           'BP 048-10',
           'BP 06',
@@ -2687,7 +2687,7 @@
           });
         }
 
-        // 6. RIM / MOTOSIKAL (23 Units)
+        // 6. RIM / MOTOSIKAL
         const rimData = [
           ['J6-01', 'BGT 231', 'HONDA ST 1300'],
           ['J6-02', 'BGT 240', 'HONDA ST 1300'],
@@ -2727,7 +2727,7 @@
           });
         });
 
-        // 7. KENDERAAN / UTILITY (185 Units)
+        // 7. KENDERAAN / UTILITY
         const models4x4 = [
           'TOYOTA HILUX 2.5',
           'MITSUBISHI TRITON 2.4',
@@ -3747,8 +3747,6 @@
         const p = document.getElementById('passwordPromptText');
         if (j === 'URUS_KATEGORI')
           p.innerText = 'MASUKKAN KATA LALUAN UNTUK MENGURUS MASTER:';
-        else if (j === 'BACKEND')
-          p.innerText = 'MASUKKAN KATA LALUAN UNTUK AKSES SPREADSHEET:';
         else if (j === 'MASTER_BERSIH')
           p.innerText = '🚨 MASUKKAN KATA LALUAN UNTUK MASTER PEMBERSIHAN:';
         else if (j === 'IMPORT_JENTERA_DEFAULT')
@@ -3773,7 +3771,6 @@
           const a = sasaranPasswordAction;
           tutupModalPassword();
           if (a === 'URUS_KATEGORI') bukaModalUrusKategori();
-          else if (a === 'BACKEND') bukaModalSpreadsheet();
           else if (a === 'MASTER_BERSIH') laksanaMasterPembersihan();
           else if (a === 'IMPORT_JENTERA_DEFAULT') {
             initDataLogistik(true);
