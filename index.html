@@ -1021,10 +1021,10 @@
 
     <div class="main-container">
       <div class="sidebar no-print">
-        <!-- SPREADSHEET CARD (PASSWORD REMOVED) -->
+        <!-- SPREADSHEET CARD -->
         <div class="card" style="border-left: 5px solid var(--bomba-gold)">
           <div class="card-title">
-            <span>SPREADSHEET BACKEND</span
+            <span>SPREADSHEET BACKEND 🔒</span
             ><span class="icon" style="background: #fef3c7; color: #92400e"
               >CLOUD</span
             >
@@ -1043,7 +1043,7 @@
             <button
               class="btn btn-secondary"
               style="font-size: 0.8rem; padding: 10px"
-              onclick="bukaModalSpreadsheet()"
+              onclick="mintaPassword('BACKEND')"
             >
               ⚙️ TETAPAN GOOGLE SPREADSHEET
             </button>
@@ -1503,8 +1503,9 @@
           </div>
         </div>
 
+        <!-- TETAPAN PERANAN TERMASUK BKB (BILIK KAWALAN BALAI) -->
         <div
-          style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px"
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px"
         >
           <div class="form-group">
             <label>KETUA BALAI</label>
@@ -1523,6 +1524,13 @@
           <div class="form-group">
             <label>PENYELIA PASUKAN</label>
             <select id="modalPenyeliaPasukan" class="form-control">
+              <option value="TIDAK">TIDAK</option>
+              <option value="YA">YA</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>BKB (KAWALAN BALAI)</label>
+            <select id="modalBkb" class="form-control">
               <option value="TIDAK">TIDAK</option>
               <option value="YA">YA</option>
             </select>
@@ -1910,7 +1918,7 @@
       </div>
     </div>
 
-    <!-- MODAL PASSWORD (HANYA UNTUK OPERASI TERKAWAL MASTER) -->
+    <!-- MODAL PASSWORD -->
     <div class="modal-overlay" id="passwordModal">
       <div class="modal" style="max-width: 420px">
         <div class="modal-header">
@@ -1989,7 +1997,7 @@
       </div>
     </div>
 
-    <!-- MODAL SPREADSHEET (BEBAS TERUS DIAKSES) -->
+    <!-- MODAL SPREADSHEET -->
     <div class="modal-overlay" id="spreadsheetModal">
       <div class="modal" style="max-width: 650px">
         <div class="modal-header">
@@ -2185,7 +2193,7 @@
         logistikJentera = [];
         let idCounter = 1000;
 
-        // 1. FRT / LFRT / CFRT / RFRT
+        // 1. FRT / LFRT / CFRT / RFRT (85 Units)
         const frtData = [
           [
             'CFRT * 019',
@@ -2482,7 +2490,7 @@
           });
         });
 
-        // 2. EMRS
+        // 2. EMRS (20 Units)
         const emrsData = [
           ['J2-01', 'BMP 3537', 'TOYOTA HIACE EMRS'],
           ['J2-02', 'BNH 9581', 'TOYOTA HIACE EMRS'],
@@ -2519,7 +2527,7 @@
           });
         });
 
-        // 3. Water Tanker
+        // 3. Water Tanker (12 Units)
         const wtData = [
           ['J5-01', 'BMS 5928 / T-BD9282', 'SCANIA WT 20000L'],
           ['J5-02', 'BMV 1317 / T-BD9284', 'SCANIA WT 20000L'],
@@ -2548,7 +2556,7 @@
           });
         });
 
-        // 4. KHAS / BOMPA
+        // 4. KHAS / BOMPA (22 Units)
         const khasData = [
           ['J10-01', 'WSG 3646', 'KOMUNIKASI', 'COMMUNICATION TENDER'],
           ['J11-01', 'BJS 3513', 'HPPM', 'HIGH PRESSURE PUMP'],
@@ -2587,7 +2595,7 @@
           });
         });
 
-        // 5. BOT & ASET AIR
+        // 5. BOT & ASET AIR (45 Units)
         const boatPlates = [
           'BP 048-10',
           'BP 06',
@@ -2687,7 +2695,7 @@
           });
         }
 
-        // 6. RIM / MOTOSIKAL
+        // 6. RIM / MOTOSIKAL (23 Units)
         const rimData = [
           ['J6-01', 'BGT 231', 'HONDA ST 1300'],
           ['J6-02', 'BGT 240', 'HONDA ST 1300'],
@@ -2727,7 +2735,7 @@
           });
         });
 
-        // 7. KENDERAAN / UTILITY
+        // 7. KENDERAAN / UTILITY (185 Units)
         const models4x4 = [
           'TOYOTA HILUX 2.5',
           'MITSUBISHI TRITON 2.4',
@@ -3274,6 +3282,7 @@
         document.getElementById('modalKetuaBalai').value = 'TIDAK';
         document.getElementById('modalPegawaiOperasi').value = 'TIDAK';
         document.getElementById('modalPenyeliaPasukan').value = 'TIDAK';
+        document.getElementById('modalBkb').value = 'TIDAK';
         kemaskiniPaparanNamaAnggota();
         janaNamaAnggotaDropdown();
         document.getElementById('addOfficerModal').classList.add('active');
@@ -3300,6 +3309,7 @@
         const penyeliaPasukan = document.getElementById(
           'modalPenyeliaPasukan'
         ).value;
+        const bkb = document.getElementById('modalBkb').value;
         const sh = document.getElementById('shiftType').value;
         const wk = document.getElementById('shiftTime').value;
 
@@ -3307,6 +3317,7 @@
         if (ketuaBalai === 'YA') peranan.push('KETUA BALAI');
         if (pegawaiOperasi === 'YA') peranan.push('PEGAWAI OPERASI');
         if (penyeliaPasukan === 'YA') peranan.push('PENYELIA PASUKAN');
+        if (bkb === 'YA') peranan.push('BKB');
         const perananStr = peranan.length > 0 ? peranan.join(', ') : '-';
 
         let ditambah = 0;
@@ -3348,6 +3359,7 @@
             ketuaBalai: ketuaBalai,
             pegawaiOperasi: pegawaiOperasi,
             penyeliaPasukan: penyeliaPasukan,
+            bkb: bkb,
           });
           ditambah++;
         });
@@ -3747,6 +3759,8 @@
         const p = document.getElementById('passwordPromptText');
         if (j === 'URUS_KATEGORI')
           p.innerText = 'MASUKKAN KATA LALUAN UNTUK MENGURUS MASTER:';
+        else if (j === 'BACKEND')
+          p.innerText = 'MASUKKAN KATA LALUAN UNTUK AKSES SPREADSHEET:';
         else if (j === 'MASTER_BERSIH')
           p.innerText = '🚨 MASUKKAN KATA LALUAN UNTUK MASTER PEMBERSIHAN:';
         else if (j === 'IMPORT_JENTERA_DEFAULT')
@@ -3771,6 +3785,7 @@
           const a = sasaranPasswordAction;
           tutupModalPassword();
           if (a === 'URUS_KATEGORI') bukaModalUrusKategori();
+          else if (a === 'BACKEND') bukaModalSpreadsheet();
           else if (a === 'MASTER_BERSIH') laksanaMasterPembersihan();
           else if (a === 'IMPORT_JENTERA_DEFAULT') {
             initDataLogistik(true);
