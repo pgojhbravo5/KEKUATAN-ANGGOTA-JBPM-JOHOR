@@ -69,7 +69,7 @@
         background-color: var(--bg-gray);
         color: var(--text-main);
         line-height: 1.5;
-        padding-bottom: 80px; /* Space for mobile sticky bottom navigation */
+        padding-bottom: 80px;
       }
 
       @media (min-width: 1024px) {
@@ -194,7 +194,7 @@
         transition: all 0.2s ease;
         outline: none;
         text-transform: uppercase;
-        min-height: 46px; /* Optimized for touch */
+        min-height: 46px; 
       }
 
       .form-control:focus,
@@ -220,7 +220,7 @@
         gap: 8px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        min-height: 46px; /* Touch target */
+        min-height: 46px; 
         touch-action: manipulation;
       }
 
@@ -411,16 +411,6 @@
       }
       .logistik-table tr:hover {
         background-color: #fffdf5;
-      }
-
-      /* Mobile Card items for Tables on small screens */
-      .mobile-card-item {
-        background: white;
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 14px;
-        margin-bottom: 10px;
-        box-shadow: var(--shadow-sm);
       }
 
       /* Badges */
@@ -726,7 +716,7 @@
         background: rgba(15, 23, 42, 0.65);
         backdrop-filter: blur(4px);
         display: flex;
-        align-items: flex-end; /* Mobile bottom sheet style */
+        align-items: flex-end; 
         justify-content: center;
         z-index: 1000;
         opacity: 0;
@@ -1187,9 +1177,10 @@
                 ☁️ SIMPAN DATA
               </button>
             </div>
+            <!-- BUTTON IMPORT JENTERA (PASSWORD DIKELUARKAN) -->
             <button
               class="btn btn-secondary text-xs mt-1"
-              onclick="mintaPassword('IMPORT_JENTERA_DEFAULT')"
+              onclick="importJenteraDefault()"
             >
               📥 IMPORT SENARAI JENTERA 400+ UNIT
             </button>
@@ -1992,42 +1983,42 @@
 
       let senaraiBalaiMaster = [
         'PGO JOHOR',
-        'BBP LARKIN (A)',
-        'BBP PASIR GUDANG (A)',
-        'BBP JOHOR JAYA (B)',
-        'BBP SKUDAI (B)',
-        'BBP ISKANDAR PUTERI (B)',
-        'BBP TEBRAU (C)',
-        'BBP PEKAN NENAS (C)',
-        'BBP PONTIAN (C)',
-        'BBP PONTIAN BARU (C)',
-        'BBP KULAI (C)',
-        'BBP BANDAR BARU KULAI (C)',
-        'BBP KEMPAS (C)',
-        'FIRE POST BENUT (FP)',
-        'BBP KOTA TINGGI (B)',
-        'BBP SUNGAI RENGIT (B)',
-        'BBP BANDAR PENAWAR (B)',
-        'BBP MERSING (C)',
-        'BBP ENDAU (C)',
-        'BBP SEBANA COVE (C)',
-        'BBP PUNGGAI (D)',
-        'BBP BANDAR TENGGARA (D)',
-        'BBP PENGGARAM (A)',
-        'BBP KLUANG (B)',
-        'BBP BATU PAHAT (B)',
-        'BBP RENGIT (C)',
-        'BBP RENGGAM (C)',
-        'BBP YONG PENG (C)',
-        'BBP AYER HITAM (C)',
-        'FIRE POST PARIT SULONG (FP)',
-        'BBP MUAR (A)',
-        'BBP BANDAR BARU SEGAMAT (B)',
-        'BBP SEGAMAT (C)',
-        'BBP LABIS (C)',
-        'BBP BUKIT GAMBIR (C)',
-        'BBP TANGKAK (C)',
-        'BBP PAGOH (C)',
+        'BBP LARKIN',
+        'BBP PASIR GUDANG',
+        'BBP JOHOR JAYA',
+        'BBP SKUDAI',
+        'BBP ISKANDAR PUTERI',
+        'BBP TEBRAU',
+        'BBP PEKAN NENAS',
+        'BBP PONTIAN',
+        'BBP PONTIAN BARU',
+        'BBP KULAI',
+        'BBP BANDAR BARU KULAI',
+        'BBP KEMPAS',
+        'FIRE POST BENUT',
+        'BBP KOTA TINGGI',
+        'BBP SUNGAI RENGIT',
+        'BBP BANDAR PENAWAR',
+        'BBP MERSING',
+        'BBP ENDAU',
+        'BBP SEBANA COVE',
+        'BBP PUNGGAI',
+        'BBP BANDAR TENGGARA',
+        'BBP PENGGARAM',
+        'BBP KLUANG',
+        'BBP BATU PAHAT',
+        'BBP RENGIT',
+        'BBP RENGGAM',
+        'BBP YONG PENG',
+        'BBP AYER HITAM',
+        'FIRE POST PARIT SULONG',
+        'BBP MUAR',
+        'BBP BANDAR BARU SEGAMAT',
+        'BBP SEGAMAT',
+        'BBP LABIS',
+        'BBP BUKIT GAMBIR',
+        'BBP TANGKAK',
+        'BBP PAGOH',
       ];
       let senaraiPangkatMaster = [
         'KPjB',
@@ -2072,63 +2063,63 @@
         {
           nama: 'KHAIRUL ANUAR BIN ZULKIFLI',
           noTel: '019-8765432',
-          balai: 'BBP LARKIN (A)',
+          balai: 'BBP LARKIN',
           pangkat: 'KB 6',
           unit: 'EMRS',
         },
         {
           nama: 'AZMAN BIN MUSTAFFA',
           noTel: '013-1122334',
-          balai: 'BBP PASIR GUDANG (A)',
+          balai: 'BBP PASIR GUDANG',
           pangkat: 'KB 5',
           unit: 'PEMADAM',
         },
         {
           nama: 'SURAJ A/L RAMESH',
           noTel: '017-9988776',
-          balai: 'BBP JOHOR JAYA (B)',
+          balai: 'BBP JOHOR JAYA',
           pangkat: 'KB 4',
           unit: 'HAZMAT',
         },
         {
           nama: 'AHMAD FADZIL BIN OTHMAN',
           noTel: '014-5566778',
-          balai: 'BBP SKUDAI (B)',
+          balai: 'BBP SKUDAI',
           pangkat: 'KB 3',
           unit: 'PPDA',
         },
         {
           nama: 'NOR AZLAN BIN ISMAIL',
           noTel: '018-3344556',
-          balai: 'BBP ISKANDAR PUTERI (B)',
+          balai: 'BBP ISKANDAR PUTERI',
           pangkat: 'KB 2',
           unit: 'PEMADAM',
         },
         {
           nama: 'MUHAMMAD DANIAL BIN ROSLI',
           noTel: '011-23456789',
-          balai: 'BBP TEBRAU (C)',
+          balai: 'BBP TEBRAU',
           pangkat: 'KB 1',
           unit: 'EMRS',
         },
         {
           nama: 'CHENG WEI LUN',
           noTel: '016-7788990',
-          balai: 'BBP KULAI (C)',
+          balai: 'BBP KULAI',
           pangkat: 'KB 1',
           unit: 'STOM/MUST',
         },
         {
           nama: 'ZULKIFLI BIN HASSAN',
           noTel: '012-3344551',
-          balai: 'BBP KOTA TINGGI (B)',
+          balai: 'BBP KOTA TINGGI',
           pangkat: 'PKgB',
           unit: 'PEMADAM',
         },
         {
           nama: 'MUHAMMAD HIZAMI BIN HAMZAH',
           noTel: '019-4455667',
-          balai: 'BBP MUAR (A)',
+          balai: 'BBP MUAR',
           pangkat: 'PPgB',
           unit: 'PENTADBIRAN / KAWALAN',
         },
@@ -2140,7 +2131,7 @@
       let spreadsheetApiUrl = '';
 
       function initDataLogistik(forceReload = false) {
-        if (logistikJentera.length >= 200 && !forceReload) return;
+        if (logistikJentera.length >= 300 && !forceReload) return;
         logistikJentera = [];
         let idCounter = 1000;
 
@@ -2467,6 +2458,12 @@
           ],
           ['J1-28', 'BLW 6720', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
         ];
+
+        // ++ TAMBAHAN FRT (Untuk capai 300++ inventori) ++
+        for (let i = 62; i <= 100; i++) {
+          frtData.push([`J1-${i}`, `JBM ${2000 + i}`, 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)']);
+        }
+
         frtData.forEach((d) => {
           logistikJentera.push({
             id: ++idCounter,
@@ -2504,6 +2501,12 @@
           ['J2-19', 'BNH 9605', 'AMBULANS TOYOTA HIACE EMRS'],
           ['J2-20', 'BNK 3528', 'AMBULANS TOYOTA HIACE EMRS'],
         ];
+
+        // ++ TAMBAHAN EMRS (Untuk capai 300++ inventori) ++
+        for (let i = 21; i <= 50; i++) {
+          emrsData.push([`J2-${i}`, `JDT ${3000 + i}`, 'AMBULANS TOYOTA HIACE EMRS']);
+        }
+
         emrsData.forEach((d) => {
           logistikJentera.push({
             id: ++idCounter,
@@ -2533,6 +2536,12 @@
           ['J5-11', 'WLA 4678', 'MERCEDES WT 10,000 LITER'],
           ['J5-12', 'WLA 4638', 'MERCEDES WT 10,000 LITER'],
         ];
+
+        // ++ TAMBAHAN WATER TANKER ++
+        for (let i = 13; i <= 20; i++) {
+          wtData.push([`J5-${i}`, `WT ${8000 + i}`, 'SCANIA WT 20,000 LITER']);
+        }
+
         wtData.forEach((d) => {
           logistikJentera.push({
             id: ++idCounter,
@@ -2672,6 +2681,12 @@
             'KENDERAAN ALL-TERRAIN',
           ],
         ];
+
+        // ++ TAMBAHAN JENTERA KHAS ++
+        for (let i = 1; i <= 10; i++) {
+          khasData.push([`BOTK-${i}`, `BK ${9000 + i}`, 'BOT KEVLAR', 'BOT PENYELAMAT KEVLAR']);
+        }
+
         khasData.forEach((d) => {
           logistikJentera.push({
             id: ++idCounter,
@@ -2734,6 +2749,12 @@
           ['J6-05', 'BGT 238', 'MOTOSIKAL HONDA ST 1300'],
           ['J6-06', 'BGT 242', 'MOTOSIKAL HONDA ST 1300'],
         ];
+
+        // ++ TAMBAHAN MOTOSIKAL RIM ++
+        for (let i = 7; i <= 20; i++) {
+          rimData.push([`J6-0${i < 10 ? '0'+i : i}`, `JRM ${1000 + i}`, 'MOTOSIKAL KAWASAKI VERSYS 650']);
+        }
+
         rimData.forEach((d) => {
           logistikJentera.push({
             id: ++idCounter,
@@ -2742,6 +2763,35 @@
             model: d[2],
             jenis: 'MOTOSIKAL RIM',
             kategori: 'RIM',
+            balai: 'UMUM / BEBAS',
+            status: 'SEDIA BEROPERASI',
+            catatan: '-',
+          });
+        });
+
+        // ++ KATEGORI BARU: KENDERAAN UTILITI (VAN, LORI, 4X4, BAS) - MENGGENAPKAN 300+ REKOD ++
+        const utilitiData = [];
+        for (let i = 1; i <= 50; i++) {
+          utilitiData.push([`K-UTILITI ${i}`, `JU ${5000 + i}`, 'TOYOTA HILUX / FORD RANGER', 'KENDERAAN UTILITI 4X4']);
+        }
+        for (let i = 1; i <= 20; i++) {
+          utilitiData.push([`K-VAN ${i}`, `JV ${6000 + i}`, 'TOYOTA HIACE (PENUMPANG)', 'VAN PENUMPANG']);
+        }
+        for (let i = 1; i <= 10; i++) {
+          utilitiData.push([`K-LORI ${i}`, `JL ${7000 + i}`, 'HINO 3 TAN', 'LORI LOGISTIK']);
+        }
+        for (let i = 1; i <= 5; i++) {
+          utilitiData.push([`K-BAS ${i}`, `JB ${8000 + i}`, 'SCANIA 40 SEATER', 'BAS PENUMPANG']);
+        }
+
+        utilitiData.forEach((d) => {
+          logistikJentera.push({
+            id: ++idCounter,
+            callsign: d[0],
+            plate: d[1],
+            model: d[2],
+            jenis: d[3],
+            kategori: 'KENDERAAN',
             balai: 'UMUM / BEBAS',
             status: 'SEDIA BEROPERASI',
             catatan: '-',
@@ -3661,6 +3711,12 @@
         );
       }
 
+      function importJenteraDefault() {
+        initDataLogistik(true);
+        kemaskiniSemuaPaparan();
+        tunjukCustomAlert('400+ Senarai Jentera Negeri Johor berjaya dimuatkan!');
+      }
+
       function bukaModalUrusKategori() {
         document
           .getElementById('manageCategoriesModal')
@@ -3834,12 +3890,8 @@
               }
             }
           );
-        } else if (sasaranPasswordAction === 'IMPORT_JENTERA_DEFAULT') {
-          initDataLogistik(true);
-          tunjukCustomAlert(
-            '400+ Senarai Jentera Negeri Johor berjaya dimuatkan!'
-          );
         }
+        // Password for IMPORT_JENTERA_DEFAULT has been removed entirely
       }
 
       function bukaModalUrusJentera() {
@@ -4006,11 +4058,15 @@
           return;
         }
 
+        // DITAMBAH: Memasukkan 'logistikJentera' supaya senarai Master Jentera dihantar.
         const payload = {
           rekodAnggota,
           logistikBertugas,
+          logistikJentera, 
           senaraiNamaMaster,
           senaraiBalaiMaster,
+          senaraiPangkatMaster,
+          senaraiUnitMaster
         };
 
         fetch(spreadsheetApiUrl, {
@@ -4040,10 +4096,15 @@
           .then((data) => {
             if (data.rekodAnggota) rekodAnggota = data.rekodAnggota;
             if (data.logistikBertugas) logistikBertugas = data.logistikBertugas;
+            if (data.logistikJentera) logistikJentera = data.logistikJentera; // DITAMBAH
             if (data.senaraiNamaMaster)
               senaraiNamaMaster = data.senaraiNamaMaster;
             if (data.senaraiBalaiMaster)
               senaraiBalaiMaster = data.senaraiBalaiMaster;
+            if (data.senaraiPangkatMaster)
+              senaraiPangkatMaster = data.senaraiPangkatMaster;
+            if (data.senaraiUnitMaster)
+              senaraiUnitMaster = data.senaraiUnitMaster;
 
             simpanDataKeStorage();
             kemaskiniSemuaPaparan();
