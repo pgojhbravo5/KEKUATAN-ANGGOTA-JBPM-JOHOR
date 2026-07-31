@@ -16,7 +16,7 @@
       rel="stylesheet"
     />
 
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS CDN for modern utility classes -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -37,6 +37,7 @@
       };
     </script>
 
+    <!-- Custom CSS styles and Mobile Adaptations -->
     <style>
       :root {
         --bomba-red: #b91c1c;
@@ -60,6 +61,7 @@
         margin: 0;
         padding: 0;
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        text-transform: uppercase;
         -webkit-tap-highlight-color: transparent;
       }
 
@@ -67,7 +69,7 @@
         background-color: var(--bg-gray);
         color: var(--text-main);
         line-height: 1.5;
-        padding-bottom: 80px;
+        padding-bottom: 80px; /* Space for mobile sticky bottom navigation */
       }
 
       @media (min-width: 1024px) {
@@ -91,6 +93,7 @@
         background: #94a3b8;
       }
 
+      /* Header Styling */
       header {
         background: linear-gradient(
           135deg,
@@ -175,7 +178,6 @@
         color: var(--bomba-navy);
         margin-bottom: 6px;
         letter-spacing: 0.5px;
-        text-transform: uppercase;
       }
 
       .form-control,
@@ -191,7 +193,8 @@
         background-color: #fafafa;
         transition: all 0.2s ease;
         outline: none;
-        min-height: 46px;
+        text-transform: uppercase;
+        min-height: 46px; /* Optimized for touch */
       }
 
       .form-control:focus,
@@ -217,7 +220,7 @@
         gap: 8px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        min-height: 46px;
+        min-height: 46px; /* Touch target */
         touch-action: manipulation;
       }
 
@@ -274,6 +277,7 @@
         margin-left: 2px;
       }
 
+      /* Tab Control Buttons */
       .tab-btn-group {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
@@ -304,6 +308,7 @@
         box-shadow: var(--shadow-sm);
       }
 
+      /* Stats Cards Grid */
       .stats-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -346,7 +351,6 @@
         font-weight: 800;
         color: var(--text-muted);
         margin-bottom: 2px;
-        text-transform: uppercase;
       }
 
       .stat-value {
@@ -358,6 +362,7 @@
         text-overflow: ellipsis;
       }
 
+      /* Tables & Mobile Card Views */
       .table-responsive {
         width: 100%;
         overflow-x: auto;
@@ -384,7 +389,6 @@
         border-bottom: 2px solid var(--border-color);
         white-space: nowrap;
         font-size: 0.7rem;
-        text-transform: uppercase;
       }
 
       .logistik-table th {
@@ -409,6 +413,17 @@
         background-color: #fffdf5;
       }
 
+      /* Mobile Card items for Tables on small screens */
+      .mobile-card-item {
+        background: white;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 14px;
+        margin-bottom: 10px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      /* Badges */
       .badge {
         display: inline-block;
         padding: 3px 8px;
@@ -416,7 +431,6 @@
         font-weight: 800;
         font-size: 0.65rem;
         white-space: nowrap;
-        text-transform: uppercase;
       }
 
       .badge-a {
@@ -515,10 +529,9 @@
         text-align: center;
         padding: 35px 15px;
         color: var(--text-muted);
-        font-weight: 700;
-        text-transform: uppercase;
       }
 
+      /* Multi-select Dropdowns */
       .multi-select-container {
         position: relative;
         width: 100%;
@@ -540,6 +553,7 @@
         gap: 8px;
         transition: all 0.2s ease;
         min-height: 46px;
+        text-transform: uppercase;
         user-select: none;
       }
 
@@ -553,7 +567,6 @@
         color: var(--text-muted);
         font-weight: 600;
         font-size: 0.8rem;
-        text-transform: uppercase;
       }
 
       .multi-select-tags {
@@ -575,7 +588,6 @@
         align-items: center;
         gap: 3px;
         white-space: nowrap;
-        text-transform: uppercase;
       }
 
       .multi-select-arrow {
@@ -642,7 +654,6 @@
         align-items: center;
         gap: 8px;
         transition: background 0.15s ease;
-        text-transform: uppercase;
       }
 
       .multi-select-option:hover {
@@ -705,6 +716,7 @@
         border: 1px solid #fca5a5;
       }
 
+      /* Modals */
       .modal-overlay {
         position: fixed;
         top: 0;
@@ -714,7 +726,7 @@
         background: rgba(15, 23, 42, 0.65);
         backdrop-filter: blur(4px);
         display: flex;
-        align-items: flex-end;
+        align-items: flex-end; /* Mobile bottom sheet style */
         justify-content: center;
         z-index: 1000;
         opacity: 0;
@@ -779,7 +791,6 @@
         font-size: 1.05rem;
         font-weight: 800;
         color: var(--bomba-red);
-        text-transform: uppercase;
       }
 
       .close-modal {
@@ -804,7 +815,6 @@
         border-radius: 20px;
         font-size: 0.7rem;
         font-weight: 800;
-        text-transform: uppercase;
       }
 
       .sync-active {
@@ -817,11 +827,6 @@
         color: #92400e;
         border: 1px solid #fcd34d;
       }
-      .sync-error {
-        background: #fee2e2;
-        color: #991b1b;
-        border: 1px solid #fca5a5;
-      }
 
       .error-message {
         color: #dc2626;
@@ -829,7 +834,6 @@
         font-weight: 700;
         margin-top: 6px;
         display: none;
-        text-transform: uppercase;
       }
 
       .info-pill {
@@ -844,7 +848,6 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        text-transform: uppercase;
       }
 
       .jentera-modal-table {
@@ -861,7 +864,6 @@
         font-size: 0.68rem;
         border-bottom: 2px solid var(--border-color);
         text-align: left;
-        text-transform: uppercase;
       }
 
       .jentera-modal-table td {
@@ -894,7 +896,6 @@
         font-weight: 700;
         margin-bottom: 12px;
         flex-wrap: wrap;
-        text-transform: uppercase;
       }
 
       .filter-info-badge .clear-filter-link {
@@ -911,6 +912,7 @@
         margin-top: 14px;
       }
 
+      /* Mobile Navigation Bar */
       .mobile-bottom-nav {
         position: fixed;
         bottom: 0;
@@ -939,10 +941,6 @@
         transition: all 0.2s ease;
         text-align: center;
         width: 25%;
-        text-transform: uppercase;
-        background: none;
-        border: none;
-        cursor: pointer;
       }
 
       .nav-item .nav-icon {
@@ -955,31 +953,14 @@
         background: #fef2f2;
       }
 
+      /* Desktop Hide Mobile Nav */
       @media (min-width: 1024px) {
         .mobile-bottom-nav {
           display: none;
         }
       }
 
-      .loading-spinner {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        border: 3px solid #f3f3f3;
-        border-top: 3px solid var(--bomba-red);
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
+      /* Print Styles */
       @media print {
         body {
           background: white;
@@ -1039,13 +1020,6 @@
         >
           <div id="spreadsheetStatusBadge" class="sync-badge sync-inactive">
             <span>🟡 SPREADSHEET: TIDAK DISAMBUNG</span>
-          </div>
-          <div
-            id="syncStatusBadge"
-            class="sync-badge sync-inactive"
-            style="display: none"
-          >
-            <span>🔄 MENYIMPAN...</span>
           </div>
           <div
             class="bg-black/30 border border-white/20 px-3 py-1.5 rounded-xl text-right"
@@ -1203,14 +1177,12 @@
               <button
                 class="btn btn-secondary text-xs"
                 onclick="tarikDataSpreadsheet()"
-                id="btnTarikData"
               >
                 🔄 MUAT DATA
               </button>
               <button
                 class="btn btn-primary text-xs"
                 onclick="hantarDataSpreadsheet()"
-                id="btnHantarData"
               >
                 ☁️ SIMPAN DATA
               </button>
@@ -1371,7 +1343,7 @@
             </table>
           </div>
           <div id="emptyMessage" class="empty-state" style="display: none">
-            <p>TIADA ANGGOTA DIDAFTARKAN.</p>
+            <p class="font-bold">TIADA ANGGOTA DIDAFTARKAN.</p>
           </div>
         </div>
 
@@ -1430,7 +1402,7 @@
             </table>
           </div>
           <div id="emptyLogMessage" class="empty-state" style="display: none">
-            <p>TIADA JENTERA DIDAFTARKAN.</p>
+            <p class="font-bold">TIADA JENTERA DIDAFTARKAN.</p>
           </div>
         </div>
       </div>
@@ -1455,7 +1427,6 @@
       </button>
     </nav>
 
-    <!-- SEMUA MODAL (sama seperti sebelumnya) -->
     <!-- MODAL TAMBAH ANGGOTA BERTUGAS -->
     <div class="modal-overlay" id="addOfficerModal">
       <div class="modal">
@@ -1675,9 +1646,7 @@
           </div>
         </div>
 
-        <div class="mb-2 font-bold text-xs" style="text-transform: uppercase">
-          JENTERA DIPILIH:
-        </div>
+        <div class="mb-2 font-bold text-xs">JENTERA DIPILIH:</div>
         <div
           class="max-h-60 overflow-y-auto border border-slate-200 rounded-xl mb-3"
         >
@@ -1874,7 +1843,6 @@
         <p
           id="tabMasterDesc"
           class="text-xs text-slate-500 font-semibold mb-3"
-          style="text-transform: uppercase"
         ></p>
         <div class="form-group">
           <input
@@ -1915,15 +1883,13 @@
         <p
           id="passwordPromptText"
           class="text-xs font-semibold mb-3 text-slate-700"
-          style="text-transform: uppercase"
         ></p>
         <div class="form-group">
           <label for="inputPassword">KATA LALUAN</label>
           <input
             type="password"
             id="inputPassword"
-            class="form-control"
-            style="text-transform: none"
+            class="form-control !text-none"
             onkeyup="semakEnterPassword(event)"
           />
           <div id="passwordErrorMsg" class="error-message">
@@ -1987,7 +1953,7 @@
 
     <!-- MODAL SPREADSHEET -->
     <div class="modal-overlay" id="spreadsheetModal">
-      <div class="modal sm:!max-w-md">
+      <div class="modal">
         <div class="modal-header">
           <h3>TETAPAN SPREADSHEET</h3>
           <button class="close-modal" onclick="tutupModalSpreadsheet()">
@@ -1999,8 +1965,7 @@
           <input
             type="text"
             id="sheetApiUrl"
-            class="form-control"
-            style="text-transform: none"
+            class="form-control !text-none"
             placeholder="https://script.google.com/macros/s/.../exec"
           />
         </div>
@@ -2016,7 +1981,6 @@
     </div>
 
     <script>
-      // ==================== KONFIGURASI UTAMA ====================
       const KATA_LALUAN_TETAP = 'PGO1234';
       let sasaranPasswordAction = '',
         confirmCallback = null,
@@ -2026,7 +1990,6 @@
       let logJenteraData = [];
       let namaAnggotaTerpilih = [];
 
-      // Data Master
       let senaraiBalaiMaster = [
         'PGO JOHOR',
         'BBP LARKIN (A)',
@@ -2066,7 +2029,6 @@
         'BBP TANGKAK (C)',
         'BBP PAGOH (C)',
       ];
-
       let senaraiPangkatMaster = [
         'KPjB',
         'PKPjB',
@@ -2087,7 +2049,6 @@
         'KB 8',
         'PBB',
       ];
-
       let senaraiUnitMaster = [
         'PEMADAM',
         'EMRS',
@@ -2178,7 +2139,618 @@
       let logistikBertugas = [];
       let spreadsheetApiUrl = '';
 
-      // ==================== FUNGSI STORAGE ====================
+      function initDataLogistik(forceReload = false) {
+        if (logistikJentera.length >= 200 && !forceReload) return;
+        logistikJentera = [];
+        let idCounter = 1000;
+
+        // SENARAI JENTERA PEMADAM (FRT / LFRT / CFRT / RFRT)
+        const frtData = [
+          [
+            'CFRT * 019',
+            'VNE 4358',
+            'HINO XZC720R ZKFRL3',
+            'JENTERA PEMADAM RINGAN RINGKAS (CFRT)',
+          ],
+          [
+            'CFRT 1',
+            'VLN 5716',
+            'HINO XZC720R ZKFRL3',
+            'JENTERA PEMADAM RINGAN RINGKAS (CFRT)',
+          ],
+          [
+            'CFRT 2',
+            'VLN 5721',
+            'HINO XZC720R ZKFRL3',
+            'JENTERA PEMADAM RINGAN RINGKAS (CFRT)',
+          ],
+          [
+            'CFRT 3',
+            'VNE 4357',
+            'HINO XZC720R ZKFRL3',
+            'JENTERA PEMADAM RINGAN RINGKAS (CFRT)',
+          ],
+          [
+            'CFRT 4',
+            'VPG 3667',
+            'HINO XZC720R ZKFRL3',
+            'JENTERA PEMADAM RINGAN RINGKAS (CFRT)',
+          ],
+          [
+            'CFRT 5',
+            'BSK 8079',
+            'HINO XZC720R ZKFRL3',
+            'JENTERA PEMADAM RINGAN RINGKAS (CFRT)',
+          ],
+          [
+            'CFRT 6',
+            'VQJ 6595',
+            'HINO XZC720R ZKFRL3',
+            'JENTERA PEMADAM RINGAN RINGKAS (CFRT)',
+          ],
+          [
+            'CFRT 7',
+            'VQJ 6576',
+            'HINO XZC720R ZKFRL3',
+            'JENTERA PEMADAM RINGAN RINGKAS (CFRT)',
+          ],
+          [
+            'J1-25',
+            'WDF 2845',
+            'NISSAN UD CPB14FHRT',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          [
+            'J1-02',
+            'BJT 8410',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          [
+            'FRT-01',
+            'WDF 2115',
+            'NISSAN UD CPB14FHRT',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          [
+            'FRT-02',
+            'WDF 4724',
+            'NISSAN UD CPB14FHRT',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          [
+            'FRT-03',
+            'WEH 3367',
+            'NISSAN UD CPB14FHRT',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          [
+            'J1-06',
+            'BJW 4572',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          [
+            'FRT-04',
+            'WDF 2842',
+            'NISSAN UD CPB14FHRT',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          [
+            'FRT-05',
+            'WEH 3358',
+            'NISSAN UD CPB14FHRT',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          [
+            'FRT-06',
+            'WCC 4229',
+            'NISSAN UD CPB14FHRT',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          [
+            'J1-10',
+            'BJW 4568',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          [
+            'FRT-07',
+            'WEH 3365',
+            'NISSAN UD CPB14FHRT',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          [
+            'FRT-08',
+            'WDF 2113',
+            'NISSAN UD CPB14FHRT',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          [
+            'J1-14',
+            'BJW 4563',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          ['J1-60', 'BMK 984', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'J1-16',
+            'BJY 3594',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          [
+            'SITRAK 1',
+            'BSJ 6359',
+            'SITRAK C500',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          ['J1-04', 'BLU 8032', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'J1-19',
+            'BJY 3445',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          ['J1-05', 'BGQ 6785', 'SCANIA P94', 'JENTERA PEMADAM UTAMA (FRT)'],
+          ['W1-35', 'WHK 9429', 'SCANIA P94', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'J1-22',
+            'BJW 4599',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          ['J1-08', 'BLX 576', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'LFRT N1-23',
+            'BJT 8203',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          ['J1-09', 'WUB 9615', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          ['J1-59', 'BGR 3578', 'SCANIA P94', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'J1-51',
+            'BJW 4590',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          ['J1-13', 'BMK 982', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'J1-24',
+            'BJY 3364',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          ['J1-01', 'BMK 976', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'J1-53',
+            'BJW 4561',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          ['J1-03', 'WUC 170', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'J1-57',
+            'BKA 9304',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          ['J1-18', 'BMK 1013', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'J1-36',
+            'BJW 4573',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          ['J1-07', 'BMK 987', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'J1-39',
+            'BJW 4569',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          ['J1-11', 'BMK 1021', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          ['J1-15', 'BLV 9703', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'J1-42',
+            'BJT 8353',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          ['J1-61', 'BGQ 6810', 'SCANIA P94', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'J1-44',
+            'BKA 8796',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          ['J1-17', 'BKN 3325', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          ['J1-58', 'BMK 992', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          ['J1-46', 'BGR 4061', 'SCANIA P94', 'JENTERA PEMADAM UTAMA (FRT)'],
+          ['J1-41', 'BKN 7309', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          ['J1-50', 'BMK 1015', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          ['J1-52', 'WHK 9454', 'SCANIA P94', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'J1-27',
+            'BJW 4548',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          ['J1-54', 'BLV 9856', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'J1-31',
+            'BJT 8258',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          ['J1-48', 'BGR 4065', 'SCANIA P94', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'J1-33',
+            'BJY 3386',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          [
+            'SITRAK 2',
+            'BSL 7836',
+            'SITRAK C500',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          [
+            'J1-55',
+            'BJT 8356',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          [
+            'SITRAK 8',
+            'BSL 7906',
+            'SITRAK C500',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          ['J1-26', 'WHK 9461', 'SCANIA P94', 'JENTERA PEMADAM UTAMA (FRT)'],
+          ['J1-30', 'BGR 4059', 'SCANIA P94', 'JENTERA PEMADAM UTAMA (FRT)'],
+          ['J1-35', 'WUC 6846', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'J1-29',
+            'BJW 4575',
+            'MERCEDES ATEGO',
+            'JENTERA PEMADAM RINGAN (LFRT)',
+          ],
+          ['J1-56', 'WUB 9481', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          ['J1-40', 'BMK 1005', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'SITRAK 3',
+            'BSL 7849',
+            'SITRAK C500',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          ['J1-43', 'BLX 4658', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          ['J1-45', 'BLU 8034', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'SITRAK 7',
+            'BSL 7895',
+            'SITRAK C500',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          ['J1-49', 'WJP 1286', 'SCANIA P94', 'JENTERA PEMADAM UTAMA (FRT)'],
+          ['J1-38', 'BMK 4620', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'RFRT-01',
+            'BGR 6274',
+            'FORD F350',
+            'JENTERA PEMADAM RESPONS PANTAS (RFRT)',
+          ],
+          ['J1-47', 'WUC 7006', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'SITRAK 6',
+            'BSL 7885',
+            'SITRAK C500',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          ['J1-20', 'BKN 7156', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          ['J1-32', 'BLX 4668', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          ['J1-23', 'BMK 1014', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'SITRAK 5',
+            'BSL 7876',
+            'SITRAK C500',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          ['J1-21', 'BMK 1030', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+          [
+            'SITRAK 4',
+            'BSL 7857',
+            'SITRAK C500',
+            'JENTERA PEMADAM UTAMA (FRT)',
+          ],
+          ['J1-28', 'BLW 6720', 'SCANIA P310', 'JENTERA PEMADAM UTAMA (FRT)'],
+        ];
+        frtData.forEach((d) => {
+          logistikJentera.push({
+            id: ++idCounter,
+            callsign: d[0],
+            plate: d[1],
+            model: d[2],
+            jenis: d[3],
+            kategori: 'FRT/LFRT/CFRT',
+            balai: 'UMUM / BEBAS',
+            status: 'SEDIA BEROPERASI',
+            catatan: '-',
+          });
+        });
+
+        // EMRS
+        const emrsData = [
+          ['J2-01', 'BMP 3537', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-02', 'BNH 9581', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-03', 'BMQ 2930', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-04', 'BMT 158', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-05', 'BMT 1030', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-06', 'BMT 1034', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-07', 'BMT 1861', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-08', 'BMS 7089', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-09', 'BMS 7185', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-10', 'BMU 4233', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-11', 'BMU 5008', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-12', 'BMV 9267', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-13', 'BNE 654', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-14', 'BNE 754', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-15', 'BNE 1842', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-16', 'BNE 1944', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-17', 'BNG 3646', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-18', 'BNH 5275', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-19', 'BNH 9605', 'AMBULANS TOYOTA HIACE EMRS'],
+          ['J2-20', 'BNK 3528', 'AMBULANS TOYOTA HIACE EMRS'],
+        ];
+        emrsData.forEach((d) => {
+          logistikJentera.push({
+            id: ++idCounter,
+            callsign: d[0],
+            plate: d[1],
+            model: d[2],
+            jenis: 'AMBULANS EMRS',
+            kategori: 'EMRS',
+            balai: 'UMUM / BEBAS',
+            status: 'SEDIA BEROPERASI',
+            catatan: '-',
+          });
+        });
+
+        // WATER TANKER
+        const wtData = [
+          ['J5-01', 'BMS 5928 / T-BD9282', 'SCANIA WT 20,000 LITER'],
+          ['J5-02', 'BMV 1317 / T-BD9284', 'SCANIA WT 20,000 LITER'],
+          ['J5-03', 'BMP 6933 / T-BD8293', 'SCANIA WT 20,000 LITER'],
+          ['J5-04', 'BMV 1436 / T-BD9244', 'SCANIA WT 20,000 LITER'],
+          ['J5-05', 'BMV 4137 / T-BD9269', 'SCANIA WT 20,000 LITER'],
+          ['J5-06', 'BMX 9594 / T-BE762', 'SCANIA WT 20,000 LITER'],
+          ['J5-07', 'BNE 8418 / T-BE266', 'SCANIA WT 20,000 LITER'],
+          ['J5-08', 'BMX 9580 / T-BE317', 'SCANIA WT 20,000 LITER'],
+          ['J5-09', 'BNH 2712 / T-BE931', 'SCANIA WT 20,000 LITER'],
+          ['J5-10', 'BNH 7962 / T-BE1743', 'SCANIA WT 20,000 LITER'],
+          ['J5-11', 'WLA 4678', 'MERCEDES WT 10,000 LITER'],
+          ['J5-12', 'WLA 4638', 'MERCEDES WT 10,000 LITER'],
+        ];
+        wtData.forEach((d) => {
+          logistikJentera.push({
+            id: ++idCounter,
+            callsign: d[0],
+            plate: d[1],
+            model: d[2],
+            jenis: 'JENTERA TANGKI AIR (WATER TANKER)',
+            kategori: 'WATER TANKER',
+            balai: 'UMUM / BEBAS',
+            status: 'SEDIA BEROPERASI',
+            catatan: '-',
+          });
+        });
+
+        // KHAS / BOMPA
+        const khasData = [
+          [
+            'J10-01',
+            'WSG 3646',
+            'JENTERA KOMUNIKASI & PUSAT KAWALAN',
+            'JENTERA KOMUNIKASI BERGERAK',
+          ],
+          [
+            'J11-01',
+            'BJS 3513',
+            'PAM TEKANAN TINGGI (HPPM)',
+            'PAM TEKANAN TINGGI',
+          ],
+          ['J12-01', 'T/BD/750', 'TRELA PAM BUSA PEMADAM', 'TRELA PAM BUSA'],
+          ['J12-02', 'T/BD/744', 'TRELA PAM BUSA PEMADAM', 'TRELA PAM BUSA'],
+          [
+            'J12-03',
+            'WXS 752',
+            'KENDERAAN PENARIK BUSA (PRIME MOVER)',
+            'KENDERAAN PENARIK BUSA',
+          ],
+          [
+            'J14-01',
+            'BGU 488',
+            'JENTERA KEMBALIK & TUNDUK BERAT',
+            'JENTERA KEMBALIK',
+          ],
+          [
+            'J15-01',
+            'VQ 7142',
+            'JENTERA PEMADAM BUSA (FOAM TENDER)',
+            'JENTERA PEMADAM BUSA',
+          ],
+          [
+            'J15-02',
+            'VQ 7144',
+            'JENTERA PEMADAM BUSA (FOAM TENDER)',
+            'JENTERA PEMADAM BUSA',
+          ],
+          [
+            'J16-01',
+            'VBR 2450',
+            'JENTERA TANGGA PLATFORM AERIAL 37M',
+            'JENTERA TANGGA AERIAL (ALP)',
+          ],
+          [
+            'J16-02',
+            'BPD 7929',
+            'JENTERA TANGGA PLATFORM AERIAL 32M',
+            'JENTERA TANGGA AERIAL (ALP)',
+          ],
+          [
+            'J3-01',
+            'BHK 9085',
+            'JENTERA TANGGA BERPUTAR 52M (TTL)',
+            'JENTERA TANGGA BERPUTAR (TTL)',
+          ],
+          [
+            'J3-02',
+            'BHK 9416',
+            'JENTERA TANGGA BERPUTAR 32M (TTL)',
+            'JENTERA TANGGA BERPUTAR (TTL)',
+          ],
+          [
+            'J3-03',
+            'BHK 9070',
+            'JENTERA TANGGA BERPUTAR 32M (TTL)',
+            'JENTERA TANGGA BERPUTAR (TTL)',
+          ],
+          [
+            'J4-01',
+            'WEU 5287',
+            'JENTERA HAZMAT (BAHAN BERBAHAYA)',
+            'JENTERA UNIT HAZMAT',
+          ],
+          [
+            'J7-01',
+            'WUP 4200',
+            'KENDERAAN RESPONS PANTAS (RRV)',
+            'KENDERAAN RESPONS PANTAS',
+          ],
+          [
+            'J7-02',
+            'WUQ 2616',
+            'KENDERAAN RESPONS PANTAS (RRV)',
+            'KENDERAAN RESPONS PANTAS',
+          ],
+          [
+            'J7-03',
+            'WUQ 2751',
+            'KENDERAAN RESPONS PANTAS (RRV)',
+            'KENDERAAN RESPONS PANTAS',
+          ],
+          [
+            'J8-01',
+            'WUN 8456',
+            'KENDERAAN PELBAGAI BENTUK MUKA BUMI (BATV)',
+            'KENDERAAN AMPHIBIOUS ATV',
+          ],
+          [
+            'J9-01',
+            'WUJ 9272',
+            'KENDERAAN FORENSIK PENYIASATAN KEBAKARAN',
+            'KENDERAAN FORENSIK',
+          ],
+          [
+            'J9-02',
+            'FF 6853',
+            'KENDERAAN FORENSIK PENYIASATAN KEBAKARAN',
+            'KENDERAAN FORENSIK',
+          ],
+          [
+            'LLJ-01',
+            'COMMAND-01',
+            'PUSAT KAWALAN OPERASI BERGERAK',
+            'PUSAT KAWALAN BERGERAK',
+          ],
+          [
+            'LLJ-02',
+            'POLARIS-01',
+            'KENDERAAN POLARIS ALL-TERRAIN',
+            'KENDERAAN ALL-TERRAIN',
+          ],
+        ];
+        khasData.forEach((d) => {
+          logistikJentera.push({
+            id: ++idCounter,
+            callsign: d[0],
+            plate: d[1],
+            model: d[2],
+            jenis: d[3],
+            kategori: 'KHAS/BOMPA',
+            balai: 'UMUM / BEBAS',
+            status: 'SEDIA BEROPERASI',
+            catatan: '-',
+          });
+        });
+
+        // BOT PENYELAMAT
+        const boatPlates = [
+          'BP 048-10',
+          'BP 06',
+          '036-10',
+          'BP 36',
+          'B040-10',
+          'BP 56',
+          '02-JB',
+          'BP O35-10',
+          'ISTANA',
+          'BP 40',
+          '038-10 PSG',
+          '02-PNS',
+          'BP-044',
+          'BP 08-14',
+          'RGT-04',
+          'BP 38',
+          'BP 47-10',
+          'BP 037-10',
+          '04-14',
+          'BP 12-08',
+          'BP 22-10',
+          'BP 99-01',
+        ];
+        boatPlates.forEach((p, idx) => {
+          logistikJentera.push({
+            id: ++idCounter,
+            callsign: `BOT-${idx + 1}`,
+            plate: p,
+            model: 'BOT PENYELAMAT ALUMINIUM',
+            jenis: 'BOT PENYELAMAT',
+            kategori: 'BOT',
+            balai: 'UMUM / BEBAS',
+            status: 'SEDIA BEROPERASI',
+            catatan: '-',
+          });
+        });
+
+        // RIM
+        const rimData = [
+          ['J6-01', 'BGT 231', 'MOTOSIKAL HONDA ST 1300'],
+          ['J6-02', 'BGT 240', 'MOTOSIKAL HONDA ST 1300'],
+          ['J6-03', 'BGT 229', 'MOTOSIKAL HONDA ST 1300'],
+          ['J6-04', 'BGT 235', 'MOTOSIKAL HONDA ST 1300'],
+          ['J6-05', 'BGT 238', 'MOTOSIKAL HONDA ST 1300'],
+          ['J6-06', 'BGT 242', 'MOTOSIKAL HONDA ST 1300'],
+        ];
+        rimData.forEach((d) => {
+          logistikJentera.push({
+            id: ++idCounter,
+            callsign: d[0],
+            plate: d[1],
+            model: d[2],
+            jenis: 'MOTOSIKAL RIM',
+            kategori: 'RIM',
+            balai: 'UMUM / BEBAS',
+            status: 'SEDIA BEROPERASI',
+            catatan: '-',
+          });
+        });
+
+        simpanDataKeStorage();
+      }
+
       function simpanDataKeStorage() {
         try {
           localStorage.setItem(
@@ -2242,216 +2814,17 @@
           const url = localStorage.getItem('jbpm_sheetApiUrl');
           if (url) {
             spreadsheetApiUrl = url;
-            kemaskiniStatusBadgeSpreadsheet(true);
+            const badge = document.getElementById('spreadsheetStatusBadge');
+            if (badge) {
+              badge.className = 'sync-badge sync-active';
+              badge.innerHTML = '<span>🟢 SPREADSHEET: DISAMBUNG</span>';
+            }
           }
         } catch (e) {
           console.error('Storage load failed', e);
         }
       }
 
-      function kemaskiniStatusBadgeSpreadsheet(aktif) {
-        const badge = document.getElementById('spreadsheetStatusBadge');
-        if (aktif) {
-          badge.className = 'sync-badge sync-active';
-          badge.innerHTML = '<span>🟢 SPREADSHEET: DISAMBUNG</span>';
-        } else {
-          badge.className = 'sync-badge sync-inactive';
-          badge.innerHTML = '<span>🟡 SPREADSHEET: TIDAK DISAMBUNG</span>';
-        }
-      }
-
-      // ==================== FUNGSI INISIALISASI DATA JENTERA ====================
-      function initDataLogistik(forceReload = false) {
-        if (logistikJentera.length >= 200 && !forceReload) return;
-        logistikJentera = [];
-        let idCounter = 1000;
-
-        // FRT/LFRT/CFRT Data
-        const frtData = [
-          [
-            'CFRT * 019',
-            'VNE 4358',
-            'HINO XZC720R ZKFRL3',
-            'JENTERA PEMADAM RINGAN RINGKAS (CFRT)',
-          ],
-          [
-            'CFRT 1',
-            'VLN 5716',
-            'HINO XZC720R ZKFRL3',
-            'JENTERA PEMADAM RINGAN RINGKAS (CFRT)',
-          ],
-          [
-            'CFRT 2',
-            'VLN 5721',
-            'HINO XZC720R ZKFRL3',
-            'JENTERA PEMADAM RINGAN RINGKAS (CFRT)',
-          ],
-          [
-            'CFRT 3',
-            'VNE 4357',
-            'HINO XZC720R ZKFRL3',
-            'JENTERA PEMADAM RINGAN RINGKAS (CFRT)',
-          ],
-          [
-            'CFRT 4',
-            'VPG 3667',
-            'HINO XZC720R ZKFRL3',
-            'JENTERA PEMADAM RINGAN RINGKAS (CFRT)',
-          ],
-          [
-            'CFRT 5',
-            'BSK 8079',
-            'HINO XZC720R ZKFRL3',
-            'JENTERA PEMADAM RINGAN RINGKAS (CFRT)',
-          ],
-          [
-            'CFRT 6',
-            'VQJ 6595',
-            'HINO XZC720R ZKFRL3',
-            'JENTERA PEMADAM RINGAN RINGKAS (CFRT)',
-          ],
-          [
-            'CFRT 7',
-            'VQJ 6576',
-            'HINO XZC720R ZKFRL3',
-            'JENTERA PEMADAM RINGAN RINGKAS (CFRT)',
-          ],
-          [
-            'J1-25',
-            'WDF 2845',
-            'NISSAN UD CPB14FHRT',
-            'JENTERA PEMADAM UTAMA (FRT)',
-          ],
-          [
-            'J1-02',
-            'BJT 8410',
-            'MERCEDES ATEGO',
-            'JENTERA PEMADAM RINGAN (LFRT)',
-          ],
-        ];
-
-        frtData.forEach((d) => {
-          logistikJentera.push({
-            id: ++idCounter,
-            callsign: d[0],
-            plate: d[1],
-            model: d[2],
-            jenis: d[3],
-            kategori: 'FRT/LFRT/CFRT',
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          });
-        });
-
-        // EMRS Data
-        for (let i = 1; i <= 20; i++) {
-          const num = String(i).padStart(2, '0');
-          logistikJentera.push({
-            id: ++idCounter,
-            callsign: `J2-${num}`,
-            plate: `BMP ${3500 + i}`,
-            model: 'AMBULANS TOYOTA HIACE EMRS',
-            jenis: 'AMBULANS EMRS',
-            kategori: 'EMRS',
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          });
-        }
-
-        // Water Tanker
-        for (let i = 1; i <= 12; i++) {
-          const num = String(i).padStart(2, '0');
-          logistikJentera.push({
-            id: ++idCounter,
-            callsign: `J5-${num}`,
-            plate: `BMS ${5900 + i}`,
-            model: 'SCANIA WT 20,000 LITER',
-            jenis: 'JENTERA TANGKI AIR (WATER TANKER)',
-            kategori: 'WATER TANKER',
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          });
-        }
-
-        // Khas/Bompa
-        const khasData = [
-          [
-            'J10-01',
-            'WSG 3646',
-            'JENTERA KOMUNIKASI & PUSAT KAWALAN',
-            'JENTERA KOMUNIKASI BERGERAK',
-          ],
-          [
-            'J11-01',
-            'BJS 3513',
-            'PAM TEKANAN TINGGI (HPPM)',
-            'PAM TEKANAN TINGGI',
-          ],
-          [
-            'J16-01',
-            'VBR 2450',
-            'JENTERA TANGGA PLATFORM AERIAL 37M',
-            'JENTERA TANGGA AERIAL (ALP)',
-          ],
-          [
-            'J4-01',
-            'WEU 5287',
-            'JENTERA HAZMAT (BAHAN BERBAHAYA)',
-            'JENTERA UNIT HAZMAT',
-          ],
-        ];
-
-        khasData.forEach((d) => {
-          logistikJentera.push({
-            id: ++idCounter,
-            callsign: d[0],
-            plate: d[1],
-            model: d[2],
-            jenis: d[3],
-            kategori: 'KHAS/BOMPA',
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          });
-        });
-
-        // Bot
-        for (let i = 1; i <= 22; i++) {
-          logistikJentera.push({
-            id: ++idCounter,
-            callsign: `BOT-${i}`,
-            plate: `BP ${String(i).padStart(2, '0')}-10`,
-            model: 'BOT PENYELAMAT ALUMINIUM',
-            jenis: 'BOT PENYELAMAT',
-            kategori: 'BOT',
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          });
-        }
-
-        // RIM
-        for (let i = 1; i <= 6; i++) {
-          logistikJentera.push({
-            id: ++idCounter,
-            callsign: `J6-0${i}`,
-            plate: `BGT ${230 + i}`,
-            model: 'MOTOSIKAL HONDA ST 1300',
-            jenis: 'MOTOSIKAL RIM',
-            kategori: 'RIM',
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          });
-        }
-
-        simpanDataKeStorage();
-      }
-
-      // ==================== FUNGSI UI & NAVIGASI ====================
       function updateClock() {
         const now = new Date();
         const days = [
@@ -2555,8 +2928,8 @@
             .join('');
 
           c.innerHTML = `
-            <div class="form-group"><label>NAMA ANGGOTA <span class="required-star">*</span></label><input type="text" id="regNama" class="form-control" required placeholder="NAMA PENUH"/></div>
-            <div class="form-group"><label>NO. TELEFON</label><input type="text" id="regTel" class="form-control" placeholder="012-3456789"/></div>
+            <div class="form-group"><label>NAMA ANGGOTA <span class="required-star">*</span></label><input type="text" id="regNama" class="form-control" required/></div>
+            <div class="form-group"><label>NO. TELEFON</label><input type="text" id="regTel" class="form-control"/></div>
             <div class="grid grid-cols-2 gap-2">
               <div class="form-group"><label>PANGKAT</label><select id="regPangkat" class="form-control">${pangkatOptions}</select></div>
               <div class="form-group"><label>UNIT KHAS</label><select id="regUnit" class="form-control">${unitOptions}</select></div>
@@ -2597,18 +2970,6 @@
             tunjukCustomAlert('Sila isi nama anggota!');
             return;
           }
-          if (tel && !validatePhoneNumber(tel)) {
-            tunjukCustomAlert(
-              'Format nombor telefon tidak sah! Contoh: 012-3456789'
-            );
-            return;
-          }
-
-          // Check duplicate
-          if (senaraiNamaMaster.some((a) => a.nama === nama)) {
-            tunjukCustomAlert('Amaran: Nama anggota sudah wujud dalam master!');
-            return;
-          }
 
           senaraiNamaMaster.push({ nama, noTel: tel, pangkat, unit, balai });
           simpanDataKeStorage();
@@ -2619,59 +2980,38 @@
             .getElementById('regBalaiInput')
             .value.trim()
             .toUpperCase();
-          if (!balai) {
-            tunjukCustomAlert('Sila isi nama balai!');
-            return;
+          if (!balai) return;
+          if (!senaraiBalaiMaster.includes(balai)) {
+            senaraiBalaiMaster.push(balai);
+            simpanDataKeStorage();
+            tunjukCustomAlert('Balai baharu berjaya ditambah!');
+            kemaskiniSemuaPaparan();
           }
-          if (senaraiBalaiMaster.includes(balai)) {
-            tunjukCustomAlert('Balai ini sudah wujud!');
-            return;
-          }
-          senaraiBalaiMaster.push(balai);
-          simpanDataKeStorage();
-          tunjukCustomAlert('Balai baharu berjaya ditambah!');
-          kemaskiniSemuaPaparan();
         } else if (mod === 'PANGKAT') {
           const pangkat = document
             .getElementById('regPangkatInput')
             .value.trim()
             .toUpperCase();
-          if (!pangkat) {
-            tunjukCustomAlert('Sila isi nama pangkat!');
-            return;
+          if (!pangkat) return;
+          if (!senaraiPangkatMaster.includes(pangkat)) {
+            senaraiPangkatMaster.push(pangkat);
+            simpanDataKeStorage();
+            tunjukCustomAlert('Pangkat baharu berjaya ditambah!');
           }
-          if (senaraiPangkatMaster.includes(pangkat)) {
-            tunjukCustomAlert('Pangkat ini sudah wujud!');
-            return;
-          }
-          senaraiPangkatMaster.push(pangkat);
-          simpanDataKeStorage();
-          tunjukCustomAlert('Pangkat baharu berjaya ditambah!');
         } else if (mod === 'UNIT') {
           const unit = document
             .getElementById('regUnitInput')
             .value.trim()
             .toUpperCase();
-          if (!unit) {
-            tunjukCustomAlert('Sila isi nama unit!');
-            return;
+          if (!unit) return;
+          if (!senaraiUnitMaster.includes(unit)) {
+            senaraiUnitMaster.push(unit);
+            simpanDataKeStorage();
+            tunjukCustomAlert('Unit Baharu berjaya ditambah!');
           }
-          if (senaraiUnitMaster.includes(unit)) {
-            tunjukCustomAlert('Unit ini sudah wujud!');
-            return;
-          }
-          senaraiUnitMaster.push(unit);
-          simpanDataKeStorage();
-          tunjukCustomAlert('Unit baharu berjaya ditambah!');
         }
       }
 
-      function validatePhoneNumber(phone) {
-        const regex = /^(\+?6?01)[0-9]-?[0-9]{7,8}$/;
-        return regex.test(phone.replace(/\s/g, ''));
-      }
-
-      // ==================== MULTISELECT BALAI ====================
       function togolBalaiDropdown() {
         const trigger = document.querySelector(
           '#balaiMultiSelect .multi-select-trigger'
@@ -2748,7 +3088,6 @@
         kemaskiniPaparData();
       }
 
-      // ==================== PAPARAN DATA ====================
       function kemaskiniSemuaPaparan() {
         janaBalaiDropdownOptions();
         kemaskiniPaparData();
@@ -2919,7 +3258,6 @@
         });
       }
 
-      // ==================== MODAL TAMBAH ANGGOTA ====================
       function bukaModalTambahAnggota() {
         document.getElementById('addOfficerModal').classList.add('active');
         janaNamaAnggotaOptions();
@@ -3077,7 +3415,6 @@
         );
       }
 
-      // ==================== MODAL LOGISTIK JENTERA ====================
       function bukaModalLogistikJentera() {
         document.getElementById('logistikJenteraModal').classList.add('active');
         janaLogistikBalaiSelectOptions();
@@ -3324,7 +3661,6 @@
         );
       }
 
-      // ==================== MODAL URUS MASTER ====================
       function bukaModalUrusKategori() {
         document
           .getElementById('manageCategoriesModal')
@@ -3447,7 +3783,65 @@
         );
       }
 
-      // ==================== URUS JENTERA MASTER ====================
+      function mintaPassword(action) {
+        sasaranPasswordAction = action;
+        document.getElementById('inputPassword').value = '';
+        document.getElementById('passwordErrorMsg').style.display = 'none';
+
+        let prompt = 'SILA MASUKKAN KATA LALUAN PENTADBIR:';
+        if (action === 'MASTER_BERSIH')
+          prompt =
+            'PROSES PEMBERSIHAN MASTER! SILA MASUKKAN KATA LALUAN PENTADBIR:';
+
+        document.getElementById('passwordPromptText').innerText = prompt;
+        document.getElementById('passwordModal').classList.add('active');
+        setTimeout(() => document.getElementById('inputPassword').focus(), 200);
+      }
+
+      function tutupModalPassword() {
+        document.getElementById('passwordModal').classList.remove('active');
+      }
+
+      function semakEnterPassword(e) {
+        if (e.key === 'Enter') sahkanPassword();
+      }
+
+      function sahkanPassword() {
+        const pwd = document.getElementById('inputPassword').value;
+        if (pwd === KATA_LALUAN_TETAP) {
+          tutupModalPassword();
+          prosesPasswordAction();
+        } else {
+          document.getElementById('passwordErrorMsg').style.display = 'block';
+        }
+      }
+
+      function prosesPasswordAction() {
+        if (sasaranPasswordAction === 'URUS_KATEGORI') {
+          bukaModalUrusKategori();
+        } else if (sasaranPasswordAction === 'URUS_JENTERA_MASTER') {
+          bukaModalUrusJentera();
+        } else if (sasaranPasswordAction === 'MASTER_BERSIH') {
+          tunjukCustomConfirm(
+            '🚨 ANDA PASTI UNTUK MEMADAM SEMUA REKOD BERTUGAS HARIAN?',
+            (res) => {
+              if (res) {
+                rekodAnggota = [];
+                logistikBertugas = [];
+                simpanDataKeStorage();
+                kemaskiniSemuaPaparan();
+                tunjukCustomAlert('Semua rekod harian berjaya dibersihkan!');
+              }
+            }
+          );
+        } else if (sasaranPasswordAction === 'IMPORT_JENTERA_DEFAULT') {
+          initDataLogistik(true);
+          tunjukCustomAlert(
+            '400+ Senarai Jentera Negeri Johor berjaya dimuatkan!'
+          );
+        }
+      }
+
       function bukaModalUrusJentera() {
         document.getElementById('urusJenteraModal').classList.add('active');
         const sel = document.getElementById('urusJenteraBalai');
@@ -3531,14 +3925,6 @@
           return;
         }
 
-        // Check duplicate plate
-        if (logistikJentera.some((j) => j.plate === plate)) {
-          tunjukCustomAlert(
-            'Amaran: No. Plat ini sudah wujud dalam inventori!'
-          );
-          return;
-        }
-
         logistikJentera.push({
           id: Date.now(),
           callsign: callsign || plate,
@@ -3571,67 +3957,6 @@
         );
       }
 
-      // ==================== PASSWORD & AUTH ====================
-      function mintaPassword(action) {
-        sasaranPasswordAction = action;
-        document.getElementById('inputPassword').value = '';
-        document.getElementById('passwordErrorMsg').style.display = 'none';
-
-        let prompt = 'SILA MASUKKAN KATA LALUAN PENTADBIR:';
-        if (action === 'MASTER_BERSIH')
-          prompt =
-            'PROSES PEMBERSIHAN MASTER! SILA MASUKKAN KATA LALUAN PENTADBIR:';
-
-        document.getElementById('passwordPromptText').innerText = prompt;
-        document.getElementById('passwordModal').classList.add('active');
-        setTimeout(() => document.getElementById('inputPassword').focus(), 200);
-      }
-
-      function tutupModalPassword() {
-        document.getElementById('passwordModal').classList.remove('active');
-      }
-
-      function semakEnterPassword(e) {
-        if (e.key === 'Enter') sahkanPassword();
-      }
-
-      function sahkanPassword() {
-        const pwd = document.getElementById('inputPassword').value;
-        if (pwd === KATA_LALUAN_TETAP) {
-          tutupModalPassword();
-          prosesPasswordAction();
-        } else {
-          document.getElementById('passwordErrorMsg').style.display = 'block';
-        }
-      }
-
-      function prosesPasswordAction() {
-        if (sasaranPasswordAction === 'URUS_KATEGORI') {
-          bukaModalUrusKategori();
-        } else if (sasaranPasswordAction === 'URUS_JENTERA_MASTER') {
-          bukaModalUrusJentera();
-        } else if (sasaranPasswordAction === 'MASTER_BERSIH') {
-          tunjukCustomConfirm(
-            '🚨 ANDA PASTI UNTUK MEMADAM SEMUA REKOD BERTUGAS HARIAN?',
-            (res) => {
-              if (res) {
-                rekodAnggota = [];
-                logistikBertugas = [];
-                simpanDataKeStorage();
-                kemaskiniSemuaPaparan();
-                tunjukCustomAlert('Semua rekod harian berjaya dibersihkan!');
-              }
-            }
-          );
-        } else if (sasaranPasswordAction === 'IMPORT_JENTERA_DEFAULT') {
-          initDataLogistik(true);
-          tunjukCustomAlert(
-            '400+ Senarai Jentera Negeri Johor berjaya dimuatkan!'
-          );
-        }
-      }
-
-      // ==================== SPREADSHEET SYNC ====================
       function bukaModalSpreadsheet() {
         document.getElementById('spreadsheetModal').classList.add('active');
         document.getElementById('sheetApiUrl').value = spreadsheetApiUrl;
@@ -3645,7 +3970,15 @@
         spreadsheetApiUrl = document.getElementById('sheetApiUrl').value.trim();
         simpanDataKeStorage();
         tutupModalSpreadsheet();
-        kemaskiniStatusBadgeSpreadsheet(!!spreadsheetApiUrl);
+
+        const badge = document.getElementById('spreadsheetStatusBadge');
+        if (spreadsheetApiUrl) {
+          badge.className = 'sync-badge sync-active';
+          badge.innerHTML = '<span>🟢 SPREADSHEET: DISAMBUNG</span>';
+        } else {
+          badge.className = 'sync-badge sync-inactive';
+          badge.innerHTML = '<span>🟡 SPREADSHEET: TIDAK DISAMBUNG</span>';
+        }
       }
 
       function ujiSambunganSpreadsheet() {
@@ -3655,31 +3988,15 @@
           return;
         }
 
-        tunjukCustomAlert('Menguji sambungan...');
-
         fetch(spreadsheetApiUrl)
-          .then((res) => {
-            if (!res.ok) throw new Error('HTTP ' + res.status);
-            return res.json();
-          })
-          .then((data) => {
-            if (data.status === 'SUCCESS') {
-              kemaskiniStatusBadgeSpreadsheet(true);
-              tunjukCustomAlert('✅ Sambungan Google Spreadsheet BERJAYA!');
-            } else {
-              throw new Error(data.message || 'Unknown error');
-            }
-          })
-          .catch((err) => {
-            kemaskiniStatusBadgeSpreadsheet(false);
-            tunjukCustomAlert(
-              '❌ Sambungan GAGAL! Sila semak URL Web App Script.\n\n' +
-                err.message
-            );
-          });
+          .then((res) => res.json())
+          .then(() =>
+            tunjukCustomAlert('Sambungan Google Spreadsheet BERJAYA!')
+          )
+          .catch(() =>
+            tunjukCustomAlert('Sambungan GAGAL! Sila semak URL Web App Script.')
+          );
       }
-
-      // ==================== SPREADSHEET SYNC - VERSI DIBETULKAN ====================
 
       function hantarDataSpreadsheet() {
         if (!spreadsheetApiUrl) {
@@ -3689,110 +4006,25 @@
           return;
         }
 
-        // Validate URL format
-        if (
-          !spreadsheetApiUrl.includes('script.google.com') &&
-          !spreadsheetApiUrl.includes('exec')
-        ) {
-          tunjukCustomAlert(
-            '⚠️ URL tidak sah! Pastikan URL adalah Google Apps Script Web App URL.'
-          );
-          return;
-        }
-
-        const syncBadge = document.getElementById('syncStatusBadge');
-        syncBadge.style.display = 'inline-flex';
-        syncBadge.className = 'sync-badge sync-inactive';
-        syncBadge.innerHTML =
-          '<span class="loading-spinner"></span> MENYIMPAN...';
-
-        // Sediakan payload dengan format yang betul
         const payload = {
-          rekodAnggota: rekodAnggota || [],
-          logistikBertugas: logistikBertugas || [],
-          senaraiNamaMaster: senaraiNamaMaster || [],
-          senaraiBalaiMaster: senaraiBalaiMaster || [],
-          senaraiPangkatMaster: senaraiPangkatMaster || [],
-          senaraiUnitMaster: senaraiUnitMaster || [],
-          logistikJentera: logistikJentera || [],
+          rekodAnggota,
+          logistikBertugas,
+          senaraiNamaMaster,
+          senaraiBalaiMaster,
         };
 
-        console.log('📤 Data yang dihantar:', payload);
-        console.log('📊 Ringkasan:', {
-          rekod: payload.rekodAnggota.length,
-          nama: payload.senaraiNamaMaster.length,
-          jentera: payload.logistikJentera.length,
-          tugas: payload.logistikBertugas.length,
-        });
-
-        // Hantar ke backend
         fetch(spreadsheetApiUrl, {
           method: 'POST',
-          mode: 'cors',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         })
-          .then((response) => {
-            console.log('📥 Response status:', response.status);
-            if (!response.ok) {
-              throw new Error('HTTP Error: ' + response.status);
-            }
-            return response.json();
-          })
-          .then((data) => {
-            console.log('✅ Response data:', data);
-
-            syncBadge.className = 'sync-badge sync-active';
-            syncBadge.innerHTML = '<span>✅ DATA DISIMPAN</span>';
-
-            if (data.status === 'SUCCESS') {
-              tunjukCustomAlert(
-                `✅ Data berjaya disimpan ke Google Spreadsheet!\n\n` +
-                  `📊 Ringkasan:\n` +
-                  `• Rekod Anggota: ${data.summary?.rekod || 0}\n` +
-                  `• Nama Master: ${data.summary?.namaMaster || 0}\n` +
-                  `• Jentera Inventori: ${
-                    data.summary?.jenteraInventori || 0
-                  }\n` +
-                  `• Jentera Bertugas: ${
-                    data.summary?.jenteraBertugas || 0
-                  }\n\n` +
-                  `⏰ Masa: ${data.updatedAt || '-'}`
-              );
-            } else if (data.status === 'VALIDATION_ERROR') {
-              tunjukCustomAlert(
-                `⚠️ Ralat Validasi:\n\n${data.errors.join('\n')}`
-              );
-            } else {
-              throw new Error(data.message || 'Unknown error');
-            }
-          })
-          .catch((err) => {
-            console.error('❌ Error:', err);
-            syncBadge.className = 'sync-badge sync-error';
-            syncBadge.innerHTML = '<span>❌ GAGAL SIMPAN</span>';
-
-            tunjukCustomAlert(
-              '❌ Ralat semasa menyimpan data!\n\n' +
-                '🔍 Punca Kemungkinan:\n' +
-                '1. URL Web App salah\n' +
-                '2. Web App tidak dideploy dengan betul\n' +
-                '3. CORS/Network error\n\n' +
-                '💡 Cuba:\n' +
-                "• 'UJI & SIMPAN' untuk test sambungan\n" +
-                '• Check Console (F12) untuk details\n' +
-                '• Pastikan Apps Script deployed sebagai Web App\n\n' +
-                'Error: ' +
-                err.message
-            );
-          })
-          .finally(() => {
-            setTimeout(() => {
-              syncBadge.style.display = 'none';
-            }, 5000);
-          });
+          .then(() =>
+            tunjukCustomAlert('Data berjaya dihantar ke Google Spreadsheet!')
+          )
+          .catch((err) =>
+            tunjukCustomAlert('Ralat semasa menyimpan data: ' + err.message)
+          );
       }
 
       function tarikDataSpreadsheet() {
@@ -3803,115 +4035,29 @@
           return;
         }
 
-        tunjukCustomAlert(
-          '🔄 Memuat data dari Spreadsheet...\n\nSila tunggu...'
-        );
-
         fetch(spreadsheetApiUrl)
-          .then((res) => {
-            console.log('📥 GET Response status:', res.status);
-            if (!res.ok) throw new Error('HTTP ' + res.status);
-            return res.json();
-          })
+          .then((res) => res.json())
           .then((data) => {
-            console.log('📦 Data diterima:', data);
+            if (data.rekodAnggota) rekodAnggota = data.rekodAnggota;
+            if (data.logistikBertugas) logistikBertugas = data.logistikBertugas;
+            if (data.senaraiNamaMaster)
+              senaraiNamaMaster = data.senaraiNamaMaster;
+            if (data.senaraiBalaiMaster)
+              senaraiBalaiMaster = data.senaraiBalaiMaster;
 
-            if (data.status === 'SUCCESS') {
-              // Update local data
-              if (data.rekodAnggota && Array.isArray(data.rekodAnggota)) {
-                rekodAnggota = data.rekodAnggota;
-              }
-              if (
-                data.logistikBertugas &&
-                Array.isArray(data.logistikBertugas)
-              ) {
-                logistikBertugas = data.logistikBertugas;
-              }
-              if (
-                data.senaraiNamaMaster &&
-                Array.isArray(data.senaraiNamaMaster)
-              ) {
-                senaraiNamaMaster = data.senaraiNamaMaster;
-              }
-              if (
-                data.senaraiBalaiMaster &&
-                Array.isArray(data.senaraiBalaiMaster)
-              ) {
-                senaraiBalaiMaster = data.senaraiBalaiMaster;
-              }
-              if (
-                data.senaraiPangkatMaster &&
-                Array.isArray(data.senaraiPangkatMaster)
-              ) {
-                senaraiPangkatMaster = data.senaraiPangkatMaster;
-              }
-              if (
-                data.senaraiUnitMaster &&
-                Array.isArray(data.senaraiUnitMaster)
-              ) {
-                senaraiUnitMaster = data.senaraiUnitMaster;
-              }
-              if (data.logistikJentera && Array.isArray(data.logistikJentera)) {
-                logistikJentera = data.logistikJentera;
-              }
-
-              // Simpan ke localStorage
-              simpanDataKeStorage();
-
-              // Refresh UI
-              kemaskiniSemuaPaparan();
-
-              tunjukCustomAlert(
-                `✅ Data berjaya dimuatkan dari Cloud!\n\n` +
-                  `📊 Ringkasan Data:\n` +
-                  `• Rekod Anggota: ${rekodAnggota.length}\n` +
-                  `• Nama Master: ${senaraiNamaMaster.length}\n` +
-                  `• Balai: ${senaraiBalaiMaster.length}\n` +
-                  `• Jentera Inventori: ${logistikJentera.length}\n` +
-                  `• Jentera Bertugas: ${logistikBertugas.length}`
-              );
-            } else {
-              throw new Error(data.message || 'Format data tidak sah');
-            }
-          })
-          .catch((err) => {
-            console.error('❌ GET Error:', err);
+            simpanDataKeStorage();
+            kemaskiniSemuaPaparan();
             tunjukCustomAlert(
-              '❌ Gagal memuat data!\n\n' +
-                '🔍 Punca Kemungkinan:\n' +
-                '1. URL Web App salah atau expired\n' +
-                '2. Web App deployment tidak aktif\n' +
-                '3. Tiada sambungan internet\n\n' +
-                'Error: ' +
-                err.message
+              'Data berjaya dikemaskini dari Cloud Spreadsheet!'
             );
-          });
+          })
+          .catch((err) =>
+            tunjukCustomAlert(
+              'Gagal memuat data dari Spreadsheet: ' + err.message
+            )
+          );
       }
 
-      // Tambahan fungsi debug untuk check data sebelum hantar
-      function debugDataSebelumHantar() {
-        console.log('=== DEBUG DATA ===');
-        console.log('rekodAnggota:', rekodAnggota);
-        console.log('logistikBertugas:', logistikBertugas);
-        console.log('senaraiNamaMaster:', senaraiNamaMaster);
-        console.log('senaraiBalaiMaster:', senaraiBalaiMaster);
-        console.log('logistikJentera length:', logistikJentera.length);
-        console.log('spreadsheetApiUrl:', spreadsheetApiUrl);
-        console.log('==================');
-
-        tunjukCustomAlert(
-          `📊 Data Sedia Untuk Dihantar:\n\n` +
-            `• Rekod Anggota: ${rekodAnggota.length}\n` +
-            `• Nama Master: ${senaraiNamaMaster.length}\n` +
-            `• Balai Master: ${senaraiBalaiMaster.length}\n` +
-            `• Jentera Inventori: ${logistikJentera.length}\n` +
-            `• Jentera Bertugas: ${logistikBertugas.length}\n\n` +
-            `URL: ${
-              spreadsheetApiUrl ? '✅ Ditetapkan' : '❌ Belum ditetapkan'
-            }`
-        );
-      }
-      // ==================== MODAL ALERT & CONFIRM ====================
       function tunjukCustomAlert(msg, title = 'MAKLUMAT') {
         document.getElementById('alertModalTitle').innerText = title;
         document.getElementById('alertModalBody').innerText = msg;
@@ -3939,12 +4085,10 @@
         }
       }
 
-      // ==================== CETAK ====================
       function cetakLaporan() {
         window.print();
       }
 
-      // ==================== INITIALIZATION ====================
       window.onload = function () {
         muatDataDariStorage();
         initDataLogistik();
@@ -3954,7 +4098,7 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Mobile touch outside listener
+        // Mobile touch outside listener to close multiselect dropdowns
         document.addEventListener('click', function (e) {
           const bSel = document.getElementById('balaiMultiSelect');
           if (bSel && !bSel.contains(e.target)) {
@@ -3985,19 +4129,9 @@
           }
         });
 
-        // Initialize default view state
+        // Initialize default view state for screen width
         tukarViewMobile('operasi');
       };
-
-      // Handle window resize
-      window.addEventListener('resize', function () {
-        if (window.innerWidth >= 1024) {
-          document.getElementById('sectionPanels').style.display = 'block';
-          document.getElementById('sectionStats').style.display = 'grid';
-          document.getElementById('sectionAnggota').style.display = 'block';
-          document.getElementById('sectionLogistik').style.display = 'block';
-        }
-      });
     </script>
   </body>
 </html>
