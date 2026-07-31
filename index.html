@@ -1185,6 +1185,18 @@
               📥 IMPORT SENARAI JENTERA 400+ UNIT
             </button>
           </div>
+
+          <!-- RUANGAN NOTA URL SCRIPT (RUJUKAN KEKAL) -->
+          <div class="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-xl">
+            <div class="text-[10px] font-extrabold text-amber-900 mb-1.5 flex items-center justify-between">
+              <span>📌 NOTA RUJUKAN URL SCRIPT</span>
+              <button class="bg-amber-200 px-2 py-0.5 rounded text-amber-800 hover:bg-amber-300 transition-colors font-bold" onclick="salinNotaUrl()" title="Salin Nota">SALIN 📋</button>
+            </div>
+            <!-- PENTADBIR: LETAK URL APPS SCRIPT DI BAWAH SUPAYA PENGGUNA BOLEH COPY PASTE DI MANA-MANA PERANTI -->
+            <div id="teksNotaUrl" class="text-[10.5px] text-amber-800 break-all font-semibold leading-relaxed select-all border border-amber-200/50 p-2 rounded-lg bg-white">
+              https://script.google.com/macros/s/AKfycbwQ6bEsJ_MlQ1fB0DSxrH94rM7eOcyijCFjeLWipd5WV6_Hxt0STLPlPQH6rySCzsM/exec
+            </div>
+          </div>
         </div>
       </div>
 
@@ -4144,6 +4156,21 @@
           confirmCallback(res);
           confirmCallback = null;
         }
+      }
+
+      function salinNotaUrl() {
+        const text = document.getElementById('teksNotaUrl').innerText.trim();
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            tunjukCustomAlert("URL Apps Script berjaya disalin! Sila buka Tetapan Spreadsheet dan 'Paste' URL tersebut.");
+        } catch (err) {
+            tunjukCustomAlert("Sila 'highlight' teks URL dan salin secara manual.");
+        }
+        document.body.removeChild(textArea);
       }
 
       function cetakLaporan() {
