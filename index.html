@@ -624,8 +624,9 @@
         let senaraiPangkatMaster = ['KB 1','KB 2','KB 3','KB 4','KB 5','KB 6','KB 7','KB 8','PBB','PBBK II','PBBK I'];
         let senaraiUnitMaster = ['PEMADAM','EMRS','HAZMAT','PPDA','RIM','STOM/MUST'];
         let logistikJentera = [];
-        let supabaseUrl = '', supabaseKey = '', supabaseClient = null;
-
+        let supabaseUrl = 'https://hglmbrqweijpguxfeloq.supabase.co';
+let supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnbG1icnF3ZWlqcGd1eGZlbG9xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU1NDcyNDAsImV4cCI6MjEwMTEyMzI0MH0.xBuhxHVmkuIPC34421QfuCERIpBPFiyVi1sSC-PQAiQ';
+let supabaseClient = null;
         // ==================== SUPABASE ====================
         function initSupabaseClient() {
             if (supabaseUrl && supabaseKey) {
@@ -856,9 +857,11 @@
         // ==================== INIT ====================
         window.onload = function() {
             initDataLogistik(); janaFormDaftar('ANGGOTA'); janaChecklistBalaiOptions();
-            const u = localStorage.getItem('jbpm_supabaseUrl'), k = localStorage.getItem('jbpm_supabaseKey');
-            if (u && k) { supabaseUrl = u; supabaseKey = k; if (initSupabaseClient()) { autoTarikData().then(() => kemaskiniSemuaPaparan()); } }
-            kemaskiniSemuaPaparan(); setInterval(updateClock, 1000); updateClock(); tukarViewMobile('operasi');
+// Auto-connect ke Supabase terus
+if (initSupabaseClient()) { 
+    autoTarikData().then(() => kemaskiniSemuaPaparan()); 
+}
+            setInterval(updateClock, 1000); updateClock(); tukarViewMobile('operasi');
             document.addEventListener('click', function(e) {
                 ['balai','namaAnggota','logJentera'].forEach(id => {
                     const sel = document.getElementById(id+'MultiSelect');
