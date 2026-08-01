@@ -717,6 +717,13 @@
     </div>
 
     <script>
+        // Import Supabase secara manual
+const supabase = window.supabase || (function() {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+    document.head.appendChild(script);
+    return null;
+})();
         const KATA_LALUAN_TETAP = 'PGO1234';
         let sasaranPasswordAction = '', confirmCallback = null, aktifTabMaster = 'ANGGOTA', balaiTerpilih = [];
         let logJenteraTerpilih = [], namaAnggotaTerpilih = [];
