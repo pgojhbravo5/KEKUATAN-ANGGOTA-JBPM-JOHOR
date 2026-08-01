@@ -1968,17 +1968,44 @@
             }
           );
           if (!response.ok) throw new Error('HTTP ' + response.status);
+          
+          // Simpan ke localStorage sebagai backup
+          simpanKeLocalStorage();
+          
           tunjukCustomAlert('✅ Data berjaya dihantar ke Supabase Cloud!');
         } catch (err) {
-          tunjukCustomAlert('❌ Gagal hantar: ' + err.message);
+          // Walaupun gagal hantar ke Supabase, simpan ke localStorage
+          simpanKeLocalStorage();
+          tunjukCustomAlert('⚠️ Gagal hantar ke Supabase tetapi data disimpan di browser. Ralat: ' + err.message);
           console.error(err);
         } finally {
           sorokLoading();
         }
       }
-      window.hantarDataSupabase = hantarDataSupabase;
-window.tarikDataSupabase = tarikDataSupabase;
-window.rekodAnggota = rekodAnggota;
+
+      function simpanKeLocalStorage() {
+        localStorage.setItem('rekodAnggota', JSON.stringify(rekodAnggota));
+        localStorage.setItem('logistikBertugas', JSON.stringify(logistikBertugas));
+        localStorage.setItem('senaraiChecklist', JSON.stringify(senaraiChecklist));
+        localStorage.setItem('senaraiNamaMaster', JSON.stringify(senaraiNamaMaster));
+        console.log('✅ Data disimpan ke localStorage');
+      }
+
+      function muatDariLocalStorage() {
+        const savedAnggota = localStorage.getItem('rekodAnggota');
+        if (savedAnggota) rekodAnggota = JSON.parse(savedAnggota);
+        
+        const savedLogistik = localStorage.getItem('logistikBertugas');
+        if (savedLogistik) logistikBertugas = JSON.parse(savedLogistik);
+        
+        const savedChecklist = localStorage.getItem('senaraiChecklist');
+        if (savedChecklist) senaraiChecklist = JSON.parse(savedChecklist);
+        
+        const savedNamaMaster = localStorage.getItem('senaraiNamaMaster');
+        if (savedNamaMaster) senaraiNamaMaster = JSON.parse(savedNamaMaster);
+        
+        console.log('✅ Data dimuat dari localStorage');
+      }
 
       async function tarikDataSupabase() {
         if (!supabaseUrl || !supabaseKey) {
@@ -2009,6 +2036,10 @@ window.rekodAnggota = rekodAnggota;
             if (d.senaraiPangkatMaster)
               senaraiPangkatMaster = d.senaraiPangkatMaster;
             if (d.senaraiUnitMaster) senaraiUnitMaster = d.senaraiUnitMaster;
+            
+            // Simpan ke localStorage selepas tarik dari Supabase
+            simpanKeLocalStorage();
+            
             kemaskiniSemuaPaparan();
             tunjukCustomAlert('✅ Data berjaya dimuat turun!');
           } else {
@@ -2047,11 +2078,16 @@ window.rekodAnggota = rekodAnggota;
               if (d.senaraiPangkatMaster)
                 senaraiPangkatMaster = d.senaraiPangkatMaster;
               if (d.senaraiUnitMaster) senaraiUnitMaster = d.senaraiUnitMaster;
+              
+              // Simpan ke localStorage
+              simpanKeLocalStorage();
               console.log('✅ Auto-tarik berjaya');
             }
           }
         } catch (e) {
           console.log('⚠️ Auto-tarik gagal:', e.message);
+          // Jika gagal, muat dari localStorage
+          muatDariLocalStorage();
         }
       }
 
@@ -2387,8 +2423,8 @@ window.rekodAnggota = rekodAnggota;
           }</span></td><td><div class="catatan-box">${
             item.catatan || '-'
           }</div></td><td><div class="text-[10px] font-bold text-slate-500">${
-            item.shiftType
-          } | ${item.shiftTime}</div><div class="font-extrabold">${
+            item.shiftType || '12 JAM'
+          } | ${item.shiftTime || '0800-2000'}</div><div class="font-extrabold">${
             item.balai
           }</div></td><td class="no-print"><button class="btn btn-danger" onclick="padamAnggota('${
             item.id
@@ -2594,8 +2630,11 @@ window.rekodAnggota = rekodAnggota;
           tunjukCustomAlert('Sila pilih anggota!');
           return;
         }
-        const shiftType = document.getElementById('shiftType').value,
-          shiftTime = document.getElementById('shiftTime').value;
+        
+        // Gunakan nilai default untuk shiftType dan shiftTime
+        const shiftType = '12 JAM';
+        const shiftTime = '0800-2000';
+        
         namaAnggotaTerpilih.forEach((nama) => {
           const m = senaraiNamaMaster.find((x) => x.nama === nama) || {};
           rekodAnggota.push({
@@ -3030,12 +3069,70 @@ window.rekodAnggota = rekodAnggota;
         }
       }
 
+      // Dedahkan semua fungsi ke window object
+      window.hantarDataSupabase = hantarDataSupabase;
+      window.tarikDataSupabase = tarikDataSupabase;
+      window.rekodAnggota = rekodAnggota;
+      window.bukaModalTambahAnggota = bukaModalTambahAnggota;
+      window.tutupModalTambahAnggota = tutupModalTambahAnggota;
+      window.simpanAnggotaBaharu = simpanAnggotaBaharu;
+      window.bukaModalLogistikJentera = bukaModalLogistikJentera;
+      window.tutupModalLogistikJentera = tutupModalLogistikJentera;
+      window.simpanLogistikBertugas = simpanLogistikBertugas;
+      window.bukaModalChecklist = bukaModalChecklist;
+      window.tutupModalChecklist = tutupModalChecklist;
+      window.simpanChecklistDariModal = simpanChecklistDariModal;
+      window.padamAnggota = padamAnggota;
+      window.padamLogistikBertugas = padamLogistikBertugas;
+      window.padamChecklist = padamChecklist;
+      window.bukaModalSupabase = bukaModalSupabase;
+      window.tutupModalSupabase = tutupModalSupabase;
+      window.importJenteraDefault = importJenteraDefault;
+      window.cetakLaporan = cetakLaporan;
+      window.mintaPassword = mintaPassword;
+      window.tutupModalPassword = tutupModalPassword;
+      window.semakEnterPassword = semakEnterPassword;
+      window.sahkanPassword = sahkanPassword;
+      window.simpanTetapanSupabase = simpanTetapanSupabase;
+      window.ujiSambunganSupabase = ujiSambunganSupabase;
+      window.tukarModDaftar = tukarModDaftar;
+      window.simpanDaftarMaster = simpanDaftarMaster;
+      window.tukarViewMobile = tukarViewMobile;
+      window.kemaskiniPaparData = kemaskiniPaparData;
+      window.pilihBalaiOption = pilihBalaiOption;
+      window.pilihNamaAnggotaOption = pilihNamaAnggotaOption;
+      window.pilihSemuaBalai = pilihSemuaBalai;
+      window.kosongkanBalai = kosongkanBalai;
+      window.pilihSemuaNamaAnggota = pilihSemuaNamaAnggota;
+      window.kosongkanNamaAnggota = kosongkanNamaAnggota;
+      window.pilihSemuaLogJentera = pilihSemuaLogJentera;
+      window.kosongkanLogJentera = kosongkanLogJentera;
+      window.pilihLogJenteraOption = pilihLogJenteraOption;
+      window.togolBalaiDropdown = togolBalaiDropdown;
+      window.togolNamaAnggotaDropdown = togolNamaAnggotaDropdown;
+      window.togolLogJenteraDropdown = togolLogJenteraDropdown;
+      window.tapisBalaiDropdown = tapisBalaiDropdown;
+      window.tapisNamaAnggotaDropdown = tapisNamaAnggotaDropdown;
+      window.tapisLogJenteraDropdown = tapisLogJenteraDropdown;
+      window.logJenteraTerpilih = logJenteraTerpilih;
+      window.kemaskiniLogJenteraDipilihTable = kemaskiniLogJenteraDipilihTable;
+      window.janaLogJenteraDropdown = janaLogJenteraDropdown;
+      window.namaAnggotaTerpilih = namaAnggotaTerpilih;
+      window.balaiTerpilih = balaiTerpilih;
+
       window.onload = function () {
         initDataLogistik();
+        
+        // Muat data dari localStorage terlebih dahulu
+        muatDariLocalStorage();
+        
         janaFormDaftar('ANGGOTA');
         janaFilterBalaiOptions();
         if (initSupabaseClient()) {
           autoTarikData().then(() => kemaskiniSemuaPaparan());
+        } else {
+          // Jika Supabase tidak disambung, papar data dari localStorage
+          kemaskiniSemuaPaparan();
         }
         setInterval(updateClock, 1000);
         updateClock();
@@ -3053,6 +3150,11 @@ window.rekodAnggota = rekodAnggota;
             }
           });
         });
+        
+        console.log('✅ Sistem sedia digunakan');
+        console.log('📊 Data Anggota:', rekodAnggota.length, 'rekod');
+        console.log('🚒 Data Logistik:', logistikBertugas.length, 'rekod');
+        console.log('✅ Data Checklist:', senaraiChecklist.length, 'rekod');
       };
     </script>
   </body>
