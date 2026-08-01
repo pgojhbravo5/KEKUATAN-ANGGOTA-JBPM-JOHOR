@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>SISTEM KEKUATAN & LOGISTIK - JBPM NEGERI JOHOR (SUPABASE)</title>
+    <title>SISTEM KEKUATAN & LOGISTIK - JBPM NEGERI JOHOR (AUTO-SYNC)</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -196,7 +196,7 @@
         transition: all 0.2s ease;
         outline: none;
         text-transform: uppercase;
-        min-height: 46px; 
+        min-height: 46px;
       }
 
       .form-control:focus,
@@ -222,7 +222,7 @@
         gap: 8px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        min-height: 46px; 
+        min-height: 46px;
         touch-action: manipulation;
       }
 
@@ -245,7 +245,7 @@
         color: white;
         box-shadow: 0 4px 10px rgba(245, 158, 11, 0.25);
       }
-      
+
       .btn-emerald {
         background: linear-gradient(135deg, #10b981 0%, #047857 100%);
         color: white;
@@ -277,6 +277,12 @@
         color: white;
         border: 1px solid #fca5a5;
         box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+      }
+
+      .btn-auto-sync {
+        background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+        color: white;
+        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
       }
 
       .required-star {
@@ -339,10 +345,18 @@
         border-left: 4px solid var(--bomba-red);
       }
 
-      .stat-card.gold { border-left-color: var(--bomba-gold); }
-      .stat-card.green { border-left-color: #10b981; }
-      .stat-card.orange { border-left-color: #f59e0b; }
-      .stat-card.purple { border-left-color: #8b5cf6; }
+      .stat-card.gold {
+        border-left-color: var(--bomba-gold);
+      }
+      .stat-card.green {
+        border-left-color: #10b981;
+      }
+      .stat-card.orange {
+        border-left-color: #f59e0b;
+      }
+      .stat-card.purple {
+        border-left-color: #8b5cf6;
+      }
 
       .stat-label {
         font-size: 0.65rem;
@@ -403,8 +417,12 @@
         font-size: 0.76rem;
       }
 
-      .roster-table tr:hover { background-color: #fef2f2; }
-      .logistik-table tr:hover { background-color: #fffdf5; }
+      .roster-table tr:hover {
+        background-color: #fef2f2;
+      }
+      .logistik-table tr:hover {
+        background-color: #fffdf5;
+      }
 
       .badge {
         display: inline-block;
@@ -415,10 +433,26 @@
         white-space: nowrap;
       }
 
-      .badge-a { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
-      .badge-b { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
-      .badge-c { background: #e0e7ff; color: #3730a3; border: 1px solid #a5b4fc; }
-      .badge-unit-gen { background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; }
+      .badge-a {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fca5a5;
+      }
+      .badge-b {
+        background: #fef3c7;
+        color: #92400e;
+        border: 1px solid #fcd34d;
+      }
+      .badge-c {
+        background: #e0e7ff;
+        color: #3730a3;
+        border: 1px solid #a5b4fc;
+      }
+      .badge-unit-gen {
+        background: #f3f4f6;
+        color: #374151;
+        border: 1px solid #d1d5db;
+      }
 
       .badge-tel {
         background: #e0f2fe;
@@ -433,14 +467,42 @@
         margin-top: 3px;
       }
 
-      .badge-status-bertugas { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
-      .badge-status-cuti { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
-      .badge-status-cutisakit { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
-      .badge-status-tugaskhas { background: #e0e7ff; color: #3730a3; border: 1px solid #a5b4fc; }
+      .badge-status-bertugas {
+        background: #dcfce7;
+        color: #166534;
+        border: 1px solid #86efac;
+      }
+      .badge-status-cuti {
+        background: #fef3c7;
+        color: #92400e;
+        border: 1px solid #fcd34d;
+      }
+      .badge-status-cutisakit {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fca5a5;
+      }
+      .badge-status-tugaskhas {
+        background: #e0e7ff;
+        color: #3730a3;
+        border: 1px solid #a5b4fc;
+      }
 
-      .badge-jentera-baik { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
-      .badge-jentera-rosak { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
-      .badge-jentera-selenggara { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+      .badge-jentera-baik {
+        background: #dcfce7;
+        color: #166534;
+        border: 1px solid #86efac;
+      }
+      .badge-jentera-rosak {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fca5a5;
+      }
+      .badge-jentera-selenggara {
+        background: #fef3c7;
+        color: #92400e;
+        border: 1px solid #fcd34d;
+      }
 
       .badge-peranan {
         background: #dbeafe;
@@ -553,7 +615,9 @@
         display: none;
       }
 
-      .multi-select-dropdown.show { display: block; }
+      .multi-select-dropdown.show {
+        display: block;
+      }
 
       .multi-select-search {
         padding: 10px;
@@ -575,7 +639,9 @@
         text-transform: uppercase;
       }
 
-      .multi-select-options { padding: 4px 0; }
+      .multi-select-options {
+        padding: 4px 0;
+      }
 
       .multi-select-option {
         padding: 10px 14px;
@@ -589,8 +655,14 @@
         transition: background 0.15s ease;
       }
 
-      .multi-select-option:hover { background: #fef2f2; }
-      .multi-select-option.selected { background: #fee2e2; color: #991b1b; font-weight: 800; }
+      .multi-select-option:hover {
+        background: #fef2f2;
+      }
+      .multi-select-option.selected {
+        background: #fee2e2;
+        color: #991b1b;
+        font-weight: 800;
+      }
 
       .multi-select-option .check-box {
         width: 18px;
@@ -632,8 +704,16 @@
         text-transform: uppercase;
       }
 
-      .btn-select-all { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
-      .btn-clear-all { background: #fef2f2; color: #991b1b; border: 1px solid #fca5a5; }
+      .btn-select-all {
+        background: #eff6ff;
+        color: #1e40af;
+        border: 1px solid #bfdbfe;
+      }
+      .btn-clear-all {
+        background: #fef2f2;
+        color: #991b1b;
+        border: 1px solid #fca5a5;
+      }
 
       .modal-overlay {
         position: fixed;
@@ -644,7 +724,7 @@
         background: rgba(15, 23, 42, 0.65);
         backdrop-filter: blur(4px);
         display: flex;
-        align-items: flex-end; 
+        align-items: flex-end;
         justify-content: center;
         z-index: 1000;
         opacity: 0;
@@ -692,7 +772,9 @@
         }
       }
 
-      .modal-overlay.active .modal { transform: translateY(0); }
+      .modal-overlay.active .modal {
+        transform: translateY(0);
+      }
 
       .modal-header {
         display: flex;
@@ -733,8 +815,32 @@
         font-weight: 800;
       }
 
-      .sync-active { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
-      .sync-inactive { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+      .sync-active {
+        background: #dcfce7;
+        color: #166534;
+        border: 1px solid #86efac;
+      }
+      .sync-inactive {
+        background: #fef3c7;
+        color: #92400e;
+        border: 1px solid #fcd34d;
+      }
+      .sync-syncing {
+        background: #e0e7ff;
+        color: #3730a3;
+        border: 1px solid #a5b4fc;
+        animation: pulse 1s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
 
       .error-message {
         color: #dc2626;
@@ -861,16 +967,41 @@
       }
 
       @media (min-width: 1024px) {
-        .mobile-bottom-nav { display: none; }
+        .mobile-bottom-nav {
+          display: none;
+        }
       }
 
       @media print {
-        body { background: white; color: black; padding-bottom: 0; }
-        .main-container { display: block; max-width: 100%; margin: 0; padding: 0; }
-        .no-print, .mobile-bottom-nav { display: none !important; }
-        .card { border: none; box-shadow: none; padding: 0; }
-        .table-responsive { border: none; }
-        .roster-table th, .roster-table td, .logistik-table th, .logistik-table td { border: 1px solid #000; }
+        body {
+          background: white;
+          color: black;
+          padding-bottom: 0;
+        }
+        .main-container {
+          display: block;
+          max-width: 100%;
+          margin: 0;
+          padding: 0;
+        }
+        .no-print,
+        .mobile-bottom-nav {
+          display: none !important;
+        }
+        .card {
+          border: none;
+          box-shadow: none;
+          padding: 0;
+        }
+        .table-responsive {
+          border: none;
+        }
+        .roster-table th,
+        .roster-table td,
+        .logistik-table th,
+        .logistik-table td {
+          border: 1px solid #000;
+        }
       }
     </style>
   </head>
@@ -926,7 +1057,6 @@
     >
       <!-- SIDEBAR / INPUT PANELS -->
       <div id="sectionPanels" class="no-print space-y-4">
-        
         <!-- PANEL 1: TUGASAN & OPERASI HARIAN -->
         <div class="card border-l-4 border-l-red-600">
           <div class="card-title">
@@ -1041,11 +1171,11 @@
             <span>☁️ 3. PANGKALAN DATA CLOUD</span>
             <span
               class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-900"
-              >SUPABASE</span
+              >AUTO-SYNC</span
             >
           </div>
           <p class="text-xs text-slate-500 font-bold mb-3">
-            SAMBUNGAN KE PANGKALAN DATA SUPABASE:
+            ⚡ AUTO-SYNC AKTIF: SEBARANG PERUBAHAN AKAN DISIMPAN KE CLOUD
           </p>
           <div class="flex flex-col gap-2">
             <button
@@ -1062,10 +1192,11 @@
                 🔄 MUAT DATA
               </button>
               <button
-                class="btn btn-emerald text-xs"
+                class="btn btn-auto-sync text-xs"
                 onclick="hantarDataSupabase()"
+                id="btnManualSync"
               >
-                ☁️ SIMPAN DATA
+                ☁️ SEGERAKAN MANUAL
               </button>
             </div>
             <button
@@ -1077,12 +1208,20 @@
           </div>
 
           <div class="mt-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
-            <div class="text-[10px] font-extrabold text-emerald-900 mb-1.5 flex items-center justify-between">
-              <span>📌 NOTA JADUAL PANGKALAN DATA</span>
+            <div
+              class="text-[10px] font-extrabold text-emerald-900 mb-1.5 flex items-center justify-between"
+            >
+              <span>📌 NOTA AUTO-SYNC</span>
+              <span id="syncStatusText" class="text-[9px] text-emerald-700"
+                >🟢 BERSEDIA</span
+              >
             </div>
             <div class="text-[10px] text-emerald-800 font-semibold leading-relaxed">
-              Pastikan Link URL dan Key terisi <strong>Jika tidak terisi maklum kepada Admin PGO Johor</strong>
+              ✅ Auto-Sync akan menyimpan data ke Cloud secara automatik selepas
+              setiap perubahan.
               <ul class="list-disc ml-4 mt-1 opacity-90">
+                <li>Klik "MUAT DATA" untuk tarik dari Cloud</li>
+                <li>Klik "SEGERAKAN MANUAL" untuk paksa sync</li>
               </ul>
             </div>
           </div>
@@ -1841,8 +1980,11 @@
             &times;
           </button>
         </div>
-        <div class="info-pill mb-4 border-emerald-200 bg-emerald-50 text-emerald-900">
-          💡 Nota: Jika anda telah memasukkan Kunci Kekal (Hardcode) di dalam fail, anda tidak perlu mengisi ruangan ini lagi.
+        <div
+          class="info-pill mb-4 border-emerald-200 bg-emerald-50 text-emerald-900"
+        >
+          💡 Nota: Jika anda telah memasukkan Kunci Kekal (Hardcode) di dalam
+          fail, anda tidak perlu mengisi ruangan ini lagi.
         </div>
         <div class="form-group">
           <label>SUPABASE URL</label>
@@ -1879,37 +2021,87 @@
       // =======================================================================
       // 🚀 TETAPAN SUPABASE KEKAL (HARDCODE)
       // =======================================================================
-      const KEKAL_SUPABASE_URL = 'https://ztmzjboqhwzwbuhvuvtr.supabase.co'; 
-      const KEKAL_SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0bXpqYm9xaHd6d2J1aHZ1dnRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU0ODQyMzksImV4cCI6MjEwMTA2MDIzOX0.uAyV-yS-4UIJ3tBghfLWYDgMRTXWvY59A1pjgreJiwA'; 
+      const KEKAL_SUPABASE_URL =
+        'https://ztmzjboqhwzwbuhvuvtr.supabase.co';
+      const KEKAL_SUPABASE_KEY =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0bXpqYm9xaHd6d2J1aHZ1dnRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU0ODQyMzksImV4cCI6MjEwMTA2MDIzOX0.uAyV-yS-4UIJ3tBghfLWYDgMRTXWvY59A1pjgreJiwA';
 
-      let sasaranPasswordAction = '', confirmCallback = null, aktifTabMaster = 'ANGGOTA', balaiTerpilih = [];
+      let sasaranPasswordAction = '',
+        confirmCallback = null,
+        aktifTabMaster = 'ANGGOTA',
+        balaiTerpilih = [];
       let logJenteraTerpilih = [];
       let logJenteraData = [];
       let namaAnggotaTerpilih = [];
+      let sedangSync = false;
+      let pendingSync = false;
 
       let senaraiBalaiMaster = [
-        'PGO JOHOR', 'BBP LARKIN', 'BBP PASIR GUDANG', 'BBP JOHOR JAYA', 'BBP SKUDAI',
-        'BBP ISKANDAR PUTERI', 'BBP TEBRAU', 'BBP PEKAN NENAS', 'BBP PONTIAN',
-        'BBP PONTIAN BARU', 'BBP KULAI', 'BBP BANDAR BARU KULAI', 'BBP KEMPAS',
-        'FIRE POST BENUT', 'BBP KOTA TINGGI', 'BBP SUNGAI RENGIT', 'BBP BANDAR PENAWAR',
-        'BBP MERSING', 'BBP ENDAU', 'BBP SEBANA COVE', 'BBP PUNGGAI',
-        'BBP BANDAR TENGGARA', 'BBP PENGGARAM', 'BBP KLUANG', 'BBP BATU PAHAT',
-        'BBP RENGIT', 'BBP RENGGAM', 'BBP YONG PENG', 'BBP AYER HITAM',
-        'FIRE POST PARIT SULONG', 'BBP MUAR', 'BBP BANDAR BARU SEGAMAT',
-        'BBP SEGAMAT', 'BBP LABIS', 'BBP BUKIT GAMBIR', 'BBP TANGKAK', 'BBP PAGOH',
+        'PGO JOHOR',
+        'BBP LARKIN',
+        'BBP PASIR GUDANG',
+        'BBP JOHOR JAYA',
+        'BBP SKUDAI',
+        'BBP ISKANDAR PUTERI',
+        'BBP TEBRAU',
+        'BBP PEKAN NENAS',
+        'BBP PONTIAN',
+        'BBP PONTIAN BARU',
+        'BBP KULAI',
+        'BBP BANDAR BARU KULAI',
+        'BBP KEMPAS',
+        'FIRE POST BENUT',
+        'BBP KOTA TINGGI',
+        'BBP SUNGAI RENGIT',
+        'BBP BANDAR PENAWAR',
+        'BBP MERSING',
+        'BBP ENDAU',
+        'BBP SEBANA COVE',
+        'BBP PUNGGAI',
+        'BBP BANDAR TENGGARA',
+        'BBP PENGGARAM',
+        'BBP KLUANG',
+        'BBP BATU PAHAT',
+        'BBP RENGIT',
+        'BBP RENGGAM',
+        'BBP YONG PENG',
+        'BBP AYER HITAM',
+        'FIRE POST PARIT SULONG',
+        'BBP MUAR',
+        'BBP BANDAR BARU SEGAMAT',
+        'BBP SEGAMAT',
+        'BBP LABIS',
+        'BBP BUKIT GAMBIR',
+        'BBP TANGKAK',
+        'BBP PAGOH',
       ];
       let senaraiPangkatMaster = [
-        'KB 1', 'KB 2', 'KB 3', 'KB 4', 'KB 5', 'KB 6', 'KB 7', 'KB 8', 'PBB','PBBK II','PBBK I',
+        'KB 1',
+        'KB 2',
+        'KB 3',
+        'KB 4',
+        'KB 5',
+        'KB 6',
+        'KB 7',
+        'KB 8',
+        'PBB',
+        'PBBK II',
+        'PBBK I',
       ];
       let senaraiUnitMaster = [
-        'PEMADAM', 'EMRS', 'HAZMAT', 'PPDA', 'RIM', 'STOM/MUST',
+        'PEMADAM',
+        'EMRS',
+        'HAZMAT',
+        'PPDA',
+        'RIM',
+        'STOM/MUST',
       ];
 
-      let senaraiNamaMaster = []; 
+      let senaraiNamaMaster = [];
       let rekodAnggota = [];
       let logistikJentera = [];
       let logistikBertugas = [];
-      
+
       let supabaseUrl = '';
       let supabaseKey = '';
       let supabaseClient = null;
@@ -1917,7 +2109,7 @@
       // ==================== FUNGSI INIT DATA LOGISTIK ====================
       function initDataLogistik(forceReload = false) {
         if (logistikJentera.length > 0 && !forceReload) return;
-        
+
         logistikJentera = [];
         let idCounter = 1000;
 
@@ -2284,12 +2476,51 @@
           const j = jenis.toUpperCase();
           const c = callsign.toUpperCase();
           if (c.startsWith('CFRT') || j.includes('CFRT')) return 'FRT/LFRT/CFRT';
-          if (j.includes('FRT') || j.includes('LFRT') || j.includes('RFRT') || c.startsWith('J1-') || c.startsWith('FRT-') || c.startsWith('SITRAK') || c.startsWith('W1-')) return 'FRT/LFRT/CFRT';
+          if (
+            j.includes('FRT') ||
+            j.includes('LFRT') ||
+            j.includes('RFRT') ||
+            c.startsWith('J1-') ||
+            c.startsWith('FRT-') ||
+            c.startsWith('SITRAK') ||
+            c.startsWith('W1-')
+          )
+            return 'FRT/LFRT/CFRT';
           if (c.startsWith('J2-') || j.includes('EMRS')) return 'EMRS';
           if (c.startsWith('J6-') || j.includes('RIM')) return 'RIM';
-          if (c.startsWith('J5-') || j.includes('WATER TANKER')) return 'WATER TANKER';
-          if (j.includes('BOT') || j.includes('ALUMINIUM') || j.includes('FIBER') || j.includes('ARIB') || j.includes('KEVLAR') || j.includes('JETSKI') || j.includes('FIRE BOAT') || j.includes('MUD BOAT') || j.includes('HDPE') || j.includes('RUBBER DINGHY') || c.startsWith('BOT-')) return 'BOT';
-          if (j.includes('FRV') || j.includes('COMM') || j.includes('HPPM') || j.includes('FOAM') || j.includes('PRIME MOVER') || j.includes('TOWING') || j.includes('ALP') || j.includes('TTL') || j.includes('HAZMAT') || j.includes('RRV') || j.includes('BATV') || j.includes('FORENSICS') || j.includes('COMMAND POST') || j.includes('AATV')) return 'KHAS/BOMPA';
+          if (c.startsWith('J5-') || j.includes('WATER TANKER'))
+            return 'WATER TANKER';
+          if (
+            j.includes('BOT') ||
+            j.includes('ALUMINIUM') ||
+            j.includes('FIBER') ||
+            j.includes('ARIB') ||
+            j.includes('KEVLAR') ||
+            j.includes('JETSKI') ||
+            j.includes('FIRE BOAT') ||
+            j.includes('MUD BOAT') ||
+            j.includes('HDPE') ||
+            j.includes('RUBBER DINGHY') ||
+            c.startsWith('BOT-')
+          )
+            return 'BOT';
+          if (
+            j.includes('FRV') ||
+            j.includes('COMM') ||
+            j.includes('HPPM') ||
+            j.includes('FOAM') ||
+            j.includes('PRIME MOVER') ||
+            j.includes('TOWING') ||
+            j.includes('ALP') ||
+            j.includes('TTL') ||
+            j.includes('HAZMAT') ||
+            j.includes('RRV') ||
+            j.includes('BATV') ||
+            j.includes('FORENSICS') ||
+            j.includes('COMMAND POST') ||
+            j.includes('AATV')
+          )
+            return 'KHAS/BOMPA';
           return 'KENDERAAN';
         };
 
@@ -2319,13 +2550,31 @@
       function simpanDataKeStorage() {
         try {
           localStorage.setItem('jbpm_rekodAnggota', JSON.stringify(rekodAnggota));
-          localStorage.setItem('jbpm_logistikJentera', JSON.stringify(logistikJentera));
-          localStorage.setItem('jbpm_logistikBertugas', JSON.stringify(logistikBertugas));
-          localStorage.setItem('jbpm_senaraiNamaMaster', JSON.stringify(senaraiNamaMaster));
-          localStorage.setItem('jbpm_senaraiBalaiMaster', JSON.stringify(senaraiBalaiMaster));
-          localStorage.setItem('jbpm_senaraiPangkatMaster', JSON.stringify(senaraiPangkatMaster));
-          localStorage.setItem('jbpm_senaraiUnitMaster', JSON.stringify(senaraiUnitMaster));
-          
+          localStorage.setItem(
+            'jbpm_logistikJentera',
+            JSON.stringify(logistikJentera)
+          );
+          localStorage.setItem(
+            'jbpm_logistikBertugas',
+            JSON.stringify(logistikBertugas)
+          );
+          localStorage.setItem(
+            'jbpm_senaraiNamaMaster',
+            JSON.stringify(senaraiNamaMaster)
+          );
+          localStorage.setItem(
+            'jbpm_senaraiBalaiMaster',
+            JSON.stringify(senaraiBalaiMaster)
+          );
+          localStorage.setItem(
+            'jbpm_senaraiPangkatMaster',
+            JSON.stringify(senaraiPangkatMaster)
+          );
+          localStorage.setItem(
+            'jbpm_senaraiUnitMaster',
+            JSON.stringify(senaraiUnitMaster)
+          );
+
           if (supabaseUrl && supabaseUrl !== KEKAL_SUPABASE_URL) {
             localStorage.setItem('jbpm_supabaseUrl', supabaseUrl);
           } else {
@@ -2336,11 +2585,103 @@
           } else {
             localStorage.removeItem('jbpm_supabaseKey');
           }
+
+          // 🔄 TRIGGER AUTO-SYNC KE SUPABASE
+          triggerAutoSync();
         } catch (e) {
           console.error('Storage save failed', e);
         }
       }
 
+      // ==================== AUTO-SYNC KE SUPABASE ====================
+      let syncTimeout = null;
+
+      function triggerAutoSync() {
+        if (!supabaseClient) {
+          updateSyncStatus('🟡 TIDAK BERSAMBUNG', 'sync-inactive');
+          return;
+        }
+
+        // Clear any pending timeout
+        if (syncTimeout) {
+          clearTimeout(syncTimeout);
+        }
+
+        // Debounce sync - tunggu 2 saat selepas perubahan terakhir
+        syncTimeout = setTimeout(() => {
+          if (!sedangSync) {
+            laksanakanAutoSync();
+          } else {
+            pendingSync = true;
+          }
+        }, 2000);
+      }
+
+      async function laksanakanAutoSync() {
+        if (!supabaseClient) return;
+
+        sedangSync = true;
+        pendingSync = false;
+        updateSyncStatus('⏳ MENYEGERAKAN...', 'sync-syncing');
+
+        try {
+          const payload = {
+            rekodAnggota,
+            logistikBertugas,
+            logistikJentera,
+            senaraiNamaMaster,
+            senaraiBalaiMaster,
+            senaraiPangkatMaster,
+            senaraiUnitMaster,
+            lastUpdated: new Date().toISOString(),
+          };
+
+          const { data, error } = await supabaseClient
+            .from('jbpm_data')
+            .upsert({ id: 1, payload: payload });
+
+          if (error) throw error;
+
+          updateSyncStatus('✅ TERSEGERAK', 'sync-active');
+
+          // Update badge
+          const badge = document.getElementById('cloudStatusBadge');
+          if (badge) {
+            badge.className = 'sync-badge sync-active';
+            badge.innerHTML = '<span>🟢 SUPABASE: AUTO-SYNC AKTIF</span>';
+          }
+        } catch (err) {
+          console.error('Auto-sync error:', err);
+          updateSyncStatus('❌ GAGAL SYNC', 'sync-inactive');
+
+          // Jangan tunjuk alert untuk auto-sync, hanya log
+        } finally {
+          sedangSync = false;
+
+          // Jika ada pending sync, laksanakan semula
+          if (pendingSync) {
+            pendingSync = false;
+            laksanakanAutoSync();
+          }
+        }
+      }
+
+      function updateSyncStatus(text, className) {
+        const el = document.getElementById('syncStatusText');
+        if (el) {
+          el.textContent = text;
+          // Reset class
+          el.className = 'text-[9px]';
+          if (className === 'sync-active') el.className += ' text-emerald-700';
+          else if (className === 'sync-syncing')
+            el.className += ' text-indigo-700 animate-pulse';
+          else if (className === 'sync-inactive')
+            el.className += ' text-yellow-700';
+          else el.className += ' text-emerald-700';
+        }
+      }
+
+      // ==================== FUNGSI MUAT DATA DARI STORAGE ====================
       function muatDataDariStorage() {
         try {
           const rA = localStorage.getItem('jbpm_rekodAnggota');
@@ -2359,7 +2700,7 @@
           if (sU) senaraiUnitMaster = JSON.parse(sU);
           const urlStor = localStorage.getItem('jbpm_supabaseUrl');
           const keyStor = localStorage.getItem('jbpm_supabaseKey');
-          
+
           if (KEKAL_SUPABASE_URL && KEKAL_SUPABASE_KEY) {
             supabaseUrl = KEKAL_SUPABASE_URL;
             supabaseKey = KEKAL_SUPABASE_KEY;
@@ -2382,26 +2723,31 @@
         if (supabaseUrl && supabaseKey) {
           try {
             if (typeof supabase === 'undefined') {
-              throw new Error("Pustaka (Library) Supabase tidak dijumpai!");
+              throw new Error('Pustaka (Library) Supabase tidak dijumpai!');
             }
             supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
             updateStatusBadge();
+            // Cuba sync data sedia ada selepas init
+            setTimeout(() => {
+              if (supabaseClient) {
+                triggerAutoSync();
+              }
+            }, 1000);
           } catch (e) {
             console.error(e);
-            tunjukCustomAlert("Gagal memulakan sambungan: " + e.message, "RALAT SISTEM");
           }
         } else {
           supabaseClient = null;
           updateStatusBadge();
         }
       }
-      
+
       function updateStatusBadge() {
         const badge = document.getElementById('cloudStatusBadge');
         if (badge) {
           if (supabaseClient) {
             badge.className = 'sync-badge sync-active';
-            badge.innerHTML = '<span>🟢 SUPABASE: DISAMBUNG (KEKAL AKTIF)</span>';
+            badge.innerHTML = '<span>🟢 SUPABASE: AUTO-SYNC AKTIF</span>';
           } else {
             badge.className = 'sync-badge sync-inactive';
             badge.innerHTML = '<span>🟡 SUPABASE: TIDAK DISAMBUNG</span>';
@@ -2411,14 +2757,39 @@
 
       function updateClock() {
         const now = new Date();
-        const days = ['AHAD', 'ISNIN', 'SELASA', 'RABU', 'KHAMIS', 'JUMAAT', 'SABTU'];
-        const months = ['JANUARI', 'FEBRUARI', 'MAC', 'APRIL', 'MEI', 'JUN', 'JULAI', 'OGOS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DISEMBER'];
+        const days = [
+          'AHAD',
+          'ISNIN',
+          'SELASA',
+          'RABU',
+          'KHAMIS',
+          'JUMAAT',
+          'SABTU',
+        ];
+        const months = [
+          'JANUARI',
+          'FEBRUARI',
+          'MAC',
+          'APRIL',
+          'MEI',
+          'JUN',
+          'JULAI',
+          'OGOS',
+          'SEPTEMBER',
+          'OKTOBER',
+          'NOVEMBER',
+          'DISEMBER',
+        ];
         const dayStr = days[now.getDay()];
         const dateNum = String(now.getDate()).padStart(2, '0');
         const monthStr = months[now.getMonth()];
         const year = now.getFullYear();
-        document.getElementById('currentDate').innerText = `${dayStr}, ${dateNum} ${monthStr} ${year}`;
-        document.getElementById('currentTime').innerText = now.toLocaleTimeString('en-US', { hour12: true });
+        document.getElementById('currentDate').innerText =
+          `${dayStr}, ${dateNum} ${monthStr} ${year}`;
+        document.getElementById('currentTime').innerText = now.toLocaleTimeString(
+          'en-US',
+          { hour12: true }
+        );
       }
 
       function tukarViewMobile(view) {
@@ -2458,19 +2829,29 @@
       }
 
       function tukarModDaftar(mod) {
-        document.getElementById('btnTabAnggota').className = mod === 'ANGGOTA' ? 'tab-btn active' : 'tab-btn';
-        document.getElementById('btnTabBalai').className = mod === 'BALAI' ? 'tab-btn active' : 'tab-btn';
-        document.getElementById('btnTabPangkat').className = mod === 'PANGKAT' ? 'tab-btn active' : 'tab-btn';
-        document.getElementById('btnTabUnit').className = mod === 'UNIT' ? 'tab-btn active' : 'tab-btn';
+        document.getElementById('btnTabAnggota').className =
+          mod === 'ANGGOTA' ? 'tab-btn active' : 'tab-btn';
+        document.getElementById('btnTabBalai').className =
+          mod === 'BALAI' ? 'tab-btn active' : 'tab-btn';
+        document.getElementById('btnTabPangkat').className =
+          mod === 'PANGKAT' ? 'tab-btn active' : 'tab-btn';
+        document.getElementById('btnTabUnit').className =
+          mod === 'UNIT' ? 'tab-btn active' : 'tab-btn';
         janaFormDaftar(mod);
       }
 
       function janaFormDaftar(mod = 'ANGGOTA') {
         const c = document.getElementById('regFormContainer');
         if (mod === 'ANGGOTA') {
-          let balaiOptions = senaraiBalaiMaster.map((b) => `<option value="${b}">${b}</option>`).join('');
-          let pangkatOptions = senaraiPangkatMaster.map((p) => `<option value="${p}">${p}</option>`).join('');
-          let unitOptions = senaraiUnitMaster.map((u) => `<option value="${u}">${u}</option>`).join('');
+          let balaiOptions = senaraiBalaiMaster
+            .map((b) => `<option value="${b}">${b}</option>`)
+            .join('');
+          let pangkatOptions = senaraiPangkatMaster
+            .map((p) => `<option value="${p}">${p}</option>`)
+            .join('');
+          let unitOptions = senaraiUnitMaster
+            .map((u) => `<option value="${u}">${u}</option>`)
+            .join('');
           c.innerHTML = `
             <div class="form-group"><label>NAMA ANGGOTA <span class="required-star">*</span></label><input type="text" id="regNama" class="form-control" required/></div>
             <div class="form-group"><label>NO. TELEFON</label><input type="text" id="regTel" class="form-control"/></div>
@@ -2506,13 +2887,18 @@
           const pangkat = document.getElementById('regPangkat').value;
           const unit = document.getElementById('regUnit').value;
           const balai = document.getElementById('regBalai').value;
-          if (!nama) { tunjukCustomAlert('Sila isi nama anggota!'); return; }
+          if (!nama) {
+            tunjukCustomAlert('Sila isi nama anggota!');
+            return;
+          }
           senaraiNamaMaster.push({ nama, noTel: tel, pangkat, unit, balai });
           simpanDataKeStorage();
           tunjukCustomAlert('Anggota berjaya didaftarkan ke Master!');
           janaFormDaftar('ANGGOTA');
         } else if (mod === 'BALAI') {
-          const balai = document.getElementById('regBalaiInput').value.trim().toUpperCase();
+          const balai = document.getElementById('regBalaiInput')
+            .value.trim()
+            .toUpperCase();
           if (!balai) return;
           if (!senaraiBalaiMaster.includes(balai)) {
             senaraiBalaiMaster.push(balai);
@@ -2521,7 +2907,9 @@
             kemaskiniSemuaPaparan();
           }
         } else if (mod === 'PANGKAT') {
-          const pangkat = document.getElementById('regPangkatInput').value.trim().toUpperCase();
+          const pangkat = document.getElementById('regPangkatInput')
+            .value.trim()
+            .toUpperCase();
           if (!pangkat) return;
           if (!senaraiPangkatMaster.includes(pangkat)) {
             senaraiPangkatMaster.push(pangkat);
@@ -2529,7 +2917,9 @@
             tunjukCustomAlert('Pangkat baharu berjaya ditambah!');
           }
         } else if (mod === 'UNIT') {
-          const unit = document.getElementById('regUnitInput').value.trim().toUpperCase();
+          const unit = document.getElementById('regUnitInput')
+            .value.trim()
+            .toUpperCase();
           if (!unit) return;
           if (!senaraiUnitMaster.includes(unit)) {
             senaraiUnitMaster.push(unit);
@@ -2540,17 +2930,24 @@
       }
 
       function togolBalaiDropdown() {
-        const trigger = document.querySelector('#balaiMultiSelect .multi-select-trigger');
+        const trigger = document.querySelector(
+          '#balaiMultiSelect .multi-select-trigger'
+        );
         const dropdown = document.getElementById('balaiDropdown');
         trigger.classList.toggle('active');
         dropdown.classList.toggle('show');
       }
 
       function tapisBalaiDropdown() {
-        const val = document.getElementById('balaiSearchInput').value.toUpperCase();
-        const options = document.querySelectorAll('#balaiOptionsContainer .multi-select-option');
+        const val = document.getElementById('balaiSearchInput')
+          .value.toUpperCase();
+        const options = document.querySelectorAll(
+          '#balaiOptionsContainer .multi-select-option'
+        );
         options.forEach((opt) => {
-          opt.style.display = opt.innerText.toUpperCase().includes(val) ? 'flex' : 'none';
+          opt.style.display = opt.innerText.toUpperCase().includes(val)
+            ? 'flex'
+            : 'none';
         });
       }
 
@@ -2569,25 +2966,33 @@
       function kemaskiniBalaiTags() {
         const tagsBox = document.getElementById('balaiSelectedTags');
         if (balaiTerpilih.length === 0) {
-          tagsBox.innerHTML = '<span class="multi-select-placeholder">🏢 SEMUA BALAI</span>';
+          tagsBox.innerHTML =
+            '<span class="multi-select-placeholder">🏢 SEMUA BALAI</span>';
           document.getElementById('filterInfoBadge').style.display = 'none';
         } else {
-          tagsBox.innerHTML = balaiTerpilih.map((b) => `<span class="multi-select-tag">${b}</span>`).join('');
-          document.getElementById('filterInfoBadge').style.display = 'inline-flex';
-          document.getElementById('filterBalaiList').innerText = balaiTerpilih.join(', ');
+          tagsBox.innerHTML = balaiTerpilih
+            .map((b) => `<span class="multi-select-tag">${b}</span>`)
+            .join('');
+          document.getElementById('filterInfoBadge').style.display =
+            'inline-flex';
+          document.getElementById('filterBalaiList').innerText = balaiTerpilih.join(
+            ', '
+          );
         }
         janaBalaiDropdownOptions();
       }
 
       function janaBalaiDropdownOptions() {
         const container = document.getElementById('balaiOptionsContainer');
-        container.innerHTML = senaraiBalaiMaster.map((b) => {
-          const sel = balaiTerpilih.includes(b) ? 'selected' : '';
-          return `<div class="multi-select-option ${sel}" onclick="pilihBalaiOption('${b}')">
+        container.innerHTML = senaraiBalaiMaster
+          .map((b) => {
+            const sel = balaiTerpilih.includes(b) ? 'selected' : '';
+            return `<div class="multi-select-option ${sel}" onclick="pilihBalaiOption('${b}')">
             <div class="check-box">${sel ? '✓' : ''}</div>
             <span>${b}</span>
           </div>`;
-        }).join('');
+          })
+          .join('');
       }
 
       function pilihBalaiOption(b) {
@@ -2608,22 +3013,37 @@
       }
 
       function kemaskiniPaparData() {
-        const query = document.getElementById('searchInput').value.toUpperCase().trim();
+        const query = document.getElementById('searchInput')
+          .value.toUpperCase()
+          .trim();
         const tbody = document.getElementById('rosterTableBody');
         tbody.innerHTML = '';
         let filtered = rekodAnggota.filter((item) => {
-          const matchBalai = balaiTerpilih.length === 0 || balaiTerpilih.includes(item.balai);
-          const matchQuery = !query || item.nama.toUpperCase().includes(query) || item.noTel.includes(query) || item.pangkat.toUpperCase().includes(query) || item.balai.toUpperCase().includes(query);
+          const matchBalai =
+            balaiTerpilih.length === 0 || balaiTerpilih.includes(item.balai);
+          const matchQuery =
+            !query ||
+            item.nama.toUpperCase().includes(query) ||
+            item.noTel.includes(query) ||
+            item.pangkat.toUpperCase().includes(query) ||
+            item.balai.toUpperCase().includes(query);
           return matchBalai && matchQuery;
         });
         document.getElementById('statTotal').innerText = filtered.length;
-        document.getElementById('statBertugas').innerText = filtered.filter((i) => i.status === 'BERTUGAS').length;
-        document.getElementById('statCuti').innerText = filtered.filter((i) => i.status.includes('CUTI')).length;
-        document.getElementById('statTugasKhas').innerText = filtered.filter((i) => i.status === 'TUGAS KHAS').length;
+        document.getElementById('statBertugas').innerText = filtered.filter(
+          (i) => i.status === 'BERTUGAS'
+        ).length;
+        document.getElementById('statCuti').innerText = filtered.filter((i) =>
+          i.status.includes('CUTI')
+        ).length;
+        document.getElementById('statTugasKhas').innerText = filtered.filter(
+          (i) => i.status === 'TUGAS KHAS'
+        ).length;
         const countA = filtered.filter((i) => i.pasukan === 'PASUKAN A').length;
         const countB = filtered.filter((i) => i.pasukan === 'PASUKAN B').length;
         const countC = filtered.filter((i) => i.pasukan === 'PASUKAN C').length;
-        document.getElementById('statPasukanSummary').innerText = `${countA} / ${countB} / ${countC}`;
+        document.getElementById('statPasukanSummary').innerText =
+          `${countA} / ${countB} / ${countC}`;
         if (filtered.length === 0) {
           document.getElementById('emptyMessage').style.display = 'block';
           return;
@@ -2635,13 +3055,25 @@
           if (item.pasukan === 'PASUKAN C') badgePasukan = 'badge-c';
           let badgeStatus = 'badge-status-bertugas';
           if (item.status === 'CUTI') badgeStatus = 'badge-status-cuti';
-          if (item.status === 'CUTI SAKIT') badgeStatus = 'badge-status-cutisakit';
-          if (item.status === 'TUGAS KHAS') badgeStatus = 'badge-status-tugaskhas';
+          if (item.status === 'CUTI SAKIT')
+            badgeStatus = 'badge-status-cutisakit';
+          if (item.status === 'TUGAS KHAS')
+            badgeStatus = 'badge-status-tugaskhas';
           let perananBadges = [];
-          if (item.isKetuaBalai === 'YA') perananBadges.push('<span class="badge badge-peranan">KETUA BALAI</span>');
-          if (item.isPegawaiOperasi === 'YA') perananBadges.push('<span class="badge badge-peranan">PB / OPERASI</span>');
-          if (item.isPenyelia === 'YA') perananBadges.push('<span class="badge badge-peranan">PENYELIA</span>');
-          if (item.isBkb === 'YA') perananBadges.push('<span class="badge badge-peranan">BKB</span>');
+          if (item.isKetuaBalai === 'YA')
+            perananBadges.push(
+              '<span class="badge badge-peranan">KETUA BALAI</span>'
+            );
+          if (item.isPegawaiOperasi === 'YA')
+            perananBadges.push(
+              '<span class="badge badge-peranan">PB / OPERASI</span>'
+            );
+          if (item.isPenyelia === 'YA')
+            perananBadges.push(
+              '<span class="badge badge-peranan">PENYELIA</span>'
+            );
+          if (item.isBkb === 'YA')
+            perananBadges.push('<span class="badge badge-peranan">BKB</span>');
           const tr = document.createElement('tr');
           tr.innerHTML = `
             <td>${index + 1}</td>
@@ -2670,13 +3102,20 @@
       function paparLogistikTable() {
         const tbody = document.getElementById('logistikTableBody');
         tbody.innerHTML = '';
-        document.getElementById('statLogTotal').innerText = logistikBertugas.length;
+        document.getElementById('statLogTotal').innerText =
+          logistikBertugas.length;
         document.getElementById('statLogBaik').innerText = logistikBertugas.filter(
           (i) => i.status === 'SEDIA BEROPERASI' || i.status === 'BAIK'
         ).length;
-        document.getElementById('statLogRosak').innerText = logistikBertugas.filter((i) => i.status.includes('ROSAK')).length;
-        document.getElementById('statLogSelenggara').innerText = logistikBertugas.filter(
-          (i) => i.status.includes('PENYELENGGARAAN') || i.status.includes('SELENGGARA')
+        document.getElementById('statLogRosak').innerText = logistikBertugas.filter(
+          (i) => i.status.includes('ROSAK')
+        ).length;
+        document.getElementById(
+          'statLogSelenggara'
+        ).innerText = logistikBertugas.filter(
+          (i) =>
+            i.status.includes('PENYELENGGARAAN') ||
+            i.status.includes('SELENGGARA')
         ).length;
         if (logistikBertugas.length === 0) {
           document.getElementById('emptyLogMessage').style.display = 'block';
@@ -2685,8 +3124,10 @@
         document.getElementById('emptyLogMessage').style.display = 'none';
         logistikBertugas.forEach((item, index) => {
           let badgeStatus = 'badge-jentera-baik';
-          if (item.status.includes('ROSAK')) badgeStatus = 'badge-jentera-rosak';
-          if (item.status.includes('PENYELENGGARAAN')) badgeStatus = 'badge-jentera-selenggara';
+          if (item.status.includes('ROSAK'))
+            badgeStatus = 'badge-jentera-rosak';
+          if (item.status.includes('PENYELENGGARAAN'))
+            badgeStatus = 'badge-jentera-selenggara';
           const tr = document.createElement('tr');
           tr.innerHTML = `
             <td>${index + 1}</td>
@@ -2717,17 +3158,24 @@
       }
 
       function togolNamaAnggotaDropdown() {
-        const trigger = document.querySelector('#namaAnggotaMultiSelect .multi-select-trigger');
+        const trigger = document.querySelector(
+          '#namaAnggotaMultiSelect .multi-select-trigger'
+        );
         const dropdown = document.getElementById('namaAnggotaDropdown');
         trigger.classList.toggle('active');
         dropdown.classList.toggle('show');
       }
 
       function tapisNamaAnggotaDropdown() {
-        const val = document.getElementById('namaAnggotaSearchInput').value.toUpperCase();
-        const options = document.querySelectorAll('#namaAnggotaOptionsContainer .multi-select-option');
+        const val = document.getElementById('namaAnggotaSearchInput')
+          .value.toUpperCase();
+        const options = document.querySelectorAll(
+          '#namaAnggotaOptionsContainer .multi-select-option'
+        );
         options.forEach((opt) => {
-          opt.style.display = opt.innerText.toUpperCase().includes(val) ? 'flex' : 'none';
+          opt.style.display = opt.innerText.toUpperCase().includes(val)
+            ? 'flex'
+            : 'none';
         });
       }
 
@@ -2744,30 +3192,37 @@
       function kemaskiniNamaAnggotaTags() {
         const tagsBox = document.getElementById('namaAnggotaSelectedTags');
         if (namaAnggotaTerpilih.length === 0) {
-          tagsBox.innerHTML = '<span class="multi-select-placeholder">👤 PILIH ANGGOTA...</span>';
+          tagsBox.innerHTML =
+            '<span class="multi-select-placeholder">👤 PILIH ANGGOTA...</span>';
         } else {
-          tagsBox.innerHTML = namaAnggotaTerpilih.map((n) => `<span class="multi-select-tag">${n}</span>`).join('');
+          tagsBox.innerHTML = namaAnggotaTerpilih
+            .map((n) => `<span class="multi-select-tag">${n}</span>`)
+            .join('');
         }
         janaNamaAnggotaOptions();
       }
 
       function janaNamaAnggotaOptions() {
         const container = document.getElementById('namaAnggotaOptionsContainer');
-        container.innerHTML = senaraiNamaMaster.map((a) => {
-          const sel = namaAnggotaTerpilih.includes(a.nama) ? 'selected' : '';
-          return `<div class="multi-select-option ${sel}" onclick="pilihNamaAnggotaOption('${a.nama}')">
+        container.innerHTML = senaraiNamaMaster
+          .map((a) => {
+            const sel = namaAnggotaTerpilih.includes(a.nama) ? 'selected' : '';
+            return `<div class="multi-select-option ${sel}" onclick="pilihNamaAnggotaOption('${a.nama}')">
             <div class="check-box">${sel ? '✓' : ''}</div>
             <div>
               <div class="font-bold">${a.nama}</div>
               <div class="text-[10px] text-slate-400">${a.pangkat} | ${a.balai}</div>
             </div>
           </div>`;
-        }).join('');
+          })
+          .join('');
       }
 
       function pilihNamaAnggotaOption(nama) {
         if (namaAnggotaTerpilih.includes(nama)) {
-          namaAnggotaTerpilih = namaAnggotaTerpilih.filter((item) => item !== nama);
+          namaAnggotaTerpilih = namaAnggotaTerpilih.filter(
+            (item) => item !== nama
+          );
         } else {
           namaAnggotaTerpilih.push(nama);
         }
@@ -2787,7 +3242,9 @@
         const isBkb = document.getElementById('modalBkb').value;
         const pasukan = document.getElementById('modalPasukan').value;
         const status = document.getElementById('modalStatus').value;
-        const catatan = document.getElementById('modalCatatan').value.trim().toUpperCase();
+        const catatan = document.getElementById('modalCatatan')
+          .value.trim()
+          .toUpperCase();
         namaAnggotaTerpilih.forEach((nama) => {
           const master = senaraiNamaMaster.find((m) => m.nama === nama) || {};
           rekodAnggota.push({
@@ -2797,8 +3254,15 @@
             pangkat: master.pangkat || 'KB 1',
             unit: master.unit || 'PEMADAM',
             balai: master.balai || 'PGO JOHOR',
-            shiftType, shiftTime, isKetuaBalai: isKB, isPegawaiOperasi: isPO,
-            isPenyelia: isPenyelia, isBkb: isBkb, pasukan, status, catatan,
+            shiftType,
+            shiftTime,
+            isKetuaBalai: isKB,
+            isPegawaiOperasi: isPO,
+            isPenyelia: isPenyelia,
+            isBkb: isBkb,
+            pasukan,
+            status,
+            catatan,
           });
         });
         simpanDataKeStorage();
@@ -2831,24 +3295,34 @@
 
       function janaLogistikBalaiSelectOptions() {
         const sel = document.getElementById('logModalBalai');
-        sel.innerHTML = '<option value="">-- PILIH BALAI BERTUGAS --</option>' +
+        sel.innerHTML =
+          '<option value="">-- PILIH BALAI BERTUGAS --</option>' +
           senaraiBalaiMaster.map((b) => `<option value="${b}">${b}</option>`).join('');
       }
 
-      function kemaskiniJenteraLogModal() { janaLogJenteraDropdown(); }
+      function kemaskiniJenteraLogModal() {
+        janaLogJenteraDropdown();
+      }
 
       function togolLogJenteraDropdown() {
-        const trigger = document.querySelector('#logJenteraMultiSelect .multi-select-trigger');
+        const trigger = document.querySelector(
+          '#logJenteraMultiSelect .multi-select-trigger'
+        );
         const dropdown = document.getElementById('logJenteraDropdown');
         trigger.classList.toggle('active');
         dropdown.classList.toggle('show');
       }
 
       function tapisLogJenteraDropdown() {
-        const val = document.getElementById('logJenteraSearchInput').value.toUpperCase();
-        const options = document.querySelectorAll('#logJenteraOptionsContainer .multi-select-option');
+        const val = document.getElementById('logJenteraSearchInput')
+          .value.toUpperCase();
+        const options = document.querySelectorAll(
+          '#logJenteraOptionsContainer .multi-select-option'
+        );
         options.forEach((opt) => {
-          opt.style.display = opt.innerText.toUpperCase().includes(val) ? 'flex' : 'none';
+          opt.style.display = opt.innerText.toUpperCase().includes(val)
+            ? 'flex'
+            : 'none';
         });
       }
 
@@ -2858,19 +3332,22 @@
         const container = document.getElementById('logJenteraOptionsContainer');
         let filtered = logistikJentera.filter((item) => {
           const matchKat = filterKat === 'SEMUA' || item.kategori === filterKat;
-          const matchBalai = !balaiVal || item.balai === 'UMUM / BEBAS' || item.balai === balaiVal;
+          const matchBalai =
+            !balaiVal || item.balai === 'UMUM / BEBAS' || item.balai === balaiVal;
           return matchKat && matchBalai;
         });
-        container.innerHTML = filtered.map((item) => {
-          const isSel = logJenteraTerpilih.some((x) => x.id === item.id);
-          return `<div class="multi-select-option ${isSel ? 'selected' : ''}" onclick="pilihLogJenteraOption(${item.id})">
+        container.innerHTML = filtered
+          .map((item) => {
+            const isSel = logJenteraTerpilih.some((x) => x.id === item.id);
+            return `<div class="multi-select-option ${isSel ? 'selected' : ''}" onclick="pilihLogJenteraOption(${item.id})">
             <div class="check-box">${isSel ? '✓' : ''}</div>
             <div>
               <div class="font-bold text-red-700">${item.callsign} (${item.plate})</div>
               <div class="text-[10px] text-slate-500">${item.jenis} | ${item.balai}</div>
             </div>
           </div>`;
-        }).join('');
+          })
+          .join('');
       }
 
       function pilihLogJenteraOption(id) {
@@ -2881,8 +3358,14 @@
           logJenteraTerpilih.splice(idx, 1);
         } else {
           logJenteraTerpilih.push({
-            id: jenteraObj.id, callsign: jenteraObj.callsign, plate: jenteraObj.plate, model: jenteraObj.model,
-            jenis: jenteraObj.jenis, kategori: jenteraObj.kategori, status: 'SEDIA BEROPERASI', catatan: '-',
+            id: jenteraObj.id,
+            callsign: jenteraObj.callsign,
+            plate: jenteraObj.plate,
+            model: jenteraObj.model,
+            jenis: jenteraObj.jenis,
+            kategori: jenteraObj.kategori,
+            status: 'SEDIA BEROPERASI',
+            catatan: '-',
           });
         }
         kemaskiniLogJenteraDipilihTable();
@@ -2894,7 +3377,8 @@
         const balaiVal = document.getElementById('logModalBalai').value;
         let filtered = logistikJentera.filter((item) => {
           const matchKat = filterKat === 'SEMUA' || item.kategori === filterKat;
-          const matchBalai = !balaiVal || item.balai === 'UMUM / BEBAS' || item.balai === balaiVal;
+          const matchBalai =
+            !balaiVal || item.balai === 'UMUM / BEBAS' || item.balai === balaiVal;
           return matchKat && matchBalai;
         });
         filtered.forEach((j) => {
@@ -2916,13 +3400,18 @@
         const tbody = document.getElementById('logJenteraDipilihBody');
         const tags = document.getElementById('logJenteraSelectedTags');
         if (logJenteraTerpilih.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="7" class="text-center p-4 text-slate-400">TIADA JENTERA DIPILIH</td></tr>';
-          tags.innerHTML = '<span class="multi-select-placeholder">🔧 PILIH JENTERA (GLOBAL)...</span>';
+          tbody.innerHTML =
+            '<tr><td colspan="7" class="text-center p-4 text-slate-400">TIADA JENTERA DIPILIH</td></tr>';
+          tags.innerHTML =
+            '<span class="multi-select-placeholder">🔧 PILIH JENTERA (GLOBAL)...</span>';
           return;
         }
-        tags.innerHTML = logJenteraTerpilih.map((j) => `<span class="multi-select-tag">${j.callsign}</span>`).join('');
-        tbody.innerHTML = logJenteraTerpilih.map((item, index) => {
-          return `<tr>
+        tags.innerHTML = logJenteraTerpilih
+          .map((j) => `<span class="multi-select-tag">${j.callsign}</span>`)
+          .join('');
+        tbody.innerHTML = logJenteraTerpilih
+          .map((item, index) => {
+            return `<tr>
             <td><strong>${item.callsign}</strong></td>
             <td>${item.plate}</td>
             <td>${item.jenis}</td>
@@ -2937,11 +3426,16 @@
             <td><input type="text" value="${item.catatan || ''}" onchange="kemaskiniCatatanJenteraDipilih(${index}, this.value)" placeholder="CATATAN"/></td>
             <td><button class="btn btn-danger" onclick="buangJenteraDipilih(${index})">✕</button></td>
           </tr>`;
-        }).join('');
+          })
+          .join('');
       }
 
-      function kemaskiniStatusJenteraDipilih(index, val) { logJenteraTerpilih[index].status = val; }
-      function kemaskiniCatatanJenteraDipilih(index, val) { logJenteraTerpilih[index].catatan = val.toUpperCase(); }
+      function kemaskiniStatusJenteraDipilih(index, val) {
+        logJenteraTerpilih[index].status = val;
+      }
+      function kemaskiniCatatanJenteraDipilih(index, val) {
+        logJenteraTerpilih[index].catatan = val.toUpperCase();
+      }
       function buangJenteraDipilih(index) {
         logJenteraTerpilih.splice(index, 1);
         kemaskiniLogJenteraDipilihTable();
@@ -2950,13 +3444,25 @@
 
       function simpanLogistikBertugas() {
         const balai = document.getElementById('logModalBalai').value;
-        if (!balai) { tunjukCustomAlert('Sila pilih balai bertugas!'); return; }
-        if (logJenteraTerpilih.length === 0) { tunjukCustomAlert('Sila pilih sekurang-kurangnya satu jentera!'); return; }
+        if (!balai) {
+          tunjukCustomAlert('Sila pilih balai bertugas!');
+          return;
+        }
+        if (logJenteraTerpilih.length === 0) {
+          tunjukCustomAlert('Sila pilih sekurang-kurangnya satu jentera!');
+          return;
+        }
         logJenteraTerpilih.forEach((item) => {
           logistikBertugas.push({
             id: 'LOG_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
-            callsign: item.callsign, plate: item.plate, model: item.model, jenis: item.jenis,
-            kategori: item.kategori, balai: balai, status: item.status, catatan: item.catatan,
+            callsign: item.callsign,
+            plate: item.plate,
+            model: item.model,
+            jenis: item.jenis,
+            kategori: item.kategori,
+            balai: balai,
+            status: item.status,
+            catatan: item.catatan,
           });
         });
         simpanDataKeStorage();
@@ -3002,15 +3508,20 @@
       }
 
       function paparSenaraiMasterModal() {
-        const filter = document.getElementById('filterMasterItem').value.toUpperCase().trim();
+        const filter = document.getElementById('filterMasterItem')
+          .value.toUpperCase()
+          .trim();
         const headRow = document.getElementById('masterTableHeadRow');
         const tbody = document.getElementById('masterItemsTableBody');
         const desc = document.getElementById('tabMasterDesc');
         tbody.innerHTML = '';
         if (aktifTabMaster === 'ANGGOTA') {
           desc.innerText = 'SENARAI ANGGOTA DAFTAR MASTER:';
-          headRow.innerHTML = '<th class="p-2 text-xs">BIL</th><th class="p-2 text-xs">NAMA ANGGOTA</th><th class="p-2 text-xs">NO TEL</th><th class="p-2 text-xs">BALAI</th><th class="p-2 text-xs">BUANG</th>';
-          let filtered = senaraiNamaMaster.filter((a) => !filter || a.nama.includes(filter) || a.balai.includes(filter));
+          headRow.innerHTML =
+            '<th class="p-2 text-xs">BIL</th><th class="p-2 text-xs">NAMA ANGGOTA</th><th class="p-2 text-xs">NO TEL</th><th class="p-2 text-xs">BALAI</th><th class="p-2 text-xs">BUANG</th>';
+          let filtered = senaraiNamaMaster.filter(
+            (a) => !filter || a.nama.includes(filter) || a.balai.includes(filter)
+          );
           filtered.forEach((item, idx) => {
             const tr = document.createElement('tr');
             tr.className = 'border-b border-slate-200 text-xs font-semibold';
@@ -3021,7 +3532,8 @@
           });
         } else if (aktifTabMaster === 'BALAI') {
           desc.innerText = 'SENARAI BALAI MASTER:';
-          headRow.innerHTML = '<th class="p-2 text-xs">BIL</th><th class="p-2 text-xs">NAMA BALAI</th><th class="p-2 text-xs">BUANG</th>';
+          headRow.innerHTML =
+            '<th class="p-2 text-xs">BIL</th><th class="p-2 text-xs">NAMA BALAI</th><th class="p-2 text-xs">BUANG</th>';
           let filtered = senaraiBalaiMaster.filter((b) => !filter || b.includes(filter));
           filtered.forEach((item, idx) => {
             const tr = document.createElement('tr');
@@ -3032,7 +3544,8 @@
           });
         } else if (aktifTabMaster === 'PANGKAT') {
           desc.innerText = 'SENARAI PANGKAT MASTER:';
-          headRow.innerHTML = '<th class="p-2 text-xs">BIL</th><th class="p-2 text-xs">PANGKAT</th><th class="p-2 text-xs">BUANG</th>';
+          headRow.innerHTML =
+            '<th class="p-2 text-xs">BIL</th><th class="p-2 text-xs">PANGKAT</th><th class="p-2 text-xs">BUANG</th>';
           let filtered = senaraiPangkatMaster.filter((p) => !filter || p.includes(filter));
           filtered.forEach((item, idx) => {
             const tr = document.createElement('tr');
@@ -3043,7 +3556,8 @@
           });
         } else if (aktifTabMaster === 'UNIT') {
           desc.innerText = 'SENARAI UNIT MASTER:';
-          headRow.innerHTML = '<th class="p-2 text-xs">BIL</th><th class="p-2 text-xs">UNIT KHAS</th><th class="p-2 text-xs">BUANG</th>';
+          headRow.innerHTML =
+            '<th class="p-2 text-xs">BIL</th><th class="p-2 text-xs">UNIT KHAS</th><th class="p-2 text-xs">BUANG</th>';
           let filtered = senaraiUnitMaster.filter((u) => !filter || u.includes(filter));
           filtered.forEach((item, idx) => {
             const tr = document.createElement('tr');
@@ -3074,14 +3588,19 @@
         document.getElementById('inputPassword').value = '';
         document.getElementById('passwordErrorMsg').style.display = 'none';
         let prompt = 'SILA MASUKKAN KATA LALUAN PENTADBIR:';
-        if (action === 'MASTER_BERSIH') prompt = 'PROSES PEMBERSIHAN MASTER! SILA MASUKKAN KATA LALUAN PENTADBIR:';
+        if (action === 'MASTER_BERSIH')
+          prompt = 'PROSES PEMBERSIHAN MASTER! SILA MASUKKAN KATA LALUAN PENTADBIR:';
         document.getElementById('passwordPromptText').innerText = prompt;
         document.getElementById('passwordModal').classList.add('active');
         setTimeout(() => document.getElementById('inputPassword').focus(), 200);
       }
 
-      function tutupModalPassword() { document.getElementById('passwordModal').classList.remove('active'); }
-      function semakEnterPassword(e) { if (e.key === 'Enter') sahkanPassword(); }
+      function tutupModalPassword() {
+        document.getElementById('passwordModal').classList.remove('active');
+      }
+      function semakEnterPassword(e) {
+        if (e.key === 'Enter') sahkanPassword();
+      }
 
       function sahkanPassword() {
         const pwd = document.getElementById('inputPassword').value;
@@ -3095,70 +3614,98 @@
 
       function prosesPasswordAction() {
         if (sasaranPasswordAction === 'URUS_KATEGORI') bukaModalUrusKategori();
-        else if (sasaranPasswordAction === 'URUS_JENTERA_MASTER') bukaModalUrusJentera();
+        else if (sasaranPasswordAction === 'URUS_JENTERA_MASTER')
+          bukaModalUrusJentera();
         else if (sasaranPasswordAction === 'MASTER_BERSIH') {
-          tunjukCustomConfirm('🚨 ANDA PASTI UNTUK MEMADAM SEMUA REKOD BERTUGAS HARIAN?', (res) => {
-            if (res) {
-              rekodAnggota = [];
-              logistikBertugas = [];
-              simpanDataKeStorage();
-              kemaskiniSemuaPaparan();
-              tunjukCustomAlert('Semua rekod harian berjaya dibersihkan!');
+          tunjukCustomConfirm(
+            '🚨 ANDA PASTI UNTUK MEMADAM SEMUA REKOD BERTUGAS HARIAN?',
+            (res) => {
+              if (res) {
+                rekodAnggota = [];
+                logistikBertugas = [];
+                simpanDataKeStorage();
+                kemaskiniSemuaPaparan();
+                tunjukCustomAlert('Semua rekod harian berjaya dibersihkan!');
+              }
             }
-          });
+          );
         }
       }
 
       function bukaModalUrusJentera() {
         document.getElementById('urusJenteraModal').classList.add('active');
         const sel = document.getElementById('urusJenteraBalai');
-        sel.innerHTML = '<option value="">-- PILIH BALAI / KUMPULAN --</option><option value="UMUM / BEBAS">🌐 UMUM / BEBAS (400+ INVENTORI NEGERI)</option>' +
+        sel.innerHTML =
+          '<option value="">-- PILIH BALAI / KUMPULAN --</option><option value="UMUM / BEBAS">🌐 UMUM / BEBAS (400+ INVENTORI NEGERI)</option>' +
           senaraiBalaiMaster.map((b) => `<option value="${b}">${b}</option>`).join('');
       }
 
-      function tutupModalUrusJentera() { document.getElementById('urusJenteraModal').classList.remove('active'); }
+      function tutupModalUrusJentera() {
+        document.getElementById('urusJenteraModal').classList.remove('active');
+      }
 
       function paparJenteraBalai() {
         const balai = document.getElementById('urusJenteraBalai').value;
         const box = document.getElementById('urusJenteraList');
         if (!balai) {
-          box.innerHTML = '<p class="text-center text-slate-400 py-4 font-semibold text-xs">SILA PILIH BALAI ATAU INVENTORI BEBAS</p>';
+          box.innerHTML =
+            '<p class="text-center text-slate-400 py-4 font-semibold text-xs">SILA PILIH BALAI ATAU INVENTORI BEBAS</p>';
           return;
         }
         let filtered = logistikJentera.filter((x) => x.balai === balai);
         if (filtered.length === 0) {
-          box.innerHTML = '<p class="text-center text-slate-400 py-4 font-semibold text-xs">TIADA JENTERA DALAM BALAI / KUMPULAN INI</p>';
+          box.innerHTML =
+            '<p class="text-center text-slate-400 py-4 font-semibold text-xs">TIADA JENTERA DALAM BALAI / KUMPULAN INI</p>';
           return;
         }
         box.innerHTML = `<table class="w-full text-left text-xs">
           <thead><tr class="bg-slate-100"><th class="p-2">CALLSIGN</th><th class="p-2">PLAT</th><th class="p-2">JENIS</th><th class="p-2">BUANG</th></tr></thead>
           <tbody>
-            ${filtered.map((j) => `<tr class="border-b border-slate-200">
+            ${filtered
+              .map(
+                (j) => `<tr class="border-b border-slate-200">
               <td class="p-2 font-bold">${j.callsign}</td><td class="p-2">${j.plate}</td><td class="p-2">${j.jenis}</td>
               <td class="p-2"><button class="btn btn-danger" onclick="padamJenteraBalai(${j.id})">✕</button></td>
-            </tr>`).join('')}
+            </tr>`
+              )
+              .join('')}
           </tbody>
         </table>`;
       }
 
       function bukaFormTambahJenteraBalai() {
         const balai = document.getElementById('urusJenteraBalai').value;
-        if (!balai) { tunjukCustomAlert('Sila pilih balai / kumpulan terlebih dahulu!'); return; }
+        if (!balai) {
+          tunjukCustomAlert('Sila pilih balai / kumpulan terlebih dahulu!');
+          return;
+        }
         document.getElementById('formTambahJenteraBalai').style.display = 'block';
       }
 
       function simpanJenteraKeBalai() {
         const balai = document.getElementById('urusJenteraBalai').value;
-        const callsign = document.getElementById('ftCallsign').value.trim().toUpperCase();
+        const callsign = document.getElementById('ftCallsign')
+          .value.trim()
+          .toUpperCase();
         const plate = document.getElementById('ftPlate').value.trim().toUpperCase();
         const model = document.getElementById('ftModel').value.trim().toUpperCase();
         const jenis = document.getElementById('ftJenis').value.trim().toUpperCase();
         const kategori = document.getElementById('ftKategori').value;
         const status = document.getElementById('ftStatus').value;
-        if (!plate || !jenis) { tunjukCustomAlert('Sila isi No. Plat dan Jenis Jentera!'); return; }
+        if (!plate || !jenis) {
+          tunjukCustomAlert('Sila isi No. Plat dan Jenis Jentera!');
+          return;
+        }
         logistikJentera.push({
-          id: Date.now(), callsign: callsign || plate, plate, model, jenis,
-          kategori, balai, status, catatan: '-',
+          id: Date.now(),
+          callsign: callsign || plate,
+          plate,
+          model,
+          jenis,
+          kategori,
+          balai,
+          status,
+          catatan: '-',
         });
         simpanDataKeStorage();
         paparJenteraBalai();
@@ -3190,73 +3737,144 @@
         let rawUrl = document.getElementById('inSupabaseUrl').value.trim();
         let rawKey = document.getElementById('inSupabaseKey').value.trim();
         if (rawUrl) {
-          if (!rawUrl.startsWith('http')) { rawUrl = 'https://' + rawUrl; }
-          try { const urlObj = new URL(rawUrl); rawUrl = urlObj.origin; } catch (e) {}
+          if (!rawUrl.startsWith('http')) {
+            rawUrl = 'https://' + rawUrl;
+          }
+          try {
+            const urlObj = new URL(rawUrl);
+            rawUrl = urlObj.origin;
+          } catch (e) {}
         }
-        if (!rawUrl && KEKAL_SUPABASE_URL) { tunjukCustomAlert("URL tidak boleh dikosongkan semasa menggunakan Tetapan Kekal (Hardcode).", "RALAT"); return; }
-        if (!rawKey && KEKAL_SUPABASE_KEY) { tunjukCustomAlert("Kunci tidak boleh dikosongkan semasa menggunakan Tetapan Kekal (Hardcode).", "RALAT"); return; }
+        if (!rawUrl && KEKAL_SUPABASE_URL) {
+          tunjukCustomAlert(
+            'URL tidak boleh dikosongkan semasa menggunakan Tetapan Kekal (Hardcode).',
+            'RALAT'
+          );
+          return;
+        }
+        if (!rawKey && KEKAL_SUPABASE_KEY) {
+          tunjukCustomAlert(
+            'Kunci tidak boleh dikosongkan semasa menggunakan Tetapan Kekal (Hardcode).',
+            'RALAT'
+          );
+          return;
+        }
         supabaseUrl = rawUrl;
         supabaseKey = rawKey;
         if (tunjukNotif && KEKAL_SUPABASE_URL && KEKAL_SUPABASE_KEY) {
           if (rawUrl !== KEKAL_SUPABASE_URL || rawKey !== KEKAL_SUPABASE_KEY) {
-            tunjukCustomAlert("PERHATIAN: Fail ini mempunyai Tetapan Kekal (Hardcode).\n\nSebarang perubahan pada tetapan ini TIDAK akan disimpan selepas halaman dimuat semula.", "NOTA KEKAL");
+            tunjukCustomAlert(
+              'PERHATIAN: Fail ini mempunyai Tetapan Kekal (Hardcode).\n\nSebarang perubahan pada tetapan ini TIDAK akan disimpan selepas halaman dimuat semula.',
+              'NOTA KEKAL'
+            );
           }
         }
         simpanDataKeStorage();
         initSupabaseClient();
-        if (tunjukNotif && (!supabaseUrl || !supabaseKey) && !KEKAL_SUPABASE_URL) {} else { tutupModalSupabase(); }
+        if (
+          tunjukNotif &&
+          (!supabaseUrl || !supabaseKey) &&
+          !KEKAL_SUPABASE_URL
+        ) {
+        } else {
+          tutupModalSupabase();
+        }
       }
 
       async function ujiSambunganSupabase() {
         simpanTetapanSupabase(false);
-        if (!supabaseClient) { tunjukCustomAlert('Sila masukkan URL & Kunci Anon Supabase yang sah!'); return; }
+        if (!supabaseClient) {
+          tunjukCustomAlert('Sila masukkan URL & Kunci Anon Supabase yang sah!');
+          return;
+        }
         try {
-          const { data, error } = await supabaseClient.from('jbpm_data').select('id').limit(1);
+          const { data, error } = await supabaseClient
+            .from('jbpm_data')
+            .select('id')
+            .limit(1);
           if (error) throw error;
-          tunjukCustomAlert('BERJAYA BERSAMBUNG KE SUPABASE CLOUD!\n\nSekarang anda boleh mula menekan butang MUAT atau SIMPAN DATA.', 'SAMBUNGAN BERJAYA');
+          tunjukCustomAlert(
+            'BERJAYA BERSAMBUNG KE SUPABASE CLOUD!\n\nSekarang anda boleh mula menekan butang MUAT atau SIMPAN DATA.',
+            'SAMBUNGAN BERJAYA'
+          );
           tutupModalSupabase();
-        } catch(err) {
-          tunjukCustomAlert('SAMBUNGAN GAGAL!\n\nSila pastikan:\n1. URL dan Kunci adalah betul.\n2. Jadual "jbpm_data" telah dicipta di Supabase.\n3. Row Level Security (RLS) telah ditutup (Untick).\n\nRalat teknikal: ' + err.message, 'RALAT PANGKALAN DATA');
+        } catch (err) {
+          tunjukCustomAlert(
+            'SAMBUNGAN GAGAL!\n\nSila pastikan:\n1. URL dan Kunci adalah betul.\n2. Jadual "jbpm_data" telah dicipta di Supabase.\n3. Row Level Security (RLS) telah ditutup (Untick).\n\nRalat teknikal: ' +
+              err.message,
+            'RALAT PANGKALAN DATA'
+          );
         }
       }
 
+      // ==================== FUNGSI SUPABASE (MANUAL) ====================
       async function hantarDataSupabase() {
-        if (!supabaseClient) { tunjukCustomAlert('Sila tetapkan Supabase URL dan Kunci terlebih dahulu!'); return; }
-        const payload = {
-          rekodAnggota, logistikBertugas, logistikJentera,
-          senaraiNamaMaster, senaraiBalaiMaster, senaraiPangkatMaster, senaraiUnitMaster
-        };
+        if (!supabaseClient) {
+          tunjukCustomAlert('Sila tetapkan Supabase URL dan Kunci terlebih dahulu!');
+          return;
+        }
         try {
-          const { data, error } = await supabaseClient.from('jbpm_data').upsert({ id: 1, payload: payload });
+          const payload = {
+            rekodAnggota,
+            logistikBertugas,
+            logistikJentera,
+            senaraiNamaMaster,
+            senaraiBalaiMaster,
+            senaraiPangkatMaster,
+            senaraiUnitMaster,
+            lastUpdated: new Date().toISOString(),
+          };
+          const { data, error } = await supabaseClient
+            .from('jbpm_data')
+            .upsert({ id: 1, payload: payload });
           if (error) throw error;
-          tunjukCustomAlert('Data berjaya dihantar dan disimpan ke Supabase Cloud!');
+          tunjukCustomAlert('Data berjaya disimpan ke Supabase Cloud!');
         } catch (err) {
           tunjukCustomAlert('Ralat semasa menyimpan data ke Supabase:\n\n' + err.message);
         }
       }
 
       async function tarikDataSupabase() {
-        if (!supabaseClient) { tunjukCustomAlert('Sila tetapkan Supabase URL dan Kunci terlebih dahulu!'); return; }
+        if (!supabaseClient) {
+          tunjukCustomAlert('Sila tetapkan Supabase URL dan Kunci terlebih dahulu!');
+          return;
+        }
         try {
-          const { data, error } = await supabaseClient.from('jbpm_data').select('payload').eq('id', 1);
+          const { data, error } = await supabaseClient
+            .from('jbpm_data')
+            .select('payload')
+            .eq('id', 1);
           if (error) throw error;
           if (data && data.length > 0 && data[0].payload) {
             const payload = data[0].payload;
             if (payload.rekodAnggota) rekodAnggota = payload.rekodAnggota;
-            if (payload.logistikBertugas) logistikBertugas = payload.logistikBertugas;
+            if (payload.logistikBertugas)
+              logistikBertugas = payload.logistikBertugas;
             if (payload.logistikJentera) logistikJentera = payload.logistikJentera;
-            if (payload.senaraiNamaMaster) senaraiNamaMaster = payload.senaraiNamaMaster;
-            if (payload.senaraiBalaiMaster) senaraiBalaiMaster = payload.senaraiBalaiMaster;
-            if (payload.senaraiPangkatMaster) senaraiPangkatMaster = payload.senaraiPangkatMaster;
-            if (payload.senaraiUnitMaster) senaraiUnitMaster = payload.senaraiUnitMaster;
+            if (payload.senaraiNamaMaster)
+              senaraiNamaMaster = payload.senaraiNamaMaster;
+            if (payload.senaraiBalaiMaster)
+              senaraiBalaiMaster = payload.senaraiBalaiMaster;
+            if (payload.senaraiPangkatMaster)
+              senaraiPangkatMaster = payload.senaraiPangkatMaster;
+            if (payload.senaraiUnitMaster)
+              senaraiUnitMaster = payload.senaraiUnitMaster;
             simpanDataKeStorage();
             kemaskiniSemuaPaparan();
             tunjukCustomAlert('Data berjaya dimuat turun dari Supabase Cloud!');
           } else {
-            tunjukCustomAlert('Pangkalan data Supabase anda nampaknya masih kosong.\n\nSila tekan butang "SIMPAN DATA" terlebih dahulu.', 'TIADA REKOD');
+            tunjukCustomAlert(
+              'Pangkalan data Supabase anda nampaknya masih kosong.\n\nSila tekan butang "SIMPAN DATA" terlebih dahulu.',
+              'TIADA REKOD'
+            );
           }
         } catch (err) {
-          tunjukCustomAlert('Gagal memuat turun data dari Supabase:\n\n' + err.message + '\n\nSila pastikan jadual "jbpm_data" wujud dan tetapan RLS telah dimatikan.', 'RALAT SUPABASE');
+          tunjukCustomAlert(
+            'Gagal memuat turun data dari Supabase:\n\n' +
+              err.message +
+              '\n\nSila pastikan jadual "jbpm_data" wujud dan tetapan RLS telah dimatikan.',
+            'RALAT SUPABASE'
+          );
         }
       }
 
@@ -3266,7 +3884,9 @@
         document.getElementById('customAlertModal').classList.add('active');
       }
 
-      function tutupCustomAlert() { document.getElementById('customAlertModal').classList.remove('active'); }
+      function tutupCustomAlert() {
+        document.getElementById('customAlertModal').classList.remove('active');
+      }
 
       function tunjukCustomConfirm(msg, callback, title = 'PENGESAHAN') {
         confirmCallback = callback;
@@ -3277,10 +3897,15 @@
 
       function tutupCustomConfirm(res) {
         document.getElementById('customConfirmModal').classList.remove('active');
-        if (confirmCallback) { confirmCallback(res); confirmCallback = null; }
+        if (confirmCallback) {
+          confirmCallback(res);
+          confirmCallback = null;
+        }
       }
 
-      function cetakLaporan() { window.print(); }
+      function cetakLaporan() {
+        window.print();
+      }
 
       // ==================== WINDOW ONLOAD ====================
       window.onload = function () {
@@ -3294,17 +3919,23 @@
           const bSel = document.getElementById('balaiMultiSelect');
           if (bSel && !bSel.contains(e.target)) {
             document.getElementById('balaiDropdown')?.classList.remove('show');
-            document.querySelector('#balaiMultiSelect .multi-select-trigger')?.classList.remove('active');
+            document
+              .querySelector('#balaiMultiSelect .multi-select-trigger')
+              ?.classList.remove('active');
           }
           const nSel = document.getElementById('namaAnggotaMultiSelect');
           if (nSel && !nSel.contains(e.target)) {
             document.getElementById('namaAnggotaDropdown')?.classList.remove('show');
-            document.querySelector('#namaAnggotaMultiSelect .multi-select-trigger')?.classList.remove('active');
+            document
+              .querySelector('#namaAnggotaMultiSelect .multi-select-trigger')
+              ?.classList.remove('active');
           }
           const lSel = document.getElementById('logJenteraMultiSelect');
           if (lSel && !lSel.contains(e.target)) {
             document.getElementById('logJenteraDropdown')?.classList.remove('show');
-            document.querySelector('#logJenteraMultiSelect .multi-select-trigger')?.classList.remove('active');
+            document
+              .querySelector('#logJenteraMultiSelect .multi-select-trigger')
+              ?.classList.remove('active');
           }
         });
         tukarViewMobile('operasi');
