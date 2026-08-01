@@ -1904,7 +1904,8 @@
         logistikBertugas = [],
         senaraiChecklist = [];
       let senaraiNamaMaster = [];
-      let senaraiBalaiMaster = [
+      
+      const DEFAULT_BALAI = [
         'PGO JOHOR', 'BBP LARKIN', 'BBP PASIR GUDANG', 'BBP JOHOR JAYA', 'BBP SKUDAI',
         'BBP ISKANDAR PUTERI', 'BBP TEBRAU', 'BBP PEKAN NENAS', 'BBP PONTIAN', 'BBP PONTIAN BARU',
         'BBP KULAI', 'BBP BANDAR BARU KULAI', 'BBP KEMPAS', 'FIRE POST BENUT', 'BBP KOTA TINGGI',
@@ -1914,12 +1915,18 @@
         'BBP MUAR', 'BBP BANDAR BARU SEGAMAT', 'BBP SEGAMAT', 'BBP LABIS', 'BBP BUKIT GAMBIR',
         'BBP TANGKAK', 'BBP PAGOH',
       ];
-      let senaraiPangkatMaster = [
+      let senaraiBalaiMaster = [...DEFAULT_BALAI];
+      
+      const DEFAULT_PANGKAT = [
         'KB 1', 'KB 2', 'KB 3', 'KB 4', 'KB 5', 'KB 6', 'KB 7', 'KB 8', 'PBB', 'PBBK II', 'PBBK I',
       ];
-      let senaraiUnitMaster = [
+      let senaraiPangkatMaster = [...DEFAULT_PANGKAT];
+      
+      const DEFAULT_UNIT = [
         'PEMADAM', 'EMRS', 'HAZMAT', 'PPDA', 'RIM', 'STOM/MUST',
       ];
+      let senaraiUnitMaster = [...DEFAULT_UNIT];
+      
       let logistikJentera = [];
       
       let supabaseUrl = 'https://hglmbrqweijpguxfeloq.supabase.co';
@@ -2020,13 +2027,22 @@
         if (savedNamaMaster) senaraiNamaMaster = JSON.parse(savedNamaMaster);
 
         const savedBalaiMaster = localStorage.getItem('senaraiBalaiMaster');
-        if (savedBalaiMaster) senaraiBalaiMaster = JSON.parse(savedBalaiMaster);
+        if (savedBalaiMaster) {
+          senaraiBalaiMaster = JSON.parse(savedBalaiMaster);
+          if (senaraiBalaiMaster.length === 0) senaraiBalaiMaster = [...DEFAULT_BALAI];
+        }
 
         const savedPangkatMaster = localStorage.getItem('senaraiPangkatMaster');
-        if (savedPangkatMaster) senaraiPangkatMaster = JSON.parse(savedPangkatMaster);
+        if (savedPangkatMaster) {
+          senaraiPangkatMaster = JSON.parse(savedPangkatMaster);
+          if (senaraiPangkatMaster.length === 0) senaraiPangkatMaster = [...DEFAULT_PANGKAT];
+        }
 
         const savedUnitMaster = localStorage.getItem('senaraiUnitMaster');
-        if (savedUnitMaster) senaraiUnitMaster = JSON.parse(savedUnitMaster);
+        if (savedUnitMaster) {
+          senaraiUnitMaster = JSON.parse(savedUnitMaster);
+          if (senaraiUnitMaster.length === 0) senaraiUnitMaster = [...DEFAULT_UNIT];
+        }
 
         const savedLogJentera = localStorage.getItem('logistikJentera');
         if (savedLogJentera) logistikJentera = JSON.parse(savedLogJentera);
@@ -2059,10 +2075,10 @@
             if (d.logistikBertugas) logistikBertugas = d.logistikBertugas;
             if (d.checklistPerkakas) senaraiChecklist = d.checklistPerkakas;
             if (d.senaraiNamaMaster) senaraiNamaMaster = d.senaraiNamaMaster;
-            if (d.senaraiBalaiMaster) senaraiBalaiMaster = d.senaraiBalaiMaster;
-            if (d.senaraiPangkatMaster)
+            if (d.senaraiBalaiMaster && d.senaraiBalaiMaster.length > 0) senaraiBalaiMaster = d.senaraiBalaiMaster;
+            if (d.senaraiPangkatMaster && d.senaraiPangkatMaster.length > 0)
               senaraiPangkatMaster = d.senaraiPangkatMaster;
-            if (d.senaraiUnitMaster) senaraiUnitMaster = d.senaraiUnitMaster;
+            if (d.senaraiUnitMaster && d.senaraiUnitMaster.length > 0) senaraiUnitMaster = d.senaraiUnitMaster;
             
             simpanKeLocalStorage();
             kemaskiniSemuaPaparan();
@@ -2098,11 +2114,11 @@
               if (d.logistikBertugas) logistikBertugas = d.logistikBertugas;
               if (d.checklistPerkakas) senaraiChecklist = d.checklistPerkakas;
               if (d.senaraiNamaMaster) senaraiNamaMaster = d.senaraiNamaMaster;
-              if (d.senaraiBalaiMaster)
+              if (d.senaraiBalaiMaster && d.senaraiBalaiMaster.length > 0)
                 senaraiBalaiMaster = d.senaraiBalaiMaster;
-              if (d.senaraiPangkatMaster)
+              if (d.senaraiPangkatMaster && d.senaraiPangkatMaster.length > 0)
                 senaraiPangkatMaster = d.senaraiPangkatMaster;
-              if (d.senaraiUnitMaster) senaraiUnitMaster = d.senaraiUnitMaster;
+              if (d.senaraiUnitMaster && d.senaraiUnitMaster.length > 0) senaraiUnitMaster = d.senaraiUnitMaster;
               
               simpanKeLocalStorage();
               console.log('✅ Auto-tarik berjaya');
