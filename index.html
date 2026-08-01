@@ -444,7 +444,7 @@
                 </div>
             </div>
             <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-between sm:justify-end border-t sm:border-0 pt-2 sm:pt-0 border-red-800/40">
-                <div id="cloudStatusBadge" class="sync-badge sync-inactive"><span>🟡 SUPABASE: BELUM DISAMBUNG</span></div>
+                <div id="cloudStatusBadge" class="sync-badge sync-inactive"><span>🟡 SUPABASE: MENYAMBUNG...</span></div>
                 <div class="bg-black/30 border border-white/20 px-3 py-1.5 rounded-xl text-right">
                     <div class="text-[10px] sm:text-xs text-slate-200 font-semibold" id="currentDate">ISNIN, 01 JULAI 2026</div>
                     <div class="text-xs sm:text-sm font-black text-yellow-400 leading-none" id="currentTime">08:00:00 AM</div>
@@ -459,18 +459,18 @@
             <div class="card border-l-4 border-l-red-600">
                 <div class="card-title"><span>📋 1. TUGASAN & OPERASI HARIAN</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-100 text-red-900">OPERASI</span></div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
-                    <div class="form-group"><label for="shiftType">PILIHAN SHIF</label><select id="shiftType" class="form-control" onchange="kemaskiniSemuaPaparan()"><option value="12 JAM">12 JAM</option><option value="24 JAM">24 JAM</option></select></div>
-                    <div class="form-group"><label for="shiftTime">WAKTU SHIF</label><select id="shiftTime" class="form-control" onchange="kemaskiniSemuaPaparan()"><option value="0800-2000">0800-2000 (SIANG)</option><option value="2000-0800">2000-0800 (MALAM)</option></select></div>
+                    <div class="form-group"><label for="shiftType">PILIHAN SHIF</label><select id="shiftType" class="form-control"><option value="12 JAM">12 JAM</option><option value="24 JAM">24 JAM</option></select></div>
+                    <div class="form-group"><label for="shiftTime">WAKTU SHIF</label><select id="shiftTime" class="form-control"><option value="0800-2000">0800-2000 (SIANG)</option><option value="2000-0800">2000-0800 (MALAM)</option></select></div>
                 </div>
                 <div class="flex flex-col gap-2 mt-2">
                     <button class="btn btn-primary" onclick="bukaModalTambahAnggota()">+ TAMBAH ANGGOTA BERTUGAS</button>
                     <button class="btn btn-orange" onclick="bukaModalLogistikJentera()">📋 ISI MAKLUMAT JENTERA BERTUGAS</button>
-                    <button class="btn btn-purple" onclick="simpanChecklist()">✅ SIMPAN CHECKLIST PERKAKAS</button>
+                    <button class="btn btn-purple" onclick="scrollToChecklist()">✅ SIMPAN CHECKLIST PERKAKAS</button>
                 </div>
             </div>
 
             <!-- PANEL 2: CHECKLIST PERKAKAS -->
-            <div class="card border-l-4 border-l-purple-600">
+            <div class="card border-l-4 border-l-purple-600" id="panelChecklist">
                 <div class="card-title"><span>✅ 2. CHECKLIST PERKAKAS BILIK KAWALAN</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-900">SEMAKAN</span></div>
                 <div class="form-group"><label for="checklistBalai">PILIH BALAI <span class="required-star">*</span></label><select id="checklistBalai" class="form-control"><option value="">-- PILIH BALAI --</option></select></div>
                 <div class="space-y-2 mb-3">
@@ -610,8 +610,116 @@
         <button class="nav-item" onclick="tukarViewMobile('master')"><span class="nav-icon">⚙️</span><span>MASTER</span></button>
     </nav>
 
-    <!-- MODALS (Tambah Anggota, Logistik Jentera, Urus Jentera, Urus Kategori, Password, Alert, Confirm, Supabase) -->
-    <!-- [Pastikan semua modal dari kod sebelumnya kekal di sini] -->
+    <!-- ==================== ALL MODALS ==================== -->
+
+    <!-- MODAL TAMBAH ANGGOTA BERTUGAS -->
+    <div class="modal-overlay" id="addOfficerModal">
+        <div class="modal">
+            <div class="modal-header"><h3>TAMBAH ANGGOTA BERTUGAS</h3><button class="close-modal" onclick="tutupModalTambahAnggota()">&times;</button></div>
+            <div class="info-pill">💡 PILIH ANGGOTA (MULTISELECT), TETAPKAN PERANAN & MAKLUMAT BERTUGAS.</div>
+            <div class="form-group">
+                <label>NAMA ANGGOTA <span class="required-star">*</span></label>
+                <div class="multi-select-container" id="namaAnggotaMultiSelect">
+                    <div class="multi-select-trigger" onclick="togolNamaAnggotaDropdown()"><div class="multi-select-tags" id="namaAnggotaSelectedTags"><span class="multi-select-placeholder">👤 PILIH ANGGOTA...</span></div><span class="multi-select-arrow">▼</span></div>
+                    <div class="multi-select-dropdown" id="namaAnggotaDropdown">
+                        <div class="multi-select-search"><input type="text" id="namaAnggotaSearchInput" placeholder="🔍 CARI NAMA..." onkeyup="tapisNamaAnggotaDropdown()" onclick="event.stopPropagation();" /></div>
+                        <div class="multi-select-options" id="namaAnggotaOptionsContainer"></div>
+                        <div class="multi-select-actions">
+                            <button class="btn-select-all" onclick="pilihSemuaNamaAnggota();event.stopPropagation();">✅ PILIH SEMUA</button>
+                            <button class="btn-clear-all" onclick="kosongkanNamaAnggota();event.stopPropagation();">🗑️ KOSONGKAN</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                <div class="form-group"><label>KETUA BALAI</label><select id="modalKetuaBalai" class="form-control"><option value="TIDAK">TIDAK</option><option value="YA">YA</option></select></div>
+                <div class="form-group"><label>PEGAWAI OPERASI</label><select id="modalPegawaiOperasi" class="form-control"><option value="TIDAK">TIDAK</option><option value="YA">YA</option></select></div>
+                <div class="form-group"><label>PENYELIA PASUKAN</label><select id="modalPenyeliaPasukan" class="form-control"><option value="TIDAK">TIDAK</option><option value="YA">YA</option></select></div>
+                <div class="form-group"><label>BKB</label><select id="modalBkb" class="form-control"><option value="TIDAK">TIDAK</option><option value="YA">YA</option></select></div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div class="form-group"><label>PASUKAN</label><select id="modalPasukan" class="form-control"><option value="PASUKAN A">PASUKAN A</option><option value="PASUKAN B">PASUKAN B</option><option value="PASUKAN C">PASUKAN C</option></select></div>
+                <div class="form-group"><label>STATUS</label><select id="modalStatus" class="form-control"><option value="BERTUGAS">BERTUGAS</option><option value="CUTI">CUTI</option><option value="CUTI SAKIT">CUTI SAKIT</option><option value="TUGAS KHAS">TUGAS KHAS</option></select></div>
+            </div>
+            <div class="form-group"><label>CATATAN</label><input type="text" id="modalCatatan" class="form-control" /></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="simpanAnggotaBaharu()">💾 SIMPAN KE CLOUD</button>
+                <button class="btn btn-secondary" onclick="tutupModalTambahAnggota()">BATAL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL LOGISTIK JENTERA BERTUGAS -->
+    <div class="modal-overlay" id="logistikJenteraModal">
+        <div class="modal">
+            <div class="modal-header"><h3>🚒 LOGISTIK JENTERA BERTUGAS</h3><button class="close-modal" onclick="tutupModalLogistikJentera()">&times;</button></div>
+            <div class="info-pill">💡 PILIH BALAI BERTUGAS & JENTERA DARI INVENTORI.</div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div class="form-group"><label>BALAI <span class="required-star">*</span></label><select id="logModalBalai" class="form-control" onchange="janaLogJenteraDropdown()"><option value="">-- PILIH BALAI --</option></select></div>
+                <div class="form-group"><label>TAPIS KATEGORI</label><select id="logKategoriFilter" class="form-control" onchange="janaLogJenteraDropdown()"><option value="SEMUA">🌐 SEMUA</option><option value="FRT/LFRT/CFRT/RFRT">JENTERA PEMADAM</option><option value="EMRS">EMRS</option><option value="WATER TANKER">TANGKI AIR</option><option value="KHAS/BOMPA">KHAS/BOMPA</option><option value="BOT">BOT</option><option value="RIM">RIM</option><option value="KENDERAAN/UTILITI">KENDERAAN/UTILITI</option></select></div>
+            </div>
+            <div class="form-group">
+                <label>PILIH JENTERA</label>
+                <div class="multi-select-container" id="logJenteraMultiSelect">
+                    <div class="multi-select-trigger" onclick="togolLogJenteraDropdown()"><div class="multi-select-tags" id="logJenteraSelectedTags"><span class="multi-select-placeholder">🔧 PILIH JENTERA...</span></div><span class="multi-select-arrow">▼</span></div>
+                    <div class="multi-select-dropdown" id="logJenteraDropdown">
+                        <div class="multi-select-search"><input type="text" id="logJenteraSearchInput" placeholder="🔍 CARI JENTERA..." onkeyup="tapisLogJenteraDropdown()" onclick="event.stopPropagation();" /></div>
+                        <div class="multi-select-options" id="logJenteraOptionsContainer"></div>
+                        <div class="multi-select-actions">
+                            <button class="btn-select-all" onclick="pilihSemuaLogJentera();event.stopPropagation();">✅ PILIH SEMUA</button>
+                            <button class="btn-clear-all" onclick="kosongkanLogJentera();event.stopPropagation();">🗑️ KOSONGKAN</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-2 font-bold text-xs">JENTERA DIPILIH:</div>
+            <div class="max-h-60 overflow-y-auto border border-slate-200 rounded-xl mb-3">
+                <table class="jentera-modal-table"><thead><tr><th>CALLSIGN</th><th>PLAT</th><th>JENIS</th><th>KATEGORI</th><th>STATUS</th><th>CATATAN</th><th>BUANG</th></tr></thead><tbody id="logJenteraDipilihBody"><tr><td colspan="7" class="text-center p-4 text-slate-400">TIADA JENTERA DIPILIH</td></tr></tbody></table>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="simpanLogistikBertugas()">💾 SIMPAN KE CLOUD</button>
+                <button class="btn btn-secondary" onclick="tutupModalLogistikJentera()">BATAL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PASSWORD -->
+    <div class="modal-overlay" id="passwordModal">
+        <div class="modal sm:!max-w-md">
+            <div class="modal-header"><h3>🔒 PENGESAHAN KATA LALUAN</h3><button class="close-modal" onclick="tutupModalPassword()">&times;</button></div>
+            <p id="passwordPromptText" class="text-xs font-semibold mb-3 text-slate-700"></p>
+            <div class="form-group"><label>KATA LALUAN</label><input type="password" id="inputPassword" class="form-control" onkeyup="semakEnterPassword(event)" /><div id="passwordErrorMsg" class="error-message">⚠️ KATA LALUAN SALAH!</div></div>
+            <div class="btn-group"><button class="btn btn-primary" onclick="sahkanPassword()">SAHKAN</button><button class="btn btn-secondary" onclick="tutupModalPassword()">BATAL</button></div>
+        </div>
+    </div>
+
+    <!-- MODAL ALERT -->
+    <div class="modal-overlay" id="customAlertModal">
+        <div class="modal sm:!max-w-md">
+            <div class="modal-header"><h3 id="alertModalTitle">MAKLUMAT</h3><button class="close-modal" onclick="tutupCustomAlert()">&times;</button></div>
+            <p id="alertModalBody" class="text-xs sm:text-sm font-semibold mb-5 text-slate-700 whitespace-pre-line"></p>
+            <div class="btn-group"><button class="btn btn-primary" onclick="tutupCustomAlert()">OK</button></div>
+        </div>
+    </div>
+
+    <!-- MODAL CONFIRM -->
+    <div class="modal-overlay" id="customConfirmModal">
+        <div class="modal sm:!max-w-md">
+            <div class="modal-header"><h3 id="confirmModalTitle">PENGESAHAN</h3><button class="close-modal" onclick="tutupCustomConfirm(false)">&times;</button></div>
+            <p id="confirmModalBody" class="text-xs sm:text-sm font-semibold mb-5 text-slate-700"></p>
+            <div class="btn-group"><button class="btn btn-primary" onclick="tutupCustomConfirm(true)">YA</button><button class="btn btn-secondary" onclick="tutupCustomConfirm(false)">BATAL</button></div>
+        </div>
+    </div>
+
+    <!-- MODAL SUPABASE -->
+    <div class="modal-overlay" id="supabaseModal">
+        <div class="modal">
+            <div class="modal-header"><h3>TETAPAN SUPABASE</h3><button class="close-modal" onclick="tutupModalSupabase()">&times;</button></div>
+            <div class="form-group"><label>SUPABASE URL</label><input type="text" id="inSupabaseUrl" class="form-control" /></div>
+            <div class="form-group"><label>SUPABASE ANON KEY</label><input type="password" id="inSupabaseKey" class="form-control" /></div>
+            <div class="btn-group"><button class="btn btn-primary" onclick="simpanTetapanSupabase(true)">SIMPAN</button><button class="btn btn-emerald" onclick="ujiSambunganSupabase()">UJI & SIMPAN</button></div>
+        </div>
+    </div>
 
     <script>
         // ==================== KONFIGURASI ====================
@@ -624,14 +732,16 @@
         let senaraiPangkatMaster = ['KB 1','KB 2','KB 3','KB 4','KB 5','KB 6','KB 7','KB 8','PBB','PBBK II','PBBK I'];
         let senaraiUnitMaster = ['PEMADAM','EMRS','HAZMAT','PPDA','RIM','STOM/MUST'];
         let logistikJentera = [];
+
+        // ==================== HARDCODED SUPABASE CREDENTIALS ====================
         let supabaseUrl = 'https://hglmbrqweijpguxfeloq.supabase.co';
-let supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnbG1icnF3ZWlqcGd1eGZlbG9xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU1NDcyNDAsImV4cCI6MjEwMTEyMzI0MH0.xBuhxHVmkuIPC34421QfuCERIpBPFiyVi1sSC-PQAiQ';
-let supabaseClient = null;
-        // ==================== SUPABASE ====================
+        let supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnbG1icnF3ZWlqcGd1eGZlbG9xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU1NDcyNDAsImV4cCI6MjEwMTEyMzI0MH0.xBuhxHVmkuIPC34421QfuCERIpBPFiyVi1sSC-PQAiQ';
+        let supabaseClient = null;
+
+        // ==================== SUPABASE FUNCTIONS ====================
         function initSupabaseClient() {
             if (supabaseUrl && supabaseKey) {
-                try { supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
-                    kemaskiniStatusCloud('active', '🟢 SUPABASE: DISAMBUNG'); return true; }
+                try { supabaseClient = supabase.createClient(supabaseUrl, supabaseKey); kemaskiniStatusCloud('active', '🟢 SUPABASE: DISAMBUNG'); return true; }
                 catch (e) { kemaskiniStatusCloud('error', '🔴 SUPABASE: RALAT'); return false; }
             } else { kemaskiniStatusCloud('inactive', '🟡 SUPABASE: BELUM DISAMBUNG'); return false; }
         }
@@ -646,7 +756,7 @@ let supabaseClient = null;
         function sorokLoading() { document.getElementById('loadingOverlay').classList.remove('active'); }
 
         async function hantarDataSupabase() {
-            if (!supabaseClient) { tunjukCustomAlert('❌ Sila tetapkan URL & Kunci Supabase!'); return; }
+            if (!supabaseClient) { tunjukCustomAlert('❌ Tiada sambungan Supabase!'); return; }
             tunjukLoading();
             try {
                 const { error } = await supabaseClient.from('jbpm_data').upsert({
@@ -661,7 +771,7 @@ let supabaseClient = null;
         }
 
         async function tarikDataSupabase() {
-            if (!supabaseClient) { tunjukCustomAlert('❌ Sila tetapkan URL & Kunci Supabase!'); return; }
+            if (!supabaseClient) { tunjukCustomAlert('❌ Tiada sambungan Supabase!'); return; }
             tunjukLoading();
             try {
                 const { data, error } = await supabaseClient.from('jbpm_data').select('*').eq('id', 1).single();
@@ -757,6 +867,10 @@ let supabaseClient = null;
             sel.innerHTML = '<option value="">-- PILIH BALAI --</option>' + senaraiBalaiMaster.map(b => `<option value="${b}">${b}</option>`).join('');
         }
 
+        function scrollToChecklist() {
+            document.getElementById('panelChecklist').scrollIntoView({ behavior: 'smooth' });
+        }
+
         // ==================== UI FUNCTIONS ====================
         function updateClock() {
             const n = new Date();
@@ -833,7 +947,60 @@ let supabaseClient = null;
         function janaBalaiDropdownOptions() { document.getElementById('balaiOptionsContainer').innerHTML = senaraiBalaiMaster.map(b => { const s = balaiTerpilih.includes(b)?'selected':''; return `<div class="multi-select-option ${s}" onclick="pilihBalaiOption('${b}')"><div class="check-box">${s?'✓':''}</div><span>${b}</span></div>`; }).join(''); }
         function pilihBalaiOption(b) { if (balaiTerpilih.includes(b)) balaiTerpilih = balaiTerpilih.filter(x => x !== b); else balaiTerpilih.push(b); kemaskiniBalaiTags(); kemaskiniPaparData(); }
 
-        // ==================== MODAL FUNCTIONS (Ringkasan) ====================
+        // ==================== NAMA ANGGOTA MULTISELECT ====================
+        function togolNamaAnggotaDropdown() { document.querySelector('#namaAnggotaMultiSelect .multi-select-trigger').classList.toggle('active'); document.getElementById('namaAnggotaDropdown').classList.toggle('show'); }
+        function tapisNamaAnggotaDropdown() { const v = document.getElementById('namaAnggotaSearchInput').value.toUpperCase(); document.querySelectorAll('#namaAnggotaOptionsContainer .multi-select-option').forEach(o => o.style.display = o.innerText.toUpperCase().includes(v)?'flex':'none'); }
+        function pilihSemuaNamaAnggota() { namaAnggotaTerpilih = senaraiNamaMaster.map(a => a.nama); kemaskiniNamaAnggotaTags(); }
+        function kosongkanNamaAnggota() { namaAnggotaTerpilih = []; kemaskiniNamaAnggotaTags(); }
+        function kemaskiniNamaAnggotaTags() {
+            const t = document.getElementById('namaAnggotaSelectedTags');
+            t.innerHTML = namaAnggotaTerpilih.length===0 ? '<span class="multi-select-placeholder">👤 PILIH ANGGOTA...</span>' : namaAnggotaTerpilih.map(n => `<span class="multi-select-tag">${n}</span>`).join('');
+            janaNamaAnggotaOptions();
+        }
+        function janaNamaAnggotaOptions() { document.getElementById('namaAnggotaOptionsContainer').innerHTML = senaraiNamaMaster.map(a => { const s = namaAnggotaTerpilih.includes(a.nama)?'selected':''; return `<div class="multi-select-option ${s}" onclick="pilihNamaAnggotaOption('${a.nama}')"><div class="check-box">${s?'✓':''}</div><div><div class="font-bold">${a.nama}</div><div class="text-[10px] text-slate-400">${a.pangkat} | ${a.balai}</div></div></div>`; }).join(''); }
+        function pilihNamaAnggotaOption(nama) { if (namaAnggotaTerpilih.includes(nama)) namaAnggotaTerpilih = namaAnggotaTerpilih.filter(x => x !== nama); else namaAnggotaTerpilih.push(nama); kemaskiniNamaAnggotaTags(); }
+
+        async function simpanAnggotaBaharu() {
+            if (namaAnggotaTerpilih.length===0) { tunjukCustomAlert('Sila pilih anggota!'); return; }
+            const shiftType = document.getElementById('shiftType').value, shiftTime = document.getElementById('shiftTime').value;
+            namaAnggotaTerpilih.forEach(nama => {
+                const m = senaraiNamaMaster.find(x => x.nama === nama) || {};
+                rekodAnggota.push({id:'ANG_'+Date.now()+'_'+Math.random().toString(36).substr(2,4),nama,noTel:m.noTel||'',pangkat:m.pangkat||'KB 1',unit:m.unit||'PEMADAM',balai:m.balai||'PGO JOHOR',shiftType,shiftTime,isKetuaBalai:document.getElementById('modalKetuaBalai').value,isPegawaiOperasi:document.getElementById('modalPegawaiOperasi').value,isPenyelia:document.getElementById('modalPenyeliaPasukan').value,isBkb:document.getElementById('modalBkb').value,pasukan:document.getElementById('modalPasukan').value,status:document.getElementById('modalStatus').value,catatan:document.getElementById('modalCatatan').value.trim().toUpperCase()});
+            });
+            await hantarDataSupabase(); kemaskiniPaparData(); tutupModalTambahAnggota(); namaAnggotaTerpilih=[]; document.getElementById('modalCatatan').value='';
+            tunjukCustomAlert('✅ Anggota berjaya disimpan!');
+        }
+
+        // ==================== LOG JENTERA MULTISELECT ====================
+        function janaLogistikBalaiSelectOptions() { const sel = document.getElementById('logModalBalai'); if(sel) sel.innerHTML = '<option value="">-- PILIH BALAI --</option>' + senaraiBalaiMaster.map(b => `<option value="${b}">${b}</option>`).join(''); }
+        function togolLogJenteraDropdown() { document.querySelector('#logJenteraMultiSelect .multi-select-trigger').classList.toggle('active'); document.getElementById('logJenteraDropdown').classList.toggle('show'); }
+        function tapisLogJenteraDropdown() { const v = document.getElementById('logJenteraSearchInput').value.toUpperCase(); document.querySelectorAll('#logJenteraOptionsContainer .multi-select-option').forEach(o => o.style.display = o.innerText.toUpperCase().includes(v)?'flex':'none'); }
+        function janaLogJenteraDropdown() {
+            const f = document.getElementById('logKategoriFilter').value, b = document.getElementById('logModalBalai').value;
+            const filtered = logistikJentera.filter(i => (f==='SEMUA'||i.kategori===f) && (!b||i.balai==='UMUM / BEBAS'||i.balai===b));
+            document.getElementById('logJenteraOptionsContainer').innerHTML = filtered.map(i => { const s = logJenteraTerpilih.some(x => x.id===i.id)?'selected':''; return `<div class="multi-select-option ${s}" onclick="pilihLogJenteraOption(${i.id})"><div class="check-box">${s?'✓':''}</div><div><div class="font-bold text-red-700">${i.callsign} (${i.plate})</div><div class="text-[10px] text-slate-500">${i.jenis} | ${i.balai}</div></div></div>`; }).join('');
+        }
+        function pilihLogJenteraOption(id) { const j = logistikJentera.find(x => x.id===id); if(!j) return; const idx = logJenteraTerpilih.findIndex(x => x.id===id); if(idx>-1) logJenteraTerpilih.splice(idx,1); else logJenteraTerpilih.push({...j,status:'SEDIA BEROPERASI',catatan:'-'}); kemaskiniLogJenteraDipilihTable(); janaLogJenteraDropdown(); }
+        function pilihSemuaLogJentera() { const f = document.getElementById('logKategoriFilter').value, b = document.getElementById('logModalBalai').value; logistikJentera.filter(i => (f==='SEMUA'||i.kategori===f) && (!b||i.balai==='UMUM / BEBAS'||i.balai===b)).forEach(j => { if(!logJenteraTerpilih.some(x=>x.id===j.id)) logJenteraTerpilih.push({...j,status:'SEDIA BEROPERASI',catatan:'-'}); }); kemaskiniLogJenteraDipilihTable(); janaLogJenteraDropdown(); }
+        function kosongkanLogJentera() { logJenteraTerpilih=[]; kemaskiniLogJenteraDipilihTable(); janaLogJenteraDropdown(); }
+        function kemaskiniLogJenteraDipilihTable() {
+            const tbody = document.getElementById('logJenteraDipilihBody'), tags = document.getElementById('logJenteraSelectedTags');
+            if(logJenteraTerpilih.length===0) { tbody.innerHTML='<tr><td colspan="7" class="text-center p-4 text-slate-400">TIADA JENTERA DIPILIH</td></tr>'; tags.innerHTML='<span class="multi-select-placeholder">🔧 PILIH JENTERA...</span>'; return; }
+            tags.innerHTML = logJenteraTerpilih.map(j => `<span class="multi-select-tag">${j.callsign}</span>`).join('');
+            tbody.innerHTML = logJenteraTerpilih.map((item,i) => `<tr><td><strong>${item.callsign}</strong></td><td>${item.plate}</td><td>${item.jenis}</td><td>${item.kategori}</td><td><select onchange="logJenteraTerpilih[${i}].status=this.value"><option value="SEDIA BEROPERASI" ${item.status==='SEDIA BEROPERASI'?'selected':''}>SEDIA BEROPERASI</option><option value="DALAM PENYELENGGARAAN" ${item.status==='DALAM PENYELENGGARAAN'?'selected':''}>DALAM PENYELENGGARAAN</option><option value="ROSAK/TIDAK BOLEH GUNA" ${item.status==='ROSAK/TIDAK BOLEH GUNA'?'selected':''}>ROSAK</option></select></td><td><input type="text" value="${item.catatan||''}" onchange="logJenteraTerpilih[${i}].catatan=this.value.toUpperCase()" placeholder="CATATAN"/></td><td><button class="btn btn-danger" onclick="logJenteraTerpilih.splice(${i},1);kemaskiniLogJenteraDipilihTable();janaLogJenteraDropdown();">✕</button></td></tr>`).join('');
+        }
+        function bukaModalLogistikJentera() { document.getElementById('logistikJenteraModal').classList.add('active'); janaLogistikBalaiSelectOptions(); janaLogJenteraDropdown(); }
+        function tutupModalLogistikJentera() { document.getElementById('logistikJenteraModal').classList.remove('active'); }
+        async function simpanLogistikBertugas() {
+            const balai = document.getElementById('logModalBalai').value;
+            if(!balai) { tunjukCustomAlert('Sila pilih balai!'); return; }
+            if(logJenteraTerpilih.length===0) { tunjukCustomAlert('Sila pilih jentera!'); return; }
+            logJenteraTerpilih.forEach(item => logistikBertugas.push({id:'LOG_'+Date.now()+'_'+Math.random().toString(36).substr(2,4),callsign:item.callsign,plate:item.plate,model:item.model,jenis:item.jenis,kategori:item.kategori,balai,status:item.status,catatan:item.catatan}));
+            await hantarDataSupabase(); paparLogistikTable(); tutupModalLogistikJentera(); logJenteraTerpilih=[]; kemaskiniLogJenteraDipilihTable();
+            tunjukCustomAlert('✅ Jentera berjaya disimpan!');
+        }
+
+        // ==================== MODAL FUNCTIONS ====================
         function bukaModalTambahAnggota() { document.getElementById('addOfficerModal').classList.add('active'); janaNamaAnggotaOptions(); }
         function tutupModalTambahAnggota() { document.getElementById('addOfficerModal').classList.remove('active'); }
         function bukaModalSupabase() { document.getElementById('supabaseModal').classList.add('active'); document.getElementById('inSupabaseUrl').value = supabaseUrl; document.getElementById('inSupabaseKey').value = supabaseKey; }
@@ -848,19 +1015,17 @@ let supabaseClient = null;
         function tutupModalPassword() { document.getElementById('passwordModal').classList.remove('active'); }
         function semakEnterPassword(e) { if (e.key==='Enter') sahkanPassword(); }
         function sahkanPassword() { if (document.getElementById('inputPassword').value === KATA_LALUAN_TETAP) { tutupModalPassword(); if (sasaranPasswordAction==='MASTER_BERSIH') { tunjukCustomConfirm('🚨 PADAM SEMUA REKOD?', async (res) => { if (res) { rekodAnggota = []; logistikBertugas = []; senaraiChecklist = []; await hantarDataSupabase(); kemaskiniSemuaPaparan(); } }); } } else document.getElementById('passwordErrorMsg').style.display='block'; }
-        function simpanTetapanSupabase(notif=false) { supabaseUrl = document.getElementById('inSupabaseUrl').value.trim(); supabaseKey = document.getElementById('inSupabaseKey').value.trim(); if (notif && (!supabaseUrl||!supabaseKey)) { tunjukCustomAlert('Sila isi URL & Kunci!'); return; } initSupabaseClient(); tutupModalSupabase(); localStorage.setItem('jbpm_supabaseUrl', supabaseUrl); localStorage.setItem('jbpm_supabaseKey', supabaseKey); if (notif && supabaseClient) { autoTarikData().then(() => kemaskiniSemuaPaparan()); } }
+        function simpanTetapanSupabase(notif=false) { supabaseUrl = document.getElementById('inSupabaseUrl').value.trim(); supabaseKey = document.getElementById('inSupabaseKey').value.trim(); if (notif && (!supabaseUrl||!supabaseKey)) { tunjukCustomAlert('Sila isi URL & Kunci!'); return; } initSupabaseClient(); tutupModalSupabase(); if (notif && supabaseClient) { autoTarikData().then(() => kemaskiniSemuaPaparan()); } }
         function tukarModDaftar(mod) { document.getElementById('btnTabAnggota').className = mod==='ANGGOTA'?'tab-btn active':'tab-btn'; document.getElementById('btnTabBalai').className = mod==='BALAI'?'tab-btn active':'tab-btn'; document.getElementById('btnTabPangkat').className = mod==='PANGKAT'?'tab-btn active':'tab-btn'; document.getElementById('btnTabUnit').className = mod==='UNIT'?'tab-btn active':'tab-btn'; janaFormDaftar(mod); }
         function janaFormDaftar(mod='ANGGOTA') { const c = document.getElementById('regFormContainer'); if (mod==='ANGGOTA') { c.innerHTML = `<div class="form-group"><label>NAMA <span class="required-star">*</span></label><input type="text" id="regNama" class="form-control" required/></div><div class="form-group"><label>NO. TELEFON</label><input type="text" id="regTel" class="form-control"/></div><div class="grid grid-cols-2 gap-2"><div class="form-group"><label>PANGKAT</label><select id="regPangkat" class="form-control">${senaraiPangkatMaster.map(p=>`<option value="${p}">${p}</option>`).join('')}</select></div><div class="form-group"><label>UNIT KHAS</label><select id="regUnit" class="form-control">${senaraiUnitMaster.map(u=>`<option value="${u}">${u}</option>`).join('')}</select></div></div><div class="form-group"><label>BALAI</label><select id="regBalai" class="form-control">${senaraiBalaiMaster.map(b=>`<option value="${b}">${b}</option>`).join('')}</select></div><button class="btn btn-primary" onclick="simpanDaftarMaster('ANGGOTA')">+ DAFTAR ANGGOTA</button>`; } else if (mod==='BALAI') { c.innerHTML = `<div class="form-group"><label>NAMA BALAI BAHARU <span class="required-star">*</span></label><input type="text" id="regBalaiInput" class="form-control" placeholder="E.G. BBP TEBRAU (C)"/></div><button class="btn btn-primary" onclick="simpanDaftarMaster('BALAI')">+ TAMBAH BALAI</button>`; } else if (mod==='PANGKAT') { c.innerHTML = `<div class="form-group"><label>NAMA PANGKAT BAHARU <span class="required-star">*</span></label><input type="text" id="regPangkatInput" class="form-control" placeholder="E.G. KB 1"/></div><button class="btn btn-primary" onclick="simpanDaftarMaster('PANGKAT')">+ TAMBAH PANGKAT</button>`; } else if (mod==='UNIT') { c.innerHTML = `<div class="form-group"><label>NAMA UNIT BAHARU <span class="required-star">*</span></label><input type="text" id="regUnitInput" class="form-control" placeholder="E.G. HAZMAT"/></div><button class="btn btn-primary" onclick="simpanDaftarMaster('UNIT')">+ TAMBAH UNIT</button>`; } }
         async function simpanDaftarMaster(mod) { if (mod==='ANGGOTA') { const n = document.getElementById('regNama').value.trim().toUpperCase(); if (!n) { tunjukCustomAlert('Sila isi nama!'); return; } senaraiNamaMaster.push({nama:n,noTel:document.getElementById('regTel').value.trim(),pangkat:document.getElementById('regPangkat').value,unit:document.getElementById('regUnit').value,balai:document.getElementById('regBalai').value}); await hantarDataSupabase(); tunjukCustomAlert('✅ Anggota didaftarkan!'); janaFormDaftar('ANGGOTA'); } else if (mod==='BALAI') { const b = document.getElementById('regBalaiInput').value.trim().toUpperCase(); if (!b) return; if (!senaraiBalaiMaster.includes(b)) { senaraiBalaiMaster.push(b); await hantarDataSupabase(); kemaskiniSemuaPaparan(); } } else if (mod==='PANGKAT') { const p = document.getElementById('regPangkatInput').value.trim().toUpperCase(); if (!p) return; if (!senaraiPangkatMaster.includes(p)) { senaraiPangkatMaster.push(p); await hantarDataSupabase(); } } else if (mod==='UNIT') { const u = document.getElementById('regUnitInput').value.trim().toUpperCase(); if (!u) return; if (!senaraiUnitMaster.includes(u)) { senaraiUnitMaster.push(u); await hantarDataSupabase(); } } }
         function tukarViewMobile(view) { const items = document.querySelectorAll('.nav-item'); items.forEach(i => i.classList.remove('active')); const p = document.getElementById('sectionPanels'), s = document.getElementById('sectionStats'), a = document.getElementById('sectionAnggota'), l = document.getElementById('sectionLogistik'), c = document.getElementById('sectionChecklist'); if (window.innerWidth < 1024) { if (view==='operasi') { items[0].classList.add('active'); p.style.display='block'; s.style.display='grid'; a.style.display='none'; l.style.display='none'; c.style.display='none'; } else if (view==='anggota') { items[1].classList.add('active'); p.style.display='none'; s.style.display='grid'; a.style.display='block'; l.style.display='none'; c.style.display='none'; } else if (view==='logistik') { items[2].classList.add('active'); p.style.display='none'; s.style.display='none'; a.style.display='none'; l.style.display='block'; c.style.display='none'; } else if (view==='checklist') { items[3].classList.add('active'); p.style.display='none'; s.style.display='none'; a.style.display='none'; l.style.display='none'; c.style.display='block'; } else if (view==='master') { items[4].classList.add('active'); p.style.display='block'; s.style.display='none'; a.style.display='none'; l.style.display='none'; c.style.display='none'; } } }
+        async function ujiSambunganSupabase() { simpanTetapanSupabase(); if(!supabaseClient) return; try { await supabaseClient.from('jbpm_data').select('id').limit(1); tunjukCustomAlert('✅ BERJAYA BERSAMBUNG!'); await autoTarikData(); kemaskiniSemuaPaparan(); } catch(err) { tunjukCustomAlert('❌ GAGAL: '+err.message); } }
 
         // ==================== INIT ====================
         window.onload = function() {
             initDataLogistik(); janaFormDaftar('ANGGOTA'); janaChecklistBalaiOptions();
-// Auto-connect ke Supabase terus
-if (initSupabaseClient()) { 
-    autoTarikData().then(() => kemaskiniSemuaPaparan()); 
-}
+            if (initSupabaseClient()) { autoTarikData().then(() => kemaskiniSemuaPaparan()); }
             setInterval(updateClock, 1000); updateClock(); tukarViewMobile('operasi');
             document.addEventListener('click', function(e) {
                 ['balai','namaAnggota','logJentera'].forEach(id => {
