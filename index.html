@@ -1017,55 +1017,56 @@
         <!-- Panel Daftar Master -->
         <div class="card border-l-4 border-l-slate-800">
           <div class="card-title">
-            <span>👤 2. DAFTAR ANGGOTA & MASTER</span
-            ><span
+            <span>👤 2. DAFTAR ANGGOTA & MASTER</span>
+            <span
               class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-900"
               >MASTER</span
             >
           </div>
           <p class="text-xs text-slate-500 font-bold mb-3">
-            PILIH KATEGORI UNTUK DAFTAR MAKLUMAT MASTER:
+            DAFTAR MAKLUMAT MASTER ANGGOTA BAHARU:
           </p>
-          <div class="tab-btn-group">
-            <button
-              class="tab-btn active"
-              id="btnTabAnggota"
-              onclick="tukarModDaftar('ANGGOTA')"
-            >
-              👤 ANGGOTA</button
-            ><button
-              class="tab-btn"
-              id="btnTabBalai"
-              onclick="tukarModDaftar('BALAI')"
-            >
-              🏢 BALAI</button
-            ><button
-              class="tab-btn"
-              id="btnTabPangkat"
-              onclick="tukarModDaftar('PANGKAT')"
-            >
-              🎖️ PANGKAT</button
-            ><button
-              class="tab-btn"
-              id="btnTabUnit"
-              onclick="tukarModDaftar('UNIT')"
-            >
-              🚒 UNIT
+          <div id="regFormContainer">
+            <div class="form-group">
+              <label>NAMA <span class="required-star">*</span></label>
+              <input type="text" id="regNama" class="form-control" required/>
+            </div>
+            <div class="form-group">
+              <label>NO. TELEFON</label>
+              <input type="text" id="regTel" class="form-control"/>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div class="form-group">
+                <label>PANGKAT</label>
+                <select id="regPangkat" class="form-control"></select>
+              </div>
+              <div class="form-group">
+                <label>UNIT KHAS</label>
+                <select id="regUnit" class="form-control"></select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>BALAI</label>
+              <select id="regBalai" class="form-control"></select>
+            </div>
+            <button class="btn btn-primary" onclick="simpanDaftarMaster('ANGGOTA')">
+              + DAFTAR ANGGOTA
             </button>
           </div>
-          <div id="regFormContainer"></div>
           <div class="flex flex-col gap-2 mt-3">
             <button
               class="btn btn-secondary"
               onclick="mintaPassword('URUS_KATEGORI')"
             >
-              🔒 URUS / PADAM SENARAI MASTER</button
-            ><button
+              🔒 URUS / PADAM SENARAI MASTER
+            </button>
+            <button
               class="btn btn-secondary"
               onclick="mintaPassword('URUS_JENTERA_MASTER')"
             >
-              🔧 URUS SENARAI JENTERA (MASTER) 🔒</button
-            ><button
+              🔧 URUS SENARAI JENTERA (MASTER) 🔒
+            </button>
+            <button
               class="btn btn-master-purge"
               onclick="mintaPassword('MASTER_BERSIH')"
             >
@@ -1083,12 +1084,6 @@
             >
           </div>
           <div class="flex flex-col gap-2">
-            <button
-              class="btn btn-secondary text-xs"
-              onclick="bukaModalSupabase()"
-            >
-              ⚙️ TETAPAN KUNCI SUPABASE
-            </button>
             <div class="grid grid-cols-2 gap-2">
               <button
                 class="btn btn-secondary text-xs"
@@ -1102,12 +1097,6 @@
                 ☁️ SIMPAN DATA
               </button>
             </div>
-            <button
-              class="btn btn-secondary text-xs mt-1"
-              onclick="importJenteraDefault()"
-            >
-              📥 IMPORT SEMULA SENARAI JENTERA RASMI
-            </button>
           </div>
         </div>
       </div>
@@ -1914,31 +1903,6 @@
         </div>
       </div>
     </div>
-    <div class="modal-overlay" id="supabaseModal">
-      <div class="modal">
-        <div class="modal-header">
-          <h3>TETAPAN SUPABASE</h3>
-          <button class="close-modal" onclick="tutupModalSupabase()">
-            &times;
-          </button>
-        </div>
-        <div class="form-group">
-          <label>SUPABASE URL</label
-          ><input type="text" id="inSupabaseUrl" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label>SUPABASE ANON KEY</label
-          ><input type="password" id="inSupabaseKey" class="form-control" />
-        </div>
-        <div class="btn-group">
-          <button class="btn btn-primary" onclick="simpanTetapanSupabase(true)">
-            SIMPAN</button
-          ><button class="btn btn-emerald" onclick="ujiSambunganSupabase()">
-            UJI & SIMPAN
-          </button>
-        </div>
-      </div>
-    </div>
 
     <!-- NEW: MODAL URUS SENARAI MASTER KATEGORI -->
     <div class="modal-overlay" id="urusMasterModal">
@@ -2361,34 +2325,6 @@
         } catch (e) {
           console.log('⚠️ Auto-tarik gagal:', e.message);
           muatDariLocalStorage();
-        }
-      }
-
-      async function ujiSambunganSupabase() {
-        if (!supabaseUrl || !supabaseKey) {
-          tunjukCustomAlert('Sila isi URL & Key!');
-          return;
-        }
-        try {
-          const response = await fetch(
-            supabaseUrl + '/rest/v1/jbpm_data?limit=1',
-            {
-              headers: {
-                apikey: supabaseKey,
-                Authorization: 'Bearer ' + supabaseKey,
-              },
-            }
-          );
-          if (response.ok) {
-            kemaskiniStatusCloud('active', '🟢 SUPABASE: DISAMBUNG');
-            tunjukCustomAlert('✅ BERJAYA BERSAMBUNG!');
-            await autoTarikData();
-            kemaskiniSemuaPaparan();
-          } else {
-            throw new Error('HTTP ' + response.status);
-          }
-        } catch (err) {
-          tunjukCustomAlert('❌ GAGAL: ' + err.message);
         }
       }
 
@@ -3585,6 +3521,7 @@
         kemaskiniBalaiTags();
         kemaskiniPaparData();
       }
+      
       function togolNamaAnggotaDropdown() {
         document
           .querySelector('#namaAnggotaMultiSelect .multi-select-trigger')
@@ -3744,6 +3681,7 @@
             })
             .join('');
       }
+      
       function pilihLogJenteraOption(id) {
         const j = logistikJentera.find((x) => x.id === id);
         if (!j) return;
@@ -3868,21 +3806,6 @@
       function tutupModalTambahAnggota() {
         document.getElementById('addOfficerModal').classList.remove('active');
       }
-      function bukaModalSupabase() {
-        document.getElementById('supabaseModal').classList.add('active');
-        document.getElementById('inSupabaseUrl').value = supabaseUrl;
-        document.getElementById('inSupabaseKey').value = supabaseKey;
-      }
-      function tutupModalSupabase() {
-        document.getElementById('supabaseModal').classList.remove('active');
-      }
-      function importJenteraDefault() {
-        initDataLogistik(true);
-        kemaskiniSemuaPaparan();
-        tunjukCustomAlert(
-          '✅ Senarai Jentera Default dimuatkan dan dikemas kini!'
-        );
-      }
       function cetakLaporan() {
         window.print();
       }
@@ -4000,6 +3923,7 @@
             </tr>`;
         });
       }
+      
       async function padamItemMaster(index) {
         tunjukCustomConfirm(
           'Pasti untuk padam item ini dari pangkalan data Master?',
@@ -4072,9 +3996,9 @@
         );
       }
 
-      function simpanTetapanSupabase(notif = false) {
-        supabaseUrl = document.getElementById('inSupabaseUrl').value.trim();
-        supabaseKey = document.getElementById('inSupabaseKey').value.trim();
+      function tukarModDaftar(mod) {
+        document.getElementById('btnTabAnggota').className =
+          mod === 'ANGGOTA' ? 'tab-btn active' : 'tab-btn';
         if (notif && (!supabaseUrl || !supabaseKey)) {
           tunjukCustomAlert('Sila isi URL & Kunci!');
           return;
@@ -4087,40 +4011,25 @@
       }
 
       function tukarModDaftar(mod) {
-        document.getElementById('btnTabAnggota').className =
-          mod === 'ANGGOTA' ? 'tab-btn active' : 'tab-btn';
-        document.getElementById('btnTabBalai').className =
-          mod === 'BALAI' ? 'tab-btn active' : 'tab-btn';
-        document.getElementById('btnTabPangkat').className =
-          mod === 'PANGKAT' ? 'tab-btn active' : 'tab-btn';
-        document.getElementById('btnTabUnit').className =
-          mod === 'UNIT' ? 'tab-btn active' : 'tab-btn';
+        // Function no longer switches tabs, just re-renders the dropdown options if needed.
         janaFormDaftar(mod);
       }
+      
       function janaFormDaftar(mod = 'ANGGOTA') {
         const c = document.getElementById('regFormContainer');
         if (mod === 'ANGGOTA') {
-          c.innerHTML = `<div class="form-group"><label>NAMA <span class="required-star">*</span></label><input type="text" id="regNama" class="form-control" required/></div><div class="form-group"><label>NO. TELEFON</label><input type="text" id="regTel" class="form-control"/></div><div class="grid grid-cols-2 gap-2"><div class="form-group"><label>PANGKAT</label><select id="regPangkat" class="form-control">${senaraiPangkatMaster
+           document.getElementById('regPangkat').innerHTML = senaraiPangkatMaster
             .map((p) => `<option value="${p}">${p}</option>`)
-            .join(
-              ''
-            )}</select></div><div class="form-group"><label>UNIT KHAS</label><select id="regUnit" class="form-control">${senaraiUnitMaster
+            .join('');
+           document.getElementById('regUnit').innerHTML = senaraiUnitMaster
             .map((u) => `<option value="${u}">${u}</option>`)
-            .join(
-              ''
-            )}</select></div></div><div class="form-group"><label>BALAI</label><select id="regBalai" class="form-control">${senaraiBalaiMaster
+            .join('');
+           document.getElementById('regBalai').innerHTML = senaraiBalaiMaster
             .map((b) => `<option value="${b}">${b}</option>`)
-            .join(
-              ''
-            )}</select></div><button class="btn btn-primary" onclick="simpanDaftarMaster('ANGGOTA')">+ DAFTAR ANGGOTA</button>`;
-        } else if (mod === 'BALAI') {
-          c.innerHTML = `<div class="form-group"><label>NAMA BALAI BAHARU <span class="required-star">*</span></label><input type="text" id="regBalaiInput" class="form-control" placeholder="E.G. BBP TEBRAU (C)"/></div><button class="btn btn-primary" onclick="simpanDaftarMaster('BALAI')">+ TAMBAH BALAI</button>`;
-        } else if (mod === 'PANGKAT') {
-          c.innerHTML = `<div class="form-group"><label>NAMA PANGKAT BAHARU <span class="required-star">*</span></label><input type="text" id="regPangkatInput" class="form-control" placeholder="E.G. KB 1"/></div><button class="btn btn-primary" onclick="simpanDaftarMaster('PANGKAT')">+ TAMBAH PANGKAT</button>`;
-        } else if (mod === 'UNIT') {
-          c.innerHTML = `<div class="form-group"><label>NAMA UNIT BAHARU <span class="required-star">*</span></label><input type="text" id="regUnitInput" class="form-control" placeholder="E.G. HAZMAT"/></div><button class="btn btn-primary" onclick="simpanDaftarMaster('UNIT')">+ TAMBAH UNIT</button>`;
+            .join('');
         }
       }
+      
       async function simpanDaftarMaster(mod) {
         if (mod === 'ANGGOTA') {
           const n = document
@@ -4174,6 +4083,7 @@
           }
         }
       }
+      
       function tukarViewMobile(view) {
         const items = document.querySelectorAll('.nav-item');
         items.forEach((i) => i.classList.remove('active'));
@@ -4237,16 +4147,11 @@
       window.padamAnggota = padamAnggota;
       window.padamLogistikBertugas = padamLogistikBertugas;
       window.padamChecklist = padamChecklist;
-      window.bukaModalSupabase = bukaModalSupabase;
-      window.tutupModalSupabase = tutupModalSupabase;
-      window.importJenteraDefault = importJenteraDefault;
       window.cetakLaporan = cetakLaporan;
       window.mintaPassword = mintaPassword;
       window.tutupModalPassword = tutupModalPassword;
       window.semakEnterPassword = semakEnterPassword;
       window.sahkanPassword = sahkanPassword;
-      window.simpanTetapanSupabase = simpanTetapanSupabase;
-      window.ujiSambunganSupabase = ujiSambunganSupabase;
       window.tukarModDaftar = tukarModDaftar;
       window.simpanDaftarMaster = simpanDaftarMaster;
       window.tukarViewMobile = tukarViewMobile;
