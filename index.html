@@ -986,18 +986,30 @@
             >
           </div>
           <div class="flex flex-col gap-2 mt-2">
-            <button class="btn btn-primary" onclick="bukaModalTambahAnggota()">
-              👤 ISI ANGGOTA BERTUGAS</button
-            ><button
-              class="btn btn-orange"
+            <!-- FOKUS MODAL ANGGOTA BERTUGAS -->
+            <button
+              class="btn btn-primary font-black ring-2 ring-red-300 ring-offset-1"
+              onclick="bukaModalTambahAnggota()"
+            >
+              👤 ISI ANGGOTA BERTUGAS
+            </button>
+            <!-- FOKUS MODAL LOGISTIK JENTERA -->
+            <button
+              class="btn btn-orange font-black ring-2 ring-amber-300 ring-offset-1"
               onclick="bukaModalLogistikJentera()"
             >
-              📋 ISI MAKLUMAT JENTERA BERTUGAS</button
-            ><button class="btn btn-purple" onclick="bukaModalChecklist()">
+              🚒 ISI MAKLUMAT JENTERA BERTUGAS
+            </button>
+            <!-- FOKUS MODAL CHECKLIST -->
+            <button
+              class="btn btn-purple font-black ring-2 ring-purple-300 ring-offset-1"
+              onclick="bukaModalChecklist()"
+            >
               ✅ ISI CHECKLIST PERKAKAS
             </button>
           </div>
         </div>
+
         <!-- Panel Daftar Master -->
         <div class="card border-l-4 border-l-slate-800">
           <div class="card-title">
@@ -1061,6 +1073,7 @@
             </button>
           </div>
         </div>
+
         <!-- Panel Cloud Storage -->
         <div class="card border-l-4 border-l-emerald-500">
           <div class="card-title">
@@ -1076,8 +1089,9 @@
                 class="btn btn-secondary text-xs"
                 onclick="tarikDataSupabase()"
               >
-                🔄 MUAT DATA</button
-              ><button
+                🔄 MUAT DATA
+              </button>
+              <button
                 class="btn btn-emerald text-xs"
                 onclick="hantarDataSupabase()"
               >
@@ -1121,8 +1135,9 @@
                 class="btn btn-secondary !w-auto !py-1.5 !px-3 !text-xs !min-h-[36px]"
                 onclick="cetakLaporan()"
               >
-                🖨️ CETAK</button
-              ><button
+                🖨️ CETAK
+              </button>
+              <button
                 class="btn btn-secondary !w-auto !py-1.5 !px-3 !text-xs !min-h-[36px] text-red-700 border-red-300"
                 onclick="mintaPassword('MASTER_BERSIH')"
               >
@@ -1170,8 +1185,9 @@
                       class="btn-select-all"
                       onclick="pilihSemuaBalai();event.stopPropagation();"
                     >
-                      ✅ PILIH SEMUA</button
-                    ><button
+                      ✅ PILIH SEMUA
+                    </button>
+                    <button
                       class="btn-clear-all"
                       onclick="kosongkanBalai();event.stopPropagation();"
                     >
@@ -1195,8 +1211,9 @@
           >
             <span
               >📋 <strong>BALAI DITAPIS:</strong>
-              <span id="filterBalaiList"></span></span
-            ><span
+              <span id="filterBalaiList"></span
+            ></span>
+            <span
               class="clear-filter-link"
               onclick="kosongkanBalai();kemaskiniPaparData();"
               >✕ KOSONGKAN PENAPIS</span
@@ -1347,7 +1364,6 @@
       </div>
     </div>
 
-    <!-- WATERMARK COPYRIGHT -->
     <footer
       class="text-center py-6 px-4 no-print border-t border-slate-200/80 mt-8 mb-4"
     >
@@ -1359,6 +1375,7 @@
       </p>
     </footer>
 
+    <!-- MOBILE NAVIGATION -->
     <nav class="mobile-bottom-nav no-print">
       <button class="nav-item active" onclick="tukarViewMobile('operasi')">
         <span class="nav-icon">📋</span><span>OPERASI</span>
@@ -1377,28 +1394,47 @@
       </button>
     </nav>
 
-    <!-- ADD OFFICER MODAL -->
+    <!-- 👤 MODAL: ANGGOTA BERTUGAS -->
     <div class="modal-overlay" id="addOfficerModal">
-      <div class="modal">
+      <div class="modal sm:!max-w-4xl">
         <div class="modal-header">
-          <h3>TAMBAH ANGGOTA BERTUGAS</h3>
+          <div class="flex items-center gap-2">
+            <span class="text-xl">👤</span>
+            <h3>ISI KEKUATAN ANGGOTA BERTUGAS</h3>
+          </div>
           <button class="close-modal" onclick="tutupModalTambahAnggota()">
             &times;
           </button>
         </div>
-        <div class="info-pill">
-          💡 PILIH ANGGOTA (MULTISELECT), TETAPKAN PERANAN & MAKLUMAT BERTUGAS.
+
+        <div class="info-pill bg-red-50 border-red-200 text-red-900">
+          <span>💡</span>
+          <span
+            >PILIH ANGGOTA DARI REGISTRI MASTER, TETAPKAN PASUKAN, STATUS &
+            PERANAN BAGI SETIAP ANGGOTA.</span
+          >
         </div>
-        <div class="form-group">
-          <label>NAMA ANGGOTA <span class="required-star">*</span></label>
+
+        <div class="form-group mb-3">
+          <label class="flex justify-between items-center">
+            <span class="text-slate-800 font-extrabold"
+              >PILIH ANGGOTA UNTUK BERTUGAS
+              <span class="required-star">*</span></span
+            >
+            <span
+              class="text-[10px] text-red-800 bg-red-100 border border-red-300 px-2 py-0.5 rounded font-black"
+              id="selectedOfficerCountBadge"
+              >0 DIPILIH</span
+            >
+          </label>
           <div class="multi-select-container" id="namaAnggotaMultiSelect">
             <div
-              class="multi-select-trigger"
+              class="multi-select-trigger border-red-300"
               onclick="togolNamaAnggotaDropdown()"
             >
               <div class="multi-select-tags" id="namaAnggotaSelectedTags">
                 <span class="multi-select-placeholder"
-                  >👤 PILIH ANGGOTA...</span
+                  >👤 TEKAN UNTUK PILIH ANGGOTA...</span
                 >
               </div>
               <span class="multi-select-arrow">▼</span>
@@ -1408,7 +1444,7 @@
                 <input
                   type="text"
                   id="namaAnggotaSearchInput"
-                  placeholder="🔍 CARI NAMA..."
+                  placeholder="🔍 CARI NAMA / PANGKAT / BALAI..."
                   onkeyup="tapisNamaAnggotaDropdown()"
                   onclick="event.stopPropagation();"
                 />
@@ -1422,8 +1458,9 @@
                   class="btn-select-all"
                   onclick="pilihSemuaNamaAnggota();event.stopPropagation();"
                 >
-                  ✅ PILIH SEMUA</button
-                ><button
+                  ✅ PILIH SEMUA
+                </button>
+                <button
                   class="btn-clear-all"
                   onclick="kosongkanNamaAnggota();event.stopPropagation();"
                 >
@@ -1433,130 +1470,132 @@
             </div>
           </div>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
-          <div class="form-group">
-            <label>KETUA BALAI</label>
-            <select id="modalKetuaBalai" class="form-control">
-              <option value="TIDAK">TIDAK</option>
-              <option value="YA">YA</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>PEGAWAI OPERASI</label>
-            <select id="modalPegawaiOperasi" class="form-control">
-              <option value="TIDAK">TIDAK</option>
-              <option value="YA">YA</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>PENYELIA PASUKAN</label>
-            <select id="modalPenyeliaPasukan" class="form-control">
-              <option value="TIDAK">TIDAK</option>
-              <option value="YA">YA</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>BKB</label>
-            <select id="modalBkb" class="form-control">
-              <option value="TIDAK">TIDAK</option>
-              <option value="YA">YA</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>PEMANDU</label>
-            <select id="modalPemandu" class="form-control">
-              <option value="TIDAK">TIDAK</option>
-              <option value="YA">YA</option>
-            </select>
-          </div>
+
+        <div class="flex items-center justify-between mb-2 mt-2">
+          <span class="font-extrabold text-xs text-slate-800"
+            >📋 SENARAI ANGGOTA DIPILIH & PERANAN:</span
+          >
+          <button
+            class="px-2.5 py-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-[10px] font-black rounded-lg border border-emerald-300 transition"
+            onclick="setSemuaAnggotaStatus('BERTUGAS')"
+          >
+            ⚡ SET SEMUA BERTUGAS
+          </button>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-          <div class="form-group">
-            <label>PASUKAN</label>
-            <select id="modalPasukan" class="form-control">
-              <option value="PASUKAN A">PASUKAN A</option>
-              <option value="PASUKAN B">PASUKAN B</option>
-              <option value="PASUKAN C">PASUKAN C</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>STATUS</label>
-            <select id="modalStatus" class="form-control">
-              <option value="BERTUGAS">BERTUGAS</option>
-              <option value="CUTI">CUTI</option>
-              <option value="CUTI SAKIT">CUTI SAKIT</option>
-              <option value="TUGAS KHAS">TUGAS KHAS</option>
-            </select>
-          </div>
+
+        <div
+          class="max-h-64 overflow-y-auto border border-slate-200 rounded-xl mb-3 bg-white"
+        >
+          <table class="jentera-modal-table">
+            <thead>
+              <tr>
+                <th>NAMA & PANGKAT</th>
+                <th>BALAI</th>
+                <th>PASUKAN</th>
+                <th>STATUS</th>
+                <th>PERANAN / JAWATAN</th>
+                <th>CATATAN</th>
+                <th class="text-center">BUANG</th>
+              </tr>
+            </thead>
+            <tbody id="anggotaDipilihBody">
+              <tr>
+                <td
+                  colspan="7"
+                  class="text-center p-4 text-slate-400 font-bold"
+                >
+                  TIADA ANGGOTA DIPILIH
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="form-group">
-          <label>CATATAN</label>
-          <input type="text" id="modalCatatan" class="form-control" />
-        </div>
+
         <div class="btn-group">
           <button class="btn btn-primary" onclick="simpanAnggotaBaharu()">
-            💾 SIMPAN KE CLOUD</button
-          ><button
-            class="btn btn-secondary"
-            onclick="tutupModalTambahAnggota()"
-          >
+            💾 SIMPAN KEKUATAN ANGGOTA
+          </button>
+          <button class="btn btn-secondary" onclick="tutupModalTambahAnggota()">
             BATAL
           </button>
         </div>
       </div>
     </div>
 
-    <!-- LOGISTIK MODAL -->
+    <!-- 🚒 MODAL: LOGISTIK JENTERA BERTUGAS -->
     <div class="modal-overlay" id="logistikJenteraModal">
-      <div class="modal">
+      <div class="modal sm:!max-w-4xl">
         <div class="modal-header">
-          <h3>🚒 LOGISTIK JENTERA BERTUGAS</h3>
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🚒</span>
+            <h3>LOGISTIK JENTERA BERTUGAS</h3>
+          </div>
           <button class="close-modal" onclick="tutupModalLogistikJentera()">
             &times;
           </button>
         </div>
-        <div class="info-pill">
-          💡 PILIH BALAI BERTUGAS & JENTERA DARI INVENTORI.
+
+        <div class="info-pill bg-amber-50 border-amber-200 text-amber-900">
+          <span>💡</span>
+          <span
+            >PILIH BALAI & TAPIS KATEGORI UNTUK MEMILIH JENTERA DARI INVENTORI,
+            KEMUDIAN TETAPKAN STATUS JENTERA BERTUGAS.</span
+          >
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-          <div class="form-group">
-            <label>BALAI <span class="required-star">*</span></label
-            ><select
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+          <div class="form-group !mb-0">
+            <label class="text-amber-900"
+              >BALAI BERTUGAS <span class="required-star">*</span></label
+            >
+            <select
               id="logModalBalai"
-              class="form-control"
+              class="form-control border-amber-300 focus:border-amber-600 font-extrabold"
               onchange="janaLogJenteraDropdown()"
             >
               <option value="">-- PILIH BALAI --</option>
             </select>
           </div>
-          <div class="form-group">
-            <label>TAPIS KATEGORI</label
-            ><select
+          <div class="form-group !mb-0">
+            <label class="text-amber-900">TAPIS KATEGORI JENTERA</label>
+            <select
               id="logKategoriFilter"
-              class="form-control"
+              class="form-control border-amber-300"
               onchange="janaLogJenteraDropdown()"
             >
-              <option value="SEMUA">🌐 SEMUA</option>
-              <option value="FRT/LFRT/CFRT/RFRT">JENTERA PEMADAM</option>
-              <option value="EMRS">EMRS</option>
-              <option value="WATER TANKER">TANGKI AIR</option>
-              <option value="KHAS/BOMPA">KHAS/BOMPA</option>
-              <option value="BOT">BOT</option>
-              <option value="RIM">RIM</option>
-              <option value="KENDERAAN/UTILITI">KENDERAAN/UTILITI</option>
+              <option value="SEMUA">🌐 SEMUA KATEGORI</option>
+              <option value="FRT/LFRT/CFRT/RFRT">
+                🚒 JENTERA PEMADAM (FRT/CFRT)
+              </option>
+              <option value="EMRS">🚑 EMRS</option>
+              <option value="WATER TANKER">💧 TANGKI AIR (WATER TANKER)</option>
+              <option value="KHAS/BOMPA">⚡ KHAS / BOMPA</option>
+              <option value="BOT">🚤 BOT PENYELAMAT</option>
+              <option value="RIM">
+                🏍️ RIM (RAPID INTERVENTION MOTORCYCLE)
+              </option>
+              <option value="KENDERAAN/UTILITI">🚙 KENDERAAN / UTILITI</option>
             </select>
           </div>
         </div>
+
         <div class="form-group">
-          <label>PILIH JENTERA</label>
+          <label class="flex justify-between items-center">
+            <span>PILIH JENTERA UNTUK BERTUGAS</span>
+            <span
+              class="text-[10px] text-amber-800 bg-amber-100 px-2 py-0.5 rounded font-bold"
+              id="selectedJenteraCountBadge"
+              >0 DIPILIH</span
+            >
+          </label>
           <div class="multi-select-container" id="logJenteraMultiSelect">
             <div
-              class="multi-select-trigger"
+              class="multi-select-trigger border-amber-300"
               onclick="togolLogJenteraDropdown()"
             >
               <div class="multi-select-tags" id="logJenteraSelectedTags">
                 <span class="multi-select-placeholder"
-                  >🔧 PILIH JENTERA...</span
+                  >🔧 TEKAN UNTUK PILIH JENTERA...</span
                 >
               </div>
               <span class="multi-select-arrow">▼</span>
@@ -1566,7 +1605,7 @@
                 <input
                   type="text"
                   id="logJenteraSearchInput"
-                  placeholder="🔍 CARI JENTERA..."
+                  placeholder="🔍 CARI CALLSIGN / PLAT..."
                   onkeyup="tapisLogJenteraDropdown()"
                   onclick="event.stopPropagation();"
                 />
@@ -1580,8 +1619,9 @@
                   class="btn-select-all"
                   onclick="pilihSemuaLogJentera();event.stopPropagation();"
                 >
-                  ✅ PILIH SEMUA</button
-                ><button
+                  ✅ PILIH SEMUA
+                </button>
+                <button
                   class="btn-clear-all"
                   onclick="kosongkanLogJentera();event.stopPropagation();"
                 >
@@ -1591,9 +1631,21 @@
             </div>
           </div>
         </div>
-        <div class="mb-2 font-bold text-xs">JENTERA DIPILIH:</div>
+
+        <div class="flex items-center justify-between mb-2 mt-1">
+          <span class="font-extrabold text-xs text-slate-800"
+            >📋 SENARAI JENTERA DIPILIH & STATUS:</span
+          >
+          <button
+            class="px-2.5 py-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-[10px] font-black rounded-lg border border-emerald-300 transition"
+            onclick="setSemuaJenteraStatus('SEDIA BEROPERASI')"
+          >
+            ⚡ SET SEMUA SEDIA BEROPERASI
+          </button>
+        </div>
+
         <div
-          class="max-h-60 overflow-y-auto border border-slate-200 rounded-xl mb-3"
+          class="max-h-60 overflow-y-auto border border-slate-200 rounded-xl mb-3 bg-white"
         >
           <table class="jentera-modal-table">
             <thead>
@@ -1602,24 +1654,29 @@
                 <th>PLAT</th>
                 <th>JENIS</th>
                 <th>KATEGORI</th>
-                <th>STATUS</th>
+                <th>STATUS BERTUGAS</th>
                 <th>CATATAN</th>
-                <th>BUANG</th>
+                <th class="text-center">BUANG</th>
               </tr>
             </thead>
             <tbody id="logJenteraDipilihBody">
               <tr>
-                <td colspan="7" class="text-center p-4 text-slate-400">
+                <td
+                  colspan="7"
+                  class="text-center p-4 text-slate-400 font-bold"
+                >
                   TIADA JENTERA DIPILIH
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
+
         <div class="btn-group">
-          <button class="btn btn-primary" onclick="simpanLogistikBertugas()">
-            💾 SIMPAN KE CLOUD</button
-          ><button
+          <button class="btn btn-orange" onclick="simpanLogistikBertugas()">
+            💾 SIMPAN LOGISTIK JENTERA
+          </button>
+          <button
             class="btn btn-secondary"
             onclick="tutupModalLogistikJentera()"
           >
@@ -1629,63 +1686,90 @@
       </div>
     </div>
 
-    <!-- CHECKLIST MODAL (2 STATUS UNIT INPUTS + 1 CATATAN PER ITEM) -->
+    <!-- ✅ MODAL: CHECKLIST PERKAKAS BILIK KAWALAN -->
     <div class="modal-overlay" id="checklistModal">
-      <div class="modal sm:!max-w-3xl">
+      <div class="modal sm:!max-w-4xl">
         <div class="modal-header">
-          <h3>✅ CHECKLIST PERKAKAS BILIK KAWALAN</h3>
+          <div class="flex items-center gap-2">
+            <span class="text-xl">✅</span>
+            <h3>CHECKLIST PERKAKAS BILIK KAWALAN</h3>
+          </div>
           <button class="close-modal" onclick="tutupModalChecklist()">
             &times;
           </button>
         </div>
-        <div class="info-pill">
-          💡 BAGI SETIAP PERKAKAS, ISI JUMLAH UNIT BAGI STATUS BAIK & ROSAK
-          SERTA 1 CATATAN KHUSUS.
+
+        <div
+          class="info-pill bg-purple-50 border-purple-200 text-purple-900 flex flex-wrap items-center justify-between gap-2"
+        >
+          <span
+            >💡 ISI JUMLAH UNIT BAGI STATUS <strong>BAIK</strong> &
+            <strong>ROSAK</strong> UNTUK SETIAP PERKAKAS.</span
+          >
+          <button
+            class="bg-purple-700 text-white px-3 py-1 rounded-lg text-[10px] font-black hover:bg-purple-800 transition shadow-sm"
+            onclick="setSemuaChecklistDefault()"
+          >
+            ⚡ SET SEMUA BAIK (DEFAULT)
+          </button>
         </div>
 
-        <!-- TOP BAR: BALAI, SHIF & WAKTU -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4 p-3 bg-slate-100 rounded-xl border border-slate-200"
+        >
           <div class="form-group !mb-0">
-            <label>PILIH BALAI <span class="required-star">*</span></label>
-            <select id="modalChecklistBalai" class="form-control">
+            <label class="text-purple-900"
+              >PILIH BALAI <span class="required-star">*</span></label
+            >
+            <select
+              id="modalChecklistBalai"
+              class="form-control border-purple-300 font-black"
+            >
               <option value="">-- PILIH BALAI --</option>
             </select>
           </div>
           <div class="form-group !mb-0">
-            <label>SHIF</label>
-            <select id="modalChecklistShift" class="form-control">
+            <label class="text-purple-900">JENIS SHIF</label>
+            <select
+              id="modalChecklistShift"
+              class="form-control border-purple-300 font-bold"
+            >
               <option value="12 JAM">12 JAM</option>
               <option value="24 JAM">24 JAM</option>
             </select>
           </div>
           <div class="form-group !mb-0">
-            <label>WAKTU</label>
-            <select id="modalChecklistShiftTime" class="form-control">
+            <label class="text-purple-900">WAKTU TUGAS</label>
+            <select
+              id="modalChecklistShiftTime"
+              class="form-control border-purple-300 font-bold"
+            >
               <option value="0800-2000">0800-2000 (SIANG)</option>
               <option value="2000-0800">2000-0800 (MALAM)</option>
             </select>
           </div>
         </div>
 
-        <!-- EXPANDED LIST OF 8 EQUIPMENT ITEMS WITH BAIK/ROSAK UNIT FIELDS AND 1 CATATAN EACH -->
         <div class="mb-2 flex items-center justify-between">
-          <label class="text-xs font-extrabold text-slate-700"
-            >📋 SENARAI 8 PERKAKAS & JUMLAH UNIT STATUS</label
+          <label class="text-xs font-black text-slate-800"
+            >📋 8 PERKAKAS BILIK KAWALAN & UNIT STATUS:</label
           >
-          <span class="text-[10px] text-slate-500 font-bold"
-            >STATUS BAIK/ROSAK + CATATAN</span
+          <span class="text-[10px] text-purple-700 font-bold"
+            >BAIK / ROSAK + CATATAN</span
           >
         </div>
+
         <div
-          class="space-y-3 mb-4 max-h-[62vh] overflow-y-auto pr-2 border border-slate-200 p-3 rounded-xl bg-slate-50 flex-1"
+          class="space-y-3 mb-4 max-h-[58vh] overflow-y-auto pr-1 border border-slate-200 p-2.5 rounded-xl bg-slate-50 flex-1"
         >
           <!-- 1. CAD -->
           <div
-            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2"
+            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2 hover:border-purple-300 transition"
+            id="card_CAD"
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-extrabold text-slate-800 text-xs sm:text-sm">
+                <div class="font-black text-slate-800 text-xs sm:text-sm">
                   🖥️ COMPUTER AIDED DISPATCH (CAD)
                 </div>
                 <div class="text-[10px] text-slate-500 font-semibold">
@@ -1693,7 +1777,7 @@
                 </div>
               </div>
               <span
-                class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold"
+                class="text-[10px] bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded font-black"
                 >CAD</span
               >
             </div>
@@ -1703,36 +1787,61 @@
                   class="text-[10px] font-extrabold text-emerald-700 block mb-1"
                   >✅ BAIK (UNIT)</label
                 >
-                <input
-                  type="number"
-                  id="modalCAD_Baik"
-                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-emerald-800 bg-emerald-50/60 border-emerald-300"
-                  value="0"
-                  min="0"
-                />
+                <div class="flex items-center gap-1">
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalCAD_Baik', -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="modalCAD_Baik"
+                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                    value="1"
+                    min="0"
+                  />
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalCAD_Baik', 1)"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
               <div>
                 <label
                   class="text-[10px] font-extrabold text-red-700 block mb-1"
                   >❌ ROSAK (UNIT)</label
                 >
-                <input
-                  type="number"
-                  id="modalCAD_Rosak"
-                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-red-800 bg-red-50/60 border-red-300"
-                  value="0"
-                  min="0"
-                />
+                <div class="flex items-center gap-1">
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalCAD_Rosak', -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="modalCAD_Rosak"
+                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
+                    value="0"
+                    min="0"
+                  />
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalCAD_Rosak', 1)"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
             <div>
-              <label class="text-[10px] font-bold text-slate-600 block mb-1"
-                >CATATAN CAD</label
-              >
               <input
                 type="text"
                 id="modalCatatanCAD"
-                class="form-control !min-h-[36px] !py-1 !px-2 !text-xs"
+                class="form-control !min-h-[34px] !py-1 !px-2 !text-xs"
                 placeholder="CATATAN BAGI CAD..."
               />
             </div>
@@ -1740,11 +1849,12 @@
 
           <!-- 2. WIC -->
           <div
-            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2"
+            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2 hover:border-purple-300 transition"
+            id="card_WIC"
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-extrabold text-slate-800 text-xs sm:text-sm">
+                <div class="font-black text-slate-800 text-xs sm:text-sm">
                   🌐 WEB INTEGRATED CONSOLE (WIC)
                 </div>
                 <div class="text-[10px] text-slate-500 font-semibold">
@@ -1752,7 +1862,7 @@
                 </div>
               </div>
               <span
-                class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold"
+                class="text-[10px] bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded font-black"
                 >WIC</span
               >
             </div>
@@ -1762,36 +1872,61 @@
                   class="text-[10px] font-extrabold text-emerald-700 block mb-1"
                   >✅ BAIK (UNIT)</label
                 >
-                <input
-                  type="number"
-                  id="modalWIC_Baik"
-                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-emerald-800 bg-emerald-50/60 border-emerald-300"
-                  value="0"
-                  min="0"
-                />
+                <div class="flex items-center gap-1">
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalWIC_Baik', -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="modalWIC_Baik"
+                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                    value="1"
+                    min="0"
+                  />
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalWIC_Baik', 1)"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
               <div>
                 <label
                   class="text-[10px] font-extrabold text-red-700 block mb-1"
                   >❌ ROSAK (UNIT)</label
                 >
-                <input
-                  type="number"
-                  id="modalWIC_Rosak"
-                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-red-800 bg-red-50/60 border-red-300"
-                  value="0"
-                  min="0"
-                />
+                <div class="flex items-center gap-1">
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalWIC_Rosak', -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="modalWIC_Rosak"
+                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
+                    value="0"
+                    min="0"
+                  />
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalWIC_Rosak', 1)"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
             <div>
-              <label class="text-[10px] font-bold text-slate-600 block mb-1"
-                >CATATAN WIC</label
-              >
               <input
                 type="text"
                 id="modalCatatanWIC"
-                class="form-control !min-h-[36px] !py-1 !px-2 !text-xs"
+                class="form-control !min-h-[34px] !py-1 !px-2 !text-xs"
                 placeholder="CATATAN BAGI WIC..."
               />
             </div>
@@ -1799,11 +1934,12 @@
 
           <!-- 3. BOMRA -->
           <div
-            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2"
+            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2 hover:border-purple-300 transition"
+            id="card_BOMRA"
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-extrabold text-slate-800 text-xs sm:text-sm">
+                <div class="font-black text-slate-800 text-xs sm:text-sm">
                   📱 BOMBA RESPONDER APPS (BOMRA)
                 </div>
                 <div class="text-[10px] text-slate-500 font-semibold">
@@ -1811,7 +1947,7 @@
                 </div>
               </div>
               <span
-                class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold"
+                class="text-[10px] bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded font-black"
                 >BOMRA</span
               >
             </div>
@@ -1821,36 +1957,61 @@
                   class="text-[10px] font-extrabold text-emerald-700 block mb-1"
                   >✅ BAIK (UNIT)</label
                 >
-                <input
-                  type="number"
-                  id="modalBOMRA_Baik"
-                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-emerald-800 bg-emerald-50/60 border-emerald-300"
-                  value="0"
-                  min="0"
-                />
+                <div class="flex items-center gap-1">
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalBOMRA_Baik', -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="modalBOMRA_Baik"
+                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                    value="1"
+                    min="0"
+                  />
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalBOMRA_Baik', 1)"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
               <div>
                 <label
                   class="text-[10px] font-extrabold text-red-700 block mb-1"
                   >❌ ROSAK (UNIT)</label
                 >
-                <input
-                  type="number"
-                  id="modalBOMRA_Rosak"
-                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-red-800 bg-red-50/60 border-red-300"
-                  value="0"
-                  min="0"
-                />
+                <div class="flex items-center gap-1">
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalBOMRA_Rosak', -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="modalBOMRA_Rosak"
+                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
+                    value="0"
+                    min="0"
+                  />
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalBOMRA_Rosak', 1)"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
             <div>
-              <label class="text-[10px] font-bold text-slate-600 block mb-1"
-                >CATATAN BOMRA</label
-              >
               <input
                 type="text"
                 id="modalCatatanBOMRA"
-                class="form-control !min-h-[36px] !py-1 !px-2 !text-xs"
+                class="form-control !min-h-[34px] !py-1 !px-2 !text-xs"
                 placeholder="CATATAN BAGI BOMRA..."
               />
             </div>
@@ -1858,11 +2019,12 @@
 
           <!-- 4. DESKTOP GIRN -->
           <div
-            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2"
+            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2 hover:border-purple-300 transition"
+            id="card_DesktopGirn"
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-extrabold text-slate-800 text-xs sm:text-sm">
+                <div class="font-black text-slate-800 text-xs sm:text-sm">
                   💻 DESKTOP GIRN
                 </div>
                 <div class="text-[10px] text-slate-500 font-semibold">
@@ -1870,7 +2032,7 @@
                 </div>
               </div>
               <span
-                class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold"
+                class="text-[10px] bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded font-black"
                 >D.GIRN</span
               >
             </div>
@@ -1880,36 +2042,61 @@
                   class="text-[10px] font-extrabold text-emerald-700 block mb-1"
                   >✅ BAIK (UNIT)</label
                 >
-                <input
-                  type="number"
-                  id="modalDesktopGirn_Baik"
-                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-emerald-800 bg-emerald-50/60 border-emerald-300"
-                  value="0"
-                  min="0"
-                />
+                <div class="flex items-center gap-1">
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalDesktopGirn_Baik', -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="modalDesktopGirn_Baik"
+                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                    value="1"
+                    min="0"
+                  />
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalDesktopGirn_Baik', 1)"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
               <div>
                 <label
                   class="text-[10px] font-extrabold text-red-700 block mb-1"
                   >❌ ROSAK (UNIT)</label
                 >
-                <input
-                  type="number"
-                  id="modalDesktopGirn_Rosak"
-                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-red-800 bg-red-50/60 border-red-300"
-                  value="0"
-                  min="0"
-                />
+                <div class="flex items-center gap-1">
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalDesktopGirn_Rosak', -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="modalDesktopGirn_Rosak"
+                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
+                    value="0"
+                    min="0"
+                  />
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalDesktopGirn_Rosak', 1)"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
             <div>
-              <label class="text-[10px] font-bold text-slate-600 block mb-1"
-                >CATATAN DESKTOP GIRN</label
-              >
               <input
                 type="text"
                 id="modalCatatanDesktopGirn"
-                class="form-control !min-h-[36px] !py-1 !px-2 !text-xs"
+                class="form-control !min-h-[34px] !py-1 !px-2 !text-xs"
                 placeholder="CATATAN BAGI DESKTOP GIRN..."
               />
             </div>
@@ -1917,11 +2104,12 @@
 
           <!-- 5. HANDHELD GIRN -->
           <div
-            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2"
+            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2 hover:border-purple-300 transition"
+            id="card_HandheldGirn"
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-extrabold text-slate-800 text-xs sm:text-sm">
+                <div class="font-black text-slate-800 text-xs sm:text-sm">
                   📻 HANDHELD GIRN
                 </div>
                 <div class="text-[10px] text-slate-500 font-semibold">
@@ -1929,7 +2117,7 @@
                 </div>
               </div>
               <span
-                class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold"
+                class="text-[10px] bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded font-black"
                 >H.GIRN</span
               >
             </div>
@@ -1939,36 +2127,61 @@
                   class="text-[10px] font-extrabold text-emerald-700 block mb-1"
                   >✅ BAIK (UNIT)</label
                 >
-                <input
-                  type="number"
-                  id="modalHandheldGirn_Baik"
-                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-emerald-800 bg-emerald-50/60 border-emerald-300"
-                  value="0"
-                  min="0"
-                />
+                <div class="flex items-center gap-1">
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalHandheldGirn_Baik', -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="modalHandheldGirn_Baik"
+                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                    value="1"
+                    min="0"
+                  />
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalHandheldGirn_Baik', 1)"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
               <div>
                 <label
                   class="text-[10px] font-extrabold text-red-700 block mb-1"
                   >❌ ROSAK (UNIT)</label
                 >
-                <input
-                  type="number"
-                  id="modalHandheldGirn_Rosak"
-                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-red-800 bg-red-50/60 border-red-300"
-                  value="0"
-                  min="0"
-                />
+                <div class="flex items-center gap-1">
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalHandheldGirn_Rosak', -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="modalHandheldGirn_Rosak"
+                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
+                    value="0"
+                    min="0"
+                  />
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalHandheldGirn_Rosak', 1)"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
             <div>
-              <label class="text-[10px] font-bold text-slate-600 block mb-1"
-                >CATATAN HANDHELD GIRN</label
-              >
               <input
                 type="text"
                 id="modalCatatanHandheldGirn"
-                class="form-control !min-h-[36px] !py-1 !px-2 !text-xs"
+                class="form-control !min-h-[34px] !py-1 !px-2 !text-xs"
                 placeholder="CATATAN BAGI HANDHELD GIRN..."
               />
             </div>
@@ -1976,19 +2189,20 @@
 
           <!-- 6. VEHICULAR GIRN -->
           <div
-            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2"
+            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2 hover:border-purple-300 transition"
+            id="card_VehicularGirn"
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-extrabold text-slate-800 text-xs sm:text-sm">
-                  机 VEHICULAR GIRN
+                <div class="font-black text-slate-800 text-xs sm:text-sm">
+                  🚙 VEHICULAR GIRN
                 </div>
                 <div class="text-[10px] text-slate-500 font-semibold">
                   Radio Komunikasi Kenderaan
                 </div>
               </div>
               <span
-                class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold"
+                class="text-[10px] bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded font-black"
                 >V.GIRN</span
               >
             </div>
@@ -1998,36 +2212,61 @@
                   class="text-[10px] font-extrabold text-emerald-700 block mb-1"
                   >✅ BAIK (UNIT)</label
                 >
-                <input
-                  type="number"
-                  id="modalVehicularGirn_Baik"
-                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-emerald-800 bg-emerald-50/60 border-emerald-300"
-                  value="0"
-                  min="0"
-                />
+                <div class="flex items-center gap-1">
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalVehicularGirn_Baik', -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="modalVehicularGirn_Baik"
+                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                    value="1"
+                    min="0"
+                  />
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalVehicularGirn_Baik', 1)"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
               <div>
                 <label
                   class="text-[10px] font-extrabold text-red-700 block mb-1"
                   >❌ ROSAK (UNIT)</label
                 >
-                <input
-                  type="number"
-                  id="modalVehicularGirn_Rosak"
-                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-red-800 bg-red-50/60 border-red-300"
-                  value="0"
-                  min="0"
-                />
+                <div class="flex items-center gap-1">
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalVehicularGirn_Rosak', -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="modalVehicularGirn_Rosak"
+                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
+                    value="0"
+                    min="0"
+                  />
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalVehicularGirn_Rosak', 1)"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
             <div>
-              <label class="text-[10px] font-bold text-slate-600 block mb-1"
-                >CATATAN VEHICULAR GIRN</label
-              >
               <input
                 type="text"
                 id="modalCatatanVehicularGirn"
-                class="form-control !min-h-[36px] !py-1 !px-2 !text-xs"
+                class="form-control !min-h-[34px] !py-1 !px-2 !text-xs"
                 placeholder="CATATAN BAGI VEHICULAR GIRN..."
               />
             </div>
@@ -2035,11 +2274,12 @@
 
           <!-- 7. INTERNET -->
           <div
-            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2"
+            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2 hover:border-purple-300 transition"
+            id="card_Internet"
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-extrabold text-slate-800 text-xs sm:text-sm">
+                <div class="font-black text-slate-800 text-xs sm:text-sm">
                   🌐 INTERNET
                 </div>
                 <div class="text-[10px] text-slate-500 font-semibold">
@@ -2047,7 +2287,7 @@
                 </div>
               </div>
               <span
-                class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold"
+                class="text-[10px] bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded font-black"
                 >INET</span
               >
             </div>
@@ -2057,36 +2297,61 @@
                   class="text-[10px] font-extrabold text-emerald-700 block mb-1"
                   >✅ BAIK (UNIT)</label
                 >
-                <input
-                  type="number"
-                  id="modalInternet_Baik"
-                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-emerald-800 bg-emerald-50/60 border-emerald-300"
-                  value="0"
-                  min="0"
-                />
+                <div class="flex items-center gap-1">
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalInternet_Baik', -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="modalInternet_Baik"
+                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                    value="1"
+                    min="0"
+                  />
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalInternet_Baik', 1)"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
               <div>
                 <label
                   class="text-[10px] font-extrabold text-red-700 block mb-1"
                   >❌ ROSAK (UNIT)</label
                 >
-                <input
-                  type="number"
-                  id="modalInternet_Rosak"
-                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-red-800 bg-red-50/60 border-red-300"
-                  value="0"
-                  min="0"
-                />
+                <div class="flex items-center gap-1">
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalInternet_Rosak', -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="modalInternet_Rosak"
+                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
+                    value="0"
+                    min="0"
+                  />
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalInternet_Rosak', 1)"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
             <div>
-              <label class="text-[10px] font-bold text-slate-600 block mb-1"
-                >CATATAN INTERNET</label
-              >
               <input
                 type="text"
                 id="modalCatatanInternet"
-                class="form-control !min-h-[36px] !py-1 !px-2 !text-xs"
+                class="form-control !min-h-[34px] !py-1 !px-2 !text-xs"
                 placeholder="CATATAN BAGI INTERNET..."
               />
             </div>
@@ -2094,19 +2359,20 @@
 
           <!-- 8. HANDPHONE -->
           <div
-            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2"
+            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2 hover:border-purple-300 transition"
+            id="card_Handphone"
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-extrabold text-slate-800 text-xs sm:text-sm">
-                  📱 HANDPHONE
+                <div class="font-black text-slate-800 text-xs sm:text-sm">
+                  📱 HANDPHONE RASMI
                 </div>
                 <div class="text-[10px] text-slate-500 font-semibold">
-                  Telefon Bimbit Rasmi
+                  Telefon Bimbit Rasmi Bilik Kawalan
                 </div>
               </div>
               <span
-                class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold"
+                class="text-[10px] bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded font-black"
                 >HP</span
               >
             </div>
@@ -2116,36 +2382,61 @@
                   class="text-[10px] font-extrabold text-emerald-700 block mb-1"
                   >✅ BAIK (UNIT)</label
                 >
-                <input
-                  type="number"
-                  id="modalHandphone_Baik"
-                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-emerald-800 bg-emerald-50/60 border-emerald-300"
-                  value="0"
-                  min="0"
-                />
+                <div class="flex items-center gap-1">
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalHandphone_Baik', -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="modalHandphone_Baik"
+                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                    value="1"
+                    min="0"
+                  />
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalHandphone_Baik', 1)"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
               <div>
                 <label
                   class="text-[10px] font-extrabold text-red-700 block mb-1"
                   >❌ ROSAK (UNIT)</label
                 >
-                <input
-                  type="number"
-                  id="modalHandphone_Rosak"
-                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-red-800 bg-red-50/60 border-red-300"
-                  value="0"
-                  min="0"
-                />
+                <div class="flex items-center gap-1">
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalHandphone_Rosak', -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="modalHandphone_Rosak"
+                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
+                    value="0"
+                    min="0"
+                  />
+                  <button
+                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    onclick="larasJumlahInput('modalHandphone_Rosak', 1)"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
             <div>
-              <label class="text-[10px] font-bold text-slate-600 block mb-1"
-                >CATATAN HANDPHONE</label
-              >
               <input
                 type="text"
                 id="modalCatatanHandphone"
-                class="form-control !min-h-[36px] !py-1 !px-2 !text-xs"
+                class="form-control !min-h-[34px] !py-1 !px-2 !text-xs"
                 placeholder="CATATAN BAGI HANDPHONE..."
               />
             </div>
@@ -2154,15 +2445,16 @@
 
         <div class="btn-group">
           <button class="btn btn-purple" onclick="simpanChecklistDariModal()">
-            💾 SIMPAN KE CLOUD</button
-          ><button class="btn btn-secondary" onclick="tutupModalChecklist()">
+            💾 SIMPAN CHECKLIST PERKAKAS
+          </button>
+          <button class="btn btn-secondary" onclick="tutupModalChecklist()">
             BATAL
           </button>
         </div>
       </div>
     </div>
 
-    <!-- OTHER SYSTEM MODALS -->
+    <!-- PASSWORD MODAL -->
     <div class="modal-overlay" id="passwordModal">
       <div class="modal sm:!max-w-md">
         <div class="modal-header">
@@ -2189,13 +2481,16 @@
         </div>
         <div class="btn-group">
           <button class="btn btn-primary" onclick="sahkanPassword()">
-            SAHKAN</button
-          ><button class="btn btn-secondary" onclick="tutupModalPassword()">
+            SAHKAN
+          </button>
+          <button class="btn btn-secondary" onclick="tutupModalPassword()">
             BATAL
           </button>
         </div>
       </div>
     </div>
+
+    <!-- ALERT MODAL -->
     <div class="modal-overlay" id="customAlertModal">
       <div class="modal sm:!max-w-md">
         <div class="modal-header">
@@ -2215,6 +2510,8 @@
         </div>
       </div>
     </div>
+
+    <!-- CONFIRM MODAL -->
     <div class="modal-overlay" id="customConfirmModal">
       <div class="modal sm:!max-w-md">
         <div class="modal-header">
@@ -2229,18 +2526,16 @@
         ></p>
         <div class="btn-group">
           <button class="btn btn-primary" onclick="tutupCustomConfirm(true)">
-            YA</button
-          ><button
-            class="btn btn-secondary"
-            onclick="tutupCustomConfirm(false)"
-          >
+            YA
+          </button>
+          <button class="btn btn-secondary" onclick="tutupCustomConfirm(false)">
             BATAL
           </button>
         </div>
       </div>
     </div>
 
-    <!-- MODAL URUS SENARAI MASTER KATEGORI -->
+    <!-- MODAL URUS MASTER -->
     <div class="modal-overlay" id="urusMasterModal">
       <div class="modal">
         <div class="modal-header">
@@ -2292,7 +2587,7 @@
       </div>
     </div>
 
-    <!-- MODAL URUS SENARAI JENTERA MASTER -->
+    <!-- MODAL URUS JENTERA MASTER -->
     <div class="modal-overlay" id="urusJenteraModal">
       <div class="modal">
         <div class="modal-header">
@@ -2411,7 +2706,6 @@
       let senaraiBalaiMaster = [...DEFAULT_BALAI];
       let senaraiPangkatMaster = [...DEFAULT_PANGKAT];
       let senaraiUnitMaster = [...DEFAULT_UNIT];
-
       let logistikJentera = [];
 
       let supabaseUrl = 'https://hglmbrqweijpguxfeloq.supabase.co';
@@ -2521,7 +2815,6 @@
           'logistikJentera',
           JSON.stringify(logistikJentera)
         );
-        console.log('✅ Data disimpan ke localStorage');
       }
 
       function muatDariLocalStorage() {
@@ -2541,9 +2834,7 @@
         if (savedBalaiMaster) {
           senaraiBalaiMaster = JSON.parse(savedBalaiMaster);
           DEFAULT_BALAI.forEach((b) => {
-            if (!senaraiBalaiMaster.includes(b)) {
-              senaraiBalaiMaster.push(b);
-            }
+            if (!senaraiBalaiMaster.includes(b)) senaraiBalaiMaster.push(b);
           });
         } else {
           senaraiBalaiMaster = [...DEFAULT_BALAI];
@@ -2565,8 +2856,6 @@
 
         const savedLogJentera = localStorage.getItem('logistikJentera');
         if (savedLogJentera) logistikJentera = JSON.parse(savedLogJentera);
-
-        console.log('✅ Data dimuat dari localStorage');
       }
 
       async function tarikDataSupabase() {
@@ -2653,11 +2942,9 @@
                 senaraiUnitMaster = d.senaraiUnitMaster;
 
               simpanKeLocalStorage();
-              console.log('✅ Auto-tarik berjaya');
             }
           }
         } catch (e) {
-          console.log('⚠️ Auto-tarik gagal:', e.message);
           muatDariLocalStorage();
         }
       }
@@ -2668,12 +2955,6 @@
         let id = 1000;
 
         const cfrtData = [
-          [
-            'CFRT * 019',
-            'VNE 4358',
-            'HINO XZC720R ZKFRL3',
-            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
-          ],
           [
             'CFRT 1',
             'VLN 5716',
@@ -2717,19 +2998,6 @@
             '03. COMPACT FIRE RESCUE TENDER (CFRT)',
           ],
         ];
-        cfrtData.forEach((d) =>
-          logistikJentera.push({
-            id: ++id,
-            callsign: d[0],
-            plate: d[1],
-            model: d[2],
-            jenis: d[3],
-            kategori: 'FRT/LFRT/CFRT/RFRT',
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          })
-        );
 
         const frtData = [
           ['J1-01', 'BMK 976', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
@@ -2757,8 +3025,213 @@
             'MERCEDES ATEGO',
             '02. LIGHT FIRE RESCUE TENDER (LFRT)',
           ],
+          ['J1-11', 'BMK 1021', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          ['J1-13', 'BMK 982', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          [
+            'J1-14',
+            'BJW 4563',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          ['J1-15', 'BLV 9703', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          [
+            'J1-16',
+            'BJY 3594',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          ['J1-17', 'BKN 3325', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          ['J1-18', 'BMK 1013', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          [
+            'J1-19',
+            'BJY 3445',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          ['J1-20', 'BKN 7156', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          ['J1-21', 'BMK 1030', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          [
+            'J1-22',
+            'BJW 4599',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          ['J1-23', 'BMK 1014', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          [
+            'J1-24',
+            'BJY 3364',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          [
+            'J1-27',
+            'BJW 4548',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          ['J1-28', 'BLW 6720', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          [
+            'J1-29',
+            'BJW 4575',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          [
+            'J1-31',
+            'BJT 8258',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          ['J1-32', 'BLX 4668', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          [
+            'J1-33',
+            'BJY 3386',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          [
+            'J1-36',
+            'BJW 4573',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          ['J1-38', 'BMK 4620', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          [
+            'J1-39',
+            'BJW 4569',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          ['J1-40', 'BMK 1005', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          ['J1-41', 'BKN 7309', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          [
+            'J1-42',
+            'BJT 8353',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          [
+            'J1-44',
+            'BKA 8796',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          ['J1-45', 'BLU 8034', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          ['J1-47', 'WUC 7006', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          ['J1-48', 'BGR 4065', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
+          ['J1-50', 'BMK 1015', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          [
+            'J1-51',
+            'BJW 4590',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          [
+            'J1-53',
+            'BJW 4561',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          ['J1-54', 'BLV 9856', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          [
+            'J1-55',
+            'BJT 8356',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          ['J1-56', 'WUB 9481', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          [
+            'J1-57',
+            'BKA 9304',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          ['J1-58', 'BMK 992', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          ['J1-59', 'BGR 3578', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
+          ['J1-60', 'BMK 984', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
+          [
+            'N/A',
+            'WDF 2115',
+            'NISSAN UD CPB14FHRT',
+            '01. FIRE RESCUE TENDER (FRT)',
+          ],
+          [
+            'N/A',
+            'WDF 4724',
+            'NISSAN UD CPB14FHRT',
+            '01. FIRE RESCUE TENDER (FRT)',
+          ],
+          [
+            'N/A',
+            'WEH 3367',
+            'NISSAN UD CPB14FHRT',
+            '01. FIRE RESCUE TENDER (FRT)',
+          ],
+          [
+            'N/A',
+            'WDF 2842',
+            'NISSAN UD CPB14FHRT',
+            '01. FIRE RESCUE TENDER (FRT)',
+          ],
+          [
+            'N/A',
+            'WEH 3358',
+            'NISSAN UD CPB14FHRT',
+            '01. FIRE RESCUE TENDER (FRT)',
+          ],
+          [
+            'N/A',
+            'WCC 4229',
+            'NISSAN UD CPB14FHRT',
+            '01. FIRE RESCUE TENDER (FRT)',
+          ],
+          [
+            'N/A',
+            'WEH 3365',
+            'NISSAN UD CPB14FHRT',
+            '01. FIRE RESCUE TENDER (FRT)',
+          ],
+          [
+            'N/A',
+            'WDF 2113',
+            'NISSAN UD CPB14FHRT',
+            '01. FIRE RESCUE TENDER (FRT)',
+          ],
         ];
-        frtData.forEach((d) =>
+
+        const rfrtData = [
+          [
+            'N/A',
+            'BGR 6274',
+            'FORD F350',
+            '04. RAPID FIRE RESCUE TENDER (RFRT)',
+          ],
+        ];
+
+        const sitrakData = [
+          ['SITRAK 1', 'BSJ 6359', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
+          ['SITRAK 2', 'BSL 7836', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
+          ['SITRAK 3', 'BSL 7849', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
+          ['SITRAK 4', 'BSL 7857', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
+          ['SITRAK 5', 'BSL 7876', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
+          ['SITRAK 6', 'BSL 7885', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
+          ['SITRAK 7', 'BSL 7895', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
+          ['SITRAK 8', 'BSL 7906', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
+        ];
+
+        const scaniaP94Data = [
+          ['W1-35', 'WHK 9429', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
+        ];
+
+        const semuaPemadam = [
+          ...cfrtData,
+          ...frtData,
+          ...rfrtData,
+          ...sitrakData,
+          ...scaniaP94Data,
+        ];
+
+        semuaPemadam.forEach((d) =>
           logistikJentera.push({
             id: ++id,
             callsign: d[0],
@@ -2772,7 +3245,426 @@
           })
         );
 
-        console.log('✅ Inventori Jentera Penuh Dimuat');
+        const emrsData = [
+          ['J2-01', 'BMP 3537', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-02', 'BNH 9581', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-03', 'BMQ 2930', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-04', 'BMT 158', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-05', 'BMT 1030', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-06', 'BMT 1034', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-07', 'BMT 1861', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-08', 'BMS 7089', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-09', 'BMS 7185', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-10', 'BMU 4233', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-11', 'BMU 5008', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-12', 'BMV 9267', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-13', 'BNE 654', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-14', 'BNE 754', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-15', 'BNE 1842', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-16', 'BNE 1944', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-17', 'BNG 3646', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-18', 'BNH 5275', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-19', 'BNH 9605', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+          ['J2-20', 'BNK 3528', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
+        ];
+
+        emrsData.forEach((d) =>
+          logistikJentera.push({
+            id: ++id,
+            callsign: d[0],
+            plate: d[1],
+            model: d[2],
+            jenis: d[3],
+            kategori: 'EMRS',
+            balai: 'UMUM / BEBAS',
+            status: 'SEDIA BEROPERASI',
+            catatan: '-',
+          })
+        );
+
+        const waterTankerData = [
+          ['J5-01', 'BMS 5928', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
+          ['J5-02', 'BMV 1317', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
+          ['J5-03', 'BMP 6933', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
+          ['J5-04', 'BMV 1436', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
+          ['J5-05', 'BMV 4137', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
+          ['J5-06', 'BMX 9594', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
+          ['J5-07', 'BNE 8418', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
+          ['J5-08', 'BMX 9580', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
+          ['J5-09', 'BNH 2712', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
+          ['J5-10', 'BNH 7962', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
+          ['J5-11', 'WLA 4678', 'MERCEDES WT 10000L', '15. MERCEDES WT 10000L'],
+          ['J5-12', 'WLA 4638', 'MERCEDES WT 10000L', '15. MERCEDES WT 10000L'],
+        ];
+
+        waterTankerData.forEach((d) =>
+          logistikJentera.push({
+            id: ++id,
+            callsign: d[0],
+            plate: d[1],
+            model: d[2],
+            jenis: d[3],
+            kategori: 'WATER TANKER',
+            balai: 'UMUM / BEBAS',
+            status: 'SEDIA BEROPERASI',
+            catatan: '-',
+          })
+        );
+
+        const khasBompaData = [
+          [
+            'J3-01',
+            'BHK 9085',
+            'TURN TABLE LADDER',
+            '10. TURN TABLE LADDER 52M',
+          ],
+          [
+            'J3-02',
+            'BHK 9416',
+            'TURN TABLE LADDER',
+            '10. TURN TABLE LADDER 32M',
+          ],
+          [
+            'J3-03',
+            'BHK 9070',
+            'TURN TABLE LADDER',
+            '10. TURN TABLE LADDER 32M',
+          ],
+          ['J4-01', 'WEU 5287', 'HAZMAT', '17. HAZMAT'],
+          ['J7-01', 'WUP 4200', 'RRV', '06. RRV'],
+          ['J7-02', 'WUQ 2616', 'RRV', '06. RRV'],
+          ['J7-03', 'WUQ 2751', 'RRV', '06. RRV'],
+          ['J8-01', 'WUN 8456', 'BATV', '14. BATV'],
+          ['J9-01', 'WUJ 9272', 'SIASATAN', 'FORENSICS'],
+          ['J9-02', 'FF 6853', 'SIASATAN', 'FORENSICS'],
+          ['J10-01', 'WSG 3646', 'KOMUNIKASI', '18. KOMUNIKASI'],
+          ['J11-01', 'BJS 3513', 'HPPM', '11. HPPM'],
+          [
+            'J12-01',
+            'T/BD/750',
+            'FOAM TENDER PUMP TRAILER',
+            '12. FOAM TENDER PUMP TRAILER',
+          ],
+          [
+            'J12-01',
+            'T/BD/744',
+            'FOAM TENDER PUMP TRAILER',
+            '12. FOAM TENDER PUMP TRAILER',
+          ],
+          ['J12-01', 'WXS 752', 'PRIME MOVER FOAM TRAILER', 'PRIME MOVER'],
+          ['J14-01', 'BGU 488', 'KEMBALIK', '22. KEMBALIK'],
+          [
+            'J15-01',
+            'VQ 7142',
+            'FOAM MONITOR DAN FOAM TENDER',
+            '13. FOAM MONITOR DAN FOAM TENDER',
+          ],
+          [
+            'J15-02',
+            'VQ 7144',
+            'FOAM MONITOR DAN FOAM TENDER',
+            '13. FOAM MONITOR DAN FOAM TENDER',
+          ],
+          ['J16-01', 'VBR 2450', 'ALP', '08. ALP'],
+          ['J16-02', 'BPD 7929', 'ALP', '08. ALP'],
+          ['LLJ', '-', 'COMMAND POST', '21. COMMAND POST'],
+          ['LLJ', 'N/A', 'POLARIS', 'AATV'],
+        ];
+
+        khasBompaData.forEach((d) =>
+          logistikJentera.push({
+            id: ++id,
+            callsign: d[0],
+            plate: d[1],
+            model: d[2],
+            jenis: d[3],
+            kategori: 'KHAS/BOMPA',
+            balai: 'UMUM / BEBAS',
+            status: 'SEDIA BEROPERASI',
+            catatan: '-',
+          })
+        );
+
+        const botData = [
+          ['04-14', '', 'ALUMINIUM', 'BOT'],
+          ['BP34', '', 'ALUMINIUM', 'BOT'],
+          ['34-14', '', 'ALUMINIUM', 'BOT'],
+          ['BP 048-10', '', 'ALUMINIUM', 'BOT'],
+          ['BP 059-10', '', 'ALUMINIUM', 'BOT'],
+          ['047-10', '', 'ALUMINIUM', 'BOT'],
+          ['BP 06', '', 'ALUMINIUM', 'BOT'],
+          ['BP 37', '', 'ALUMINIUM', 'BOT'],
+          ['BP 050-10', '', 'ALUMINIUM', 'BOT'],
+          ['BP 07-14', '', 'ALUMINIUM', 'BOT'],
+          ['BP 44', '', 'ALUMINIUM', 'BOT'],
+          ['036-10', '', 'ALUMINIUM', 'BOT'],
+          ['042-10', '', 'ALUMINIUM', 'BOT'],
+          ['BP 36', '', 'ALUMINIUM', 'BOT'],
+          ['B040-10', '', 'ALUMINIUM', 'BOT'],
+          ['-', '', 'ALUMINIUM', 'BOT'],
+          ['BP 56', '', 'ALUMINIUM', 'BOT'],
+          ['02-JB', '', 'ALUMINIUM', 'BOT'],
+          ['BP O35-10', '', 'ALUMINIUM', 'BOT'],
+          ['ISTANA', '', 'ALUMINIUM', 'BOT'],
+          ['BP 049-10', '', 'ALUMINIUM', 'BOT'],
+          ['BP 40', '', 'ALUMINIUM', 'BOT'],
+          ['BP 046-10', '', 'ALUMINIUM', 'BOT'],
+          ['BP 39', '', 'ALUMINIUM', 'BOT'],
+          ['PGH 41', '', 'ALUMINIUM', 'BOT'],
+          ['01-PSG', '', 'ALUMINIUM', 'BOT'],
+          ['03-PSG', '', 'ALUMINIUM', 'BOT'],
+          ['038-10 PSG', '', 'ALUMINIUM', 'BOT'],
+          ['02-PNS', '', 'ALUMINIUM', 'BOT'],
+          ['BP 041-10', '', 'ALUMINIUM', 'BOT'],
+          ['BP 46', '', 'ALUMINIUM', 'BOT'],
+          ['BP-044', '', 'ALUMINIUM', 'BOT'],
+          ['PTN 039-10', '', 'ALUMINIUM', 'BOT'],
+          ['BP 32/14', '', 'ALUMINIUM', 'BOT'],
+          ['BP 037', '', 'ALUMINIUM', 'BOT'],
+          ['BP 08-14', '', 'ALUMINIUM', 'BOT'],
+          ['RGT-04', '', 'ALUMINIUM', 'BOT'],
+          ['BP 04', '', 'ALUMINIUM', 'BOT'],
+          ['BP 38', '', 'ALUMINIUM', 'BOT'],
+          ['BP 47-10', '', 'ALUMINIUM', 'BOT'],
+          ['136-10', '', 'ALUMINIUM', 'BOT'],
+          ['BP 037-10', '', 'ALUMINIUM', 'BOT'],
+          ['TGK07', '', 'ALUMINIUM', 'BOT'],
+          ['WC 122', '', 'ALUMINIUM', 'BOT'],
+          ['-', '', 'ALUMINIUM', 'BOT'],
+          ['BP-05', '', 'ALUMINIUM', 'BOT'],
+          ['-', '', 'ARIB', 'BOT'],
+          ['O7', '', 'ARIB', 'BOT'],
+          ['N/A', '', 'FIBER', 'BOT'],
+          ['N/A', '', 'FIBER', 'BOT'],
+          ['PL 02', '', 'FIBER', 'BOT'],
+          ['N/A', '', 'FIBER', 'BOT'],
+          ['N/A', '', 'FIBER', 'BOT'],
+          ['N/A', '', 'FIBER', 'BOT'],
+          ['N/A', '', 'FIBER', 'BOT'],
+          ['N/A', '', 'FIBER', 'BOT'],
+          ['N/A', '', 'FIBER', 'BOT'],
+          ['N/A', '', 'FIBER', 'BOT'],
+          ['N/A', '', 'FIBER', 'BOT'],
+          ['WC 1', '', 'JETSKI', 'BOT'],
+          ['WC 3', '', 'JETSKI', 'BOT'],
+          ['KCB24', '', 'KEVLAR', 'BOT'],
+          ['KCB09', '', 'KEVLAR', 'BOT'],
+          ['N/A', '', 'LIGHT SAR BOAT (HDPE)', 'BOT'],
+          ['N/A', '', 'LIGHT SAR BOAT (HDPE)', 'BOT'],
+          ['N/A', '', 'LIGHT SAR BOAT (HDPE)', 'BOT'],
+          ['N/A', '', 'LIGHT SAR BOAT (HDPE)', 'BOT'],
+          ['N/A', '', 'LIGHT SAR BOAT (HDPE)', 'BOT'],
+          ['GTB 1860', '', 'MUD BOAT', 'BOT'],
+          ['N/A', '', 'RUBBER DINGHY', 'BOT'],
+        ];
+
+        botData.forEach((d) =>
+          logistikJentera.push({
+            id: ++id,
+            callsign: d[0],
+            plate: d[1],
+            model: d[2],
+            jenis: d[3],
+            kategori: 'BOT',
+            balai: 'UMUM / BEBAS',
+            status: 'SEDIA BEROPERASI',
+            catatan: '-',
+          })
+        );
+
+        const rimData = [
+          ['J6-01', 'BGT 231', 'RIM', '19. RIM'],
+          ['J6-02', 'BGT 240', 'RIM', '19. RIM'],
+          ['J6-03', 'BGT 229', 'RIM', '19. RIM'],
+          ['J6-04', 'BGT 226', 'RIM', '19. RIM'],
+          ['J6-05', 'BGT 227', 'RIM', '19. RIM'],
+          ['J6-06', 'BGT 225', 'RIM', '19. RIM'],
+          ['J6-07', 'WQS 5095', 'RIM', '19. RIM'],
+          ['J6-08', 'WQS 5033', 'RIM', '19. RIM'],
+          ['J6-09', 'WQS 5291', 'RIM', '19. RIM'],
+          ['J6-10', 'WQS 5092', 'RIM', '19. RIM'],
+          ['J6-11', 'WQS 5202', 'RIM', '19. RIM'],
+          ['J6-12', 'WQS 5120', 'RIM', '19. RIM'],
+          ['', 'VDN 4921', 'RIM', '19. RIM'],
+          ['', 'VDN 4923', 'RIM', '19. RIM'],
+          ['', 'VDN 4928', 'RIM', '19. RIM'],
+          ['', 'VDM 4042', 'RIM', '19. RIM'],
+          ['', 'VDM 4047', 'RIM', '19. RIM'],
+          ['', 'VDM 4054', 'RIM', '19. RIM'],
+          ['', 'VDM 4059', 'RIM', '19. RIM'],
+          ['', 'VDM 4933', 'RIM', '19. RIM'],
+          ['', 'VDM 4035', 'RIM', '19. RIM'],
+          ['', 'JVW 3497', 'RIM', '19. RIM'],
+          ['', 'JVW 3498', 'RIM', '19. RIM'],
+        ];
+
+        rimData.forEach((d) =>
+          logistikJentera.push({
+            id: ++id,
+            callsign: d[0] || 'N/A',
+            plate: d[1],
+            model: d[2],
+            jenis: d[3],
+            kategori: 'RIM',
+            balai: 'UMUM / BEBAS',
+            status: 'SEDIA BEROPERASI',
+            catatan: '-',
+          })
+        );
+
+        const kenderaanData = [
+          ['UTL', 'WA4358Y', 'ISUZU 5 TAN', 'LORI'],
+          ['UTL', 'WA4475Y', 'ISUZU 3 TAN', 'LORI'],
+          ['UTL', 'BHX 483', 'HICOM HANDALAN - 5 TAN', 'LORI'],
+          ['UTL', 'WFE4154', 'ISUZU 3 TAN', 'LORI'],
+          ['UTL', 'BHX 546', 'HICOM HANDALAN - 5 TAN', 'LORI'],
+          ['UTL', 'WA4483Y', 'ISUZU 3 TAN', 'LORI'],
+          ['UTL', 'WUJ6257', 'HILUX', '4X4'],
+          ['UTL', 'WC5247G', 'HILUX', '4X4'],
+          ['UTL', 'WKJ4698', 'PAJERO', '4X4'],
+          ['UTL', 'WTF9271', 'HILUX', '4X4'],
+          ['UTL', 'WA6537V', 'HILUX', '4X4'],
+          ['UTL', 'VGP1742', 'MITSUBISHI TRITON', '4X4'],
+          ['UTL', 'WA6327V', 'HILUX', '4X4'],
+          ['UTL', 'WUJ6167', 'HILUX', '4X4'],
+          ['UTL', 'WA6544V', 'HILUX', '4X4'],
+          ['UTL', 'VDL1687', 'HILUX', '4X4'],
+          ['UTL', 'VDL2079', 'HILUX', '4X4'],
+          ['UTL', 'WRX4890', 'HILUX', '4X4'],
+          ['UTL', 'VDL1864', 'HILUX', '4X4'],
+          ['UTL', 'VDL1943', 'HILUX', '4X4'],
+          ['UTL', 'WKK1530', 'PAJERO', '4X4'],
+          ['UTL', 'WBU569', 'PAJERO', '4X4'],
+          ['UTL', 'WKJ4588', 'PAJERO', '4X4'],
+          ['UTL', 'WA6294V', 'HILUX', '4X4'],
+          ['UTL', 'WTF9572', 'HILUX', '4X4'],
+          ['UTL', 'WC5276G', 'HILUX', '4X4'],
+          ['UTL', 'WC7813F', 'HILUX', '4X4'],
+          ['UTL', 'WWD8915', 'NAVARA', '4X4'],
+          ['UTL', 'WJV 8074', 'HINO', 'BAS'],
+          ['UTL', 'WLF8740', 'HINO', 'BAS'],
+          ['UTL', 'WA4480Y', 'ISUZU 3 TAN', 'LORI'],
+          ['UTL', 'BHX 765', 'HICOM HANDALAN - 5 TAN', 'LORI'],
+          ['UTL', 'BHX 753', 'HICOM HANDALAN - 5 TAN', 'LORI'],
+          ['UTL', 'WA4756Y', 'ISUZU 5 TAN', 'LORI'],
+          ['UTL', 'BHX 522', 'HICOM HANDALAN - 5 TAN', 'LORI'],
+          ['UTL', 'WA4340Y', 'ISUZU 3 TAN', 'LORI'],
+          ['UTL', 'WA4826Y', 'ISUZU 5 TAN', 'LORI'],
+          ['UTL', 'BHX 524', 'HICOM HANDALAN - 5 TAN', 'LORI'],
+          ['UTL', 'BHX 560', 'HICOM HANDALAN - 5 TAN', 'LORI'],
+          ['UTL', 'WHA9712', 'ISUZU V6', '4X4'],
+          ['UTL', 'WJX4320', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX4301', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX4330', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX4325', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX4303', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX4321', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX3943', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX3935', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX4304', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX4327', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX4300', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX3957', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX4322', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX4326', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX3951', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX 3952', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX4324', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX3959', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX3941', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX3942', 'KEMBARA', '4X4'],
+          ['UTL', 'WLG2276', 'KIA PREGIO', 'VAN'],
+          ['UTL', 'WLG2285', 'KIA PREGIO', 'VAN'],
+          ['UTL', 'VGP1779', 'MITSUBISHI TRITON', '4X4'],
+          ['UTL', 'VGP1781', 'MITSUBISHI TRITON', '4X4'],
+          ['UTL', 'WA4816Y', 'ISUZU 5 TAN', 'LORI'],
+          ['UTL', 'VGP1767', 'MITSUBISHI TRITON', '4X4'],
+          ['UTL', 'VGP1783', 'MITSUBISHI TRITON', '4X4'],
+          ['UTL', 'VGP1763', 'MITSUBISHI TRITON', '4X4'],
+          ['UTL', 'WWD8843', 'NAVARA', '4X4'],
+          ['UTL', 'WKJ4569', 'PAJERO', '4X4'],
+          ['UTL', 'WKJ8172', 'NISSAN COASTER', 'BAS'],
+          ['UTL', 'WPQ7891', 'NISSAN XTRAIL', '4X4'],
+          ['UTL', 'WXN9765', 'DMAX ISUZU', '4X4'],
+          ['UTL', 'WUJ6235', 'HILUX', '4X4'],
+          ['UTL', 'WUJ6274', 'HILUX', '4X4'],
+          ['UTL', 'WA6314V', 'HILUX', '4X4'],
+          ['UTL', 'WKJ4691', 'PAJERO', '4X4'],
+          ['UTL', 'WXN9142', 'DMAX ISUZU', '4X4'],
+          ['UTL', 'WA6251Y', 'HILUX', '4X4'],
+          ['UTL', 'WTF9320', 'HILUX', '4X4'],
+          ['UTL', 'WA6307V', 'HILUX', '4X4'],
+          ['UTL', 'WUJ6394', 'HILUX', '4X4'],
+          ['UTL', 'WWD8950', 'NAVARA', '4X4'],
+          ['UTL', 'WKJ4708', 'PAJERO', '4X4'],
+          ['UTL', 'WKJ 4613', 'PAJERO', '4X4'],
+          ['UTL', 'WKJ4585', 'PAJERO', '4X4'],
+          ['UTL', 'W6053F', 'PERODUA ALZA', 'MPV'],
+          ['UTL', 'W5224F', 'PERODUA ALZA', 'MPV'],
+          ['UTL', 'W6064F', 'PERODUA ALZA', 'MPV'],
+          ['UTL', 'W6005F', 'PERODUA ALZA', 'MPV'],
+          ['UTL', 'W6035F', 'PERODUA ALZA', 'MPV'],
+          ['UTL', 'WGR3641', 'RUSA', 'VAN'],
+          ['UTL', 'WGR 4100', 'RUSA', 'VAN'],
+          ['UTL', 'WGR4118', 'RUSA', 'VAN'],
+          ['UTL', 'WGR 4072', 'RUSA', 'VAN'],
+          ['UTL', 'WGR4193', 'RUSA', 'VAN'],
+          ['UTL', 'WGR1239', 'RUSA', 'VAN'],
+          ['UTL', 'WGR1367', 'RUSA', 'VAN'],
+          ['UTL', 'WGR4119', 'RUSA', 'VAN'],
+          ['UTL', 'WA7194V', 'TOYOTA FORTUNER', '4X4'],
+          ['UTL', 'WPW1403', 'TOYOTA HIACE', 'VAN'],
+          ['UTL', 'WSA4792', 'TOYOTA HIACE', 'VAN'],
+          ['UTL', 'WUM3542', 'URVAN', 'VAN'],
+          ['UTL', 'WUM3529', 'URVAN', 'VAN'],
+          ['UTL', 'WUM3651', 'URVAN', 'VAN'],
+          ['UTL', 'WUM3641', 'URVAN', 'VAN'],
+          ['UTL', 'WUM3667', 'URVAN', 'VAN'],
+          ['UTL', 'WUM3843', 'URVAN', 'VAN'],
+          ['UTL', 'WUM3562', 'URVAN', 'VAN'],
+          ['UTL', 'WUM3752', 'URVAN', 'VAN'],
+          ['UTL', 'WUM 3544', 'URVAN', 'VAN'],
+          ['UTL', 'WUM3670', 'URVAN', 'VAN'],
+          ['UTL', 'WUM3792', 'URVAN', 'VAN'],
+          ['UTL', 'WUM3959', 'URVAN', 'VAN'],
+          ['UTL', 'WUM3985', 'URVAN', 'VAN'],
+          ['UTL', 'WPS3315', 'NISSAN XTRAIL', '4X4'],
+          ['UTL', 'WUM4666', 'URVAN', 'VAN'],
+          ['UTL', 'WA6498V', 'HILUX', '4X4'],
+          ['UTL', 'JXK 3990', 'HILUX', '4X4'],
+          ['UTL', 'WUJ6597', 'HILUX LOV', '4X4'],
+          ['UTL', 'VQF 5578', 'HILUX LOV', '4X4'],
+          ['UTL', 'VQF 5861', 'HILUX LOV', '4X4'],
+          ['UTL', 'VQF 5740', 'HILUX LOV', '4X4'],
+          ['UTL', 'VQF 5543', 'HILUX LOV', '4X4'],
+          ['UTL', 'VQN 1517', 'HILUX LOV', '4X4'],
+          ['UTL', 'VQN 1078', 'HILUX LOV', '4X4'],
+          ['UTL', 'VQN 1523', 'HILUX LOV', '4X4'],
+          ['UTL', 'VQK 5528', 'HILUX LOV', '4X4'],
+          ['UTL', 'VQV 8734', 'HILUX LOV', '4X4'],
+          ['UTL', 'VQR 6846', 'HILUX LOV', '4X4'],
+          ['UTL', 'VQR 6831', 'HILUX LOV', '4X4'],
+        ];
+
+        kenderaanData.forEach((d) =>
+          logistikJentera.push({
+            id: ++id,
+            callsign: d[0],
+            plate: d[1],
+            model: d[2],
+            jenis: d[3],
+            kategori: 'KENDERAAN/UTILITI',
+            balai: 'UMUM / BEBAS',
+            status: 'SEDIA BEROPERASI',
+            catatan: '-',
+          })
+        );
+
+        console.log(
+          '✅ Inventori Jentera Penuh Dimuat (' +
+            logistikJentera.length +
+            ' unit)'
+        );
         simpanKeLocalStorage();
       }
 
@@ -2788,6 +3680,483 @@
         if (f2) f2.innerHTML = opt;
       }
 
+      function bukaModalTambahAnggota() {
+        const modal = document.getElementById('addOfficerModal');
+        if (modal) modal.classList.add('active');
+        janaNamaAnggotaOptions();
+        kemaskiniAnggotaDipilihTable();
+      }
+
+      function tutupModalTambahAnggota() {
+        const modal = document.getElementById('addOfficerModal');
+        if (modal) modal.classList.remove('active');
+      }
+
+      function togolNamaAnggotaDropdown() {
+        document
+          .querySelector('#namaAnggotaMultiSelect .multi-select-trigger')
+          ?.classList.toggle('active');
+        document
+          .getElementById('namaAnggotaDropdown')
+          ?.classList.toggle('show');
+      }
+
+      function tapisNamaAnggotaDropdown() {
+        const v = (
+          document.getElementById('namaAnggotaSearchInput')?.value || ''
+        ).toUpperCase();
+        document
+          .querySelectorAll('#namaAnggotaOptionsContainer .multi-select-option')
+          .forEach(
+            (o) =>
+              (o.style.display = o.innerText.toUpperCase().includes(v)
+                ? 'flex'
+                : 'none')
+          );
+      }
+
+      function janaNamaAnggotaOptions() {
+        const container = document.getElementById(
+          'namaAnggotaOptionsContainer'
+        );
+        if (!container) return;
+        container.innerHTML = senaraiNamaMaster
+          .map((a) => {
+            const s = namaAnggotaTerpilih.some((x) => x.nama === a.nama)
+              ? 'selected'
+              : '';
+            return `<div class="multi-select-option ${s}" onclick="pilihNamaAnggotaOption('${
+              a.nama
+            }')"><div class="check-box">${
+              s ? '✓' : ''
+            }</div><div><div class="font-bold text-slate-800">${
+              a.nama
+            }</div><div class="text-[10px] text-slate-500">${a.pangkat} | ${
+              a.balai
+            }</div></div></div>`;
+          })
+          .join('');
+      }
+
+      function pilihNamaAnggotaOption(nama) {
+        const masterItem = senaraiNamaMaster.find((x) => x.nama === nama) || {};
+        const idx = namaAnggotaTerpilih.findIndex((x) => x.nama === nama);
+        if (idx > -1) {
+          namaAnggotaTerpilih.splice(idx, 1);
+        } else {
+          namaAnggotaTerpilih.push({
+            nama,
+            noTel: masterItem.noTel || '',
+            pangkat: masterItem.pangkat || 'KB 1',
+            unit: masterItem.unit || 'PEMADAM',
+            balai: masterItem.balai || 'PGO JOHOR',
+            pasukan: 'PASUKAN A',
+            status: 'BERTUGAS',
+            isKetuaBalai: 'TIDAK',
+            isPegawaiOperasi: 'TIDAK',
+            isPenyelia: 'TIDAK',
+            isBkb: 'TIDAK',
+            isPemandu: 'TIDAK',
+            catatan: '-',
+          });
+        }
+        kemaskiniAnggotaDipilihTable();
+        janaNamaAnggotaOptions();
+      }
+
+      function pilihSemuaNamaAnggota() {
+        senaraiNamaMaster.forEach((a) => {
+          if (!namaAnggotaTerpilih.some((x) => x.nama === a.nama)) {
+            namaAnggotaTerpilih.push({
+              nama: a.nama,
+              noTel: a.noTel || '',
+              pangkat: a.pangkat || 'KB 1',
+              unit: a.unit || 'PEMADAM',
+              balai: a.balai || 'PGO JOHOR',
+              pasukan: 'PASUKAN A',
+              status: 'BERTUGAS',
+              isKetuaBalai: 'TIDAK',
+              isPegawaiOperasi: 'TIDAK',
+              isPenyelia: 'TIDAK',
+              isBkb: 'TIDAK',
+              isPemandu: 'TIDAK',
+              catatan: '-',
+            });
+          }
+        });
+        kemaskiniAnggotaDipilihTable();
+        janaNamaAnggotaOptions();
+      }
+
+      function kosongkanNamaAnggota() {
+        namaAnggotaTerpilih = [];
+        kemaskiniAnggotaDipilihTable();
+        janaNamaAnggotaOptions();
+      }
+
+      function setSemuaAnggotaStatus(statusVal) {
+        namaAnggotaTerpilih.forEach((a) => (a.status = statusVal));
+        kemaskiniAnggotaDipilihTable();
+      }
+
+      function kemaskiniAnggotaDipilihTable() {
+        const tbody = document.getElementById('anggotaDipilihBody'),
+          tags = document.getElementById('namaAnggotaSelectedTags'),
+          badge = document.getElementById('selectedOfficerCountBadge');
+        if (!tbody || !tags) return;
+
+        if (badge) badge.innerText = namaAnggotaTerpilih.length + ' DIPILIH';
+
+        if (namaAnggotaTerpilih.length === 0) {
+          tbody.innerHTML =
+            '<tr><td colspan="7" class="text-center p-4 text-slate-400 font-bold">TIADA ANGGOTA DIPILIH</td></tr>';
+          tags.innerHTML =
+            '<span class="multi-select-placeholder">👤 PILIH ANGGOTA...</span>';
+          return;
+        }
+
+        tags.innerHTML = namaAnggotaTerpilih
+          .map((a) => `<span class="multi-select-tag">${a.nama}</span>`)
+          .join('');
+
+        tbody.innerHTML = namaAnggotaTerpilih
+          .map((item, i) => {
+            return `<tr>
+            <td>
+              <strong class="text-slate-800 text-xs">${item.nama}</strong>
+              <div class="text-[10px] text-slate-500 font-extrabold">${
+                item.pangkat
+              }</div>
+            </td>
+            <td><strong class="text-red-800 text-[10px]">${
+              item.balai
+            }</strong></td>
+            <td>
+              <select class="form-control !min-h-[32px] !py-1 !px-2 !text-xs font-bold" onchange="namaAnggotaTerpilih[${i}].pasukan=this.value">
+                <option value="PASUKAN A" ${
+                  item.pasukan === 'PASUKAN A' ? 'selected' : ''
+                }>PASUKAN A</option>
+                <option value="PASUKAN B" ${
+                  item.pasukan === 'PASUKAN B' ? 'selected' : ''
+                }>PASUKAN B</option>
+                <option value="PASUKAN C" ${
+                  item.pasukan === 'PASUKAN C' ? 'selected' : ''
+                }>PASUKAN C</option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control !min-h-[32px] !py-1 !px-2 !text-xs font-bold" onchange="namaAnggotaTerpilih[${i}].status=this.value">
+                <option value="BERTUGAS" ${
+                  item.status === 'BERTUGAS' ? 'selected' : ''
+                }>✅ BERTUGAS</option>
+                <option value="CUTI" ${
+                  item.status === 'CUTI' ? 'selected' : ''
+                }>🟡 CUTI</option>
+                <option value="CUTI SAKIT" ${
+                  item.status === 'CUTI SAKIT' ? 'selected' : ''
+                }>🔴 CUTI SAKIT</option>
+                <option value="TUGAS KHAS" ${
+                  item.status === 'TUGAS KHAS' ? 'selected' : ''
+                }>🟣 TUGAS KHAS</option>
+              </select>
+            </td>
+            <td>
+              <div class="flex flex-wrap gap-1 text-[9px] font-bold">
+                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1.5 py-0.5 rounded flex items-center gap-1">
+                  <input type="checkbox" ${
+                    item.isKetuaBalai === 'YA' ? 'checked' : ''
+                  } onchange="namaAnggotaTerpilih[${i}].isKetuaBalai = this.checked ? 'YA' : 'TIDAK'"> KB
+                </label>
+                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1.5 py-0.5 rounded flex items-center gap-1">
+                  <input type="checkbox" ${
+                    item.isPegawaiOperasi === 'YA' ? 'checked' : ''
+                  } onchange="namaAnggotaTerpilih[${i}].isPegawaiOperasi = this.checked ? 'YA' : 'TIDAK'"> PB OPERASI
+                </label>
+                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1.5 py-0.5 rounded flex items-center gap-1">
+                  <input type="checkbox" ${
+                    item.isPenyelia === 'YA' ? 'checked' : ''
+                  } onchange="namaAnggotaTerpilih[${i}].isPenyelia = this.checked ? 'YA' : 'TIDAK'"> PENYELIA
+                </label>
+                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1.5 py-0.5 rounded flex items-center gap-1">
+                  <input type="checkbox" ${
+                    item.isBkb === 'YA' ? 'checked' : ''
+                  } onchange="namaAnggotaTerpilih[${i}].isBkb = this.checked ? 'YA' : 'TIDAK'"> BKB
+                </label>
+                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1.5 py-0.5 rounded flex items-center gap-1">
+                  <input type="checkbox" ${
+                    item.isPemandu === 'YA' ? 'checked' : ''
+                  } onchange="namaAnggotaTerpilih[${i}].isPemandu = this.checked ? 'YA' : 'TIDAK'"> PEMANDU
+                </label>
+              </div>
+            </td>
+            <td>
+              <input type="text" class="form-control !min-h-[32px] !py-1 !px-2 !text-xs" value="${
+                item.catatan === '-' ? '' : item.catatan || ''
+              }" onchange="namaAnggotaTerpilih[${i}].catatan=this.value.toUpperCase() || '-'" placeholder="CATATAN"/>
+            </td>
+            <td class="text-center">
+              <button class="px-2 py-1 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="namaAnggotaTerpilih.splice(${i},1);kemaskiniAnggotaDipilihTable();janaNamaAnggotaOptions();">✕</button>
+            </td>
+          </tr>`;
+          })
+          .join('');
+      }
+
+      async function simpanAnggotaBaharu() {
+        if (namaAnggotaTerpilih.length === 0) {
+          tunjukCustomAlert('Sila pilih sekurang-kurangnya seorang anggota!');
+          return;
+        }
+
+        const shiftType = '12 JAM';
+        const shiftTime = '0800-2000';
+
+        namaAnggotaTerpilih.forEach((item) => {
+          rekodAnggota.push({
+            id:
+              'ANG_' +
+              Date.now() +
+              '_' +
+              Math.random().toString(36).substr(2, 4),
+            nama: item.nama,
+            noTel: item.noTel || '',
+            pangkat: item.pangkat || 'KB 1',
+            unit: item.unit || 'PEMADAM',
+            balai: item.balai || 'PGO JOHOR',
+            shiftType,
+            shiftTime,
+            isKetuaBalai: item.isKetuaBalai || 'TIDAK',
+            isPegawaiOperasi: item.isPegawaiOperasi || 'TIDAK',
+            isPenyelia: item.isPenyelia || 'TIDAK',
+            isBkb: item.isBkb || 'TIDAK',
+            isPemandu: item.isPemandu || 'TIDAK',
+            pasukan: item.pasukan || 'PASUKAN A',
+            status: item.status || 'BERTUGAS',
+            catatan: item.catatan || '-',
+          });
+        });
+
+        await hantarDataSupabase();
+        kemaskiniPaparData();
+        tutupModalTambahAnggota();
+        namaAnggotaTerpilih = [];
+        kemaskiniAnggotaDipilihTable();
+        tunjukCustomAlert('✅ Rekod kekuatan anggota berjaya disimpan!');
+      }
+
+      function bukaModalLogistikJentera() {
+        const modal = document.getElementById('logistikJenteraModal');
+        if (modal) modal.classList.add('active');
+        janaLogistikBalaiSelectOptions();
+        janaLogJenteraDropdown();
+        kemaskiniLogJenteraDipilihTable();
+      }
+
+      function tutupModalLogistikJentera() {
+        const modal = document.getElementById('logistikJenteraModal');
+        if (modal) modal.classList.remove('active');
+      }
+
+      function janaLogistikBalaiSelectOptions() {
+        const sel = document.getElementById('logModalBalai');
+        if (sel)
+          sel.innerHTML =
+            '<option value="">-- PILIH BALAI --</option>' +
+            senaraiBalaiMaster
+              .map((b) => `<option value="${b}">${b}</option>`)
+              .join('');
+      }
+
+      function togolLogJenteraDropdown() {
+        document
+          .querySelector('#logJenteraMultiSelect .multi-select-trigger')
+          ?.classList.toggle('active');
+        document.getElementById('logJenteraDropdown')?.classList.toggle('show');
+      }
+
+      function tapisLogJenteraDropdown() {
+        const v = (
+          document.getElementById('logJenteraSearchInput')?.value || ''
+        ).toUpperCase();
+        document
+          .querySelectorAll('#logJenteraOptionsContainer .multi-select-option')
+          .forEach(
+            (o) =>
+              (o.style.display = o.innerText.toUpperCase().includes(v)
+                ? 'flex'
+                : 'none')
+          );
+      }
+
+      function janaLogJenteraDropdown() {
+        const f =
+            document.getElementById('logKategoriFilter')?.value || 'SEMUA',
+          b = document.getElementById('logModalBalai')?.value || '';
+        const filtered = logistikJentera.filter(
+          (i) =>
+            (f === 'SEMUA' || i.kategori === f) &&
+            (!b || i.balai === 'UMUM / BEBAS' || i.balai === b)
+        );
+        const container = document.getElementById('logJenteraOptionsContainer');
+        if (!container) return;
+        container.innerHTML = filtered
+          .map((i) => {
+            const s = logJenteraTerpilih.some((x) => x.id === i.id)
+              ? 'selected'
+              : '';
+            return `<div class="multi-select-option ${s}" onclick="pilihLogJenteraOption(${
+              i.id
+            })"><div class="check-box">${
+              s ? '✓' : ''
+            }</div><div><div class="font-bold text-red-700">${i.callsign} (${
+              i.plate
+            })</div><div class="text-[10px] text-slate-500">${i.jenis} | ${
+              i.balai
+            }</div></div></div>`;
+          })
+          .join('');
+      }
+
+      function pilihLogJenteraOption(id) {
+        const j = logistikJentera.find((x) => x.id === id);
+        if (!j) return;
+        const idx = logJenteraTerpilih.findIndex((x) => x.id === id);
+        if (idx > -1) logJenteraTerpilih.splice(idx, 1);
+        else
+          logJenteraTerpilih.push({
+            ...j,
+            status: 'SEDIA BEROPERASI',
+            catatan: '-',
+          });
+        kemaskiniLogJenteraDipilihTable();
+        janaLogJenteraDropdown();
+      }
+
+      function pilihSemuaLogJentera() {
+        const f =
+            document.getElementById('logKategoriFilter')?.value || 'SEMUA',
+          b = document.getElementById('logModalBalai')?.value || '';
+        logistikJentera
+          .filter(
+            (i) =>
+              (f === 'SEMUA' || i.kategori === f) &&
+              (!b || i.balai === 'UMUM / BEBAS' || i.balai === b)
+          )
+          .forEach((j) => {
+            if (!logJenteraTerpilih.some((x) => x.id === j.id))
+              logJenteraTerpilih.push({
+                ...j,
+                status: 'SEDIA BEROPERASI',
+                catatan: '-',
+              });
+          });
+        kemaskiniLogJenteraDipilihTable();
+        janaLogJenteraDropdown();
+      }
+
+      function kosongkanLogJentera() {
+        logJenteraTerpilih = [];
+        kemaskiniLogJenteraDipilihTable();
+        janaLogJenteraDropdown();
+      }
+
+      function setSemuaJenteraStatus(statusVal) {
+        logJenteraTerpilih.forEach((j) => (j.status = statusVal));
+        kemaskiniLogJenteraDipilihTable();
+      }
+
+      function kemaskiniLogJenteraDipilihTable() {
+        const tbody = document.getElementById('logJenteraDipilihBody'),
+          tags = document.getElementById('logJenteraSelectedTags'),
+          badge = document.getElementById('selectedJenteraCountBadge');
+        if (!tbody || !tags) return;
+
+        if (badge) badge.innerText = logJenteraTerpilih.length + ' DIPILIH';
+
+        if (logJenteraTerpilih.length === 0) {
+          tbody.innerHTML =
+            '<tr><td colspan="7" class="text-center p-4 text-slate-400 font-bold">TIADA JENTERA DIPILIH</td></tr>';
+          tags.innerHTML =
+            '<span class="multi-select-placeholder">🔧 PILIH JENTERA...</span>';
+          return;
+        }
+
+        tags.innerHTML = logJenteraTerpilih
+          .map((j) => `<span class="multi-select-tag">${j.callsign}</span>`)
+          .join('');
+
+        tbody.innerHTML = logJenteraTerpilih
+          .map((item, i) => {
+            return `<tr>
+            <td><strong class="text-red-700">${item.callsign}</strong></td>
+            <td><span class="bg-slate-100 border px-2 py-0.5 rounded text-[10px] font-black">${
+              item.plate
+            }</span></td>
+            <td>${item.jenis}</td>
+            <td><span class="badge badge-unit-gen">${item.kategori}</span></td>
+            <td>
+              <select class="form-control !min-h-[32px] !py-1 !px-2 !text-xs font-extrabold" onchange="logJenteraTerpilih[${i}].status=this.value">
+                <option value="SEDIA BEROPERASI" ${
+                  item.status === 'SEDIA BEROPERASI' ? 'selected' : ''
+                }>✅ SEDIA BEROPERASI</option>
+                <option value="DALAM PENYELENGGARAAN" ${
+                  item.status === 'DALAM PENYELENGGARAAN' ? 'selected' : ''
+                }>🟡 DALAM PENYELENGGARAAN</option>
+                <option value="ROSAK/TIDAK BOLEH GUNA" ${
+                  item.status === 'ROSAK/TIDAK BOLEH GUNA' ? 'selected' : ''
+                }>❌ ROSAK / TIDAK BOLEH GUNA</option>
+              </select>
+            </td>
+            <td>
+              <input type="text" class="form-control !min-h-[32px] !py-1 !px-2 !text-xs" value="${
+                item.catatan === '-' ? '' : item.catatan || ''
+              }" onchange="logJenteraTerpilih[${i}].catatan=this.value.toUpperCase() || '-'" placeholder="CATATAN"/>
+            </td>
+            <td class="text-center">
+              <button class="px-2 py-1 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="logJenteraTerpilih.splice(${i},1);kemaskiniLogJenteraDipilihTable();janaLogJenteraDropdown();">✕</button>
+            </td>
+          </tr>`;
+          })
+          .join('');
+      }
+
+      async function simpanLogistikBertugas() {
+        const balai = document.getElementById('logModalBalai')?.value;
+        if (!balai) {
+          tunjukCustomAlert('Sila pilih balai terlebih dahulu!');
+          return;
+        }
+        if (logJenteraTerpilih.length === 0) {
+          tunjukCustomAlert('Sila pilih sekurang-kurangnya satu jentera!');
+          return;
+        }
+
+        logJenteraTerpilih.forEach((item) =>
+          logistikBertugas.push({
+            id:
+              'LOG_' +
+              Date.now() +
+              '_' +
+              Math.random().toString(36).substr(2, 4),
+            callsign: item.callsign,
+            plate: item.plate,
+            model: item.model,
+            jenis: item.jenis,
+            kategori: item.kategori,
+            balai,
+            status: item.status,
+            catatan: item.catatan || '-',
+          })
+        );
+
+        await hantarDataSupabase();
+        paparLogistikTable();
+        tutupModalLogistikJentera();
+        logJenteraTerpilih = [];
+        kemaskiniLogJenteraDipilihTable();
+        tunjukCustomAlert('✅ Logistik Jentera Bertugas berjaya disimpan!');
+      }
+
       function bukaModalChecklist() {
         const modal = document.getElementById('checklistModal');
         if (modal) modal.classList.add('active');
@@ -2798,12 +4167,50 @@
             senaraiBalaiMaster
               .map((b) => `<option value="${b}">${b}</option>`)
               .join('');
+          sel.value = '';
         }
+        resetChecklistModalInputs();
       }
 
       function tutupModalChecklist() {
         const modal = document.getElementById('checklistModal');
         if (modal) modal.classList.remove('active');
+      }
+
+      function larasJumlahInput(inputId, delta) {
+        const el = document.getElementById(inputId);
+        if (!el) return;
+        let v = parseInt(el.value) || 0;
+        v = Math.max(0, v + delta);
+        el.value = v;
+      }
+
+      function resetChecklistModalInputs() {
+        const senaraiPerkakas = [
+          'CAD',
+          'WIC',
+          'BOMRA',
+          'DesktopGirn',
+          'HandheldGirn',
+          'VehicularGirn',
+          'Internet',
+          'Handphone',
+        ];
+        senaraiPerkakas.forEach((id) => {
+          const baik = document.getElementById('modal' + id + '_Baik');
+          const rosak = document.getElementById('modal' + id + '_Rosak');
+          const cat = document.getElementById('modalCatatan' + id);
+          if (baik) baik.value = '1';
+          if (rosak) rosak.value = '0';
+          if (cat) cat.value = '';
+        });
+      }
+
+      function setSemuaChecklistDefault(paparAlert = true) {
+        resetChecklistModalInputs();
+        if (paparAlert === true) {
+          tunjukCustomAlert('⚡ Semua perkakas di-set kepada BAIK (1 Unit)!');
+        }
       }
 
       async function simpanChecklistDariModal() {
@@ -2821,15 +4228,11 @@
           );
           const catatanEl = document.getElementById('modalCatatan' + idPrefix);
 
-          const baik = parseInt(baikEl ? baikEl.value : 0) || 0;
-          const rosak = parseInt(rosakEl ? rosakEl.value : 0) || 0;
+          const baik = Math.max(0, parseInt(baikEl ? baikEl.value : 0) || 0);
+          const rosak = Math.max(0, parseInt(rosakEl ? rosakEl.value : 0) || 0);
           const catatan = catatanEl ? catatanEl.value.trim().toUpperCase() : '';
 
-          return {
-            baik,
-            rosak,
-            catatan,
-          };
+          return { baik, rosak, catatan };
         };
 
         const cad = getItemData('CAD');
@@ -2855,7 +4258,6 @@
           vehicularGirnDetail: vehicularGirn,
           internetDetail: internet,
           handphoneDetail: handphone,
-
           shiftType: shiftTypeEl ? shiftTypeEl.value : '12 JAM',
           shiftTime: shiftTimeEl ? shiftTimeEl.value : '0800-2000',
           timestamp: new Date().toISOString(),
@@ -2865,24 +4267,7 @@
         paparChecklistTable();
         tutupModalChecklist();
 
-        // Reset inputs to default
-        [
-          'CAD',
-          'WIC',
-          'BOMRA',
-          'DesktopGirn',
-          'HandheldGirn',
-          'VehicularGirn',
-          'Internet',
-          'Handphone',
-        ].forEach((id) => {
-          const baik = document.getElementById('modal' + id + '_Baik');
-          const rosak = document.getElementById('modal' + id + '_Rosak');
-          const cat = document.getElementById('modalCatatan' + id);
-          if (baik) baik.value = '0';
-          if (rosak) rosak.value = '0';
-          if (cat) cat.value = '';
-        });
+        resetChecklistModalInputs();
 
         tunjukCustomAlert(
           '✅ Checklist perkakas bilik kawalan berjaya disimpan!'
@@ -2914,17 +4299,7 @@
             item.internetDetail,
             item.handphoneDetail,
           ];
-          return (
-            items.some((d) => d && d.rosak > 0) ||
-            item.cad === 'ROSAK' ||
-            item.wic === 'ROSAK' ||
-            item.bomra === 'ROSAK' ||
-            item.desktopGirn === 'ROSAK' ||
-            item.handheldGirn === 'ROSAK' ||
-            item.vehicularGirn === 'ROSAK' ||
-            item.internet === 'ROSAK' ||
-            item.handphone === 'ROSAK'
-          );
+          return items.some((d) => d && d.rosak > 0);
         };
 
         const baikEl = document.getElementById('statChecklistBaik');
@@ -2944,56 +4319,28 @@
         }
         if (emptyMsgEl) emptyMsgEl.style.display = 'none';
 
-        const formatCell = (oldVal, detailObj) => {
-          if (
-            detailObj &&
-            (detailObj.baik !== undefined || detailObj.rosak !== undefined)
-          ) {
-            const baik = detailObj.baik || 0;
-            const rosak = detailObj.rosak || 0;
-            const catatan = detailObj.catatan || '';
+        const formatCell = (detailObj) => {
+          if (!detailObj)
+            return `<div class="text-center"><span class="badge badge-unit-gen">-</span></div>`;
+          const baik = detailObj.baik || 0;
+          const rosak = detailObj.rosak || 0;
+          const catatan = detailObj.catatan || '';
 
-            let badges = [];
-            if (baik > 0)
-              badges.push(
-                `<span class="badge badge-jentera-baik">B: ${baik}</span>`
-              );
-            if (rosak > 0)
-              badges.push(
-                `<span class="badge badge-jentera-rosak">R: ${rosak}</span>`
-              );
+          let badges = [];
+          if (baik > 0)
+            badges.push(
+              `<span class="badge badge-jentera-baik">B: ${baik}</span>`
+            );
+          if (rosak > 0)
+            badges.push(
+              `<span class="badge badge-jentera-rosak">R: ${rosak}</span>`
+            );
+          if (badges.length === 0)
+            badges.push(`<span class="badge badge-unit-gen">-</span>`);
 
-            if (badges.length === 0)
-              badges.push(`<span class="badge badge-unit-gen">-</span>`);
-
-            let html = `<div class="flex flex-col items-center gap-0.5"><div class="flex flex-wrap gap-1 justify-center">${badges.join(
-              ''
-            )}</div>`;
-            if (catatan && catatan !== '-') {
-              html += `<span class="catatan-box text-[9px] mt-0.5" title="${catatan}">${catatan}</span>`;
-            }
-            html += `</div>`;
-            return html;
-          }
-
-          // Legacy data compatibility
-          let status =
-            typeof oldVal === 'string' ? oldVal : detailObj?.status || 'N/A';
-          let jumlah = detailObj?.jumlah !== undefined ? detailObj.jumlah : '1';
-          let catatan = detailObj?.catatan || '';
-
-          if (status === 'TIADA') {
-            return `<div class="text-center"><span class="badge badge-unit-gen">TIADA / NA</span></div>`;
-          }
-
-          let badgeClass =
-            status === 'BAIK'
-              ? 'badge-jentera-baik'
-              : status === 'ROSAK'
-              ? 'badge-jentera-rosak'
-              : 'badge-unit-gen';
-          let html = `<div class="flex flex-col items-center gap-0.5">
-            <span class="badge ${badgeClass}">${status} [${jumlah}]</span>`;
+          let html = `<div class="flex flex-col items-center gap-0.5"><div class="flex flex-wrap gap-1 justify-center">${badges.join(
+            ''
+          )}</div>`;
           if (catatan && catatan !== '-') {
             html += `<span class="catatan-box text-[9px] mt-0.5" title="${catatan}">${catatan}</span>`;
           }
@@ -3005,14 +4352,14 @@
           const tr = document.createElement('tr');
           tr.innerHTML = `<td>${index + 1}</td>
             <td><strong>${item.balai || '-'}</strong></td>
-            <td>${formatCell(item.cad, item.cadDetail)}</td>
-            <td>${formatCell(item.wic, item.wicDetail)}</td>
-            <td>${formatCell(item.bomra, item.bomraDetail)}</td>
-            <td>${formatCell(item.desktopGirn, item.desktopGirnDetail)}</td>
-            <td>${formatCell(item.handheldGirn, item.handheldGirnDetail)}</td>
-            <td>${formatCell(item.vehicularGirn, item.vehicularGirnDetail)}</td>
-            <td>${formatCell(item.internet, item.internetDetail)}</td>
-            <td>${formatCell(item.handphone, item.handphoneDetail)}</td>
+            <td>${formatCell(item.cadDetail)}</td>
+            <td>${formatCell(item.wicDetail)}</td>
+            <td>${formatCell(item.bomraDetail)}</td>
+            <td>${formatCell(item.desktopGirnDetail)}</td>
+            <td>${formatCell(item.handheldGirnDetail)}</td>
+            <td>${formatCell(item.vehicularGirnDetail)}</td>
+            <td>${formatCell(item.internetDetail)}</td>
+            <td>${formatCell(item.handphoneDetail)}</td>
             <td>${item.shiftType || '12 JAM'}</td>
             <td>${item.shiftTime || '0800-2000'}</td>
             <td class="no-print"><button class="btn btn-danger" onclick="padamChecklist('${
@@ -3023,7 +4370,7 @@
       }
 
       async function padamChecklist(id) {
-        tunjukCustomConfirm('Padam semakan ini?', async (res) => {
+        tunjukCustomConfirm('Padam rekod semakan ini?', async (res) => {
           if (res) {
             senaraiChecklist = senaraiChecklist.filter((i) => i.id !== id);
             await hantarDataSupabase();
@@ -3070,21 +4417,6 @@
         paparLogistikTable();
         paparChecklistTable();
         janaLogistikBalaiSelectOptions();
-
-        if (
-          document
-            .getElementById('urusMasterModal')
-            ?.classList.contains('active')
-        ) {
-          renderSenaraiMaster();
-        }
-        if (
-          document
-            .getElementById('urusJenteraModal')
-            ?.classList.contains('active')
-        ) {
-          renderSenaraiJenteraMaster();
-        }
       }
 
       function kemaskiniPaparData() {
@@ -3151,6 +4483,7 @@
             peranan.push('<span class="badge badge-peranan">BKB</span>');
           if (item.isPemandu === 'YA')
             peranan.push('<span class="badge badge-peranan">PEMANDU</span>');
+
           const tr = document.createElement('tr');
           tr.innerHTML = `<td>${idx + 1}</td><td><strong>${
             item.pangkat
@@ -3323,307 +4656,6 @@
         kemaskiniPaparData();
       }
 
-      function togolNamaAnggotaDropdown() {
-        document
-          .querySelector('#namaAnggotaMultiSelect .multi-select-trigger')
-          ?.classList.toggle('active');
-        document
-          .getElementById('namaAnggotaDropdown')
-          ?.classList.toggle('show');
-      }
-      function tapisNamaAnggotaDropdown() {
-        const v = (
-          document.getElementById('namaAnggotaSearchInput')?.value || ''
-        ).toUpperCase();
-        document
-          .querySelectorAll('#namaAnggotaOptionsContainer .multi-select-option')
-          .forEach(
-            (o) =>
-              (o.style.display = o.innerText.toUpperCase().includes(v)
-                ? 'flex'
-                : 'none')
-          );
-      }
-      function pilihSemuaNamaAnggota() {
-        namaAnggotaTerpilih = senaraiNamaMaster.map((a) => a.nama);
-        kemaskiniNamaAnggotaTags();
-      }
-      function kosongkanNamaAnggota() {
-        namaAnggotaTerpilih = [];
-        kemaskiniNamaAnggotaTags();
-      }
-      function kemaskiniNamaAnggotaTags() {
-        const t = document.getElementById('namaAnggotaSelectedTags');
-        if (!t) return;
-        t.innerHTML =
-          namaAnggotaTerpilih.length === 0
-            ? '<span class="multi-select-placeholder">👤 PILIH ANGGOTA...</span>'
-            : namaAnggotaTerpilih
-                .map((n) => `<span class="multi-select-tag">${n}</span>`)
-                .join('');
-        janaNamaAnggotaOptions();
-      }
-      function janaNamaAnggotaOptions() {
-        const container = document.getElementById(
-          'namaAnggotaOptionsContainer'
-        );
-        if (!container) return;
-        container.innerHTML = senaraiNamaMaster
-          .map((a) => {
-            const s = namaAnggotaTerpilih.includes(a.nama) ? 'selected' : '';
-            return `<div class="multi-select-option ${s}" onclick="pilihNamaAnggotaOption('${
-              a.nama
-            }')"><div class="check-box">${
-              s ? '✓' : ''
-            }</div><div><div class="font-bold">${
-              a.nama
-            }</div><div class="text-[10px] text-slate-400">${a.pangkat} | ${
-              a.balai
-            }</div></div></div>`;
-          })
-          .join('');
-      }
-      function pilihNamaAnggotaOption(nama) {
-        if (namaAnggotaTerpilih.includes(nama))
-          namaAnggotaTerpilih = namaAnggotaTerpilih.filter((x) => x !== nama);
-        else namaAnggotaTerpilih.push(nama);
-        kemaskiniNamaAnggotaTags();
-      }
-
-      async function simpanAnggotaBaharu() {
-        if (namaAnggotaTerpilih.length === 0) {
-          tunjukCustomAlert('Sila pilih anggota!');
-          return;
-        }
-        const shiftType = '12 JAM';
-        const shiftTime = '0800-2000';
-
-        namaAnggotaTerpilih.forEach((nama) => {
-          const m = senaraiNamaMaster.find((x) => x.nama === nama) || {};
-          rekodAnggota.push({
-            id:
-              'ANG_' +
-              Date.now() +
-              '_' +
-              Math.random().toString(36).substr(2, 4),
-            nama,
-            noTel: m.noTel || '',
-            pangkat: m.pangkat || 'KB 1',
-            unit: m.unit || 'PEMADAM',
-            balai: m.balai || 'PGO JOHOR',
-            shiftType,
-            shiftTime,
-            isKetuaBalai:
-              document.getElementById('modalKetuaBalai')?.value || 'TIDAK',
-            isPegawaiOperasi:
-              document.getElementById('modalPegawaiOperasi')?.value || 'TIDAK',
-            isPenyelia:
-              document.getElementById('modalPenyeliaPasukan')?.value || 'TIDAK',
-            isBkb: document.getElementById('modalBkb')?.value || 'TIDAK',
-            isPemandu:
-              document.getElementById('modalPemandu')?.value || 'TIDAK',
-            pasukan:
-              document.getElementById('modalPasukan')?.value || 'PASUKAN A',
-            status: document.getElementById('modalStatus')?.value || 'BERTUGAS',
-            catatan: (document.getElementById('modalCatatan')?.value || '')
-              .trim()
-              .toUpperCase(),
-          });
-        });
-        await hantarDataSupabase();
-        kemaskiniPaparData();
-        tutupModalTambahAnggota();
-        namaAnggotaTerpilih = [];
-        const catEl = document.getElementById('modalCatatan');
-        if (catEl) catEl.value = '';
-        tunjukCustomAlert('✅ Anggota berjaya disimpan!');
-      }
-
-      function janaLogistikBalaiSelectOptions() {
-        const sel = document.getElementById('logModalBalai');
-        if (sel)
-          sel.innerHTML =
-            '<option value="">-- PILIH BALAI --</option>' +
-            senaraiBalaiMaster
-              .map((b) => `<option value="${b}">${b}</option>`)
-              .join('');
-      }
-      function togolLogJenteraDropdown() {
-        document
-          .querySelector('#logJenteraMultiSelect .multi-select-trigger')
-          ?.classList.toggle('active');
-        document.getElementById('logJenteraDropdown')?.classList.toggle('show');
-      }
-      function tapisLogJenteraDropdown() {
-        const v = (
-          document.getElementById('logJenteraSearchInput')?.value || ''
-        ).toUpperCase();
-        document
-          .querySelectorAll('#logJenteraOptionsContainer .multi-select-option')
-          .forEach(
-            (o) =>
-              (o.style.display = o.innerText.toUpperCase().includes(v)
-                ? 'flex'
-                : 'none')
-          );
-      }
-      function janaLogJenteraDropdown() {
-        const f =
-            document.getElementById('logKategoriFilter')?.value || 'SEMUA',
-          b = document.getElementById('logModalBalai')?.value || '';
-        const filtered = logistikJentera.filter(
-          (i) =>
-            (f === 'SEMUA' || i.kategori === f) &&
-            (!b || i.balai === 'UMUM / BEBAS' || i.balai === b)
-        );
-        const container = document.getElementById('logJenteraOptionsContainer');
-        if (!container) return;
-        container.innerHTML = filtered
-          .map((i) => {
-            const s = logJenteraTerpilih.some((x) => x.id === i.id)
-              ? 'selected'
-              : '';
-            return `<div class="multi-select-option ${s}" onclick="pilihLogJenteraOption(${
-              i.id
-            })"><div class="check-box">${
-              s ? '✓' : ''
-            }</div><div><div class="font-bold text-red-700">${i.callsign} (${
-              i.plate
-            })</div><div class="text-[10px] text-slate-500">${i.jenis} | ${
-              i.balai
-            }</div></div></div>`;
-          })
-          .join('');
-      }
-
-      function pilihLogJenteraOption(id) {
-        const j = logistikJentera.find((x) => x.id === id);
-        if (!j) return;
-        const idx = logJenteraTerpilih.findIndex((x) => x.id === id);
-        if (idx > -1) logJenteraTerpilih.splice(idx, 1);
-        else
-          logJenteraTerpilih.push({
-            ...j,
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          });
-        kemaskiniLogJenteraDipilihTable();
-        janaLogJenteraDropdown();
-      }
-      function pilihSemuaLogJentera() {
-        const f =
-            document.getElementById('logKategoriFilter')?.value || 'SEMUA',
-          b = document.getElementById('logModalBalai')?.value || '';
-        logistikJentera
-          .filter(
-            (i) =>
-              (f === 'SEMUA' || i.kategori === f) &&
-              (!b || i.balai === 'UMUM / BEBAS' || i.balai === b)
-          )
-          .forEach((j) => {
-            if (!logJenteraTerpilih.some((x) => x.id === j.id))
-              logJenteraTerpilih.push({
-                ...j,
-                status: 'SEDIA BEROPERASI',
-                catatan: '-',
-              });
-          });
-        kemaskiniLogJenteraDipilihTable();
-        janaLogJenteraDropdown();
-      }
-      function kosongkanLogJentera() {
-        logJenteraTerpilih = [];
-        kemaskiniLogJenteraDipilihTable();
-        janaLogJenteraDropdown();
-      }
-      function kemaskiniLogJenteraDipilihTable() {
-        const tbody = document.getElementById('logJenteraDipilihBody'),
-          tags = document.getElementById('logJenteraSelectedTags');
-        if (!tbody || !tags) return;
-        if (logJenteraTerpilih.length === 0) {
-          tbody.innerHTML =
-            '<tr><td colspan="7" class="text-center p-4 text-slate-400">TIADA JENTERA DIPILIH</td></tr>';
-          tags.innerHTML =
-            '<span class="multi-select-placeholder">🔧 PILIH JENTERA...</span>';
-          return;
-        }
-        tags.innerHTML = logJenteraTerpilih
-          .map((j) => `<span class="multi-select-tag">${j.callsign}</span>`)
-          .join('');
-        tbody.innerHTML = logJenteraTerpilih
-          .map(
-            (item, i) =>
-              `<tr><td><strong>${item.callsign}</strong></td><td>${
-                item.plate
-              }</td><td>${item.jenis}</td><td>${
-                item.kategori
-              }</td><td><select onchange="logJenteraTerpilih[${i}].status=this.value"><option value="SEDIA BEROPERASI" ${
-                item.status === 'SEDIA BEROPERASI' ? 'selected' : ''
-              }>SEDIA BEROPERASI</option><option value="DALAM PENYELENGGARAAN" ${
-                item.status === 'DALAM PENYELENGGARAAN' ? 'selected' : ''
-              }>DALAM PENYELENGGARAAN</option><option value="ROSAK/TIDAK BOLEH GUNA" ${
-                item.status === 'ROSAK/TIDAK BOLEH GUNA' ? 'selected' : ''
-              }>ROSAK</option></select></td><td><input type="text" value="${
-                item.catatan || ''
-              }" onchange="logJenteraTerpilih[${i}].catatan=this.value.toUpperCase()" placeholder="CATATAN"/></td><td><button class="btn btn-danger" onclick="logJenteraTerpilih.splice(${i},1);kemaskiniLogJenteraDipilihTable();janaLogJenteraDropdown();">✕</button></td></tr>`
-          )
-          .join('');
-      }
-
-      function bukaModalLogistikJentera() {
-        const modal = document.getElementById('logistikJenteraModal');
-        if (modal) modal.classList.add('active');
-        janaLogistikBalaiSelectOptions();
-        janaLogJenteraDropdown();
-      }
-      function tutupModalLogistikJentera() {
-        const modal = document.getElementById('logistikJenteraModal');
-        if (modal) modal.classList.remove('active');
-      }
-      async function simpanLogistikBertugas() {
-        const balai = document.getElementById('logModalBalai')?.value;
-        if (!balai) {
-          tunjukCustomAlert('Sila pilih balai!');
-          return;
-        }
-        if (logJenteraTerpilih.length === 0) {
-          tunjukCustomAlert('Sila pilih jentera!');
-          return;
-        }
-        logJenteraTerpilih.forEach((item) =>
-          logistikBertugas.push({
-            id:
-              'LOG_' +
-              Date.now() +
-              '_' +
-              Math.random().toString(36).substr(2, 4),
-            callsign: item.callsign,
-            plate: item.plate,
-            model: item.model,
-            jenis: item.jenis,
-            kategori: item.kategori,
-            balai,
-            status: item.status,
-            catatan: item.catatan,
-          })
-        );
-        await hantarDataSupabase();
-        paparLogistikTable();
-        tutupModalLogistikJentera();
-        logJenteraTerpilih = [];
-        kemaskiniLogJenteraDipilihTable();
-        tunjukCustomAlert('✅ Jentera berjaya disimpan!');
-      }
-
-      function bukaModalTambahAnggota() {
-        const modal = document.getElementById('addOfficerModal');
-        if (modal) modal.classList.add('active');
-        janaNamaAnggotaOptions();
-      }
-      function tutupModalTambahAnggota() {
-        const modal = document.getElementById('addOfficerModal');
-        if (modal) modal.classList.remove('active');
-      }
       function cetakLaporan() {
         window.print();
       }
@@ -3808,6 +4840,7 @@
            </tr>`;
         });
       }
+
       function padamJenteraMaster(id) {
         tunjukCustomConfirm(
           'Pasti untuk padam jentera ini dari Senarai Master Inventori?',
@@ -3921,15 +4954,28 @@
       window.hantarDataSupabase = hantarDataSupabase;
       window.tarikDataSupabase = tarikDataSupabase;
       window.rekodAnggota = rekodAnggota;
+
       window.bukaModalTambahAnggota = bukaModalTambahAnggota;
       window.tutupModalTambahAnggota = tutupModalTambahAnggota;
       window.simpanAnggotaBaharu = simpanAnggotaBaharu;
+      window.setSemuaAnggotaStatus = setSemuaAnggotaStatus;
+      window.kemaskiniAnggotaDipilihTable = kemaskiniAnggotaDipilihTable;
+      window.togolNamaAnggotaDropdown = togolNamaAnggotaDropdown;
+      window.tapisNamaAnggotaDropdown = tapisNamaAnggotaDropdown;
+      window.pilihNamaAnggotaOption = pilihNamaAnggotaOption;
+      window.pilihSemuaNamaAnggota = pilihSemuaNamaAnggota;
+      window.kosongkanNamaAnggota = kosongkanNamaAnggota;
+
       window.bukaModalLogistikJentera = bukaModalLogistikJentera;
       window.tutupModalLogistikJentera = tutupModalLogistikJentera;
       window.simpanLogistikBertugas = simpanLogistikBertugas;
+      window.setSemuaJenteraStatus = setSemuaJenteraStatus;
       window.bukaModalChecklist = bukaModalChecklist;
       window.tutupModalChecklist = tutupModalChecklist;
       window.simpanChecklistDariModal = simpanChecklistDariModal;
+      window.larasJumlahInput = larasJumlahInput;
+      window.setSemuaChecklistDefault = setSemuaChecklistDefault;
+
       window.padamAnggota = padamAnggota;
       window.padamLogistikBertugas = padamLogistikBertugas;
       window.padamChecklist = padamChecklist;
@@ -3942,21 +4988,17 @@
       window.tukarViewMobile = tukarViewMobile;
       window.kemaskiniPaparData = kemaskiniPaparData;
       window.pilihBalaiOption = pilihBalaiOption;
-      window.pilihNamaAnggotaOption = pilihNamaAnggotaOption;
       window.pilihSemuaBalai = pilihSemuaBalai;
       window.kosongkanBalai = kosongkanBalai;
-      window.pilihSemuaNamaAnggota = pilihSemuaNamaAnggota;
-      window.kosongkanNamaAnggota = kosongkanNamaAnggota;
       window.pilihSemuaLogJentera = pilihSemuaLogJentera;
       window.kosongkanLogJentera = kosongkanLogJentera;
       window.pilihLogJenteraOption = pilihLogJenteraOption;
       window.togolBalaiDropdown = togolBalaiDropdown;
-      window.togolNamaAnggotaDropdown = togolNamaAnggotaDropdown;
       window.togolLogJenteraDropdown = togolLogJenteraDropdown;
       window.tapisBalaiDropdown = tapisBalaiDropdown;
-      window.tapisNamaAnggotaDropdown = tapisNamaAnggotaDropdown;
       window.tapisLogJenteraDropdown = tapisLogJenteraDropdown;
       window.logJenteraTerpilih = logJenteraTerpilih;
+      window.namaAnggotaTerpilih = namaAnggotaTerpilih;
       window.kemaskiniLogJenteraDipilihTable = kemaskiniLogJenteraDipilihTable;
       window.janaLogJenteraDropdown = janaLogJenteraDropdown;
 
@@ -3999,9 +5041,7 @@
           });
         });
 
-        console.log(
-          '✅ Sistem sedia digunakan bersama pembetulan bug Modal Tambah Anggota.'
-        );
+        console.log('✅ Sistem sedia digunakan tanpa sebarang ralat sintaks.');
       };
     </script>
   </body>
