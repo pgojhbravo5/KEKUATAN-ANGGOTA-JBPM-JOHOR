@@ -1,12 +1,31 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="ms" class="h-full bg-slate-100">
   <head>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
     />
     <title>SISTEM KEKUATAN, LOGISTIK & CHECKLIST - JBPM NEGERI JOHOR</title>
+
+    <!-- PWA & Standalone Web App Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="JBPM Johor App" />
+    <meta name="application-name" content="JBPM Johor App" />
+    <meta name="theme-color" content="#b91c1c" />
+
+    <!-- Web App Manifest embedded inline via Data URL -->
+    <link
+      rel="manifest"
+      href="data:application/manifest+json;utf8,%7B%22name%22%3A%22JBPM%20Johor%20Sistem%20Kekuatan%20%26%20Logistik%22%2C%22short_name%22%3A%22JBPM%20Johor%22%2C%22description%22%3A%22Aplikasi%20Pengurusan%20Kekuatan%20Anggota%2C%20Logistik%20Jentera%20%26%20Checklist%20JBPM%20Johor%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230f172a%22%2C%22theme_color%22%3A%22%23b91c1c%22%2C%22orientation%22%3A%22any%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fplacehold.co%2F192x192%2Fb91c1c%2Fffffff%3Ftext%3DJBPM%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%2C%7B%22src%22%3A%22https%3A%2F%2Fplacehold.co%2F512x512%2Fb91c1c%2Fffffff%3Ftext%3DJBPM%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D"
+    />
+
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -32,6 +51,7 @@
         },
       };
     </script>
+
     <style>
       :root {
         --bomba-red: #b91c1c;
@@ -62,6 +82,7 @@
         color: var(--text-main);
         line-height: 1.5;
         padding-bottom: 80px;
+        user-select: none;
       }
       @media (min-width: 1024px) {
         body {
@@ -935,9 +956,13 @@
           <div class="logo-badge">JBPM</div>
           <div>
             <h1
-              class="text-base sm:text-xl font-black text-white leading-tight tracking-wide"
+              class="text-base sm:text-xl font-black text-white leading-tight tracking-wide flex items-center gap-2"
             >
-              SISTEM KEKUATAN, LOGISTIK & CHECKLIST
+              <span>SISTEM KEKUATAN, LOGISTIK & CHECKLIST</span>
+              <span
+                class="hidden sm:inline-block bg-yellow-400 text-slate-900 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-extrabold shadow"
+                >APP STANDALONE</span
+              >
             </h1>
             <p
               class="text-[10px] sm:text-xs text-yellow-400 font-bold tracking-wider mt-0.5"
@@ -949,6 +974,10 @@
         <div
           class="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-between sm:justify-end border-t sm:border-0 pt-2 sm:pt-0 border-red-800/40"
         >
+          <!-- Offline / PWA App Status -->
+          <div id="pwaStatusBadge" class="sync-badge sync-active">
+            <span id="pwaStatusText">📱 APPLIKASI OFFLINE SEDIA</span>
+          </div>
           <div id="cloudStatusBadge" class="sync-badge sync-inactive">
             <span>🟡 SUPABASE: MENYAMBUNG...</span>
           </div>
@@ -962,7 +991,7 @@
               ISNIN, 01 JULAI 2026
             </div>
             <div
-              class="text-xs sm:text-sm font-black text-yellow-400 leading-none"
+              class="text-xs sm:text-sm font-black text-yellow-400 leading-none mt-0.5"
               id="currentTime"
             >
               08:00:00 AM
@@ -979,8 +1008,8 @@
         <!-- Panel Tugasan Operasi -->
         <div class="card border-l-4 border-l-red-600">
           <div class="card-title">
-            <span>📋 1. TUGASAN & OPERASI HARIAN</span
-            ><span
+            <span>📋 1. TUGASAN & OPERASI HARIAN</span>
+            <span
               class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-100 text-red-900"
               >OPERASI</span
             >
@@ -1074,13 +1103,13 @@
           </div>
         </div>
 
-        <!-- Panel Cloud Storage -->
+        <!-- Panel Cloud Storage & Offline Backup (Standalone App Feature) -->
         <div class="card border-l-4 border-l-emerald-500">
           <div class="card-title">
-            <span>☁️ 3. PANGKALAN DATA CLOUD</span
-            ><span
+            <span>☁️ 3. SIMPANAN DATA STANDALONE</span>
+            <span
               class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-900"
-              >SUPABASE</span
+              >LOCAL & CLOUD</span
             >
           </div>
           <div class="flex flex-col gap-2">
@@ -1089,15 +1118,36 @@
                 class="btn btn-secondary text-xs"
                 onclick="tarikDataSupabase()"
               >
-                🔄 MUAT DATA
+                🔄 MUAT DATA CLOUD
               </button>
               <button
                 class="btn btn-emerald text-xs"
                 onclick="hantarDataSupabase()"
               >
-                ☁️ SIMPAN DATA
+                ☁️ SIMPAN KE CLOUD
               </button>
             </div>
+            <div class="grid grid-cols-2 gap-2 pt-1 border-t border-slate-100">
+              <button
+                class="btn btn-secondary text-xs bg-amber-50 hover:bg-amber-100 text-amber-900 border-amber-200"
+                onclick="eksportDataJSON()"
+              >
+                📥 EKSPORT BACKUP (JSON)
+              </button>
+              <button
+                class="btn btn-secondary text-xs bg-blue-50 hover:bg-blue-100 text-blue-900 border-blue-200"
+                onclick="pilihFailImport()"
+              >
+                📤 IMPORT BACKUP (JSON)
+              </button>
+            </div>
+            <input
+              type="file"
+              id="importFileInput"
+              accept=".json"
+              class="hidden"
+              onchange="importDataJSON(event)"
+            />
           </div>
         </div>
       </div>
@@ -1368,7 +1418,7 @@
       class="text-center py-6 px-4 no-print border-t border-slate-200/80 mt-8 mb-4"
     >
       <p class="text-xs font-black text-slate-600 tracking-wider">
-        &copy; 2026 PGO JOHOR | Hak Cipta Terpelihara
+        &copy; 2026 PGO JOHOR | Hak Cipta Terpelihara (Aplikasi Standalone)
       </p>
       <p class="text-[11px] font-extrabold text-slate-400 tracking-widest mt-1">
         PEMBANGUN APLIKASI : PB MOHAMAD AIDIL
@@ -2712,6 +2762,137 @@
       let supabaseKey =
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnbG1icnF3ZWlqcGd1eGZlbG9xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU1NDcyNDAsImV4cCI6MjEwMTEyMzI0MH0.xBuhxHVmkuIPC34421QfuCERIpBPFiyVi1sSC-PQAiQ';
 
+      /* --- Service Worker Registration for Offline Standalone Mode --- */
+      function daftarkanServiceWorkerStandalone() {
+        if ('serviceWorker' in navigator) {
+          const swCode = `
+            const CACHE_NAME = 'jbpm-johor-v1';
+            self.addEventListener('install', (e) => {
+              self.skipWaiting();
+            });
+            self.addEventListener('activate', (e) => {
+              e.waitUntil(clients.claim());
+            });
+            self.addEventListener('fetch', (e) => {
+              e.respondWith(
+                fetch(e.request).catch(() => caches.match(e.request))
+              );
+            });
+          `;
+          try {
+            const blob = new Blob([swCode], { type: 'application/javascript' });
+            const blobUrl = URL.createObjectURL(blob);
+            navigator.serviceWorker
+              .register(blobUrl)
+              .then(() => {
+                console.log('✅ Offline Standalone Service Worker Registered!');
+                kemaskiniPwaBadge(true);
+              })
+              .catch((err) => {
+                console.log('Service Worker registration skipped:', err);
+                kemaskiniPwaBadge(navigator.onLine);
+              });
+          } catch (e) {
+            kemaskiniPwaBadge(navigator.onLine);
+          }
+        }
+      }
+
+      function kemaskiniPwaBadge(isOnline) {
+        const pwaBadge = document.getElementById('pwaStatusBadge');
+        const pwaText = document.getElementById('pwaStatusText');
+        if (!pwaBadge || !pwaText) return;
+        if (navigator.onLine) {
+          pwaBadge.className = 'sync-badge sync-active';
+          pwaText.innerText = '📱 STANDALONE: TALIAN';
+        } else {
+          pwaBadge.className = 'sync-badge sync-inactive';
+          pwaText.innerText = '📡 STANDALONE: OFFLINE';
+        }
+      }
+
+      /* --- Standalone Data Export & Import (Backup & Restore) --- */
+      function eksportDataJSON() {
+        const dataObj = {
+          aplikasi: 'JBPM_JOHOR_STANDALONE',
+          tarikh_eksport: new Date().toISOString(),
+          rekodAnggota,
+          logistikBertugas,
+          senaraiChecklist,
+          senaraiNamaMaster,
+          senaraiBalaiMaster,
+          senaraiPangkatMaster,
+          senaraiUnitMaster,
+          logistikJentera,
+        };
+
+        const jsonString = JSON.stringify(dataObj, null, 2);
+        const blob = new Blob([jsonString], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const dateStr = new Date().toISOString().slice(0, 10);
+        a.href = url;
+        a.download = `JBPM_JOHOR_BACKUP_${dateStr}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        tunjukCustomAlert('✅ Fail backup data JSON berjaya di-muat turun!');
+      }
+
+      function pilihFailImport() {
+        const fileInput = document.getElementById('importFileInput');
+        if (fileInput) fileInput.click();
+      }
+
+      function importDataJSON(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          try {
+            const dataObj = JSON.parse(event.target.result);
+            if (!dataObj || !dataObj.aplikasi) {
+              throw new Error('Format fail JSON tidak sah.');
+            }
+
+            tunjukCustomConfirm(
+              'Import data baharu daripada fail JSON ini? Data semasa akan digantikan.',
+              async (res) => {
+                if (res) {
+                  if (dataObj.rekodAnggota) rekodAnggota = dataObj.rekodAnggota;
+                  if (dataObj.logistikBertugas)
+                    logistikBertugas = dataObj.logistikBertugas;
+                  if (dataObj.senaraiChecklist)
+                    senaraiChecklist = dataObj.senaraiChecklist;
+                  if (dataObj.senaraiNamaMaster)
+                    senaraiNamaMaster = dataObj.senaraiNamaMaster;
+                  if (dataObj.senaraiBalaiMaster)
+                    senaraiBalaiMaster = dataObj.senaraiBalaiMaster;
+                  if (dataObj.senaraiPangkatMaster)
+                    senaraiPangkatMaster = dataObj.senaraiPangkatMaster;
+                  if (dataObj.senaraiUnitMaster)
+                    senaraiUnitMaster = dataObj.senaraiUnitMaster;
+                  if (dataObj.logistikJentera)
+                    logistikJentera = dataObj.logistikJentera;
+
+                  simpanKeLocalStorage();
+                  kemaskiniSemuaPaparan();
+                  tunjukCustomAlert(
+                    '✅ Data berjaya di-import daripada fail backup!'
+                  );
+                }
+              }
+            );
+          } catch (err) {
+            tunjukCustomAlert('❌ Ralat semasa membaca fail: ' + err.message);
+          }
+        };
+        reader.readAsText(file);
+        e.target.value = ''; // reset file input
+      }
+
       function initSupabaseClient() {
         if (supabaseUrl && supabaseKey) {
           kemaskiniStatusCloud('active', '🟢 SUPABASE: DISAMBUNG');
@@ -2742,7 +2923,10 @@
 
       async function hantarDataSupabase() {
         if (!supabaseUrl || !supabaseKey) {
-          tunjukCustomAlert('❌ URL/Key Supabase tidak ditetapkan!');
+          simpanKeLocalStorage();
+          tunjukCustomAlert(
+            'ℹ️ Data disimpan secara lokal (Offline Standalone).'
+          );
           return;
         }
         tunjukLoading();
@@ -2776,8 +2960,7 @@
         } catch (err) {
           simpanKeLocalStorage();
           tunjukCustomAlert(
-            '⚠️ Gagal hantar ke Supabase tetapi data disimpan di browser. Ralat: ' +
-              err.message
+            '⚠️ Data disimpan dalam memori peranti (Standalone Offline Mode).'
           );
           console.error(err);
         } finally {
@@ -5010,12 +5193,16 @@
       window.tutupModalUrusJentera = tutupModalUrusJentera;
       window.renderSenaraiJenteraMaster = renderSenaraiJenteraMaster;
       window.padamJenteraMaster = padamJenteraMaster;
+      window.eksportDataJSON = eksportDataJSON;
+      window.pilihFailImport = pilihFailImport;
+      window.importDataJSON = importDataJSON;
 
       window.onload = function () {
         muatDariLocalStorage();
         initDataLogistik();
         janaFormDaftar('ANGGOTA');
         janaFilterBalaiOptions();
+        daftarkanServiceWorkerStandalone();
 
         if (initSupabaseClient()) {
           autoTarikData().then(() => kemaskiniSemuaPaparan());
@@ -5026,6 +5213,9 @@
         setInterval(updateClock, 1000);
         updateClock();
         tukarViewMobile('operasi');
+
+        window.addEventListener('online', () => kemaskiniPwaBadge(true));
+        window.addEventListener('offline', () => kemaskiniPwaBadge(false));
 
         document.addEventListener('click', function (e) {
           ['balai', 'namaAnggota', 'logJentera'].forEach((id) => {
@@ -5041,7 +5231,7 @@
           });
         });
 
-        console.log('✅ Sistem sedia digunakan tanpa sebarang ralat sintaks.');
+        console.log('✅ Standalone Web Application initialization complete.');
       };
     </script>
   </body>
