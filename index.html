@@ -25,6 +25,11 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <!-- Font Awesome Professional Icon Library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -829,7 +834,7 @@
         z-index: 1000;
         opacity: 0;
         pointer-events: none;
-        transition: opacity 0.25 ease;
+        transition: opacity 0.25s ease;
         padding: 0;
       }
 
@@ -1060,8 +1065,8 @@
         color: var(--bomba-gold);
         background: rgba(255,255,255,0.08);
       }
-      .mobile-nav-item span.icon {
-        font-size: 1.15rem;
+      .mobile-nav-item i {
+        font-size: 1.1rem;
         margin-bottom: 2px;
       }
 
@@ -1172,7 +1177,7 @@
           class="flex items-center justify-between w-full lg:w-auto gap-2 border-t border-red-800/50 pt-2 lg:pt-0 lg:border-0"
         >
           <div id="cloudStatusBadge" class="sync-badge sync-inactive">
-            <span>🟡 SUPABASE: MENYAMBUNG...</span>
+            <span><i class="fa-solid fa-circle text-[9px] text-amber-500 mr-1"></i> SUPABASE: MENYAMBUNG...</span>
           </div>
           <div
             class="bg-black/30 border border-white/20 px-2.5 py-1 rounded-xl text-right"
@@ -1202,7 +1207,7 @@
         <!-- Panel 1: Tugasan Operasi -->
         <div class="card border-l-4 border-l-red-600">
           <div class="card-title">
-            <span>📋 1. TUGASAN & OPERASI HARIAN</span>
+            <span><i class="fa-solid fa-clipboard-list text-red-600 mr-1.5"></i> 1. TUGASAN & OPERASI HARIAN</span>
             <span
               class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-red-100 text-red-900"
               >OPERASI</span
@@ -1213,19 +1218,19 @@
               class="btn btn-primary font-black"
               onclick="bukaModalTambahAnggota()"
             >
-              👤 ISI ANGGOTA BERTUGAS
+              <i class="fa-solid fa-user-plus mr-1.5"></i> ISI ANGGOTA BERTUGAS
             </button>
             <button
               class="btn btn-orange font-black"
               onclick="bukaModalLogistikJentera()"
             >
-              🚒 ISI MAKLUMAT JENTERA BERTUGAS
+              <i class="fa-solid fa-truck-field mr-1.5"></i> ISI MAKLUMAT JENTERA BERTUGAS
             </button>
             <button
               class="btn btn-purple font-black"
               onclick="bukaModalChecklist()"
             >
-              ✅ ISI CHECKLIST PERKAKAS
+              <i class="fa-solid fa-list-check mr-1.5"></i> ISI CHECKLIST PERKAKAS
             </button>
           </div>
         </div>
@@ -1233,7 +1238,7 @@
         <!-- Panel 2: Daftar Master -->
         <div class="card border-l-4 border-l-slate-800">
           <div class="card-title">
-            <span>👤 2. DAFTAR ANGGOTA & MASTER</span>
+            <span><i class="fa-solid fa-users-gear text-slate-800 mr-1.5"></i> 2. DAFTAR ANGGOTA & MASTER</span>
             <span
               class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-indigo-100 text-indigo-900"
               >MASTER</span
@@ -1269,7 +1274,7 @@
               class="btn btn-primary"
               onclick="simpanDaftarMaster('ANGGOTA')"
             >
-              + DAFTAR ANGGOTA
+              <i class="fa-solid fa-plus mr-1"></i> DAFTAR ANGGOTA
             </button>
           </div>
           <div class="flex flex-col gap-2 mt-3">
@@ -1277,19 +1282,19 @@
               class="btn btn-secondary !min-h-[42px] !text-[11px]"
               onclick="mintaPassword('URUS_KATEGORI')"
             >
-              🔒 URUS / PADAM SENARAI MASTER
+              <i class="fa-solid fa-lock mr-1.5"></i> URUS / PADAM SENARAI MASTER
             </button>
             <button
               class="btn btn-secondary !min-h-[42px] !text-[11px]"
               onclick="mintaPassword('URUS_JENTERA_MASTER')"
             >
-              🔧 URUS SENARAI JENTERA (MASTER) 🔒
+              <i class="fa-solid fa-wrench mr-1.5"></i> URUS SENARAI JENTERA (MASTER) <i class="fa-solid fa-lock ml-1 text-xs opacity-75"></i>
             </button>
             <button
               class="btn btn-master-purge !min-h-[42px] !text-[11px]"
               onclick="mintaPassword('MASTER_BERSIH')"
             >
-              🚨 MASTER PEMBERSIHAN 🔒
+              <i class="fa-solid fa-triangle-exclamation mr-1.5"></i> MASTER PEMBERSIHAN <i class="fa-solid fa-lock ml-1 text-xs opacity-75"></i>
             </button>
           </div>
         </div>
@@ -1297,7 +1302,7 @@
         <!-- Panel 3: Cloud Storage (Supabase) -->
         <div class="card border-l-4 border-l-emerald-500">
           <div class="card-title">
-            <span>☁️ 3. PANGKALAN DATA CLOUD</span>
+            <span><i class="fa-solid fa-cloud text-emerald-600 mr-1.5"></i> 3. PANGKALAN DATA CLOUD</span>
             <span
               class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-emerald-100 text-emerald-900"
               >SUPABASE</span
@@ -1309,13 +1314,13 @@
                 class="btn btn-secondary !min-h-[42px] !text-[11px]"
                 onclick="tarikDataSupabase()"
               >
-                🔄 MUAT DATA
+                <i class="fa-solid fa-rotate mr-1"></i> MUAT DATA
               </button>
               <button
                 class="btn btn-emerald !min-h-[42px] !text-[11px]"
                 onclick="hantarDataSupabase()"
               >
-                ☁️ SIMPAN DATA
+                <i class="fa-solid fa-cloud-arrow-up mr-1"></i> SIMPAN DATA
               </button>
             </div>
           </div>
@@ -1351,19 +1356,19 @@
         <!-- ROSTER TABLE CARD -->
         <div id="sectionAnggota" class="card">
           <div class="card-title">
-            <span>👤 BORANG KEKUATAN ANGGOTA BERTUGAS</span>
+            <span><i class="fa-solid fa-users text-red-700 mr-1.5"></i> BORANG KEKUATAN ANGGOTA BERTUGAS</span>
             <div class="no-print flex items-center gap-1.5">
               <button
                 class="btn btn-secondary !w-auto !py-1 !px-2.5 !text-[11px] !min-h-[36px]"
                 onclick="cetakLaporan()"
               >
-                🖨️ CETAK
+                <i class="fa-solid fa-print mr-1"></i> CETAK
               </button>
               <button
                 class="btn btn-secondary !w-auto !py-1 !px-2.5 !text-[11px] !min-h-[36px] text-red-700 border-red-300"
                 onclick="mintaPassword('MASTER_BERSIH')"
               >
-                🗑️ BERSIHKAN 🔒
+                <i class="fa-solid fa-broom mr-1"></i> BERSIHKAN <i class="fa-solid fa-lock ml-1 text-[9px]"></i>
               </button>
             </div>
           </div>
@@ -1373,7 +1378,7 @@
                 type="text"
                 id="searchInput"
                 class="form-control"
-                placeholder="🔍 CARI NAMA / TEL / PANGKAT..."
+                placeholder="CARI NAMA / TEL / PANGKAT..."
                 onkeyup="kemaskiniPaparData()"
               />
             </div>
@@ -1384,16 +1389,16 @@
                   onclick="togolBalaiDropdown()"
                 >
                   <div class="multi-select-tags" id="balaiSelectedTags">
-                    <span class="multi-select-placeholder">🏢 SEMUA BALAI</span>
+                    <span class="multi-select-placeholder"><i class="fa-solid fa-building mr-1"></i> SEMUA BALAI</span>
                   </div>
-                  <span class="multi-select-arrow">▼</span>
+                  <span class="multi-select-arrow"><i class="fa-solid fa-chevron-down"></i></span>
                 </div>
                 <div class="multi-select-dropdown" id="balaiDropdown">
                   <div class="multi-select-search">
                     <input
                       type="text"
                       id="balaiSearchInput"
-                      placeholder="🔍 CARI BALAI..."
+                      placeholder="CARI BALAI..."
                       onkeyup="tapisBalaiDropdown()"
                       onclick="event.stopPropagation();"
                     />
@@ -1407,13 +1412,13 @@
                       class="btn-select-all"
                       onclick="pilihSemuaBalai();event.stopPropagation();"
                     >
-                      ✅ PILIH SEMUA
+                      <i class="fa-solid fa-check-double mr-1"></i> PILIH SEMUA
                     </button>
                     <button
                       class="btn-clear-all"
                       onclick="kosongkanBalai();event.stopPropagation();"
                     >
-                      🗑️ KOSONGKAN
+                      <i class="fa-solid fa-xmark mr-1"></i> KOSONGKAN
                     </button>
                   </div>
                 </div>
@@ -1423,7 +1428,7 @@
               class="btn btn-secondary sm:!w-auto !px-5"
               onclick="kemaskiniPaparData()"
             >
-              🔍 CARI
+              <i class="fa-solid fa-magnifying-glass mr-1"></i> CARI
             </button>
           </div>
           <div
@@ -1432,7 +1437,7 @@
             style="display: none"
           >
             <span
-              >📋 <strong>BALAI DITAPIS:</strong>
+              ><i class="fa-solid fa-filter mr-1"></i> <strong>BALAI DITAPIS:</strong>
               <span id="filterBalaiList"></span
             ></span>
             <span
@@ -1468,7 +1473,7 @@
         <!-- LOGISTICS TABLE CARD -->
         <div id="sectionLogistik" class="card border-t-4 border-t-yellow-500">
           <div class="card-title">
-            <span>🚒 LOGISTIK JENTERA BERTUGAS</span>
+            <span><i class="fa-solid fa-truck-field text-amber-600 mr-1.5"></i> LOGISTIK JENTERA BERTUGAS</span>
           </div>
           <div class="no-print flex flex-col sm:flex-row gap-2 mb-3">
             <div class="form-group flex-1 !mb-0">
@@ -1477,7 +1482,7 @@
                 class="form-control"
                 onchange="paparLogistikTable()"
               >
-                <option value="SEMUA">🏢 SEMUA BALAI</option>
+                <option value="SEMUA">SEMUA BALAI</option>
               </select>
             </div>
           </div>
@@ -1526,7 +1531,7 @@
         <!-- CHECKLIST TABLE CARD -->
         <div id="sectionChecklist" class="card border-t-4 border-t-purple-500">
           <div class="card-title">
-            <span>✅ CHECKLIST PERKAKAS BILIK KAWALAN</span>
+            <span><i class="fa-solid fa-list-check text-purple-600 mr-1.5"></i> CHECKLIST PERKAKAS BILIK KAWALAN</span>
           </div>
           <div class="no-print flex flex-col sm:flex-row gap-2 mb-3">
             <div class="form-group flex-1 !mb-0">
@@ -1535,7 +1540,7 @@
                 class="form-control"
                 onchange="paparChecklistTable()"
               >
-                <option value="SEMUA">🏢 SEMUA BALAI</option>
+                <option value="SEMUA">SEMUA BALAI</option>
               </select>
             </div>
           </div>
@@ -1591,7 +1596,7 @@
       <div class="modal sm:!max-w-4xl">
         <div class="modal-header">
           <div class="flex items-center gap-2">
-            <span class="text-lg">👤</span>
+            <i class="fa-solid fa-user-shield text-red-600 text-lg"></i>
             <h3>ISI KEKUATAN ANGGOTA BERTUGAS</h3>
           </div>
           <button class="close-modal" onclick="tutupModalTambahAnggota()">
@@ -1600,7 +1605,7 @@
         </div>
 
         <div class="info-pill bg-red-50 border-red-200 text-red-900">
-          <span>💡</span>
+          <i class="fa-solid fa-circle-info text-red-700"></i>
           <span
             >PILIH ANGGOTA DARI MASTER & TETAPKAN PASUKAN, STATUS DAN
             PERANAN.</span
@@ -1626,17 +1631,17 @@
             >
               <div class="multi-select-tags" id="namaAnggotaSelectedTags">
                 <span class="multi-select-placeholder"
-                  >👤 TEKAN UNTUK PILIH ANGGOTA...</span
+                  >TEKAN UNTUK PILIH ANGGOTA...</span
                 >
               </div>
-              <span class="multi-select-arrow">▼</span>
+              <span class="multi-select-arrow"><i class="fa-solid fa-chevron-down"></i></span>
             </div>
             <div class="multi-select-dropdown" id="namaAnggotaDropdown">
               <div class="multi-select-search">
                 <input
                   type="text"
                   id="namaAnggotaSearchInput"
-                  placeholder="🔍 CARI NAMA / PANGKAT / BALAI..."
+                  placeholder="CARI NAMA / PANGKAT / BALAI..."
                   onkeyup="tapisNamaAnggotaDropdown()"
                   onclick="event.stopPropagation();"
                 />
@@ -1650,13 +1655,13 @@
                   class="btn-select-all"
                   onclick="pilihSemuaNamaAnggota();event.stopPropagation();"
                 >
-                  ✅ PILIH SEMUA
+                  <i class="fa-solid fa-check-double mr-1"></i> PILIH SEMUA
                 </button>
                 <button
                   class="btn-clear-all"
                   onclick="kosongkanNamaAnggota();event.stopPropagation();"
                 >
-                  🗑️ KOSONGKAN
+                  <i class="fa-solid fa-xmark mr-1"></i> KOSONGKAN
                 </button>
               </div>
             </div>
@@ -1665,13 +1670,13 @@
 
         <div class="flex items-center justify-between mb-1.5 mt-1">
           <span class="font-extrabold text-xs text-slate-800"
-            >📋 SENARAI ANGGOTA DIPILIH & PERANAN:</span
+            ><i class="fa-solid fa-list-check mr-1"></i> SENARAI ANGGOTA DIPILIH & PERANAN:</span
           >
           <button
             class="px-2 py-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-[10px] font-black rounded-lg border border-emerald-300 transition"
             onclick="setSemuaAnggotaStatus('BERTUGAS')"
           >
-            ⚡ SET ALL BERTUGAS
+            <i class="fa-solid fa-bolt mr-1"></i> SET ALL BERTUGAS
           </button>
         </div>
 
@@ -1705,7 +1710,7 @@
 
         <div class="btn-group">
           <button class="btn btn-primary" onclick="simpanAnggotaBaharu()">
-            💾 SIMPAN KEKUATAN ANGGOTA
+            <i class="fa-solid fa-floppy-disk mr-1.5"></i> SIMPAN KEKUATAN ANGGOTA
           </button>
           <button class="btn btn-secondary" onclick="tutupModalTambahAnggota()">
             BATAL
@@ -1719,7 +1724,7 @@
       <div class="modal sm:!max-w-4xl">
         <div class="modal-header">
           <div class="flex items-center gap-2">
-            <span class="text-lg">🚒</span>
+            <i class="fa-solid fa-truck-field text-amber-600 text-lg"></i>
             <h3>LOGISTIK JENTERA BERTUGAS</h3>
           </div>
           <button class="close-modal" onclick="tutupModalLogistikJentera()">
@@ -1728,7 +1733,7 @@
         </div>
 
         <div class="info-pill bg-amber-50 border-amber-200 text-amber-900">
-          <span>💡</span>
+          <i class="fa-solid fa-circle-info text-amber-700"></i>
           <span
             >PILIH BALAI & TAPIS KATEGORI UNTUK MEMILIH JENTERA DARI
             INVENTORI.</span
@@ -1755,18 +1760,18 @@
               class="form-control border-amber-300"
               onchange="janaLogJenteraDropdown()"
             >
-              <option value="SEMUA">🌐 SEMUA KATEGORI</option>
+              <option value="SEMUA">SEMUA KATEGORI</option>
               <option value="FRT/LFRT/CFRT/RFRT">
-                🚒 JENTERA PEMADAM (FRT/CFRT)
+                JENTERA PEMADAM (FRT/CFRT)
               </option>
-              <option value="EMRS">🚑 EMRS</option>
-              <option value="WATER TANKER">💧 TANGKI AIR (WATER TANKER)</option>
-              <option value="KHAS/BOMPA">⚡ KHAS / BOMPA</option>
-              <option value="BOT">🚤 BOT PENYELAMAT</option>
+              <option value="EMRS">EMRS</option>
+              <option value="WATER TANKER">TANGKI AIR (WATER TANKER)</option>
+              <option value="KHAS/BOMPA">KHAS / BOMPA</option>
+              <option value="BOT">BOT PENYELAMAT</option>
               <option value="RIM">
-                🏍️ RIM (RAPID INTERVENTION MOTORCYCLE)
+                RIM (RAPID INTERVENTION MOTORCYCLE)
               </option>
-              <option value="KENDERAAN/UTILITI">🚙 KENDERAAN / UTILITI</option>
+              <option value="KENDERAAN/UTILITI">KENDERAAN / UTILITI</option>
             </select>
           </div>
         </div>
@@ -1787,17 +1792,17 @@
             >
               <div class="multi-select-tags" id="logJenteraSelectedTags">
                 <span class="multi-select-placeholder"
-                  >🔧 TEKAN UNTUK PILIH JENTERA...</span
+                  >TEKAN UNTUK PILIH JENTERA...</span
                 >
               </div>
-              <span class="multi-select-arrow">▼</span>
+              <span class="multi-select-arrow"><i class="fa-solid fa-chevron-down"></i></span>
             </div>
             <div class="multi-select-dropdown" id="logJenteraDropdown">
               <div class="multi-select-search">
                 <input
                   type="text"
                   id="logJenteraSearchInput"
-                  placeholder="🔍 CARI CALLSIGN / PLAT..."
+                  placeholder="CARI CALLSIGN / PLAT..."
                   onkeyup="tapisLogJenteraDropdown()"
                   onclick="event.stopPropagation();"
                 />
@@ -1811,13 +1816,13 @@
                   class="btn-select-all"
                   onclick="pilihSemuaLogJentera();event.stopPropagation();"
                 >
-                  ✅ PILIH SEMUA
+                  <i class="fa-solid fa-check-double mr-1"></i> PILIH SEMUA
                 </button>
                 <button
                   class="btn-clear-all"
                   onclick="kosongkanLogJentera();event.stopPropagation();"
                 >
-                  🗑️ KOSONGKAN
+                  <i class="fa-solid fa-xmark mr-1"></i> KOSONGKAN
                 </button>
               </div>
             </div>
@@ -1826,13 +1831,13 @@
 
         <div class="flex items-center justify-between mb-1.5 mt-1">
           <span class="font-extrabold text-xs text-slate-800"
-            >📋 SENARAI JENTERA DIPILIH & STATUS:</span
+            ><i class="fa-solid fa-list-check mr-1"></i> SENARAI JENTERA DIPILIH & STATUS:</span
           >
           <button
             class="px-2 py-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-[10px] font-black rounded-lg border border-emerald-300 transition"
             onclick="setSemuaJenteraStatus('SEDIA BEROPERASI')"
           >
-            ⚡ SET ALL SEDIA
+            <i class="fa-solid fa-bolt mr-1"></i> SET ALL SEDIA
           </button>
         </div>
 
@@ -1866,7 +1871,7 @@
 
         <div class="btn-group">
           <button class="btn btn-orange" onclick="simpanLogistikBertugas()">
-            💾 SIMPAN LOGISTIK JENTERA
+            <i class="fa-solid fa-floppy-disk mr-1.5"></i> SIMPAN LOGISTIK JENTERA
           </button>
           <button
             class="btn btn-secondary"
@@ -1883,7 +1888,7 @@
       <div class="modal sm:!max-w-4xl">
         <div class="modal-header">
           <div class="flex items-center gap-2">
-            <span class="text-lg">✅</span>
+            <i class="fa-solid fa-list-check text-purple-600 text-lg"></i>
             <h3>CHECKLIST PERKAKAS BILIK KAWALAN</h3>
           </div>
           <button class="close-modal" onclick="tutupModalChecklist()">
@@ -1895,14 +1900,14 @@
           class="info-pill bg-purple-50 border-purple-200 text-purple-900 flex flex-wrap items-center justify-between gap-1.5"
         >
           <span
-            >💡 STATUS <strong>BAIK</strong> & <strong>ROSAK</strong> BAGI
+            ><i class="fa-solid fa-circle-info text-purple-700 mr-1"></i> STATUS <strong>BAIK</strong> & <strong>ROSAK</strong> BAGI
             SETIAP PERKAKAS.</span
           >
           <button
             class="bg-purple-700 text-white px-2.5 py-1 rounded-lg text-[9px] font-black hover:bg-purple-800 transition shadow-sm"
             onclick="setSemuaChecklistDefault()"
           >
-            ⚡ SET SEMUA BAIK (DEFAULT)
+            <i class="fa-solid fa-bolt mr-1"></i> SET SEMUA BAIK (DEFAULT)
           </button>
         </div>
 
@@ -1944,7 +1949,7 @@
 
         <div class="mb-1.5 flex items-center justify-between">
           <label class="text-xs font-black text-slate-800"
-            >📋 8 PERKAKAS BILIK KAWALAN & UNIT STATUS:</label
+            ><i class="fa-solid fa-toolbox text-purple-700 mr-1"></i> 8 PERKAKAS BILIK KAWALAN & UNIT STATUS:</label
           >
           <span class="text-[9px] text-purple-700 font-bold"
             >BAIK / ROSAK + CATATAN</span
@@ -1961,8 +1966,8 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-black text-slate-800 text-xs sm:text-sm">
-                  🖥️ COMPUTER AIDED DISPATCH (CAD)
+                <div class="font-black text-slate-800 text-xs sm:text-sm flex items-center gap-1.5">
+                  <i class="fa-solid fa-desktop text-purple-600"></i> COMPUTER AIDED DISPATCH (CAD)
                 </div>
                 <div class="text-[9px] text-slate-500 font-semibold">
                   Sistem Penghantaran Bantuan Komputer
@@ -1977,7 +1982,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
-                  >✅ BAIK (UNIT)</label
+                  ><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2004,7 +2009,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-red-700 block mb-0.5"
-                  >❌ ROSAK (UNIT)</label
+                  ><i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2046,8 +2051,8 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-black text-slate-800 text-xs sm:text-sm">
-                  🌐 WEB INTEGRATED CONSOLE (WIC)
+                <div class="font-black text-slate-800 text-xs sm:text-sm flex items-center gap-1.5">
+                  <i class="fa-solid fa-globe text-purple-600"></i> WEB INTEGRATED CONSOLE (WIC)
                 </div>
                 <div class="text-[9px] text-slate-500 font-semibold">
                   Konsol Bersepadu Web
@@ -2062,7 +2067,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
-                  >✅ BAIK (UNIT)</label
+                  ><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2089,7 +2094,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-red-700 block mb-0.5"
-                  >❌ ROSAK (UNIT)</label
+                  ><i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2131,8 +2136,8 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-black text-slate-800 text-xs sm:text-sm">
-                  📱 BOMBA RESPONDER APPS (BOMRA)
+                <div class="font-black text-slate-800 text-xs sm:text-sm flex items-center gap-1.5">
+                  <i class="fa-solid fa-mobile-screen-button text-purple-600"></i> BOMBA RESPONDER APPS (BOMRA)
                 </div>
                 <div class="text-[9px] text-slate-500 font-semibold">
                   Aplikasi Responder Bomba
@@ -2147,7 +2152,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
-                  >✅ BAIK (UNIT)</label
+                  ><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2174,7 +2179,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-red-700 block mb-0.5"
-                  >❌ ROSAK (UNIT)</label
+                  ><i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2216,8 +2221,8 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-black text-slate-800 text-xs sm:text-sm">
-                  💻 DESKTOP GIRN
+                <div class="font-black text-slate-800 text-xs sm:text-sm flex items-center gap-1.5">
+                  <i class="fa-solid fa-laptop text-purple-600"></i> DESKTOP GIRN
                 </div>
                 <div class="text-[9px] text-slate-500 font-semibold">
                   Radio Komunikasi Desktop
@@ -2232,7 +2237,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
-                  >✅ BAIK (UNIT)</label
+                  ><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2259,7 +2264,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-red-700 block mb-0.5"
-                  >❌ ROSAK (UNIT)</label
+                  ><i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2301,8 +2306,8 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-black text-slate-800 text-xs sm:text-sm">
-                  📻 HANDHELD GIRN
+                <div class="font-black text-slate-800 text-xs sm:text-sm flex items-center gap-1.5">
+                  <i class="fa-solid fa-walkie-talkie text-purple-600"></i> HANDHELD GIRN
                 </div>
                 <div class="text-[9px] text-slate-500 font-semibold">
                   Radio Komunikasi Mudah Alih
@@ -2317,7 +2322,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
-                  >✅ BAIK (UNIT)</label
+                  ><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2344,7 +2349,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-red-700 block mb-0.5"
-                  >❌ ROSAK (UNIT)</label
+                  ><i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2386,8 +2391,8 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-black text-slate-800 text-xs sm:text-sm">
-                  🚙 VEHICULAR GIRN
+                <div class="font-black text-slate-800 text-xs sm:text-sm flex items-center gap-1.5">
+                  <i class="fa-solid fa-car text-purple-600"></i> VEHICULAR GIRN
                 </div>
                 <div class="text-[9px] text-slate-500 font-semibold">
                   Radio Komunikasi Kenderaan
@@ -2402,7 +2407,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
-                  >✅ BAIK (UNIT)</label
+                  ><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2429,7 +2434,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-red-700 block mb-0.5"
-                  >❌ ROSAK (UNIT)</label
+                  ><i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2471,8 +2476,8 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-black text-slate-800 text-xs sm:text-sm">
-                  🌐 INTERNET
+                <div class="font-black text-slate-800 text-xs sm:text-sm flex items-center gap-1.5">
+                  <i class="fa-solid fa-network-wired text-purple-600"></i> INTERNET
                 </div>
                 <div class="text-[9px] text-slate-500 font-semibold">
                   Capaian Rangkaian Internet
@@ -2487,7 +2492,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
-                  >✅ BAIK (UNIT)</label
+                  ><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2514,7 +2519,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-red-700 block mb-0.5"
-                  >❌ ROSAK (UNIT)</label
+                  ><i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2556,8 +2561,8 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-black text-slate-800 text-xs sm:text-sm">
-                  📱 HANDPHONE RASMI
+                <div class="font-black text-slate-800 text-xs sm:text-sm flex items-center gap-1.5">
+                  <i class="fa-solid fa-phone text-purple-600"></i> HANDPHONE RASMI
                 </div>
                 <div class="text-[9px] text-slate-500 font-semibold">
                   Telefon Bimbit Rasmi Bilik Kawalan
@@ -2572,7 +2577,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
-                  >✅ BAIK (UNIT)</label
+                  ><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2599,7 +2604,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-red-700 block mb-0.5"
-                  >❌ ROSAK (UNIT)</label
+                  ><i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2637,7 +2642,7 @@
 
         <div class="btn-group">
           <button class="btn btn-purple" onclick="simpanChecklistDariModal()">
-            💾 SIMPAN CHECKLIST PERKAKAS
+            <i class="fa-solid fa-floppy-disk mr-1.5"></i> SIMPAN CHECKLIST PERKAKAS
           </button>
           <button class="btn btn-secondary" onclick="tutupModalChecklist()">
             BATAL
@@ -2650,7 +2655,7 @@
     <div class="modal-overlay" id="passwordModal">
       <div class="modal sm:!max-w-md">
         <div class="modal-header">
-          <h3>🔒 PENGESAHAN KATA LALUAN</h3>
+          <h3><i class="fa-solid fa-shield-halved text-red-600 mr-1.5"></i> PENGESAHAN KATA LALUAN</h3>
           <button class="close-modal" onclick="tutupModalPassword()">
             &times;
           </button>
@@ -2668,7 +2673,7 @@
             onkeyup="semakEnterPassword(event)"
           />
           <div id="passwordErrorMsg" class="error-message">
-            ⚠️ KATA LALUAN SALAH!
+            <i class="fa-solid fa-triangle-exclamation mr-1"></i> KATA LALUAN SALAH!
           </div>
         </div>
         <div class="btn-group">
@@ -2731,13 +2736,13 @@
     <div class="modal-overlay" id="urusMasterModal">
       <div class="modal">
         <div class="modal-header">
-          <h3>🔒 URUS / PADAM SENARAI MASTER</h3>
+          <h3><i class="fa-solid fa-sliders text-slate-800 mr-1.5"></i> URUS / PADAM SENARAI MASTER</h3>
           <button class="close-modal" onclick="tutupModalUrusMaster()">
             &times;
           </button>
         </div>
         <div class="info-pill mb-2">
-          💡 PADAM ITEM DARI SENARAI PILIHAN UTAMA
+          <i class="fa-solid fa-circle-info text-blue-700 mr-1"></i> PADAM ITEM DARI SENARAI PILIHAN UTAMA
         </div>
         <div class="tab-btn-group mb-2">
           <button
@@ -2783,18 +2788,18 @@
     <div class="modal-overlay" id="urusJenteraModal">
       <div class="modal">
         <div class="modal-header">
-          <h3>🔧 URUS SENARAI JENTERA (MASTER)</h3>
+          <h3><i class="fa-solid fa-truck-gear text-slate-800 mr-1.5"></i> URUS SENARAI JENTERA (MASTER)</h3>
           <button class="close-modal" onclick="tutupModalUrusJentera()">
             &times;
           </button>
         </div>
-        <div class="info-pill mb-2">💡 PADAM JENTERA DARI INVENTORI UTAMA</div>
+        <div class="info-pill mb-2"><i class="fa-solid fa-circle-info text-blue-700 mr-1"></i> PADAM JENTERA DARI INVENTORI UTAMA</div>
         <div class="form-group mb-2">
           <input
             type="text"
             id="cariJenteraMaster"
             class="form-control"
-            placeholder="🔍 CARI CALLSIGN / PLAT / KATEGORI..."
+            placeholder="CARI CALLSIGN / PLAT / KATEGORI..."
             onkeyup="renderSenaraiJenteraMaster()"
           />
         </div>
@@ -2819,23 +2824,23 @@
     <!-- STANDALONE MOBILE BOTTOM NAVIGATION BAR -->
     <nav class="mobile-bottom-nav no-print" id="mobileBottomNav">
       <a href="#sectionPanels" class="mobile-nav-item active" onclick="aktifkanTabBottomNav(this)">
-        <span class="icon">📋</span>
+        <i class="fa-solid fa-clipboard-list"></i>
         <span>TUGASAN</span>
       </a>
       <a href="#sectionAnggota" class="mobile-nav-item" onclick="aktifkanTabBottomNav(this)">
-        <span class="icon">👤</span>
+        <i class="fa-solid fa-user-shield"></i>
         <span>ANGGOTA</span>
       </a>
       <a href="#sectionLogistik" class="mobile-nav-item" onclick="aktifkanTabBottomNav(this)">
-        <span class="icon">🚒</span>
+        <i class="fa-solid fa-truck-field"></i>
         <span>LOGISTIK</span>
       </a>
       <a href="#sectionChecklist" class="mobile-nav-item" onclick="aktifkanTabBottomNav(this)">
-        <span class="icon">✅</span>
+        <i class="fa-solid fa-list-check"></i>
         <span>CHECKLIST</span>
       </a>
       <a href="#sectionPanels" class="mobile-nav-item" onclick="aktifkanTabBottomNav(this)">
-        <span class="icon">⚙️</span>
+        <i class="fa-solid fa-gears"></i>
         <span>MASTER</span>
       </a>
     </nav>
@@ -2959,10 +2964,10 @@
 
       function initSupabaseClient() {
         if (supabaseUrl && supabaseKey) {
-          kemaskiniStatusCloud('active', '🟢 SUPABASE: DISAMBUNG');
+          kemaskiniStatusCloud('active', '<i class="fa-solid fa-circle text-[9px] text-emerald-500 mr-1"></i> SUPABASE: DISAMBUNG');
           return true;
         } else {
-          kemaskiniStatusCloud('inactive', '🟡 SUPABASE: BELUM DISAMBUNG');
+          kemaskiniStatusCloud('inactive', '<i class="fa-solid fa-circle text-[9px] text-amber-500 mr-1"></i> SUPABASE: BELUM DISAMBUNG');
           return false;
         }
       }
@@ -2988,7 +2993,7 @@
       async function hantarDataSupabase() {
         if (!supabaseUrl || !supabaseKey) {
           simpanKeLocalStorage();
-          tunjukCustomAlert('ℹ️ Data disimpan dalam storan tempatan.');
+          tunjukCustomAlert('Data disimpan dalam storan tempatan.');
           return;
         }
         tunjukLoading();
@@ -3018,11 +3023,11 @@
           if (!response.ok) throw new Error('HTTP ' + response.status);
 
           simpanKeLocalStorage();
-          tunjukCustomAlert('✅ Data berjaya dihantar ke Supabase Cloud!');
+          tunjukCustomAlert('Data berjaya dihantar ke Supabase Cloud!');
         } catch (err) {
           simpanKeLocalStorage();
           tunjukCustomAlert(
-            '⚠️ Gagal hantar ke Supabase tetapi data disimpan secara tempatan.'
+            'Gagal hantar ke Supabase tetapi data disimpan secara tempatan.'
           );
           console.error(err);
         } finally {
@@ -3105,7 +3110,7 @@
 
       async function tarikDataSupabase() {
         if (!supabaseUrl || !supabaseKey) {
-          tunjukCustomAlert('❌ URL/Key Supabase tidak ditetapkan!');
+          tunjukCustomAlert('URL/Key Supabase tidak ditetapkan!');
           return;
         }
         tunjukLoading();
@@ -3142,12 +3147,12 @@
 
             simpanKeLocalStorage();
             kemaskiniSemuaPaparan();
-            tunjukCustomAlert('✅ Data berjaya dimuat turun!');
+            tunjukCustomAlert('Data berjaya dimuat turun!');
           } else {
-            tunjukCustomAlert('⚠️ Tiada rekod dijumpai.');
+            tunjukCustomAlert('Tiada rekod dijumpai.');
           }
         } catch (err) {
-          tunjukCustomAlert('❌ Gagal tarik: ' + err.message);
+          tunjukCustomAlert('Gagal tarik: ' + err.message);
           console.error(err);
         } finally {
           sorokLoading();
@@ -3584,7 +3589,7 @@
           ['UTL', 'WJX4303', 'KEMBARA', '4X4'],
           ['UTL', 'WJX4321', 'KEMBARA', '4X4'],
           ['UTL', 'WJX3943', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3935', 'KEMBARA', '4X4'],
+          ['UTL', 'WJX3953', 'KEMBARA', '4X4'],
           ['UTL', 'WJX4304', 'KEMBARA', '4X4'],
           ['UTL', 'WJX4327', 'KEMBARA', '4X4'],
           ['UTL', 'WJX4300', 'KEMBARA', '4X4'],
@@ -3690,7 +3695,7 @@
 
       function janaFilterBalaiOptions() {
         const opt =
-          '<option value="SEMUA">🏢 SEMUA BALAI</option>' +
+          '<option value="SEMUA">SEMUA BALAI</option>' +
           senaraiBalaiMaster
             .map((b) => `<option value="${b}">${b}</option>`)
             .join('');
@@ -3743,7 +3748,7 @@
             const s = namaAnggotaTerpilih.some((x) => x.nama === a.nama)
               ? 'selected'
               : '';
-            return `<div class="multi-select-option ${s}" onclick="pilihNamaAnggotaOption('${a.nama}')"><div class="check-box">${s ? '✓' : ''}</div><div><div class="font-bold text-slate-800">${a.nama}</div><div class="text-[10px] text-slate-500">${a.pangkat} | ${a.balai}</div></div></div>`;
+            return `<div class="multi-select-option ${s}" onclick="pilihNamaAnggotaOption('${a.nama}')"><div class="check-box">${s ? '<i class="fa-solid fa-check"></i>' : ''}</div><div><div class="font-bold text-slate-800">${a.nama}</div><div class="text-[10px] text-slate-500">${a.pangkat} | ${a.balai}</div></div></div>`;
           })
           .join('');
       }
@@ -3821,7 +3826,7 @@
           tbody.innerHTML =
             '<tr><td colspan="7" class="text-center p-4 text-slate-400 font-bold">TIADA ANGGOTA DIPILIH</td></tr>';
           tags.innerHTML =
-            '<span class="multi-select-placeholder">👤 PILIH ANGGOTA...</span>';
+            '<span class="multi-select-placeholder">PILIH ANGGOTA...</span>';
           return;
         }
 
@@ -3846,10 +3851,10 @@
             </td>
             <td>
               <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-bold" onchange="namaAnggotaTerpilih[${i}].status=this.value">
-                <option value="BERTUGAS" ${item.status === 'BERTUGAS' ? 'selected' : ''}>✅ BERTUGAS</option>
-                <option value="CUTI" ${item.status === 'CUTI' ? 'selected' : ''}>🟡 CUTI</option>
-                <option value="CUTI SAKIT" ${item.status === 'CUTI SAKIT' ? 'selected' : ''}>🔴 CUTI SAKIT</option>
-                <option value="TUGAS KHAS" ${item.status === 'TUGAS KHAS' ? 'selected' : ''}>🟣 TUGAS KHAS</option>
+                <option value="BERTUGAS" ${item.status === 'BERTUGAS' ? 'selected' : ''}>BERTUGAS</option>
+                <option value="CUTI" ${item.status === 'CUTI' ? 'selected' : ''}>CUTI</option>
+                <option value="CUTI SAKIT" ${item.status === 'CUTI SAKIT' ? 'selected' : ''}>CUTI SAKIT</option>
+                <option value="TUGAS KHAS" ${item.status === 'TUGAS KHAS' ? 'selected' : ''}>TUGAS KHAS</option>
               </select>
             </td>
             <td>
@@ -3917,7 +3922,7 @@
         tutupModalTambahAnggota();
         namaAnggotaTerpilih = [];
         kemaskiniAnggotaDipilihTable();
-        tunjukCustomAlert('✅ Rekod kekuatan anggota berjaya disimpan!');
+        tunjukCustomAlert('Rekod kekuatan anggota berjaya disimpan!');
       }
 
       function bukaModalLogistikJentera() {
@@ -3979,7 +3984,7 @@
             const s = logJenteraTerpilih.some((x) => x.id === i.id)
               ? 'selected'
               : '';
-            return `<div class="multi-select-option ${s}" onclick="pilihLogJenteraOption(${i.id})"><div class="check-box">${s ? '✓' : ''}</div><div><div class="font-bold text-red-700">${i.callsign} (${i.plate})</div><div class="text-[10px] text-slate-500">${i.jenis} | ${i.balai}</div></div></div>`;
+            return `<div class="multi-select-option ${s}" onclick="pilihLogJenteraOption(${i.id})"><div class="check-box">${s ? '<i class="fa-solid fa-check"></i>' : ''}</div><div><div class="font-bold text-red-700">${i.callsign} (${i.plate})</div><div class="text-[10px] text-slate-500">${i.jenis} | ${i.balai}</div></div></div>`;
           })
           .join('');
       }
@@ -4043,7 +4048,7 @@
           tbody.innerHTML =
             '<tr><td colspan="7" class="text-center p-4 text-slate-400 font-bold">TIADA JENTERA DIPILIH</td></tr>';
           tags.innerHTML =
-            '<span class="multi-select-placeholder">🔧 PILIH JENTERA...</span>';
+            '<span class="multi-select-placeholder">PILIH JENTERA...</span>';
           return;
         }
 
@@ -4060,9 +4065,9 @@
             <td><span class="badge badge-unit-gen">${item.kategori}</span></td>
             <td>
               <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-extrabold" onchange="logJenteraTerpilih[${i}].status=this.value">
-                <option value="SEDIA BEROPERASI" ${item.status === 'SEDIA BEROPERASI' ? 'selected' : ''}>✅ SEDIA BEROPERASI</option>
-                <option value="DALAM PENYELENGGARAAN" ${item.status === 'DALAM PENYELENGGARAAN' ? 'selected' : ''}>🟡 DALAM PENYELENGGARAAN</option>
-                <option value="ROSAK/TIDAK BOLEH GUNA" ${item.status === 'ROSAK/TIDAK BOLEH GUNA' ? 'selected' : ''}>❌ ROSAK / TIDAK BOLEH GUNA</option>
+                <option value="SEDIA BEROPERASI" ${item.status === 'SEDIA BEROPERASI' ? 'selected' : ''}>SEDIA BEROPERASI</option>
+                <option value="DALAM PENYELENGGARAAN" ${item.status === 'DALAM PENYELENGGARAAN' ? 'selected' : ''}>DALAM PENYELENGGARAAN</option>
+                <option value="ROSAK/TIDAK BOLEH GUNA" ${item.status === 'ROSAK/TIDAK BOLEH GUNA' ? 'selected' : ''}>ROSAK / TIDAK BOLEH GUNA</option>
               </select>
             </td>
             <td>
@@ -4106,7 +4111,7 @@
         tutupModalLogistikJentera();
         logJenteraTerpilih = [];
         kemaskiniLogJenteraDipilihTable();
-        tunjukCustomAlert('✅ Logistik Jentera Bertugas berjaya disimpan!');
+        tunjukCustomAlert('Logistik Jentera Bertugas berjaya disimpan!');
       }
 
       function bukaModalChecklist() {
@@ -4155,7 +4160,7 @@
       function setSemuaChecklistDefault(paparAlert = true) {
         resetChecklistModalInputs();
         if (paparAlert === true) {
-          tunjukCustomAlert('⚡ Semua perkakas di-set kepada BAIK (1 Unit)!');
+          tunjukCustomAlert('Semua perkakas di-set kepada BAIK (1 Unit)!');
         }
       }
 
@@ -4213,7 +4218,7 @@
 
         resetChecklistModalInputs();
 
-        tunjukCustomAlert('✅ Checklist perkakas bilik kawalan berjaya disimpan!');
+        tunjukCustomAlert('Checklist perkakas bilik kawalan berjaya disimpan!');
       }
 
       function paparChecklistTable() {
@@ -4398,7 +4403,7 @@
             peranan.push('<span class="badge badge-peranan">PEMANDU</span>');
 
           const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${idx + 1}</td><td><strong>${item.pangkat}</strong></td><td><div class="font-black">${item.nama}</div>${item.noTel ? `<span class="badge-tel">📞 ${item.noTel}</span>` : ''}</td><td><span class="badge ${bp}">${item.pasukan}</span></td><td><span class="badge badge-unit-gen">${item.unit}</span></td><td>${peranan.join(' ') || '-'}</td><td><span class="badge ${bs}">${item.status}</span></td><td><div class="catatan-box">${item.catatan || '-'}</div></td><td><div class="text-[10px] font-bold text-slate-500">${item.shiftType || '12 JAM'} | ${item.shiftTime || '0800-2000'}</div><div class="font-extrabold">${item.balai}</div></td><td class="no-print"><button class="btn btn-danger" onclick="padamAnggota('${item.id}')">PADAM</button></td>`;
+          tr.innerHTML = `<td>${idx + 1}</td><td><strong>${item.pangkat}</strong></td><td><div class="font-black">${item.nama}</div>${item.noTel ? `<span class="badge-tel"><i class="fa-solid fa-phone text-[9px]"></i> ${item.noTel}</span>` : ''}</td><td><span class="badge ${bp}">${item.pasukan}</span></td><td><span class="badge badge-unit-gen">${item.unit}</span></td><td>${peranan.join(' ') || '-'}</td><td><span class="badge ${bs}">${item.status}</span></td><td><div class="catatan-box">${item.catatan || '-'}</div></td><td><div class="text-[10px] font-bold text-slate-500">${item.shiftType || '12 JAM'} | ${item.shiftTime || '0800-2000'}</div><div class="font-extrabold">${item.balai}</div></td><td class="no-print"><button class="btn btn-danger" onclick="padamAnggota('${item.id}')">PADAM</button></td>`;
           tbody.appendChild(tr);
         });
       }
@@ -4497,7 +4502,7 @@
         if (!t) return;
         if (balaiTerpilih.length === 0) {
           t.innerHTML =
-            '<span class="multi-select-placeholder">🏢 SEMUA BALAI</span>';
+            '<span class="multi-select-placeholder"><i class="fa-solid fa-building mr-1"></i> SEMUA BALAI</span>';
           const infoBadge = document.getElementById('filterInfoBadge');
           if (infoBadge) infoBadge.style.display = 'none';
         } else {
@@ -4517,7 +4522,7 @@
         container.innerHTML = senaraiBalaiMaster
           .map((b) => {
             const s = balaiTerpilih.includes(b) ? 'selected' : '';
-            return `<div class="multi-select-option ${s}" onclick="pilihBalaiOption('${b}')"><div class="check-box">${s ? '✓' : ''}</div><span>${b}</span></div>`;
+            return `<div class="multi-select-option ${s}" onclick="pilihBalaiOption('${b}')"><div class="check-box">${s ? '<i class="fa-solid fa-check"></i>' : ''}</div><span>${b}</span></div>`;
           })
           .join('');
       }
@@ -4587,7 +4592,7 @@
         if (inputPass && inputPass.value === KATA_LALUAN_TETAP) {
           tutupModalPassword();
           if (sasaranPasswordAction === 'MASTER_BERSIH') {
-            tunjukCustomConfirm('🚨 PADAM SEMUA REKOD?', async (res) => {
+            tunjukCustomConfirm('PADAM SEMUA REKOD?', async (res) => {
               if (res) {
                 rekodAnggota = [];
                 logistikBertugas = [];
@@ -4761,7 +4766,7 @@
             balai: document.getElementById('regBalai')?.value || 'PGO JOHOR',
           });
           await hantarDataSupabase();
-          tunjukCustomAlert('✅ Anggota didaftarkan!');
+          tunjukCustomAlert('Anggota didaftarkan!');
           const regNamaInput = document.getElementById('regNama');
           const regTelInput = document.getElementById('regTel');
           if (regNamaInput) regNamaInput.value = '';
