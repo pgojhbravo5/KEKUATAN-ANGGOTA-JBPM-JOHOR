@@ -1477,6 +1477,15 @@
           </div>
           <div class="no-print flex flex-col sm:flex-row gap-2 mb-3">
             <div class="form-group flex-1 !mb-0">
+              <input
+                type="text"
+                id="logistikSearchInput"
+                class="form-control"
+                placeholder="CARI CALLSIGN / PLAT / MODEL / JENIS / KATEGORI / STATUS..."
+                onkeyup="paparLogistikTable()"
+              />
+            </div>
+            <div class="form-group flex-1 !mb-0">
               <select
                 id="logistikBalaiFilter"
                 class="form-control"
@@ -1534,6 +1543,15 @@
             <span><i class="fa-solid fa-list-check text-purple-600 mr-1.5"></i> CHECKLIST PERKAKAS BILIK KAWALAN</span>
           </div>
           <div class="no-print flex flex-col sm:flex-row gap-2 mb-3">
+            <div class="form-group flex-1 !mb-0">
+              <input
+                type="text"
+                id="checklistSearchInput"
+                class="form-control"
+                placeholder="CARI BALAI / SHIF / WAKTU / CATATAN PERKAKAS..."
+                onkeyup="paparChecklistTable()"
+              />
+            </div>
             <div class="form-group flex-1 !mb-0">
               <select
                 id="checklistBalaiFilter"
@@ -4224,12 +4242,25 @@
       function paparChecklistTable() {
         const filterBalai =
           document.getElementById('checklistBalaiFilter')?.value || 'SEMUA';
+        const q = (document.getElementById('checklistSearchInput')?.value || '').toUpperCase().trim();
         const tbody = document.getElementById('checklistTableBody');
         if (!tbody) return;
         tbody.innerHTML = '';
         let data = senaraiChecklist || [];
         if (filterBalai !== 'SEMUA') {
           data = data.filter((i) => i.balai === filterBalai);
+        }
+        if (q) {
+          data = data.filter((i) => {
+            const getCat = (d) => (d && d.catatan ? d.catatan : '');
+            let allCatatan = [
+              getCat(i.cadDetail), getCat(i.wicDetail), getCat(i.bomraDetail),
+              getCat(i.desktopGirnDetail), getCat(i.handheldGirnDetail),
+              getCat(i.vehicularGirnDetail), getCat(i.internetDetail), getCat(i.handphoneDetail)
+            ].join(' ');
+            let fullText = `${i.balai || ''} ${i.shiftType || ''} ${i.shiftTime || ''} ${allCatatan}`.toUpperCase();
+            return fullText.includes(q);
+          });
         }
 
         const totalEl = document.getElementById('statChecklistTotal');
@@ -4347,9 +4378,17 @@
         if (!tbody) return;
         tbody.innerHTML = '';
         let f = rekodAnggota.filter(
-          (i) =>
-            (balaiTerpilih.length === 0 || balaiTerpilih.includes(i.balai)) &&
-            (!q || i.nama.toUpperCase().includes(q) || i.noTel.includes(q))
+          (i) => {
+            let perananStr = [
+              i.isKetuaBalai === 'YA' ? 'KETUA BALAI KB' : '',
+              i.isPegawaiOperasi === 'YA' ? 'PEGAWAI OPERASI PB OPERASI PB/OPERASI' : '',
+              i.isPenyelia === 'YA' ? 'PENYELIA' : '',
+              i.isBkb === 'YA' ? 'BKB' : '',
+              i.isPemandu === 'YA' ? 'PEMANDU' : ''
+            ].join(' ');
+            let fullText = `${i.pangkat || ''} ${i.nama || ''} ${i.noTel || ''} ${i.pasukan || ''} ${i.unit || ''} ${perananStr} ${i.status || ''} ${i.catatan || ''} ${i.shiftType || ''} ${i.shiftTime || ''} ${i.balai || ''}`.toUpperCase();
+            return (balaiTerpilih.length === 0 || balaiTerpilih.includes(i.balai)) && (!q || fullText.includes(q));
+          }
         );
         document.getElementById('statTotal').innerText = f.length;
         document.getElementById('statBertugas').innerText = f.filter(
@@ -4411,12 +4450,19 @@
       function paparLogistikTable() {
         const filterBalai =
           document.getElementById('logistikBalaiFilter')?.value || 'SEMUA';
+        const q = (document.getElementById('logistikSearchInput')?.value || '').toUpperCase().trim();
         const tbody = document.getElementById('logistikTableBody');
         if (!tbody) return;
         tbody.innerHTML = '';
         let data = logistikBertugas;
         if (filterBalai !== 'SEMUA') {
           data = data.filter((i) => i.balai === filterBalai);
+        }
+        if (q) {
+          data = data.filter((i) => {
+            let fullText = `${i.callsign || ''} ${i.plate || ''} ${i.model || ''} ${i.jenis || ''} ${i.kategori || ''} ${i.balai || ''} ${i.status || ''} ${i.catatan || ''}`.toUpperCase();
+            return fullText.includes(q);
+          });
         }
         document.getElementById('statLogTotal').innerText = data.length;
         document.getElementById('statLogBaik').innerText = data.filter(
