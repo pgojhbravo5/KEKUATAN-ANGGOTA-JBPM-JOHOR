@@ -11,10 +11,7 @@
     <!-- PWA & Standalone Web App Meta Tags -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta
-      name="apple-mobile-web-app-status-bar-style"
-      content="black-translucent"
-    />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="JBPM Johor App" />
     <meta name="application-name" content="JBPM Johor App" />
     <meta name="theme-color" content="#b91c1c" />
@@ -68,6 +65,8 @@
           0 2px 4px -2px rgb(0 0 0 / 0.1);
         --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
           0 4px 6px -4px rgb(0 0 0 / 0.1);
+        --safe-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-top: env(safe-area-inset-top, 0px);
       }
       * {
         box-sizing: border-box;
@@ -81,8 +80,9 @@
         background-color: var(--bg-gray);
         color: var(--text-main);
         line-height: 1.5;
-        padding-bottom: 80px;
+        padding-bottom: calc(72px + var(--safe-bottom));
         user-select: none;
+        overflow-x: hidden;
       }
       @media (min-width: 1024px) {
         body {
@@ -90,8 +90,8 @@
         }
       }
       ::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
+        width: 5px;
+        height: 5px;
       }
       ::-webkit-scrollbar-track {
         background: #f1f5f9;
@@ -100,23 +100,22 @@
         background: #cbd5e1;
         border-radius: 9999px;
       }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8;
-      }
+      
       header {
         background: linear-gradient(
           135deg,
           var(--bomba-red-dark) 0%,
-          var(--bomba-red) 60%,
+          var(--bomba-red) 65%,
           #dc2626 100%
         );
         color: white;
         border-bottom: 4px solid var(--bomba-gold);
         box-shadow: var(--shadow-lg);
+        padding-top: var(--safe-top);
       }
       .logo-badge {
-        width: 52px;
-        height: 52px;
+        width: 44px;
+        height: 44px;
         background: var(--bomba-gold);
         border-radius: 50%;
         display: flex;
@@ -124,16 +123,16 @@
         justify-content: center;
         font-weight: 900;
         color: var(--bomba-red-dark);
-        font-size: 20px;
-        box-shadow: 0 0 12px rgba(234, 179, 8, 0.4);
-        border: 2.5px solid white;
+        font-size: 16px;
+        box-shadow: 0 0 10px rgba(234, 179, 8, 0.4);
+        border: 2px solid white;
         flex-shrink: 0;
       }
       @media (min-width: 640px) {
         .logo-badge {
-          width: 64px;
-          height: 64px;
-          font-size: 24px;
+          width: 56px;
+          height: 56px;
+          font-size: 20px;
         }
       }
       .card {
@@ -141,22 +140,22 @@
         border-radius: 16px;
         border: 1px solid var(--border-color);
         box-shadow: var(--shadow-sm);
-        padding: 16px;
-        margin-bottom: 16px;
+        padding: 14px;
+        margin-bottom: 14px;
         transition: box-shadow 0.2s ease, transform 0.2s ease;
       }
       @media (min-width: 640px) {
         .card {
-          padding: 22px;
-          margin-bottom: 22px;
+          padding: 20px;
+          margin-bottom: 20px;
         }
       }
       .card-title {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         font-weight: 800;
         color: var(--bomba-navy);
-        margin-bottom: 14px;
-        padding-bottom: 10px;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
         border-bottom: 2px solid var(--bomba-gold);
         display: flex;
         align-items: center;
@@ -170,31 +169,31 @@
         }
       }
       .form-group {
-        margin-bottom: 14px;
+        margin-bottom: 12px;
       }
       .form-group label {
         display: block;
         font-size: 0.72rem;
         font-weight: 800;
         color: var(--bomba-navy);
-        margin-bottom: 6px;
+        margin-bottom: 5px;
         letter-spacing: 0.5px;
       }
       .form-control,
       select.form-control,
       textarea.form-control {
         width: 100%;
-        padding: 11px 14px;
+        padding: 10px 12px;
         border: 1.5px solid var(--border-color);
         border-radius: 10px;
-        font-size: 0.85rem;
+        font-size: 0.82rem;
         font-weight: 700;
         color: var(--bomba-navy);
         background-color: #fafafa;
         transition: all 0.2s ease;
         outline: none;
         text-transform: uppercase;
-        min-height: 46px;
+        min-height: 44px;
       }
       .form-control:focus,
       select.form-control:focus,
@@ -208,18 +207,21 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        padding: 12px 16px;
-        border-radius: 10px;
+        padding: 10px 14px;
+        border-radius: 12px;
         font-weight: 800;
         font-size: 0.82rem;
         cursor: pointer;
         border: none;
-        transition: all 0.2s ease;
+        transition: all 0.15s ease;
         gap: 8px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         min-height: 46px;
         touch-action: manipulation;
+      }
+      .btn:active {
+        transform: scale(0.97);
       }
       .btn-primary {
         background: linear-gradient(
@@ -229,9 +231,6 @@
         );
         color: white;
         box-shadow: 0 4px 10px rgba(185, 28, 28, 0.25);
-      }
-      .btn-primary:active {
-        transform: scale(0.98);
       }
       .btn-orange {
         background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
@@ -246,16 +245,13 @@
       .btn-secondary {
         background: #f1f5f9;
         color: var(--bomba-navy);
-        border: 1px solid var(--border-color);
-      }
-      .btn-secondary:active {
-        background: #e2e8f0;
+        border: 1.5px solid var(--border-color);
       }
       .btn-danger {
         background: #ef4444;
         color: white;
-        padding: 6px 12px;
-        font-size: 0.72rem;
+        padding: 6px 10px;
+        font-size: 0.7rem;
         width: auto;
         border-radius: 8px;
         min-height: 36px;
@@ -278,16 +274,16 @@
       }
       .tab-btn-group {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-        gap: 6px;
+        grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
+        gap: 5px;
         background: #f1f5f9;
-        padding: 5px;
+        padding: 4px;
         border-radius: 12px;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
       }
       .tab-btn {
-        padding: 10px 8px;
-        font-size: 0.75rem;
+        padding: 8px 6px;
+        font-size: 0.72rem;
         font-weight: 800;
         border: none;
         border-radius: 8px;
@@ -306,44 +302,37 @@
       .stats-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        margin-bottom: 18px;
+        gap: 8px;
+        margin-bottom: 14px;
       }
       @media (min-width: 640px) {
         .stats-grid {
           grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-          gap: 14px;
-          margin-bottom: 22px;
+          gap: 12px;
+          margin-bottom: 18px;
         }
       }
       .stat-card {
         background: white;
         border-radius: 12px;
-        padding: 12px 14px;
+        padding: 10px 12px;
         border: 1px solid var(--border-color);
         box-shadow: var(--shadow-sm);
         border-left: 4px solid var(--bomba-red);
       }
-      .stat-card.gold {
-        border-left-color: var(--bomba-gold);
-      }
-      .stat-card.green {
-        border-left-color: #10b981;
-      }
-      .stat-card.orange {
-        border-left-color: #f59e0b;
-      }
-      .stat-card.purple {
-        border-left-color: #8b5cf6;
-      }
+      .stat-card.gold { border-left-color: var(--bomba-gold); }
+      .stat-card.green { border-left-color: #10b981; }
+      .stat-card.orange { border-left-color: #f59e0b; }
+      .stat-card.purple { border-left-color: #8b5cf6; }
+
       .stat-label {
-        font-size: 0.65rem;
+        font-size: 0.62rem;
         font-weight: 800;
         color: var(--text-muted);
         margin-bottom: 2px;
       }
       .stat-value {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
         font-weight: 900;
         color: var(--bomba-navy);
         white-space: nowrap;
@@ -363,7 +352,7 @@
         width: 100%;
         border-collapse: collapse;
         background: white;
-        font-size: 0.78rem;
+        font-size: 0.75rem;
         text-align: left;
       }
       .roster-table th,
@@ -371,127 +360,64 @@
       .checklist-table th {
         background: #f1f5f9;
         color: var(--bomba-navy);
-        padding: 10px 12px;
+        padding: 8px 10px;
         font-weight: 800;
         border-bottom: 2px solid var(--border-color);
         white-space: nowrap;
-        font-size: 0.7rem;
+        font-size: 0.68rem;
       }
-      .logistik-table th {
-        background: #fef3c7;
-        color: #92400e;
-      }
-      .checklist-table th {
-        background: #f3e8ff;
-        color: #6b21a8;
-      }
+      .logistik-table th { background: #fef3c7; color: #92400e; }
+      .checklist-table th { background: #f3e8ff; color: #6b21a8; }
+
       .roster-table td,
       .logistik-table td,
       .checklist-table td {
-        padding: 10px 12px;
+        padding: 8px 10px;
         border-bottom: 1px solid var(--border-color);
         font-weight: 600;
         color: var(--text-main);
         vertical-align: middle;
-        font-size: 0.76rem;
-      }
-      .roster-table tr:hover {
-        background-color: #fef2f2;
-      }
-      .logistik-table tr:hover {
-        background-color: #fffdf5;
-      }
-      .checklist-table tr:hover {
-        background-color: #faf5ff;
+        font-size: 0.74rem;
       }
       .badge {
         display: inline-block;
-        padding: 3px 8px;
+        padding: 2px 7px;
         border-radius: 20px;
         font-weight: 800;
-        font-size: 0.65rem;
+        font-size: 0.62rem;
         white-space: nowrap;
       }
-      .badge-a {
-        background: #fee2e2;
-        color: #991b1b;
-        border: 1px solid #fca5a5;
-      }
-      .badge-b {
-        background: #fef3c7;
-        color: #92400e;
-        border: 1px solid #fcd34d;
-      }
-      .badge-c {
-        background: #e0e7ff;
-        color: #3730a3;
-        border: 1px solid #a5b4fc;
-      }
-      .badge-unit-gen {
-        background: #f3f4f6;
-        color: #374151;
-        border: 1px solid #d1d5db;
-      }
+      .badge-a { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+      .badge-b { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+      .badge-c { background: #e0e7ff; color: #3730a3; border: 1px solid #a5b4fc; }
+      .badge-unit-gen { background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; }
       .badge-tel {
         background: #e0f2fe;
         color: #0369a1;
         border: 1px solid #bae6fd;
-        font-size: 0.68rem;
-        padding: 2px 7px;
+        font-size: 0.65rem;
+        padding: 2px 6px;
         border-radius: 6px;
         display: inline-flex;
         align-items: center;
         gap: 3px;
-        margin-top: 3px;
+        margin-top: 2px;
       }
-      .badge-status-bertugas {
-        background: #dcfce7;
-        color: #166534;
-        border: 1px solid #86efac;
-      }
-      .badge-status-cuti {
-        background: #fef3c7;
-        color: #92400e;
-        border: 1px solid #fcd34d;
-      }
-      .badge-status-cutisakit {
-        background: #fee2e2;
-        color: #991b1b;
-        border: 1px solid #fca5a5;
-      }
-      .badge-status-tugaskhas {
-        background: #e0e7ff;
-        color: #3730a3;
-        border: 1px solid #a5b4fc;
-      }
-      .badge-jentera-baik {
-        background: #dcfce7;
-        color: #166534;
-        border: 1px solid #86efac;
-      }
-      .badge-jentera-rosak {
-        background: #fee2e2;
-        color: #991b1b;
-        border: 1px solid #fca5a5;
-      }
-      .badge-jentera-selenggara {
-        background: #fef3c7;
-        color: #92400e;
-        border: 1px solid #fcd34d;
-      }
-      .badge-peranan {
-        background: #dbeafe;
-        color: #1e40af;
-        border: 1px solid #93c5fd;
-        font-size: 0.6rem;
-        padding: 2px 6px;
-      }
+      .badge-status-bertugas { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+      .badge-status-cuti { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+      .badge-status-cutisakit { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+      .badge-status-tugaskhas { background: #e0e7ff; color: #3730a3; border: 1px solid #a5b4fc; }
+      .badge-jentera-baik { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+      .badge-jentera-rosak { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+      .badge-jentera-selenggara { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+      .badge-peranan { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; font-size: 0.58rem; padding: 1px 5px; }
+
       .catatan-box {
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         color: var(--text-muted);
         font-weight: 600;
         background: #f8fafc;
-        padding: 4px 8px;
+        padding: 3px 6px;
         border-radius: 6px;
         border: 1px dashed var(--border-color);
         display: inline-block;
@@ -500,19 +426,21 @@
       }
       .empty-state {
         text-align: center;
-        padding: 35px 15px;
+        padding: 30px 12px;
         color: var(--text-muted);
       }
+
+      /* Multi-Select Components */
       .multi-select-container {
         position: relative;
         width: 100%;
       }
       .multi-select-trigger {
         width: 100%;
-        padding: 10px 12px;
+        padding: 8px 12px;
         border: 1.5px solid var(--border-color);
         border-radius: 10px;
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         font-weight: 700;
         color: var(--bomba-navy);
         background-color: #fafafa;
@@ -520,9 +448,9 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 8px;
+        gap: 6px;
         transition: all 0.2s ease;
-        min-height: 46px;
+        min-height: 44px;
         text-transform: uppercase;
         user-select: none;
       }
@@ -534,20 +462,20 @@
       .multi-select-placeholder {
         color: var(--text-muted);
         font-weight: 600;
-        font-size: 0.8rem;
+        font-size: 0.78rem;
       }
       .multi-select-tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 5px;
+        gap: 4px;
         flex: 1;
       }
       .multi-select-tag {
         background: #fee2e2;
         color: #991b1b;
-        padding: 2px 7px;
+        padding: 2px 6px;
         border-radius: 6px;
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         font-weight: 800;
         border: 1px solid #fca5a5;
         display: inline-flex;
@@ -566,7 +494,7 @@
       }
       .multi-select-dropdown {
         position: absolute;
-        top: calc(100% + 6px);
+        top: calc(100% + 4px);
         left: 0;
         right: 0;
         background: white;
@@ -574,7 +502,7 @@
         border-radius: 12px;
         box-shadow: var(--shadow-lg);
         z-index: 60;
-        max-height: 280px;
+        max-height: 250px;
         overflow-y: auto;
         display: none;
       }
@@ -582,7 +510,7 @@
         display: block;
       }
       .multi-select-search {
-        padding: 10px;
+        padding: 8px;
         border-bottom: 1px solid var(--border-color);
         position: sticky;
         top: 0;
@@ -591,10 +519,10 @@
       }
       .multi-select-search input {
         width: 100%;
-        padding: 8px 12px;
+        padding: 8px 10px;
         border: 1px solid var(--border-color);
         border-radius: 8px;
-        font-size: 0.8rem;
+        font-size: 0.78rem;
         font-weight: 600;
         outline: none;
         text-transform: uppercase;
@@ -603,9 +531,9 @@
         padding: 4px 0;
       }
       .multi-select-option {
-        padding: 10px 14px;
+        padding: 8px 12px;
         cursor: pointer;
-        font-size: 0.76rem;
+        font-size: 0.74rem;
         font-weight: 700;
         color: var(--bomba-navy);
         display: flex;
@@ -630,7 +558,7 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        font-size: 0.7rem;
+        font-size: 0.68rem;
       }
       .multi-select-option.selected .check-box {
         background: var(--bomba-red);
@@ -638,10 +566,10 @@
         color: white;
       }
       .multi-select-actions {
-        padding: 10px;
+        padding: 8px;
         border-top: 1px solid var(--border-color);
         display: flex;
-        gap: 8px;
+        gap: 6px;
         position: sticky;
         bottom: 0;
         background: white;
@@ -649,31 +577,25 @@
       }
       .multi-select-actions button {
         flex: 1;
-        padding: 8px 12px;
+        padding: 6px 10px;
         border-radius: 8px;
-        font-size: 0.75rem;
+        font-size: 0.72rem;
         font-weight: 800;
         cursor: pointer;
         border: none;
         text-transform: uppercase;
       }
-      .btn-select-all {
-        background: #eff6ff;
-        color: #1e40af;
-        border: 1px solid #bfdbfe;
-      }
-      .btn-clear-all {
-        background: #fef2f2;
-        color: #991b1b;
-        border: 1px solid #fca5a5;
-      }
+      .btn-select-all { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+      .btn-clear-all { background: #fef2f2; color: #991b1b; border: 1px solid #fca5a5; }
+
+      /* Enhanced Mobile Bottom Sheet Modal Styling */
       .modal-overlay {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(15, 23, 42, 0.65);
+        background: rgba(15, 23, 42, 0.7);
         backdrop-filter: blur(4px);
         display: flex;
         align-items: flex-end;
@@ -701,27 +623,28 @@
       }
       .modal {
         background: white;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         width: 100%;
         max-width: 860px;
-        padding: 20px;
+        padding: 16px 16px max(16px, var(--safe-bottom)) 16px;
         box-shadow: var(--shadow-lg);
         transform: translateY(100%);
-        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        max-height: 92vh;
+        transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        max-height: 90vh;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
+        position: relative;
       }
       @media (min-width: 640px) {
         .modal {
-          border-radius: 18px;
+          border-radius: 20px;
           transform: translateY(20px);
-          max-height: 92vh;
-          padding: 24px;
+          max-height: 88vh;
+          padding: 22px;
         }
       }
       .modal-overlay.active .modal {
@@ -731,12 +654,16 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 14px;
-        padding-bottom: 10px;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
         border-bottom: 2px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        background: white;
+        z-index: 10;
       }
       .modal-header h3 {
-        font-size: 1.05rem;
+        font-size: 0.95rem;
         font-weight: 800;
         color: var(--bomba-red);
       }
@@ -752,82 +679,72 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-shrink: 0;
       }
       .sync-badge {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        padding: 4px 10px;
+        gap: 4px;
+        padding: 3px 8px;
         border-radius: 20px;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         font-weight: 800;
       }
-      .sync-active {
-        background: #dcfce7;
-        color: #166534;
-        border: 1px solid #86efac;
-      }
-      .sync-inactive {
-        background: #fef3c7;
-        color: #92400e;
-        border: 1px solid #fcd34d;
-      }
-      .sync-error {
-        background: #fee2e2;
-        color: #991b1b;
-        border: 1px solid #fca5a5;
-      }
+      .sync-active { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+      .sync-inactive { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+      .sync-error { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+
       .error-message {
         color: #dc2626;
-        font-size: 0.78rem;
+        font-size: 0.75rem;
         font-weight: 700;
-        margin-top: 6px;
+        margin-top: 4px;
         display: none;
       }
       .info-pill {
         background: #eff6ff;
         border: 1px solid #bfdbfe;
         color: #1e40af;
-        padding: 10px 12px;
+        padding: 8px 10px;
         border-radius: 10px;
-        font-size: 0.74rem;
+        font-size: 0.72rem;
         font-weight: 700;
-        margin-bottom: 14px;
+        margin-bottom: 12px;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
       }
       .jentera-modal-table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 0.74rem;
-        margin-top: 8px;
+        font-size: 0.72rem;
+        margin-top: 6px;
       }
       .jentera-modal-table th {
         background: #f1f5f9;
-        padding: 8px 10px;
+        padding: 6px 8px;
         font-weight: 800;
-        font-size: 0.68rem;
+        font-size: 0.65rem;
         border-bottom: 2px solid var(--border-color);
         text-align: left;
       }
       .jentera-modal-table td {
-        padding: 8px 10px;
+        padding: 6px 8px;
         border-bottom: 1px solid var(--border-color);
         vertical-align: middle;
       }
       .filter-info-badge {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         background: #eff6ff;
         border: 1px solid #bfdbfe;
         color: #1e40af;
-        padding: 8px 12px;
+        padding: 6px 10px;
         border-radius: 10px;
-        font-size: 0.74rem;
+        font-size: 0.72rem;
         font-weight: 700;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
         flex-wrap: wrap;
       }
       .filter-info-badge .clear-filter-link {
@@ -837,18 +754,24 @@
         text-decoration: underline;
         margin-left: auto;
       }
-      .btn-group {
+      
+      /* Sticky Button Footer in Modal for Thumb Ergonomics */
+      .modal .btn-group {
         display: flex;
-        gap: 10px;
-        margin-top: 14px;
+        gap: 8px;
+        margin-top: auto;
+        padding-top: 10px;
+        position: sticky;
+        bottom: 0;
+        background: white;
+        z-index: 10;
+        border-top: 1px solid var(--border-color);
       }
+
       .loading-overlay {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(255, 255, 255, 0.8);
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(255, 255, 255, 0.85);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -862,18 +785,16 @@
         pointer-events: all;
       }
       .spinner {
-        width: 50px;
-        height: 50px;
-        border: 5px solid #e2e8f0;
+        width: 44px;
+        height: 44px;
+        border: 4px solid #e2e8f0;
         border-top-color: var(--bomba-red);
         border-radius: 50%;
         animation: spin 0.8s linear infinite;
       }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+
+      /* Mobile Navigation Bar with Safe Area Insets */
       .mobile-bottom-nav {
         position: fixed;
         bottom: 0;
@@ -884,9 +805,9 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        padding: 8px 4px;
+        padding: 6px 4px calc(6px + var(--safe-bottom)) 4px;
         z-index: 100;
-        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
       }
       .nav-item {
         display: flex;
@@ -894,21 +815,30 @@
         align-items: center;
         justify-content: center;
         color: var(--text-muted);
-        font-size: 0.6rem;
+        font-size: 0.58rem;
         font-weight: 800;
-        padding: 4px 6px;
-        border-radius: 8px;
-        transition: all 0.2s ease;
+        padding: 5px 4px;
+        border-radius: 10px;
+        transition: all 0.15s ease;
         text-align: center;
-        width: 20%;
+        width: 19%;
+        user-select: none;
+        touch-action: manipulation;
       }
       .nav-item .nav-icon {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
         margin-bottom: 2px;
+        transition: transform 0.15s ease;
+      }
+      .nav-item:active {
+        transform: scale(0.92);
       }
       .nav-item.active {
         color: var(--bomba-red);
         background: #fef2f2;
+      }
+      .nav-item.active .nav-icon {
+        transform: translateY(-1px);
       }
       @media (min-width: 1024px) {
         .mobile-bottom-nav {
@@ -916,31 +846,13 @@
         }
       }
       @media print {
-        body {
-          background: white;
-          color: black;
-          padding-bottom: 0;
-        }
-        .no-print,
-        .mobile-bottom-nav {
-          display: none !important;
-        }
-        .card {
-          border: none;
-          box-shadow: none;
-          padding: 0;
-        }
-        .table-responsive {
-          border: none;
-        }
-        .roster-table th,
-        .roster-table td,
-        .logistik-table th,
-        .logistik-table td,
-        .checklist-table th,
-        .checklist-table td {
-          border: 1px solid #000;
-        }
+        body { background: white; color: black; padding-bottom: 0; }
+        .no-print, .mobile-bottom-nav { display: none !important; }
+        .card { border: none; box-shadow: none; padding: 0; }
+        .table-responsive { border: none; }
+        .roster-table th, .roster-table td,
+        .logistik-table th, .logistik-table td,
+        .checklist-table th, .checklist-table td { border: 1px solid #000; }
       }
     </style>
   </head>
@@ -948,44 +860,45 @@
     <div class="loading-overlay" id="loadingOverlay">
       <div class="spinner"></div>
     </div>
+
     <header class="no-print">
       <div
-        class="max-w-[1440px] mx-auto px-4 py-4 flex flex-wrap items-center justify-between gap-3"
+        class="max-w-[1440px] mx-auto px-3 sm:px-4 py-3 flex flex-wrap items-center justify-between gap-2"
       >
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2.5">
           <div class="logo-badge">JBPM</div>
           <div>
             <h1
-              class="text-base sm:text-xl font-black text-white leading-tight tracking-wide flex items-center gap-2"
+              class="text-xs sm:text-lg font-black text-white leading-tight tracking-wide flex items-center gap-1.5"
             >
-              <span>SISTEM KEKUATAN, LOGISTIK & CHECKLIST</span>
+              <span>SISTEM KEKUATAN & LOGISTIK</span>
               <span
-                class="hidden sm:inline-block bg-yellow-400 text-slate-900 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-extrabold shadow"
-                >APP STANDALONE</span
+                class="hidden sm:inline-block bg-yellow-400 text-slate-900 text-[9px] px-1.5 py-0.5 rounded-full font-black shadow"
+                >APP</span
               >
             </h1>
             <p
-              class="text-[10px] sm:text-xs text-yellow-400 font-bold tracking-wider mt-0.5"
+              class="text-[9px] sm:text-xs text-yellow-400 font-extrabold tracking-wider mt-0.5"
             >
-              JABATAN BOMBA DAN PENYELAMAT MALAYSIA NEGERI JOHOR
+              JBPM NEGERI JOHOR
             </p>
           </div>
         </div>
         <div
-          class="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-between sm:justify-end border-t sm:border-0 pt-2 sm:pt-0 border-red-800/40"
+          class="flex flex-wrap items-center gap-1.5 w-full sm:w-auto justify-between sm:justify-end border-t sm:border-0 pt-1.5 sm:pt-0 border-red-800/40"
         >
           <!-- Offline / PWA App Status -->
           <div id="pwaStatusBadge" class="sync-badge sync-active">
-            <span id="pwaStatusText">📱 APPLIKASI OFFLINE SEDIA</span>
+            <span id="pwaStatusText">📱 STANDALONE: TALIAN</span>
           </div>
           <div id="cloudStatusBadge" class="sync-badge sync-inactive">
-            <span>🟡 SUPABASE: MENYAMBUNG...</span>
+            <span>🟡 SUPABASE...</span>
           </div>
           <div
-            class="bg-black/30 border border-white/20 px-3 py-1.5 rounded-xl text-right"
+            class="bg-black/30 border border-white/20 px-2.5 py-1 rounded-xl text-right"
           >
             <div
-              class="text-[10px] sm:text-xs text-slate-200 font-semibold"
+              class="text-[9px] sm:text-xs text-slate-200 font-semibold"
               id="currentDate"
             >
               ISNIN, 01 JULAI 2026
@@ -1002,36 +915,36 @@
     </header>
 
     <div
-      class="max-w-[1440px] mx-auto px-3 sm:px-5 mt-4 sm:mt-6 grid grid-cols-1 lg:grid-cols-[380px_1fr] xl:grid-cols-[420px_1fr] gap-5"
+      class="max-w-[1440px] mx-auto px-3 sm:px-5 mt-3 sm:mt-5 grid grid-cols-1 lg:grid-cols-[360px_1fr] xl:grid-cols-[400px_1fr] gap-4"
     >
-      <div id="sectionPanels" class="no-print space-y-4">
+      <div id="sectionPanels" class="no-print space-y-3">
         <!-- Panel Tugasan Operasi -->
         <div class="card border-l-4 border-l-red-600">
           <div class="card-title">
             <span>📋 1. TUGASAN & OPERASI HARIAN</span>
             <span
-              class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-100 text-red-900"
+              class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-red-100 text-red-900"
               >OPERASI</span
             >
           </div>
-          <div class="flex flex-col gap-2 mt-2">
+          <div class="flex flex-col gap-2 mt-1">
             <!-- FOKUS MODAL ANGGOTA BERTUGAS -->
             <button
-              class="btn btn-primary font-black ring-2 ring-red-300 ring-offset-1"
+              class="btn btn-primary font-black active:scale-95"
               onclick="bukaModalTambahAnggota()"
             >
               👤 ISI ANGGOTA BERTUGAS
             </button>
             <!-- FOKUS MODAL LOGISTIK JENTERA -->
             <button
-              class="btn btn-orange font-black ring-2 ring-amber-300 ring-offset-1"
+              class="btn btn-orange font-black active:scale-95"
               onclick="bukaModalLogistikJentera()"
             >
               🚒 ISI MAKLUMAT JENTERA BERTUGAS
             </button>
             <!-- FOKUS MODAL CHECKLIST -->
             <button
-              class="btn btn-purple font-black ring-2 ring-purple-300 ring-offset-1"
+              class="btn btn-purple font-black active:scale-95"
               onclick="bukaModalChecklist()"
             >
               ✅ ISI CHECKLIST PERKAKAS
@@ -1044,11 +957,11 @@
           <div class="card-title">
             <span>👤 2. DAFTAR ANGGOTA & MASTER</span>
             <span
-              class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-900"
+              class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-indigo-100 text-indigo-900"
               >MASTER</span
             >
           </div>
-          <p class="text-xs text-slate-500 font-bold mb-3">
+          <p class="text-[11px] text-slate-500 font-extrabold mb-2">
             DAFTAR MAKLUMAT MASTER ANGGOTA BAHARU:
           </p>
           <div id="regFormContainer">
@@ -1081,21 +994,21 @@
               + DAFTAR ANGGOTA
             </button>
           </div>
-          <div class="flex flex-col gap-2 mt-3">
+          <div class="flex flex-col gap-1.5 mt-3">
             <button
-              class="btn btn-secondary"
+              class="btn btn-secondary !min-h-[40px] !text-[11px]"
               onclick="mintaPassword('URUS_KATEGORI')"
             >
               🔒 URUS / PADAM SENARAI MASTER
             </button>
             <button
-              class="btn btn-secondary"
+              class="btn btn-secondary !min-h-[40px] !text-[11px]"
               onclick="mintaPassword('URUS_JENTERA_MASTER')"
             >
               🔧 URUS SENARAI JENTERA (MASTER) 🔒
             </button>
             <button
-              class="btn btn-master-purge"
+              class="btn btn-master-purge !min-h-[40px] !text-[11px]"
               onclick="mintaPassword('MASTER_BERSIH')"
             >
               🚨 MASTER PEMBERSIHAN 🔒
@@ -1108,37 +1021,37 @@
           <div class="card-title">
             <span>☁️ 3. SIMPANAN DATA STANDALONE</span>
             <span
-              class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-900"
+              class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-emerald-100 text-emerald-900"
               >LOCAL & CLOUD</span
             >
           </div>
           <div class="flex flex-col gap-2">
             <div class="grid grid-cols-2 gap-2">
               <button
-                class="btn btn-secondary text-xs"
+                class="btn btn-secondary !min-h-[40px] !text-[11px]"
                 onclick="tarikDataSupabase()"
               >
                 🔄 MUAT DATA CLOUD
               </button>
               <button
-                class="btn btn-emerald text-xs"
+                class="btn btn-emerald !min-h-[40px] !text-[11px]"
                 onclick="hantarDataSupabase()"
               >
-                ☁️ SIMPAN KE CLOUD
+                ☁️ SIMPAN CLOUD
               </button>
             </div>
             <div class="grid grid-cols-2 gap-2 pt-1 border-t border-slate-100">
               <button
-                class="btn btn-secondary text-xs bg-amber-50 hover:bg-amber-100 text-amber-900 border-amber-200"
+                class="btn btn-secondary !min-h-[40px] !text-[10px] bg-amber-50 hover:bg-amber-100 text-amber-900 border-amber-200"
                 onclick="eksportDataJSON()"
               >
-                📥 EKSPORT BACKUP (JSON)
+                📥 EKSPORT BACKUP
               </button>
               <button
-                class="btn btn-secondary text-xs bg-blue-50 hover:bg-blue-100 text-blue-900 border-blue-200"
+                class="btn btn-secondary !min-h-[40px] !text-[10px] bg-blue-50 hover:bg-blue-100 text-blue-900 border-blue-200"
                 onclick="pilihFailImport()"
               >
-                📤 IMPORT BACKUP (JSON)
+                📤 IMPORT BACKUP
               </button>
             </div>
             <input
@@ -1152,7 +1065,7 @@
         </div>
       </div>
 
-      <div class="content-area space-y-4">
+      <div class="content-area space-y-3">
         <div id="sectionStats" class="stats-grid no-print">
           <div class="stat-card">
             <div class="stat-label">JUMLAH REKOD</div>
@@ -1180,22 +1093,22 @@
         <div id="sectionAnggota" class="card">
           <div class="card-title">
             <span>👤 BORANG KEKUATAN ANGGOTA BERTUGAS</span>
-            <div class="no-print flex items-center gap-2">
+            <div class="no-print flex items-center gap-1.5">
               <button
-                class="btn btn-secondary !w-auto !py-1.5 !px-3 !text-xs !min-h-[36px]"
+                class="btn btn-secondary !w-auto !py-1 !px-2.5 !text-[11px] !min-h-[34px]"
                 onclick="cetakLaporan()"
               >
                 🖨️ CETAK
               </button>
               <button
-                class="btn btn-secondary !w-auto !py-1.5 !px-3 !text-xs !min-h-[36px] text-red-700 border-red-300"
+                class="btn btn-secondary !w-auto !py-1 !px-2.5 !text-[11px] !min-h-[34px] text-red-700 border-red-300"
                 onclick="mintaPassword('MASTER_BERSIH')"
               >
                 🗑️ BERSIHKAN 🔒
               </button>
             </div>
           </div>
-          <div class="no-print flex flex-col sm:flex-row gap-2.5 mb-4">
+          <div class="no-print flex flex-col sm:flex-row gap-2 mb-3">
             <div class="form-group flex-1 !mb-0">
               <input
                 type="text"
@@ -1248,7 +1161,7 @@
               </div>
             </div>
             <button
-              class="btn btn-secondary sm:!w-auto !px-6"
+              class="btn btn-secondary sm:!w-auto !px-5"
               onclick="kemaskiniPaparData()"
             >
               🔍 CARI
@@ -1298,7 +1211,7 @@
           <div class="card-title">
             <span>🚒 LOGISTIK JENTERA BERTUGAS</span>
           </div>
-          <div class="no-print flex flex-col sm:flex-row gap-2.5 mb-4">
+          <div class="no-print flex flex-col sm:flex-row gap-2 mb-3">
             <div class="form-group flex-1 !mb-0">
               <select
                 id="logistikBalaiFilter"
@@ -1309,7 +1222,7 @@
               </select>
             </div>
           </div>
-          <div class="stats-grid no-print mb-4">
+          <div class="stats-grid no-print mb-3">
             <div class="stat-card border-l-emerald-500">
               <div class="stat-label">JUMLAH JENTERA</div>
               <div class="stat-value" id="statLogTotal">0</div>
@@ -1356,7 +1269,7 @@
           <div class="card-title">
             <span>✅ CHECKLIST PERKAKAS BILIK KAWALAN</span>
           </div>
-          <div class="no-print flex flex-col sm:flex-row gap-2.5 mb-4">
+          <div class="no-print flex flex-col sm:flex-row gap-2 mb-3">
             <div class="form-group flex-1 !mb-0">
               <select
                 id="checklistBalaiFilter"
@@ -1367,7 +1280,7 @@
               </select>
             </div>
           </div>
-          <div class="stats-grid no-print mb-4">
+          <div class="stats-grid no-print mb-3">
             <div class="stat-card border-l-purple-500">
               <div class="stat-label">JUMLAH SEMAKAN</div>
               <div class="stat-value" id="statChecklistTotal">0</div>
@@ -1415,17 +1328,17 @@
     </div>
 
     <footer
-      class="text-center py-6 px-4 no-print border-t border-slate-200/80 mt-8 mb-4"
+      class="text-center py-5 px-4 no-print border-t border-slate-200/80 mt-6 mb-2"
     >
-      <p class="text-xs font-black text-slate-600 tracking-wider">
+      <p class="text-[11px] font-black text-slate-600 tracking-wider">
         &copy; 2026 PGO JOHOR | Hak Cipta Terpelihara (Aplikasi Standalone)
       </p>
-      <p class="text-[11px] font-extrabold text-slate-400 tracking-widest mt-1">
+      <p class="text-[10px] font-extrabold text-slate-400 tracking-widest mt-0.5">
         PEMBANGUN APLIKASI : PB MOHAMAD AIDIL
       </p>
     </footer>
 
-    <!-- MOBILE NAVIGATION -->
+    <!-- MOBILE NAVIGATION BAR -->
     <nav class="mobile-bottom-nav no-print">
       <button class="nav-item active" onclick="tukarViewMobile('operasi')">
         <span class="nav-icon">📋</span><span>OPERASI</span>
@@ -1449,7 +1362,7 @@
       <div class="modal sm:!max-w-4xl">
         <div class="modal-header">
           <div class="flex items-center gap-2">
-            <span class="text-xl">👤</span>
+            <span class="text-lg">👤</span>
             <h3>ISI KEKUATAN ANGGOTA BERTUGAS</h3>
           </div>
           <button class="close-modal" onclick="tutupModalTambahAnggota()">
@@ -1460,19 +1373,18 @@
         <div class="info-pill bg-red-50 border-red-200 text-red-900">
           <span>💡</span>
           <span
-            >PILIH ANGGOTA DARI REGISTRI MASTER, TETAPKAN PASUKAN, STATUS &
-            PERANAN BAGI SETIAP ANGGOTA.</span
+            >PILIH ANGGOTA DARI MASTER & TETAPKAN PASUKAN, STATUS DAN PERANAN.</span
           >
         </div>
 
-        <div class="form-group mb-3">
+        <div class="form-group mb-2.5">
           <label class="flex justify-between items-center">
             <span class="text-slate-800 font-extrabold"
               >PILIH ANGGOTA UNTUK BERTUGAS
               <span class="required-star">*</span></span
             >
             <span
-              class="text-[10px] text-red-800 bg-red-100 border border-red-300 px-2 py-0.5 rounded font-black"
+              class="text-[9px] text-red-800 bg-red-100 border border-red-300 px-2 py-0.5 rounded font-black"
               id="selectedOfficerCountBadge"
               >0 DIPILIH</span
             >
@@ -1521,20 +1433,20 @@
           </div>
         </div>
 
-        <div class="flex items-center justify-between mb-2 mt-2">
+        <div class="flex items-center justify-between mb-1.5 mt-1">
           <span class="font-extrabold text-xs text-slate-800"
             >📋 SENARAI ANGGOTA DIPILIH & PERANAN:</span
           >
           <button
-            class="px-2.5 py-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-[10px] font-black rounded-lg border border-emerald-300 transition"
+            class="px-2 py-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-[10px] font-black rounded-lg border border-emerald-300 transition"
             onclick="setSemuaAnggotaStatus('BERTUGAS')"
           >
-            ⚡ SET SEMUA BERTUGAS
+            ⚡ SET ALL BERTUGAS
           </button>
         </div>
 
         <div
-          class="max-h-64 overflow-y-auto border border-slate-200 rounded-xl mb-3 bg-white"
+          class="max-h-56 sm:max-h-64 overflow-y-auto border border-slate-200 rounded-xl mb-3 bg-white"
         >
           <table class="jentera-modal-table">
             <thead>
@@ -1577,7 +1489,7 @@
       <div class="modal sm:!max-w-4xl">
         <div class="modal-header">
           <div class="flex items-center gap-2">
-            <span class="text-xl">🚒</span>
+            <span class="text-lg">🚒</span>
             <h3>LOGISTIK JENTERA BERTUGAS</h3>
           </div>
           <button class="close-modal" onclick="tutupModalLogistikJentera()">
@@ -1588,12 +1500,11 @@
         <div class="info-pill bg-amber-50 border-amber-200 text-amber-900">
           <span>💡</span>
           <span
-            >PILIH BALAI & TAPIS KATEGORI UNTUK MEMILIH JENTERA DARI INVENTORI,
-            KEMUDIAN TETAPKAN STATUS JENTERA BERTUGAS.</span
+            >PILIH BALAI & TAPIS KATEGORI UNTUK MEMILIH JENTERA DARI INVENTORI.</span
           >
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
           <div class="form-group !mb-0">
             <label class="text-amber-900"
               >BALAI BERTUGAS <span class="required-star">*</span></label
@@ -1629,11 +1540,11 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group my-2">
           <label class="flex justify-between items-center">
             <span>PILIH JENTERA UNTUK BERTUGAS</span>
             <span
-              class="text-[10px] text-amber-800 bg-amber-100 px-2 py-0.5 rounded font-bold"
+              class="text-[9px] text-amber-800 bg-amber-100 px-2 py-0.5 rounded font-bold"
               id="selectedJenteraCountBadge"
               >0 DIPILIH</span
             >
@@ -1682,20 +1593,20 @@
           </div>
         </div>
 
-        <div class="flex items-center justify-between mb-2 mt-1">
+        <div class="flex items-center justify-between mb-1.5 mt-1">
           <span class="font-extrabold text-xs text-slate-800"
             >📋 SENARAI JENTERA DIPILIH & STATUS:</span
           >
           <button
-            class="px-2.5 py-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-[10px] font-black rounded-lg border border-emerald-300 transition"
+            class="px-2 py-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-[10px] font-black rounded-lg border border-emerald-300 transition"
             onclick="setSemuaJenteraStatus('SEDIA BEROPERASI')"
           >
-            ⚡ SET SEMUA SEDIA BEROPERASI
+            ⚡ SET ALL SEDIA
           </button>
         </div>
 
         <div
-          class="max-h-60 overflow-y-auto border border-slate-200 rounded-xl mb-3 bg-white"
+          class="max-h-56 sm:max-h-60 overflow-y-auto border border-slate-200 rounded-xl mb-3 bg-white"
         >
           <table class="jentera-modal-table">
             <thead>
@@ -1741,7 +1652,7 @@
       <div class="modal sm:!max-w-4xl">
         <div class="modal-header">
           <div class="flex items-center gap-2">
-            <span class="text-xl">✅</span>
+            <span class="text-lg">✅</span>
             <h3>CHECKLIST PERKAKAS BILIK KAWALAN</h3>
           </div>
           <button class="close-modal" onclick="tutupModalChecklist()">
@@ -1750,14 +1661,13 @@
         </div>
 
         <div
-          class="info-pill bg-purple-50 border-purple-200 text-purple-900 flex flex-wrap items-center justify-between gap-2"
+          class="info-pill bg-purple-50 border-purple-200 text-purple-900 flex flex-wrap items-center justify-between gap-1.5"
         >
           <span
-            >💡 ISI JUMLAH UNIT BAGI STATUS <strong>BAIK</strong> &
-            <strong>ROSAK</strong> UNTUK SETIAP PERKAKAS.</span
+            >💡 STATUS <strong>BAIK</strong> & <strong>ROSAK</strong> BAGI SETIAP PERKAKAS.</span
           >
           <button
-            class="bg-purple-700 text-white px-3 py-1 rounded-lg text-[10px] font-black hover:bg-purple-800 transition shadow-sm"
+            class="bg-purple-700 text-white px-2.5 py-1 rounded-lg text-[9px] font-black hover:bg-purple-800 transition shadow-sm"
             onclick="setSemuaChecklistDefault()"
           >
             ⚡ SET SEMUA BAIK (DEFAULT)
@@ -1765,7 +1675,7 @@
         </div>
 
         <div
-          class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4 p-3 bg-slate-100 rounded-xl border border-slate-200"
+          class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-3 p-2.5 bg-slate-100 rounded-xl border border-slate-200"
         >
           <div class="form-group !mb-0">
             <label class="text-purple-900"
@@ -1800,21 +1710,21 @@
           </div>
         </div>
 
-        <div class="mb-2 flex items-center justify-between">
+        <div class="mb-1.5 flex items-center justify-between">
           <label class="text-xs font-black text-slate-800"
             >📋 8 PERKAKAS BILIK KAWALAN & UNIT STATUS:</label
           >
-          <span class="text-[10px] text-purple-700 font-bold"
+          <span class="text-[9px] text-purple-700 font-bold"
             >BAIK / ROSAK + CATATAN</span
           >
         </div>
 
         <div
-          class="space-y-3 mb-4 max-h-[58vh] overflow-y-auto pr-1 border border-slate-200 p-2.5 rounded-xl bg-slate-50 flex-1"
+          class="space-y-2.5 mb-3 max-h-[50vh] sm:max-h-[58vh] overflow-y-auto pr-1 border border-slate-200 p-2 rounded-xl bg-slate-50 flex-1"
         >
           <!-- 1. CAD -->
           <div
-            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2 hover:border-purple-300 transition"
+            class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-1.5 hover:border-purple-300 transition"
             id="card_CAD"
           >
             <div class="flex items-center justify-between">
@@ -1822,24 +1732,24 @@
                 <div class="font-black text-slate-800 text-xs sm:text-sm">
                   🖥️ COMPUTER AIDED DISPATCH (CAD)
                 </div>
-                <div class="text-[10px] text-slate-500 font-semibold">
+                <div class="text-[9px] text-slate-500 font-semibold">
                   Sistem Penghantaran Bantuan Komputer
                 </div>
               </div>
               <span
-                class="text-[10px] bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded font-black"
+                class="text-[9px] bg-purple-100 text-purple-900 border border-purple-300 px-1.5 py-0.5 rounded font-black"
                 >CAD</span
               >
             </div>
-            <div class="grid grid-cols-2 gap-2 pt-1">
+            <div class="grid grid-cols-2 gap-2 pt-0.5">
               <div>
                 <label
-                  class="text-[10px] font-extrabold text-emerald-700 block mb-1"
+                  class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
                   >✅ BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalCAD_Baik', -1)"
                   >
                     -
@@ -1847,12 +1757,12 @@
                   <input
                     type="number"
                     id="modalCAD_Baik"
-                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                    class="form-control !min-h-[34px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
                     value="1"
                     min="0"
                   />
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalCAD_Baik', 1)"
                   >
                     +
@@ -1861,12 +1771,12 @@
               </div>
               <div>
                 <label
-                  class="text-[10px] font-extrabold text-red-700 block mb-1"
+                  class="text-[9px] font-extrabold text-red-700 block mb-0.5"
                   >❌ ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalCAD_Rosak', -1)"
                   >
                     -
@@ -1874,12 +1784,12 @@
                   <input
                     type="number"
                     id="modalCAD_Rosak"
-                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
+                    class="form-control !min-h-[34px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
                     value="0"
                     min="0"
                   />
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalCAD_Rosak', 1)"
                   >
                     +
@@ -1891,7 +1801,7 @@
               <input
                 type="text"
                 id="modalCatatanCAD"
-                class="form-control !min-h-[34px] !py-1 !px-2 !text-xs"
+                class="form-control !min-h-[32px] !py-1 !px-2 !text-xs"
                 placeholder="CATATAN BAGI CAD..."
               />
             </div>
@@ -1899,7 +1809,7 @@
 
           <!-- 2. WIC -->
           <div
-            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2 hover:border-purple-300 transition"
+            class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-1.5 hover:border-purple-300 transition"
             id="card_WIC"
           >
             <div class="flex items-center justify-between">
@@ -1907,24 +1817,24 @@
                 <div class="font-black text-slate-800 text-xs sm:text-sm">
                   🌐 WEB INTEGRATED CONSOLE (WIC)
                 </div>
-                <div class="text-[10px] text-slate-500 font-semibold">
+                <div class="text-[9px] text-slate-500 font-semibold">
                   Konsol Bersepadu Web
                 </div>
               </div>
               <span
-                class="text-[10px] bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded font-black"
+                class="text-[9px] bg-purple-100 text-purple-900 border border-purple-300 px-1.5 py-0.5 rounded font-black"
                 >WIC</span
               >
             </div>
-            <div class="grid grid-cols-2 gap-2 pt-1">
+            <div class="grid grid-cols-2 gap-2 pt-0.5">
               <div>
                 <label
-                  class="text-[10px] font-extrabold text-emerald-700 block mb-1"
+                  class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
                   >✅ BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalWIC_Baik', -1)"
                   >
                     -
@@ -1932,12 +1842,12 @@
                   <input
                     type="number"
                     id="modalWIC_Baik"
-                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                    class="form-control !min-h-[34px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
                     value="1"
                     min="0"
                   />
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalWIC_Baik', 1)"
                   >
                     +
@@ -1946,12 +1856,12 @@
               </div>
               <div>
                 <label
-                  class="text-[10px] font-extrabold text-red-700 block mb-1"
+                  class="text-[9px] font-extrabold text-red-700 block mb-0.5"
                   >❌ ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalWIC_Rosak', -1)"
                   >
                     -
@@ -1959,12 +1869,12 @@
                   <input
                     type="number"
                     id="modalWIC_Rosak"
-                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
+                    class="form-control !min-h-[34px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
                     value="0"
                     min="0"
                   />
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalWIC_Rosak', 1)"
                   >
                     +
@@ -1976,7 +1886,7 @@
               <input
                 type="text"
                 id="modalCatatanWIC"
-                class="form-control !min-h-[34px] !py-1 !px-2 !text-xs"
+                class="form-control !min-h-[32px] !py-1 !px-2 !text-xs"
                 placeholder="CATATAN BAGI WIC..."
               />
             </div>
@@ -1984,7 +1894,7 @@
 
           <!-- 3. BOMRA -->
           <div
-            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2 hover:border-purple-300 transition"
+            class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-1.5 hover:border-purple-300 transition"
             id="card_BOMRA"
           >
             <div class="flex items-center justify-between">
@@ -1992,24 +1902,24 @@
                 <div class="font-black text-slate-800 text-xs sm:text-sm">
                   📱 BOMBA RESPONDER APPS (BOMRA)
                 </div>
-                <div class="text-[10px] text-slate-500 font-semibold">
+                <div class="text-[9px] text-slate-500 font-semibold">
                   Aplikasi Responder Bomba
                 </div>
               </div>
               <span
-                class="text-[10px] bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded font-black"
+                class="text-[9px] bg-purple-100 text-purple-900 border border-purple-300 px-1.5 py-0.5 rounded font-black"
                 >BOMRA</span
               >
             </div>
-            <div class="grid grid-cols-2 gap-2 pt-1">
+            <div class="grid grid-cols-2 gap-2 pt-0.5">
               <div>
                 <label
-                  class="text-[10px] font-extrabold text-emerald-700 block mb-1"
+                  class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
                   >✅ BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalBOMRA_Baik', -1)"
                   >
                     -
@@ -2017,12 +1927,12 @@
                   <input
                     type="number"
                     id="modalBOMRA_Baik"
-                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                    class="form-control !min-h-[34px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
                     value="1"
                     min="0"
                   />
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalBOMRA_Baik', 1)"
                   >
                     +
@@ -2031,12 +1941,12 @@
               </div>
               <div>
                 <label
-                  class="text-[10px] font-extrabold text-red-700 block mb-1"
+                  class="text-[9px] font-extrabold text-red-700 block mb-0.5"
                   >❌ ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalBOMRA_Rosak', -1)"
                   >
                     -
@@ -2044,12 +1954,12 @@
                   <input
                     type="number"
                     id="modalBOMRA_Rosak"
-                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
+                    class="form-control !min-h-[34px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
                     value="0"
                     min="0"
                   />
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalBOMRA_Rosak', 1)"
                   >
                     +
@@ -2061,7 +1971,7 @@
               <input
                 type="text"
                 id="modalCatatanBOMRA"
-                class="form-control !min-h-[34px] !py-1 !px-2 !text-xs"
+                class="form-control !min-h-[32px] !py-1 !px-2 !text-xs"
                 placeholder="CATATAN BAGI BOMRA..."
               />
             </div>
@@ -2069,7 +1979,7 @@
 
           <!-- 4. DESKTOP GIRN -->
           <div
-            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2 hover:border-purple-300 transition"
+            class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-1.5 hover:border-purple-300 transition"
             id="card_DesktopGirn"
           >
             <div class="flex items-center justify-between">
@@ -2077,24 +1987,24 @@
                 <div class="font-black text-slate-800 text-xs sm:text-sm">
                   💻 DESKTOP GIRN
                 </div>
-                <div class="text-[10px] text-slate-500 font-semibold">
+                <div class="text-[9px] text-slate-500 font-semibold">
                   Radio Komunikasi Desktop
                 </div>
               </div>
               <span
-                class="text-[10px] bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded font-black"
+                class="text-[9px] bg-purple-100 text-purple-900 border border-purple-300 px-1.5 py-0.5 rounded font-black"
                 >D.GIRN</span
               >
             </div>
-            <div class="grid grid-cols-2 gap-2 pt-1">
+            <div class="grid grid-cols-2 gap-2 pt-0.5">
               <div>
                 <label
-                  class="text-[10px] font-extrabold text-emerald-700 block mb-1"
+                  class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
                   >✅ BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalDesktopGirn_Baik', -1)"
                   >
                     -
@@ -2102,12 +2012,12 @@
                   <input
                     type="number"
                     id="modalDesktopGirn_Baik"
-                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                    class="form-control !min-h-[34px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
                     value="1"
                     min="0"
                   />
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalDesktopGirn_Baik', 1)"
                   >
                     +
@@ -2116,12 +2026,12 @@
               </div>
               <div>
                 <label
-                  class="text-[10px] font-extrabold text-red-700 block mb-1"
+                  class="text-[9px] font-extrabold text-red-700 block mb-0.5"
                   >❌ ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalDesktopGirn_Rosak', -1)"
                   >
                     -
@@ -2129,12 +2039,12 @@
                   <input
                     type="number"
                     id="modalDesktopGirn_Rosak"
-                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
+                    class="form-control !min-h-[34px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
                     value="0"
                     min="0"
                   />
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalDesktopGirn_Rosak', 1)"
                   >
                     +
@@ -2146,7 +2056,7 @@
               <input
                 type="text"
                 id="modalCatatanDesktopGirn"
-                class="form-control !min-h-[34px] !py-1 !px-2 !text-xs"
+                class="form-control !min-h-[32px] !py-1 !px-2 !text-xs"
                 placeholder="CATATAN BAGI DESKTOP GIRN..."
               />
             </div>
@@ -2154,7 +2064,7 @@
 
           <!-- 5. HANDHELD GIRN -->
           <div
-            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2 hover:border-purple-300 transition"
+            class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-1.5 hover:border-purple-300 transition"
             id="card_HandheldGirn"
           >
             <div class="flex items-center justify-between">
@@ -2162,24 +2072,24 @@
                 <div class="font-black text-slate-800 text-xs sm:text-sm">
                   📻 HANDHELD GIRN
                 </div>
-                <div class="text-[10px] text-slate-500 font-semibold">
+                <div class="text-[9px] text-slate-500 font-semibold">
                   Radio Komunikasi Mudah Alih
                 </div>
               </div>
               <span
-                class="text-[10px] bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded font-black"
+                class="text-[9px] bg-purple-100 text-purple-900 border border-purple-300 px-1.5 py-0.5 rounded font-black"
                 >H.GIRN</span
               >
             </div>
-            <div class="grid grid-cols-2 gap-2 pt-1">
+            <div class="grid grid-cols-2 gap-2 pt-0.5">
               <div>
                 <label
-                  class="text-[10px] font-extrabold text-emerald-700 block mb-1"
+                  class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
                   >✅ BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalHandheldGirn_Baik', -1)"
                   >
                     -
@@ -2187,12 +2097,12 @@
                   <input
                     type="number"
                     id="modalHandheldGirn_Baik"
-                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                    class="form-control !min-h-[34px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
                     value="1"
                     min="0"
                   />
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalHandheldGirn_Baik', 1)"
                   >
                     +
@@ -2201,12 +2111,12 @@
               </div>
               <div>
                 <label
-                  class="text-[10px] font-extrabold text-red-700 block mb-1"
+                  class="text-[9px] font-extrabold text-red-700 block mb-0.5"
                   >❌ ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalHandheldGirn_Rosak', -1)"
                   >
                     -
@@ -2214,12 +2124,12 @@
                   <input
                     type="number"
                     id="modalHandheldGirn_Rosak"
-                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
+                    class="form-control !min-h-[34px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
                     value="0"
                     min="0"
                   />
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalHandheldGirn_Rosak', 1)"
                   >
                     +
@@ -2231,7 +2141,7 @@
               <input
                 type="text"
                 id="modalCatatanHandheldGirn"
-                class="form-control !min-h-[34px] !py-1 !px-2 !text-xs"
+                class="form-control !min-h-[32px] !py-1 !px-2 !text-xs"
                 placeholder="CATATAN BAGI HANDHELD GIRN..."
               />
             </div>
@@ -2239,7 +2149,7 @@
 
           <!-- 6. VEHICULAR GIRN -->
           <div
-            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2 hover:border-purple-300 transition"
+            class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-1.5 hover:border-purple-300 transition"
             id="card_VehicularGirn"
           >
             <div class="flex items-center justify-between">
@@ -2247,24 +2157,24 @@
                 <div class="font-black text-slate-800 text-xs sm:text-sm">
                   🚙 VEHICULAR GIRN
                 </div>
-                <div class="text-[10px] text-slate-500 font-semibold">
+                <div class="text-[9px] text-slate-500 font-semibold">
                   Radio Komunikasi Kenderaan
                 </div>
               </div>
               <span
-                class="text-[10px] bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded font-black"
+                class="text-[9px] bg-purple-100 text-purple-900 border border-purple-300 px-1.5 py-0.5 rounded font-black"
                 >V.GIRN</span
               >
             </div>
-            <div class="grid grid-cols-2 gap-2 pt-1">
+            <div class="grid grid-cols-2 gap-2 pt-0.5">
               <div>
                 <label
-                  class="text-[10px] font-extrabold text-emerald-700 block mb-1"
+                  class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
                   >✅ BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalVehicularGirn_Baik', -1)"
                   >
                     -
@@ -2272,12 +2182,12 @@
                   <input
                     type="number"
                     id="modalVehicularGirn_Baik"
-                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                    class="form-control !min-h-[34px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
                     value="1"
                     min="0"
                   />
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalVehicularGirn_Baik', 1)"
                   >
                     +
@@ -2286,12 +2196,12 @@
               </div>
               <div>
                 <label
-                  class="text-[10px] font-extrabold text-red-700 block mb-1"
+                  class="text-[9px] font-extrabold text-red-700 block mb-0.5"
                   >❌ ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalVehicularGirn_Rosak', -1)"
                   >
                     -
@@ -2299,12 +2209,12 @@
                   <input
                     type="number"
                     id="modalVehicularGirn_Rosak"
-                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
+                    class="form-control !min-h-[34px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
                     value="0"
                     min="0"
                   />
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalVehicularGirn_Rosak', 1)"
                   >
                     +
@@ -2316,7 +2226,7 @@
               <input
                 type="text"
                 id="modalCatatanVehicularGirn"
-                class="form-control !min-h-[34px] !py-1 !px-2 !text-xs"
+                class="form-control !min-h-[32px] !py-1 !px-2 !text-xs"
                 placeholder="CATATAN BAGI VEHICULAR GIRN..."
               />
             </div>
@@ -2324,7 +2234,7 @@
 
           <!-- 7. INTERNET -->
           <div
-            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2 hover:border-purple-300 transition"
+            class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-1.5 hover:border-purple-300 transition"
             id="card_Internet"
           >
             <div class="flex items-center justify-between">
@@ -2332,24 +2242,24 @@
                 <div class="font-black text-slate-800 text-xs sm:text-sm">
                   🌐 INTERNET
                 </div>
-                <div class="text-[10px] text-slate-500 font-semibold">
+                <div class="text-[9px] text-slate-500 font-semibold">
                   Capaian Rangkaian Internet
                 </div>
               </div>
               <span
-                class="text-[10px] bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded font-black"
+                class="text-[9px] bg-purple-100 text-purple-900 border border-purple-300 px-1.5 py-0.5 rounded font-black"
                 >INET</span
               >
             </div>
-            <div class="grid grid-cols-2 gap-2 pt-1">
+            <div class="grid grid-cols-2 gap-2 pt-0.5">
               <div>
                 <label
-                  class="text-[10px] font-extrabold text-emerald-700 block mb-1"
+                  class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
                   >✅ BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalInternet_Baik', -1)"
                   >
                     -
@@ -2357,12 +2267,12 @@
                   <input
                     type="number"
                     id="modalInternet_Baik"
-                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                    class="form-control !min-h-[34px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
                     value="1"
                     min="0"
                   />
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalInternet_Baik', 1)"
                   >
                     +
@@ -2371,12 +2281,12 @@
               </div>
               <div>
                 <label
-                  class="text-[10px] font-extrabold text-red-700 block mb-1"
+                  class="text-[9px] font-extrabold text-red-700 block mb-0.5"
                   >❌ ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalInternet_Rosak', -1)"
                   >
                     -
@@ -2384,12 +2294,12 @@
                   <input
                     type="number"
                     id="modalInternet_Rosak"
-                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
+                    class="form-control !min-h-[34px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
                     value="0"
                     min="0"
                   />
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalInternet_Rosak', 1)"
                   >
                     +
@@ -2401,7 +2311,7 @@
               <input
                 type="text"
                 id="modalCatatanInternet"
-                class="form-control !min-h-[34px] !py-1 !px-2 !text-xs"
+                class="form-control !min-h-[32px] !py-1 !px-2 !text-xs"
                 placeholder="CATATAN BAGI INTERNET..."
               />
             </div>
@@ -2409,7 +2319,7 @@
 
           <!-- 8. HANDPHONE -->
           <div
-            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2 hover:border-purple-300 transition"
+            class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-1.5 hover:border-purple-300 transition"
             id="card_Handphone"
           >
             <div class="flex items-center justify-between">
@@ -2417,24 +2327,24 @@
                 <div class="font-black text-slate-800 text-xs sm:text-sm">
                   📱 HANDPHONE RASMI
                 </div>
-                <div class="text-[10px] text-slate-500 font-semibold">
+                <div class="text-[9px] text-slate-500 font-semibold">
                   Telefon Bimbit Rasmi Bilik Kawalan
                 </div>
               </div>
               <span
-                class="text-[10px] bg-purple-100 text-purple-900 border border-purple-300 px-2 py-0.5 rounded font-black"
+                class="text-[9px] bg-purple-100 text-purple-900 border border-purple-300 px-1.5 py-0.5 rounded font-black"
                 >HP</span
               >
             </div>
-            <div class="grid grid-cols-2 gap-2 pt-1">
+            <div class="grid grid-cols-2 gap-2 pt-0.5">
               <div>
                 <label
-                  class="text-[10px] font-extrabold text-emerald-700 block mb-1"
+                  class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
                   >✅ BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalHandphone_Baik', -1)"
                   >
                     -
@@ -2442,12 +2352,12 @@
                   <input
                     type="number"
                     id="modalHandphone_Baik"
-                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                    class="form-control !min-h-[34px] !py-1 !px-2 !text-xs font-black text-center text-emerald-800 bg-emerald-50/60 border-emerald-300"
                     value="1"
                     min="0"
                   />
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalHandphone_Baik', 1)"
                   >
                     +
@@ -2456,12 +2366,12 @@
               </div>
               <div>
                 <label
-                  class="text-[10px] font-extrabold text-red-700 block mb-1"
+                  class="text-[9px] font-extrabold text-red-700 block mb-0.5"
                   >❌ ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalHandphone_Rosak', -1)"
                   >
                     -
@@ -2469,12 +2379,12 @@
                   <input
                     type="number"
                     id="modalHandphone_Rosak"
-                    class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
+                    class="form-control !min-h-[34px] !py-1 !px-2 !text-xs font-black text-center text-red-800 bg-red-50/60 border-red-300"
                     value="0"
                     min="0"
                   />
                   <button
-                    class="px-2 py-1 bg-slate-100 border rounded text-xs font-black"
+                    class="w-8 h-8 bg-slate-100 border rounded-lg text-xs font-black flex items-center justify-center active:bg-slate-200"
                     onclick="larasJumlahInput('modalHandphone_Rosak', 1)"
                   >
                     +
@@ -2486,7 +2396,7 @@
               <input
                 type="text"
                 id="modalCatatanHandphone"
-                class="form-control !min-h-[34px] !py-1 !px-2 !text-xs"
+                class="form-control !min-h-[32px] !py-1 !px-2 !text-xs"
                 placeholder="CATATAN BAGI HANDPHONE..."
               />
             </div>
@@ -2515,7 +2425,7 @@
         </div>
         <p
           id="passwordPromptText"
-          class="text-xs font-semibold mb-3 text-slate-700"
+          class="text-xs font-semibold mb-2.5 text-slate-700"
         ></p>
         <div class="form-group">
           <label>KATA LALUAN</label
@@ -2551,7 +2461,7 @@
         </div>
         <p
           id="alertModalBody"
-          class="text-xs sm:text-sm font-semibold mb-5 text-slate-700 whitespace-pre-line"
+          class="text-xs sm:text-sm font-semibold mb-4 text-slate-700 whitespace-pre-line"
         ></p>
         <div class="btn-group">
           <button class="btn btn-primary" onclick="tutupCustomAlert()">
@@ -2572,7 +2482,7 @@
         </div>
         <p
           id="confirmModalBody"
-          class="text-xs sm:text-sm font-semibold mb-5 text-slate-700"
+          class="text-xs sm:text-sm font-semibold mb-4 text-slate-700"
         ></p>
         <div class="btn-group">
           <button class="btn btn-primary" onclick="tutupCustomConfirm(true)">
@@ -2594,10 +2504,10 @@
             &times;
           </button>
         </div>
-        <div class="info-pill mb-3">
+        <div class="info-pill mb-2">
           💡 PADAM ITEM DARI SENARAI PILIHAN UTAMA
         </div>
-        <div class="tab-btn-group mb-3">
+        <div class="tab-btn-group mb-2">
           <button
             class="tab-btn active"
             onclick="tukarTabUrusMaster('ANGGOTA')"
@@ -2628,7 +2538,7 @@
           </button>
         </div>
         <div
-          class="table-responsive max-h-[300px] overflow-y-auto border border-slate-200"
+          class="table-responsive max-h-[280px] overflow-y-auto border border-slate-200"
         >
           <table class="roster-table w-full">
             <tbody id="urusMasterTableBody"></tbody>
@@ -2646,8 +2556,8 @@
             &times;
           </button>
         </div>
-        <div class="info-pill mb-3">💡 PADAM JENTERA DARI INVENTORI UTAMA</div>
-        <div class="form-group mb-3">
+        <div class="info-pill mb-2">💡 PADAM JENTERA DARI INVENTORI UTAMA</div>
+        <div class="form-group mb-2">
           <input
             type="text"
             id="cariJenteraMaster"
@@ -2657,7 +2567,7 @@
           />
         </div>
         <div
-          class="table-responsive max-h-[400px] overflow-y-auto border border-slate-200"
+          class="table-responsive max-h-[350px] overflow-y-auto border border-slate-200"
         >
           <table class="roster-table w-full">
             <thead>
@@ -2766,13 +2676,9 @@
       function daftarkanServiceWorkerStandalone() {
         if ('serviceWorker' in navigator) {
           const swCode = `
-            const CACHE_NAME = 'jbpm-johor-v1';
-            self.addEventListener('install', (e) => {
-              self.skipWaiting();
-            });
-            self.addEventListener('activate', (e) => {
-              e.waitUntil(clients.claim());
-            });
+            const CACHE_NAME = 'jbpm-johor-v2';
+            self.addEventListener('install', (e) => { self.skipWaiting(); });
+            self.addEventListener('activate', (e) => { e.waitUntil(clients.claim()); });
             self.addEventListener('fetch', (e) => {
               e.respondWith(
                 fetch(e.request).catch(() => caches.match(e.request))
@@ -2789,7 +2695,7 @@
                 kemaskiniPwaBadge(true);
               })
               .catch((err) => {
-                console.log('Service Worker registration skipped:', err);
+                console.log('Service Worker skipped:', err);
                 kemaskiniPwaBadge(navigator.onLine);
               });
           } catch (e) {
@@ -2879,9 +2785,7 @@
 
                   simpanKeLocalStorage();
                   kemaskiniSemuaPaparan();
-                  tunjukCustomAlert(
-                    '✅ Data berjaya di-import daripada fail backup!'
-                  );
+                  tunjukCustomAlert('✅ Data berjaya di-import daripada fail backup!');
                 }
               }
             );
@@ -2890,15 +2794,15 @@
           }
         };
         reader.readAsText(file);
-        e.target.value = ''; // reset file input
+        e.target.value = '';
       }
 
       function initSupabaseClient() {
         if (supabaseUrl && supabaseKey) {
-          kemaskiniStatusCloud('active', '🟢 SUPABASE: DISAMBUNG');
+          kemaskiniStatusCloud('active', '🟢 SUPABASE');
           return true;
         } else {
-          kemaskiniStatusCloud('inactive', '🟡 SUPABASE: BELUM DISAMBUNG');
+          kemaskiniStatusCloud('inactive', '🟡 SUPABASE');
           return false;
         }
       }
@@ -2924,9 +2828,7 @@
       async function hantarDataSupabase() {
         if (!supabaseUrl || !supabaseKey) {
           simpanKeLocalStorage();
-          tunjukCustomAlert(
-            'ℹ️ Data disimpan secara lokal (Offline Standalone).'
-          );
+          tunjukCustomAlert('ℹ️ Data disimpan secara lokal (Offline Standalone).');
           return;
         }
         tunjukLoading();
@@ -3138,257 +3040,77 @@
         let id = 1000;
 
         const cfrtData = [
-          [
-            'CFRT 1',
-            'VLN 5716',
-            'HINO XZC720R ZKFRL3',
-            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
-          ],
-          [
-            'CFRT 2',
-            'VLN 5721',
-            'HINO XZC720R ZKFRL3',
-            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
-          ],
-          [
-            'CFRT 3',
-            'VNE 4357',
-            'HINO XZC720R ZKFRL3',
-            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
-          ],
-          [
-            'CFRT 4',
-            'VPG 3667',
-            'HINO XZC720R ZKFRL3',
-            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
-          ],
-          [
-            'CFRT 5',
-            'BSK 8079',
-            'HINO XZC720R ZKFRL3',
-            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
-          ],
-          [
-            'CFRT 6',
-            'VQJ 6595',
-            'HINO XZC720R ZKFRL3',
-            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
-          ],
-          [
-            'CFRT 7',
-            'VQJ 6576',
-            'HINO XZC720R ZKFRL3',
-            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
-          ],
+          ['CFRT 1', 'VLN 5716', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
+          ['CFRT 2', 'VLN 5721', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
+          ['CFRT 3', 'VNE 4357', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
+          ['CFRT 4', 'VPG 3667', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
+          ['CFRT 5', 'BSK 8079', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
+          ['CFRT 6', 'VQJ 6595', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
+          ['CFRT 7', 'VQJ 6576', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
         ];
 
         const frtData = [
           ['J1-01', 'BMK 976', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-02',
-            'BJT 8410',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-02', 'BJT 8410', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-03', 'WUC 170', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-04', 'BLU 8032', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-05', 'BGQ 6785', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-06',
-            'BJW 4572',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-06', 'BJW 4572', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-07', 'BMK 987', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-08', 'BLX 576', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-09', 'WUB 9615', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-10',
-            'BJW 4568',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-10', 'BJW 4568', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-11', 'BMK 1021', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-13', 'BMK 982', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-14',
-            'BJW 4563',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-14', 'BJW 4563', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-15', 'BLV 9703', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-16',
-            'BJY 3594',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-16', 'BJY 3594', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-17', 'BKN 3325', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-18', 'BMK 1013', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-19',
-            'BJY 3445',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-19', 'BJY 3445', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-20', 'BKN 7156', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-21', 'BMK 1030', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-22',
-            'BJW 4599',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-22', 'BJW 4599', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-23', 'BMK 1014', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-24',
-            'BJY 3364',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          [
-            'J1-27',
-            'BJW 4548',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-24', 'BJY 3364', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          ['J1-27', 'BJW 4548', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-28', 'BLW 6720', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-29',
-            'BJW 4575',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          [
-            'J1-31',
-            'BJT 8258',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-29', 'BJW 4575', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          ['J1-31', 'BJT 8258', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-32', 'BLX 4668', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-33',
-            'BJY 3386',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          [
-            'J1-36',
-            'BJW 4573',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-33', 'BJY 3386', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          ['J1-36', 'BJW 4573', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-38', 'BMK 4620', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-39',
-            'BJW 4569',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-39', 'BJW 4569', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-40', 'BMK 1005', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-41', 'BKN 7309', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-42',
-            'BJT 8353',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          [
-            'J1-44',
-            'BKA 8796',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-42', 'BJT 8353', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          ['J1-44', 'BKA 8796', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-45', 'BLU 8034', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-47', 'WUC 7006', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-48', 'BGR 4065', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-50', 'BMK 1015', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-51',
-            'BJW 4590',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          [
-            'J1-53',
-            'BJW 4561',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-51', 'BJW 4590', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          ['J1-53', 'BJW 4561', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-54', 'BLV 9856', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-55',
-            'BJT 8356',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-55', 'BJT 8356', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-56', 'WUB 9481', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-57',
-            'BKA 9304',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-57', 'BKA 9304', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-58', 'BMK 992', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-59', 'BGR 3578', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-60', 'BMK 984', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'N/A',
-            'WDF 2115',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
-          [
-            'N/A',
-            'WDF 4724',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
-          [
-            'N/A',
-            'WEH 3367',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
-          [
-            'N/A',
-            'WDF 2842',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
-          [
-            'N/A',
-            'WEH 3358',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
-          [
-            'N/A',
-            'WCC 4229',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
-          [
-            'N/A',
-            'WEH 3365',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
-          [
-            'N/A',
-            'WDF 2113',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
+          ['N/A', 'WDF 2115', 'NISSAN UD CPB14FHRT', '01. FIRE RESCUE TENDER (FRT)'],
+          ['N/A', 'WDF 4724', 'NISSAN UD CPB14FHRT', '01. FIRE RESCUE TENDER (FRT)'],
+          ['N/A', 'WEH 3367', 'NISSAN UD CPB14FHRT', '01. FIRE RESCUE TENDER (FRT)'],
+          ['N/A', 'WDF 2842', 'NISSAN UD CPB14FHRT', '01. FIRE RESCUE TENDER (FRT)'],
+          ['N/A', 'WEH 3358', 'NISSAN UD CPB14FHRT', '01. FIRE RESCUE TENDER (FRT)'],
+          ['N/A', 'WCC 4229', 'NISSAN UD CPB14FHRT', '01. FIRE RESCUE TENDER (FRT)'],
+          ['N/A', 'WEH 3365', 'NISSAN UD CPB14FHRT', '01. FIRE RESCUE TENDER (FRT)'],
+          ['N/A', 'WDF 2113', 'NISSAN UD CPB14FHRT', '01. FIRE RESCUE TENDER (FRT)'],
         ];
 
         const rfrtData = [
-          [
-            'N/A',
-            'BGR 6274',
-            'FORD F350',
-            '04. RAPID FIRE RESCUE TENDER (RFRT)',
-          ],
+          ['N/A', 'BGR 6274', 'FORD F350', '04. RAPID FIRE RESCUE TENDER (RFRT)'],
         ];
 
         const sitrakData = [
@@ -3495,24 +3217,9 @@
         );
 
         const khasBompaData = [
-          [
-            'J3-01',
-            'BHK 9085',
-            'TURN TABLE LADDER',
-            '10. TURN TABLE LADDER 52M',
-          ],
-          [
-            'J3-02',
-            'BHK 9416',
-            'TURN TABLE LADDER',
-            '10. TURN TABLE LADDER 32M',
-          ],
-          [
-            'J3-03',
-            'BHK 9070',
-            'TURN TABLE LADDER',
-            '10. TURN TABLE LADDER 32M',
-          ],
+          ['J3-01', 'BHK 9085', 'TURN TABLE LADDER', '10. TURN TABLE LADDER 52M'],
+          ['J3-02', 'BHK 9416', 'TURN TABLE LADDER', '10. TURN TABLE LADDER 32M'],
+          ['J3-03', 'BHK 9070', 'TURN TABLE LADDER', '10. TURN TABLE LADDER 32M'],
           ['J4-01', 'WEU 5287', 'HAZMAT', '17. HAZMAT'],
           ['J7-01', 'WUP 4200', 'RRV', '06. RRV'],
           ['J7-02', 'WUQ 2616', 'RRV', '06. RRV'],
@@ -3522,32 +3229,12 @@
           ['J9-02', 'FF 6853', 'SIASATAN', 'FORENSICS'],
           ['J10-01', 'WSG 3646', 'KOMUNIKASI', '18. KOMUNIKASI'],
           ['J11-01', 'BJS 3513', 'HPPM', '11. HPPM'],
-          [
-            'J12-01',
-            'T/BD/750',
-            'FOAM TENDER PUMP TRAILER',
-            '12. FOAM TENDER PUMP TRAILER',
-          ],
-          [
-            'J12-01',
-            'T/BD/744',
-            'FOAM TENDER PUMP TRAILER',
-            '12. FOAM TENDER PUMP TRAILER',
-          ],
+          ['J12-01', 'T/BD/750', 'FOAM TENDER PUMP TRAILER', '12. FOAM TENDER PUMP TRAILER'],
+          ['J12-01', 'T/BD/744', 'FOAM TENDER PUMP TRAILER', '12. FOAM TENDER PUMP TRAILER'],
           ['J12-01', 'WXS 752', 'PRIME MOVER FOAM TRAILER', 'PRIME MOVER'],
           ['J14-01', 'BGU 488', 'KEMBALIK', '22. KEMBALIK'],
-          [
-            'J15-01',
-            'VQ 7142',
-            'FOAM MONITOR DAN FOAM TENDER',
-            '13. FOAM MONITOR DAN FOAM TENDER',
-          ],
-          [
-            'J15-02',
-            'VQ 7144',
-            'FOAM MONITOR DAN FOAM TENDER',
-            '13. FOAM MONITOR DAN FOAM TENDER',
-          ],
+          ['J15-01', 'VQ 7142', 'FOAM MONITOR DAN FOAM TENDER', '13. FOAM MONITOR DAN FOAM TENDER'],
+          ['J15-02', 'VQ 7144', 'FOAM MONITOR DAN FOAM TENDER', '13. FOAM MONITOR DAN FOAM TENDER'],
           ['J16-01', 'VBR 2450', 'ALP', '08. ALP'],
           ['J16-02', 'BPD 7929', 'ALP', '08. ALP'],
           ['LLJ', '-', 'COMMAND POST', '21. COMMAND POST'],
@@ -3843,11 +3530,7 @@
           })
         );
 
-        console.log(
-          '✅ Inventori Jentera Penuh Dimuat (' +
-            logistikJentera.length +
-            ' unit)'
-        );
+        console.log('✅ Inventori Jentera Penuh Dimuat (' + logistikJentera.length + ' unit)');
         simpanKeLocalStorage();
       }
 
@@ -4015,7 +3698,7 @@
               item.balai
             }</strong></td>
             <td>
-              <select class="form-control !min-h-[32px] !py-1 !px-2 !text-xs font-bold" onchange="namaAnggotaTerpilih[${i}].pasukan=this.value">
+              <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-bold" onchange="namaAnggotaTerpilih[${i}].pasukan=this.value">
                 <option value="PASUKAN A" ${
                   item.pasukan === 'PASUKAN A' ? 'selected' : ''
                 }>PASUKAN A</option>
@@ -4028,7 +3711,7 @@
               </select>
             </td>
             <td>
-              <select class="form-control !min-h-[32px] !py-1 !px-2 !text-xs font-bold" onchange="namaAnggotaTerpilih[${i}].status=this.value">
+              <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-bold" onchange="namaAnggotaTerpilih[${i}].status=this.value">
                 <option value="BERTUGAS" ${
                   item.status === 'BERTUGAS' ? 'selected' : ''
                 }>✅ BERTUGAS</option>
@@ -4044,28 +3727,28 @@
               </select>
             </td>
             <td>
-              <div class="flex flex-wrap gap-1 text-[9px] font-bold">
-                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1.5 py-0.5 rounded flex items-center gap-1">
+              <div class="flex flex-wrap gap-1 text-[8px] font-bold">
+                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
                   <input type="checkbox" ${
                     item.isKetuaBalai === 'YA' ? 'checked' : ''
                   } onchange="namaAnggotaTerpilih[${i}].isKetuaBalai = this.checked ? 'YA' : 'TIDAK'"> KB
                 </label>
-                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1.5 py-0.5 rounded flex items-center gap-1">
+                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
                   <input type="checkbox" ${
                     item.isPegawaiOperasi === 'YA' ? 'checked' : ''
                   } onchange="namaAnggotaTerpilih[${i}].isPegawaiOperasi = this.checked ? 'YA' : 'TIDAK'"> PB OPERASI
                 </label>
-                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1.5 py-0.5 rounded flex items-center gap-1">
+                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
                   <input type="checkbox" ${
                     item.isPenyelia === 'YA' ? 'checked' : ''
                   } onchange="namaAnggotaTerpilih[${i}].isPenyelia = this.checked ? 'YA' : 'TIDAK'"> PENYELIA
                 </label>
-                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1.5 py-0.5 rounded flex items-center gap-1">
+                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
                   <input type="checkbox" ${
                     item.isBkb === 'YA' ? 'checked' : ''
                   } onchange="namaAnggotaTerpilih[${i}].isBkb = this.checked ? 'YA' : 'TIDAK'"> BKB
                 </label>
-                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1.5 py-0.5 rounded flex items-center gap-1">
+                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
                   <input type="checkbox" ${
                     item.isPemandu === 'YA' ? 'checked' : ''
                   } onchange="namaAnggotaTerpilih[${i}].isPemandu = this.checked ? 'YA' : 'TIDAK'"> PEMANDU
@@ -4073,12 +3756,12 @@
               </div>
             </td>
             <td>
-              <input type="text" class="form-control !min-h-[32px] !py-1 !px-2 !text-xs" value="${
+              <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${
                 item.catatan === '-' ? '' : item.catatan || ''
               }" onchange="namaAnggotaTerpilih[${i}].catatan=this.value.toUpperCase() || '-'" placeholder="CATATAN"/>
             </td>
             <td class="text-center">
-              <button class="px-2 py-1 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="namaAnggotaTerpilih.splice(${i},1);kemaskiniAnggotaDipilihTable();janaNamaAnggotaOptions();">✕</button>
+              <button class="px-1.5 py-0.5 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="namaAnggotaTerpilih.splice(${i},1);kemaskiniAnggotaDipilihTable();janaNamaAnggotaOptions();">✕</button>
             </td>
           </tr>`;
           })
@@ -4272,13 +3955,13 @@
           .map((item, i) => {
             return `<tr>
             <td><strong class="text-red-700">${item.callsign}</strong></td>
-            <td><span class="bg-slate-100 border px-2 py-0.5 rounded text-[10px] font-black">${
+            <td><span class="bg-slate-100 border px-1.5 py-0.5 rounded text-[10px] font-black">${
               item.plate
             }</span></td>
             <td>${item.jenis}</td>
             <td><span class="badge badge-unit-gen">${item.kategori}</span></td>
             <td>
-              <select class="form-control !min-h-[32px] !py-1 !px-2 !text-xs font-extrabold" onchange="logJenteraTerpilih[${i}].status=this.value">
+              <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-extrabold" onchange="logJenteraTerpilih[${i}].status=this.value">
                 <option value="SEDIA BEROPERASI" ${
                   item.status === 'SEDIA BEROPERASI' ? 'selected' : ''
                 }>✅ SEDIA BEROPERASI</option>
@@ -4291,12 +3974,12 @@
               </select>
             </td>
             <td>
-              <input type="text" class="form-control !min-h-[32px] !py-1 !px-2 !text-xs" value="${
+              <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${
                 item.catatan === '-' ? '' : item.catatan || ''
               }" onchange="logJenteraTerpilih[${i}].catatan=this.value.toUpperCase() || '-'" placeholder="CATATAN"/>
             </td>
             <td class="text-center">
-              <button class="px-2 py-1 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="logJenteraTerpilih.splice(${i},1);kemaskiniLogJenteraDipilihTable();janaLogJenteraDropdown();">✕</button>
+              <button class="px-1.5 py-0.5 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="logJenteraTerpilih.splice(${i},1);kemaskiniLogJenteraDipilihTable();janaLogJenteraDropdown();">✕</button>
             </td>
           </tr>`;
           })
@@ -4406,9 +4089,7 @@
 
         const getItemData = (idPrefix) => {
           const baikEl = document.getElementById('modal' + idPrefix + '_Baik');
-          const rosakEl = document.getElementById(
-            'modal' + idPrefix + '_Rosak'
-          );
+          const rosakEl = document.getElementById('modal' + idPrefix + '_Rosak');
           const catatanEl = document.getElementById('modalCatatan' + idPrefix);
 
           const baik = Math.max(0, parseInt(baikEl ? baikEl.value : 0) || 0);
@@ -5131,6 +4812,13 @@
             if (l) l.style.display = 'none';
             if (c) c.style.display = 'none';
           }
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          if (p) p.style.display = 'block';
+          if (s) s.style.display = 'grid';
+          if (a) a.style.display = 'block';
+          if (l) l.style.display = 'block';
+          if (c) c.style.display = 'block';
         }
       }
 
@@ -5212,7 +4900,25 @@
 
         setInterval(updateClock, 1000);
         updateClock();
-        tukarViewMobile('operasi');
+        
+        if (window.innerWidth < 1024) {
+          tukarViewMobile('operasi');
+        }
+
+        window.addEventListener('resize', () => {
+          if (window.innerWidth >= 1024) {
+            const p = document.getElementById('sectionPanels'),
+              s = document.getElementById('sectionStats'),
+              a = document.getElementById('sectionAnggota'),
+              l = document.getElementById('sectionLogistik'),
+              c = document.getElementById('sectionChecklist');
+            if (p) p.style.display = 'block';
+            if (s) s.style.display = 'grid';
+            if (a) a.style.display = 'block';
+            if (l) l.style.display = 'block';
+            if (c) c.style.display = 'block';
+          }
+        });
 
         window.addEventListener('online', () => kemaskiniPwaBadge(true));
         window.addEventListener('offline', () => kemaskiniPwaBadge(false));
@@ -5231,7 +4937,9 @@
           });
         });
 
-        console.log('✅ Standalone Web Application initialization complete.');
+        console.log(
+          '✅ Standalone Web Application initialization complete with native Mobile UI.'
+        );
       };
     </script>
   </body>
