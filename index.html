@@ -1343,6 +1343,11 @@
                   <th>CAD</th>
                   <th>WIC</th>
                   <th>BOMRA</th>
+                  <th>D.GIRN</th>
+                  <th>H.GIRN</th>
+                  <th>V.GIRN</th>
+                  <th>INET</th>
+                  <th>HP</th>
                   <th>SHIF</th>
                   <th>WAKTU</th>
                   <th>CATATAN</th>
@@ -1636,7 +1641,7 @@
           </button>
         </div>
         <div class="info-pill">
-          💡 SEMAK PERKAKAS CAD, WIC & BOMRA UNTUK BALAI BERTUGAS.
+          💡 SEMAK KESEMUA PERKAKAS KOMUNIKASI & SISTEM UNTUK BALAI BERTUGAS.
         </div>
         <div class="form-group">
           <label>PILIH BALAI <span class="required-star">*</span></label
@@ -1702,6 +1707,101 @@
               <option value="ROSAK">❌ ROSAK</option>
             </select>
           </div>
+          <div
+            class="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200"
+          >
+            <div>
+              <div class="font-extrabold text-slate-800 text-xs">
+                💻 DESKTOP GIRN
+              </div>
+              <div class="text-[10px] text-slate-400 font-semibold">
+                Radio Komunikasi Desktop
+              </div>
+            </div>
+            <select
+              id="modalStatusDesktopGirn"
+              class="form-control !w-auto !min-h-[36px] !py-1 !px-3 !text-xs"
+            >
+              <option value="BAIK">✅ BAIK</option>
+              <option value="ROSAK">❌ ROSAK</option>
+            </select>
+          </div>
+          <div
+            class="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200"
+          >
+            <div>
+              <div class="font-extrabold text-slate-800 text-xs">
+                📻 HANDHELD GIRN
+              </div>
+              <div class="text-[10px] text-slate-400 font-semibold">
+                Radio Komunikasi Mudah Alih
+              </div>
+            </div>
+            <select
+              id="modalStatusHandheldGirn"
+              class="form-control !w-auto !min-h-[36px] !py-1 !px-3 !text-xs"
+            >
+              <option value="BAIK">✅ BAIK</option>
+              <option value="ROSAK">❌ ROSAK</option>
+            </select>
+          </div>
+          <div
+            class="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200"
+          >
+            <div>
+              <div class="font-extrabold text-slate-800 text-xs">
+                🚓 VEHICULAR GIRN
+              </div>
+              <div class="text-[10px] text-slate-400 font-semibold">
+                Radio Komunikasi Kenderaan
+              </div>
+            </div>
+            <select
+              id="modalStatusVehicularGirn"
+              class="form-control !w-auto !min-h-[36px] !py-1 !px-3 !text-xs"
+            >
+              <option value="BAIK">✅ BAIK</option>
+              <option value="ROSAK">❌ ROSAK</option>
+            </select>
+          </div>
+          <div
+            class="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200"
+          >
+            <div>
+              <div class="font-extrabold text-slate-800 text-xs">
+                🌐 INTERNET
+              </div>
+              <div class="text-[10px] text-slate-400 font-semibold">
+                Capaian Rangkaian Internet
+              </div>
+            </div>
+            <select
+              id="modalStatusInternet"
+              class="form-control !w-auto !min-h-[36px] !py-1 !px-3 !text-xs"
+            >
+              <option value="BAIK">✅ BAIK</option>
+              <option value="ROSAK">❌ ROSAK</option>
+            </select>
+          </div>
+          <div
+            class="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200"
+          >
+            <div>
+              <div class="font-extrabold text-slate-800 text-xs">
+                📱 HANDPHONE
+              </div>
+              <div class="text-[10px] text-slate-400 font-semibold">
+                Telefon Bimbit Rasmi
+              </div>
+            </div>
+            <select
+              id="modalStatusHandphone"
+              class="form-control !w-auto !min-h-[36px] !py-1 !px-3 !text-xs"
+            >
+              <option value="BAIK">✅ BAIK</option>
+              <option value="ROSAK">❌ ROSAK</option>
+            </select>
+          </div>
         </div>
         <div class="grid grid-cols-2 gap-2 mb-3">
           <div class="form-group !mb-0">
@@ -1720,12 +1820,12 @@
           </div>
         </div>
         <div class="form-group">
-          <label>CATATAN</label
+          <label>CATATAN KESELURUHAN</label
           ><input
             type="text"
             id="modalChecklistCatatan"
             class="form-control"
-            placeholder="CONTOH: WIC PERLU BAIKI SKRIN..."
+            placeholder="CONTOH: H.GIRN BATERI ROSAK..."
           />
         </div>
         <div class="btn-group">
@@ -3104,6 +3204,7 @@
       function tutupModalChecklist() {
         document.getElementById('checklistModal').classList.remove('active');
       }
+      
       async function simpanChecklistDariModal() {
         const balai = document.getElementById('modalChecklistBalai').value;
         if (!balai) {
@@ -3116,6 +3217,11 @@
           cad: document.getElementById('modalStatusCAD').value,
           wic: document.getElementById('modalStatusWIC').value,
           bomra: document.getElementById('modalStatusBOMRA').value,
+          desktopGirn: document.getElementById('modalStatusDesktopGirn').value,
+          handheldGirn: document.getElementById('modalStatusHandheldGirn').value,
+          vehicularGirn: document.getElementById('modalStatusVehicularGirn').value,
+          internet: document.getElementById('modalStatusInternet').value,
+          handphone: document.getElementById('modalStatusHandphone').value,
           shiftType: document.getElementById('modalChecklistShift').value,
           shiftTime: document.getElementById('modalChecklistShiftTime').value,
           catatan: document
@@ -3130,6 +3236,7 @@
         document.getElementById('modalChecklistCatatan').value = '';
         tunjukCustomAlert('✅ Checklist berjaya disimpan!');
       }
+
       function paparChecklistTable() {
         const filterBalai =
           document.getElementById('checklistBalaiFilter')?.value || 'SEMUA';
@@ -3141,46 +3248,57 @@
           data = data.filter((i) => i.balai === filterBalai);
         }
         document.getElementById('statChecklistTotal').innerText = data.length;
+        
+        // Kira stat Baik (hanya jika semua properti bernilai BAIK atau properti tidak wujud (rekod lama))
         document.getElementById('statChecklistBaik').innerText = data.filter(
-          (i) => i.cad === 'BAIK' && i.wic === 'BAIK' && i.bomra === 'BAIK'
+          (i) => i.cad === 'BAIK' && i.wic === 'BAIK' && i.bomra === 'BAIK' &&
+                 (i.desktopGirn === 'BAIK' || !i.desktopGirn) &&
+                 (i.handheldGirn === 'BAIK' || !i.handheldGirn) &&
+                 (i.vehicularGirn === 'BAIK' || !i.vehicularGirn) &&
+                 (i.internet === 'BAIK' || !i.internet) &&
+                 (i.handphone === 'BAIK' || !i.handphone)
         ).length;
+        
+        // Kira stat Rosak (jika mana-mana properti bernilai ROSAK)
         document.getElementById('statChecklistRosak').innerText = data.filter(
-          (i) => i.cad === 'ROSAK' || i.wic === 'ROSAK' || i.bomra === 'ROSAK'
+          (i) => i.cad === 'ROSAK' || i.wic === 'ROSAK' || i.bomra === 'ROSAK' ||
+                 i.desktopGirn === 'ROSAK' || i.handheldGirn === 'ROSAK' ||
+                 i.vehicularGirn === 'ROSAK' || i.internet === 'ROSAK' || i.handphone === 'ROSAK'
         ).length;
+        
         if (data.length === 0) {
           document.getElementById('emptyChecklistMessage').style.display =
             'block';
           return;
         }
         document.getElementById('emptyChecklistMessage').style.display = 'none';
+        
+        // Helper function for badges
+        const getBadge = (val) => {
+            if(!val) return '<span class="badge badge-unit-gen text-[9px]">N/A</span>';
+            return `<span class="badge ${val === 'BAIK' ? 'badge-jentera-baik' : 'badge-jentera-rosak'}">${val}</span>`;
+        };
+
         data.forEach((item, index) => {
-          const bc =
-            item.cad === 'BAIK' ? 'badge-jentera-baik' : 'badge-jentera-rosak';
-          const bw =
-            item.wic === 'BAIK' ? 'badge-jentera-baik' : 'badge-jentera-rosak';
-          const bb =
-            item.bomra === 'BAIK'
-              ? 'badge-jentera-baik'
-              : 'badge-jentera-rosak';
           const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${index + 1}</td><td><strong>${
-            item.balai
-          }</strong></td><td><span class="badge ${bc}">${
-            item.cad
-          }</span></td><td><span class="badge ${bw}">${
-            item.wic
-          }</span></td><td><span class="badge ${bb}">${
-            item.bomra
-          }</span></td><td>${item.shiftType}</td><td>${
-            item.shiftTime
-          }</td><td><div class="catatan-box">${
-            item.catatan || '-'
-          }</div></td><td class="no-print"><button class="btn btn-danger" onclick="padamChecklist('${
-            item.id
-          }')">PADAM</button></td>`;
+          tr.innerHTML = `<td>${index + 1}</td>
+            <td><strong>${item.balai}</strong></td>
+            <td>${getBadge(item.cad)}</td>
+            <td>${getBadge(item.wic)}</td>
+            <td>${getBadge(item.bomra)}</td>
+            <td>${getBadge(item.desktopGirn)}</td>
+            <td>${getBadge(item.handheldGirn)}</td>
+            <td>${getBadge(item.vehicularGirn)}</td>
+            <td>${getBadge(item.internet)}</td>
+            <td>${getBadge(item.handphone)}</td>
+            <td>${item.shiftType}</td>
+            <td>${item.shiftTime}</td>
+            <td><div class="catatan-box">${item.catatan || '-'}</div></td>
+            <td class="no-print"><button class="btn btn-danger" onclick="padamChecklist('${item.id}')">PADAM</button></td>`;
           tbody.appendChild(tr);
         });
       }
+
       async function padamChecklist(id) {
         tunjukCustomConfirm('Padam semakan ini?', async (res) => {
           if (res) {
@@ -3245,6 +3363,7 @@
           renderSenaraiJenteraMaster();
         }
       }
+
       function kemaskiniPaparData() {
         const q = document
           .getElementById('searchInput')
@@ -3570,6 +3689,7 @@
         document.getElementById('modalCatatan').value = '';
         tunjukCustomAlert('✅ Anggota berjaya disimpan!');
       }
+
       function janaLogistikBalaiSelectOptions() {
         const sel = document.getElementById('logModalBalai');
         if (sel)
@@ -3740,6 +3860,7 @@
         kemaskiniLogJenteraDipilihTable();
         tunjukCustomAlert('✅ Jentera berjaya disimpan!');
       }
+
       function bukaModalTambahAnggota() {
         document.getElementById('addOfficerModal').classList.add('active');
         janaNamaAnggotaOptions();
@@ -3810,7 +3931,6 @@
         if (e.key === 'Enter') sahkanPassword();
       }
 
-      // ✅ LOGIK PASSWORD DIKEMAS KINI UNTUK URUS KATEGORI & JENTERA
       function sahkanPassword() {
         if (
           document.getElementById('inputPassword').value === KATA_LALUAN_TETAP
@@ -3965,6 +4085,7 @@
           autoTarikData().then(() => kemaskiniSemuaPaparan());
         }
       }
+
       function tukarModDaftar(mod) {
         document.getElementById('btnTabAnggota').className =
           mod === 'ANGGOTA' ? 'tab-btn active' : 'tab-btn';
@@ -4151,7 +4272,6 @@
       window.namaAnggotaTerpilih = namaAnggotaTerpilih;
       window.balaiTerpilih = balaiTerpilih;
 
-      // ✅ Bind the new Master UI globals
       window.bukaModalUrusMaster = bukaModalUrusMaster;
       window.tutupModalUrusMaster = tutupModalUrusMaster;
       window.tukarTabUrusMaster = tukarTabUrusMaster;
