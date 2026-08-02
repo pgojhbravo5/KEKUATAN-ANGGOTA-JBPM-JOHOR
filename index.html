@@ -685,12 +685,12 @@
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         width: 100%;
-        max-width: 750px;
+        max-width: 860px;
         padding: 20px;
         box-shadow: var(--shadow-lg);
         transform: translateY(100%);
         transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        max-height: 88vh;
+        max-height: 92vh;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
@@ -699,7 +699,7 @@
         .modal {
           border-radius: 18px;
           transform: translateY(20px);
-          max-height: 90vh;
+          max-height: 92vh;
           padding: 24px;
         }
       }
@@ -794,16 +794,6 @@
         padding: 8px 10px;
         border-bottom: 1px solid var(--border-color);
         vertical-align: middle;
-      }
-      .jentera-modal-table select,
-      .jentera-modal-table input {
-        padding: 6px 8px;
-        font-size: 0.7rem;
-        border-radius: 6px;
-        border: 1px solid var(--border-color);
-        font-weight: 600;
-        text-transform: uppercase;
-        width: 100%;
       }
       .filter-info-badge {
         display: inline-flex;
@@ -909,12 +899,6 @@
           background: white;
           color: black;
           padding-bottom: 0;
-        }
-        .main-container {
-          display: block;
-          max-width: 100%;
-          margin: 0;
-          padding: 0;
         }
         .no-print,
         .mobile-bottom-nav {
@@ -1029,11 +1013,11 @@
           <div id="regFormContainer">
             <div class="form-group">
               <label>NAMA <span class="required-star">*</span></label>
-              <input type="text" id="regNama" class="form-control" required/>
+              <input type="text" id="regNama" class="form-control" required />
             </div>
             <div class="form-group">
               <label>NO. TELEFON</label>
-              <input type="text" id="regTel" class="form-control"/>
+              <input type="text" id="regTel" class="form-control" />
             </div>
             <div class="grid grid-cols-2 gap-2">
               <div class="form-group">
@@ -1049,7 +1033,10 @@
               <label>BALAI</label>
               <select id="regBalai" class="form-control"></select>
             </div>
-            <button class="btn btn-primary" onclick="simpanDaftarMaster('ANGGOTA')">
+            <button
+              class="btn btn-primary"
+              onclick="simpanDaftarMaster('ANGGOTA')"
+            >
               + DAFTAR ANGGOTA
             </button>
           </div>
@@ -1100,6 +1087,7 @@
           </div>
         </div>
       </div>
+
       <div class="content-area space-y-4">
         <div id="sectionStats" class="stats-grid no-print">
           <div class="stat-card">
@@ -1123,6 +1111,7 @@
             <div class="stat-value" id="statPasukanSummary">0 / 0 / 0</div>
           </div>
         </div>
+
         <!-- ROSTER TABLE -->
         <div id="sectionAnggota" class="card">
           <div class="card-title">
@@ -1236,6 +1225,7 @@
             <p class="font-bold">TIADA ANGGOTA DIDAFTARKAN.</p>
           </div>
         </div>
+
         <!-- LOGISTICS TABLE -->
         <div id="sectionLogistik" class="card border-t-4 border-t-yellow-500">
           <div class="card-title">
@@ -1293,6 +1283,7 @@
             <p class="font-bold">TIADA JENTERA DIDAFTARKAN.</p>
           </div>
         </div>
+
         <!-- CHECKLIST TABLE -->
         <div id="sectionChecklist" class="card border-t-4 border-t-purple-500">
           <div class="card-title">
@@ -1339,7 +1330,6 @@
                   <th>HP</th>
                   <th>SHIF</th>
                   <th>WAKTU</th>
-                  <th>CATATAN</th>
                   <th class="no-print">TINDAKAN</th>
                 </tr>
               </thead>
@@ -1356,6 +1346,18 @@
         </div>
       </div>
     </div>
+
+    <!-- WATERMARK COPYRIGHT -->
+    <footer
+      class="text-center py-6 px-4 no-print border-t border-slate-200/80 mt-8 mb-4"
+    >
+      <p class="text-xs font-black text-slate-600 tracking-wider">
+        &copy; 2026 PGO JOHOR | Hak Cipta Terpelihara
+      </p>
+      <p class="text-[11px] font-extrabold text-slate-400 tracking-widest mt-1">
+        PEMBANGUN APLIKASI : PB MOHAMAD AIDIL
+      </p>
+    </footer>
 
     <nav class="mobile-bottom-nav no-print">
       <button class="nav-item active" onclick="tukarViewMobile('operasi')">
@@ -1375,7 +1377,6 @@
       </button>
     </nav>
 
-    <!-- ALL MODALS -->
     <!-- ADD OFFICER MODAL -->
     <div class="modal-overlay" id="addOfficerModal">
       <div class="modal">
@@ -1432,31 +1433,38 @@
             </div>
           </div>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
           <div class="form-group">
-            <label>KETUA BALAI</label
-            ><select id="modalKetuaBalai" class="form-control">
+            <label>KETUA BALAI</label>
+            <select id="modalKetuaBalai" class="form-control">
               <option value="TIDAK">TIDAK</option>
               <option value="YA">YA</option>
             </select>
           </div>
           <div class="form-group">
-            <label>PEGAWAI OPERASI</label
-            ><select id="modalPegawaiOperasi" class="form-control">
+            <label>PEGAWAI OPERASI</label>
+            <select id="modalPegawaiOperasi" class="form-control">
               <option value="TIDAK">TIDAK</option>
               <option value="YA">YA</option>
             </select>
           </div>
           <div class="form-group">
-            <label>PENYELIA PASUKAN</label
-            ><select id="modalPenyeliaPasukan" class="form-control">
+            <label>PENYELIA PASUKAN</label>
+            <select id="modalPenyeliaPasukan" class="form-control">
               <option value="TIDAK">TIDAK</option>
               <option value="YA">YA</option>
             </select>
           </div>
           <div class="form-group">
-            <label>BKB</label
-            ><select id="modalBkb" class="form-control">
+            <label>BKB</label>
+            <select id="modalBkb" class="form-control">
+              <option value="TIDAK">TIDAK</option>
+              <option value="YA">YA</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>PEMANDU</label>
+            <select id="modalPemandu" class="form-control">
               <option value="TIDAK">TIDAK</option>
               <option value="YA">YA</option>
             </select>
@@ -1464,16 +1472,16 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <div class="form-group">
-            <label>PASUKAN</label
-            ><select id="modalPasukan" class="form-control">
+            <label>PASUKAN</label>
+            <select id="modalPasukan" class="form-control">
               <option value="PASUKAN A">PASUKAN A</option>
               <option value="PASUKAN B">PASUKAN B</option>
               <option value="PASUKAN C">PASUKAN C</option>
             </select>
           </div>
           <div class="form-group">
-            <label>STATUS</label
-            ><select id="modalStatus" class="form-control">
+            <label>STATUS</label>
+            <select id="modalStatus" class="form-control">
               <option value="BERTUGAS">BERTUGAS</option>
               <option value="CUTI">CUTI</option>
               <option value="CUTI SAKIT">CUTI SAKIT</option>
@@ -1482,8 +1490,8 @@
           </div>
         </div>
         <div class="form-group">
-          <label>CATATAN</label
-          ><input type="text" id="modalCatatan" class="form-control" />
+          <label>CATATAN</label>
+          <input type="text" id="modalCatatan" class="form-control" />
         </div>
         <div class="btn-group">
           <button class="btn btn-primary" onclick="simpanAnggotaBaharu()">
@@ -1620,9 +1628,10 @@
         </div>
       </div>
     </div>
-    <!-- CHECKLIST MODAL -->
+
+    <!-- CHECKLIST MODAL (2 STATUS UNIT INPUTS + 1 CATATAN PER ITEM) -->
     <div class="modal-overlay" id="checklistModal">
-      <div class="modal">
+      <div class="modal sm:!max-w-3xl">
         <div class="modal-header">
           <h3>✅ CHECKLIST PERKAKAS BILIK KAWALAN</h3>
           <button class="close-modal" onclick="tutupModalChecklist()">
@@ -1630,193 +1639,519 @@
           </button>
         </div>
         <div class="info-pill">
-          💡 SEMAK KESEMUA PERKAKAS KOMUNIKASI & SISTEM UNTUK BALAI BERTUGAS.
+          💡 BAGI SETIAP PERKAKAS, ISI JUMLAH UNIT BAGI STATUS BAIK & ROSAK
+          SERTA 1 CATATAN KHUSUS.
         </div>
-        <div class="form-group">
-          <label>PILIH BALAI <span class="required-star">*</span></label
-          ><select id="modalChecklistBalai" class="form-control">
-            <option value="">-- PILIH BALAI --</option>
-          </select>
-        </div>
-        <div class="space-y-2 mb-3">
-          <div
-            class="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200"
-          >
-            <div>
-              <div class="font-extrabold text-slate-800 text-xs">
-                🖥️ COMPUTER AIDED DISPATCH (CAD)
-              </div>
-              <div class="text-[10px] text-slate-400 font-semibold">
-                Sistem Penghantaran Bantuan Komputer
-              </div>
-            </div>
-            <select
-              id="modalStatusCAD"
-              class="form-control !w-auto !min-h-[36px] !py-1 !px-3 !text-xs"
-            >
-              <option value="BAIK">✅ BAIK</option>
-              <option value="ROSAK">❌ ROSAK</option>
-            </select>
-          </div>
-          <div
-            class="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200"
-          >
-            <div>
-              <div class="font-extrabold text-slate-800 text-xs">
-                🌐 WEB INTEGRATED CONSOLE (WIC)
-              </div>
-              <div class="text-[10px] text-slate-400 font-semibold">
-                Konsol Bersepadu Web
-              </div>
-            </div>
-            <select
-              id="modalStatusWIC"
-              class="form-control !w-auto !min-h-[36px] !py-1 !px-3 !text-xs"
-            >
-              <option value="BAIK">✅ BAIK</option>
-              <option value="ROSAK">❌ ROSAK</option>
-            </select>
-          </div>
-          <div
-            class="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200"
-          >
-            <div>
-              <div class="font-extrabold text-slate-800 text-xs">
-                📱 BOMBA RESPONDER APPS (BOMRA)
-              </div>
-              <div class="text-[10px] text-slate-400 font-semibold">
-                Aplikasi Responder Bomba
-              </div>
-            </div>
-            <select
-              id="modalStatusBOMRA"
-              class="form-control !w-auto !min-h-[36px] !py-1 !px-3 !text-xs"
-            >
-              <option value="BAIK">✅ BAIK</option>
-              <option value="ROSAK">❌ ROSAK</option>
-            </select>
-          </div>
-          <div
-            class="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200"
-          >
-            <div>
-              <div class="font-extrabold text-slate-800 text-xs">
-                💻 DESKTOP GIRN
-              </div>
-              <div class="text-[10px] text-slate-400 font-semibold">
-                Radio Komunikasi Desktop
-              </div>
-            </div>
-            <select
-              id="modalStatusDesktopGirn"
-              class="form-control !w-auto !min-h-[36px] !py-1 !px-3 !text-xs"
-            >
-              <option value="BAIK">✅ BAIK</option>
-              <option value="ROSAK">❌ ROSAK</option>
-            </select>
-          </div>
-          <div
-            class="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200"
-          >
-            <div>
-              <div class="font-extrabold text-slate-800 text-xs">
-                📻 HANDHELD GIRN
-              </div>
-              <div class="text-[10px] text-slate-400 font-semibold">
-                Radio Komunikasi Mudah Alih
-              </div>
-            </div>
-            <select
-              id="modalStatusHandheldGirn"
-              class="form-control !w-auto !min-h-[36px] !py-1 !px-3 !text-xs"
-            >
-              <option value="BAIK">✅ BAIK</option>
-              <option value="ROSAK">❌ ROSAK</option>
-            </select>
-          </div>
-          <div
-            class="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200"
-          >
-            <div>
-              <div class="font-extrabold text-slate-800 text-xs">
-                🚓 VEHICULAR GIRN
-              </div>
-              <div class="text-[10px] text-slate-400 font-semibold">
-                Radio Komunikasi Kenderaan
-              </div>
-            </div>
-            <select
-              id="modalStatusVehicularGirn"
-              class="form-control !w-auto !min-h-[36px] !py-1 !px-3 !text-xs"
-            >
-              <option value="BAIK">✅ BAIK</option>
-              <option value="ROSAK">❌ ROSAK</option>
-            </select>
-          </div>
-          <div
-            class="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200"
-          >
-            <div>
-              <div class="font-extrabold text-slate-800 text-xs">
-                🌐 INTERNET
-              </div>
-              <div class="text-[10px] text-slate-400 font-semibold">
-                Capaian Rangkaian Internet
-              </div>
-            </div>
-            <select
-              id="modalStatusInternet"
-              class="form-control !w-auto !min-h-[36px] !py-1 !px-3 !text-xs"
-            >
-              <option value="BAIK">✅ BAIK</option>
-              <option value="ROSAK">❌ ROSAK</option>
-            </select>
-          </div>
-          <div
-            class="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200"
-          >
-            <div>
-              <div class="font-extrabold text-slate-800 text-xs">
-                📱 HANDPHONE
-              </div>
-              <div class="text-[10px] text-slate-400 font-semibold">
-                Telefon Bimbit Rasmi
-              </div>
-            </div>
-            <select
-              id="modalStatusHandphone"
-              class="form-control !w-auto !min-h-[36px] !py-1 !px-3 !text-xs"
-            >
-              <option value="BAIK">✅ BAIK</option>
-              <option value="ROSAK">❌ ROSAK</option>
-            </select>
-          </div>
-        </div>
-        <div class="grid grid-cols-2 gap-2 mb-3">
+
+        <!-- TOP BAR: BALAI, SHIF & WAKTU -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
           <div class="form-group !mb-0">
-            <label>SHIF</label
-            ><select id="modalChecklistShift" class="form-control">
+            <label>PILIH BALAI <span class="required-star">*</span></label>
+            <select id="modalChecklistBalai" class="form-control">
+              <option value="">-- PILIH BALAI --</option>
+            </select>
+          </div>
+          <div class="form-group !mb-0">
+            <label>SHIF</label>
+            <select id="modalChecklistShift" class="form-control">
               <option value="12 JAM">12 JAM</option>
               <option value="24 JAM">24 JAM</option>
             </select>
           </div>
           <div class="form-group !mb-0">
-            <label>WAKTU</label
-            ><select id="modalChecklistShiftTime" class="form-control">
+            <label>WAKTU</label>
+            <select id="modalChecklistShiftTime" class="form-control">
               <option value="0800-2000">0800-2000 (SIANG)</option>
               <option value="2000-0800">2000-0800 (MALAM)</option>
             </select>
           </div>
         </div>
-        <div class="form-group">
-          <label>CATATAN KESELURUHAN</label
-          ><input
-            type="text"
-            id="modalChecklistCatatan"
-            class="form-control"
-            placeholder='CONTOH: H.GIRN BATERI ROSAK...'
-          />
+
+        <!-- EXPANDED LIST OF 8 EQUIPMENT ITEMS WITH BAIK/ROSAK UNIT FIELDS AND 1 CATATAN EACH -->
+        <div class="mb-2 flex items-center justify-between">
+          <label class="text-xs font-extrabold text-slate-700"
+            >📋 SENARAI 8 PERKAKAS & JUMLAH UNIT STATUS</label
+          >
+          <span class="text-[10px] text-slate-500 font-bold"
+            >STATUS BAIK/ROSAK + CATATAN</span
+          >
         </div>
+        <div
+          class="space-y-3 mb-4 max-h-[62vh] overflow-y-auto pr-2 border border-slate-200 p-3 rounded-xl bg-slate-50 flex-1"
+        >
+          <!-- 1. CAD -->
+          <div
+            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="font-extrabold text-slate-800 text-xs sm:text-sm">
+                  🖥️ COMPUTER AIDED DISPATCH (CAD)
+                </div>
+                <div class="text-[10px] text-slate-500 font-semibold">
+                  Sistem Penghantaran Bantuan Komputer
+                </div>
+              </div>
+              <span
+                class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold"
+                >CAD</span
+              >
+            </div>
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <div>
+                <label
+                  class="text-[10px] font-extrabold text-emerald-700 block mb-1"
+                  >✅ BAIK (UNIT)</label
+                >
+                <input
+                  type="number"
+                  id="modalCAD_Baik"
+                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                  value="0"
+                  min="0"
+                />
+              </div>
+              <div>
+                <label
+                  class="text-[10px] font-extrabold text-red-700 block mb-1"
+                  >❌ ROSAK (UNIT)</label
+                >
+                <input
+                  type="number"
+                  id="modalCAD_Rosak"
+                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-red-800 bg-red-50/60 border-red-300"
+                  value="0"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="text-[10px] font-bold text-slate-600 block mb-1"
+                >CATATAN CAD</label
+              >
+              <input
+                type="text"
+                id="modalCatatanCAD"
+                class="form-control !min-h-[36px] !py-1 !px-2 !text-xs"
+                placeholder="CATATAN BAGI CAD..."
+              />
+            </div>
+          </div>
+
+          <!-- 2. WIC -->
+          <div
+            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="font-extrabold text-slate-800 text-xs sm:text-sm">
+                  🌐 WEB INTEGRATED CONSOLE (WIC)
+                </div>
+                <div class="text-[10px] text-slate-500 font-semibold">
+                  Konsol Bersepadu Web
+                </div>
+              </div>
+              <span
+                class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold"
+                >WIC</span
+              >
+            </div>
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <div>
+                <label
+                  class="text-[10px] font-extrabold text-emerald-700 block mb-1"
+                  >✅ BAIK (UNIT)</label
+                >
+                <input
+                  type="number"
+                  id="modalWIC_Baik"
+                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                  value="0"
+                  min="0"
+                />
+              </div>
+              <div>
+                <label
+                  class="text-[10px] font-extrabold text-red-700 block mb-1"
+                  >❌ ROSAK (UNIT)</label
+                >
+                <input
+                  type="number"
+                  id="modalWIC_Rosak"
+                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-red-800 bg-red-50/60 border-red-300"
+                  value="0"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="text-[10px] font-bold text-slate-600 block mb-1"
+                >CATATAN WIC</label
+              >
+              <input
+                type="text"
+                id="modalCatatanWIC"
+                class="form-control !min-h-[36px] !py-1 !px-2 !text-xs"
+                placeholder="CATATAN BAGI WIC..."
+              />
+            </div>
+          </div>
+
+          <!-- 3. BOMRA -->
+          <div
+            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="font-extrabold text-slate-800 text-xs sm:text-sm">
+                  📱 BOMBA RESPONDER APPS (BOMRA)
+                </div>
+                <div class="text-[10px] text-slate-500 font-semibold">
+                  Aplikasi Responder Bomba
+                </div>
+              </div>
+              <span
+                class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold"
+                >BOMRA</span
+              >
+            </div>
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <div>
+                <label
+                  class="text-[10px] font-extrabold text-emerald-700 block mb-1"
+                  >✅ BAIK (UNIT)</label
+                >
+                <input
+                  type="number"
+                  id="modalBOMRA_Baik"
+                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                  value="0"
+                  min="0"
+                />
+              </div>
+              <div>
+                <label
+                  class="text-[10px] font-extrabold text-red-700 block mb-1"
+                  >❌ ROSAK (UNIT)</label
+                >
+                <input
+                  type="number"
+                  id="modalBOMRA_Rosak"
+                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-red-800 bg-red-50/60 border-red-300"
+                  value="0"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="text-[10px] font-bold text-slate-600 block mb-1"
+                >CATATAN BOMRA</label
+              >
+              <input
+                type="text"
+                id="modalCatatanBOMRA"
+                class="form-control !min-h-[36px] !py-1 !px-2 !text-xs"
+                placeholder="CATATAN BAGI BOMRA..."
+              />
+            </div>
+          </div>
+
+          <!-- 4. DESKTOP GIRN -->
+          <div
+            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="font-extrabold text-slate-800 text-xs sm:text-sm">
+                  💻 DESKTOP GIRN
+                </div>
+                <div class="text-[10px] text-slate-500 font-semibold">
+                  Radio Komunikasi Desktop
+                </div>
+              </div>
+              <span
+                class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold"
+                >D.GIRN</span
+              >
+            </div>
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <div>
+                <label
+                  class="text-[10px] font-extrabold text-emerald-700 block mb-1"
+                  >✅ BAIK (UNIT)</label
+                >
+                <input
+                  type="number"
+                  id="modalDesktopGirn_Baik"
+                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                  value="0"
+                  min="0"
+                />
+              </div>
+              <div>
+                <label
+                  class="text-[10px] font-extrabold text-red-700 block mb-1"
+                  >❌ ROSAK (UNIT)</label
+                >
+                <input
+                  type="number"
+                  id="modalDesktopGirn_Rosak"
+                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-red-800 bg-red-50/60 border-red-300"
+                  value="0"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="text-[10px] font-bold text-slate-600 block mb-1"
+                >CATATAN DESKTOP GIRN</label
+              >
+              <input
+                type="text"
+                id="modalCatatanDesktopGirn"
+                class="form-control !min-h-[36px] !py-1 !px-2 !text-xs"
+                placeholder="CATATAN BAGI DESKTOP GIRN..."
+              />
+            </div>
+          </div>
+
+          <!-- 5. HANDHELD GIRN -->
+          <div
+            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="font-extrabold text-slate-800 text-xs sm:text-sm">
+                  📻 HANDHELD GIRN
+                </div>
+                <div class="text-[10px] text-slate-500 font-semibold">
+                  Radio Komunikasi Mudah Alih
+                </div>
+              </div>
+              <span
+                class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold"
+                >H.GIRN</span
+              >
+            </div>
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <div>
+                <label
+                  class="text-[10px] font-extrabold text-emerald-700 block mb-1"
+                  >✅ BAIK (UNIT)</label
+                >
+                <input
+                  type="number"
+                  id="modalHandheldGirn_Baik"
+                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                  value="0"
+                  min="0"
+                />
+              </div>
+              <div>
+                <label
+                  class="text-[10px] font-extrabold text-red-700 block mb-1"
+                  >❌ ROSAK (UNIT)</label
+                >
+                <input
+                  type="number"
+                  id="modalHandheldGirn_Rosak"
+                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-red-800 bg-red-50/60 border-red-300"
+                  value="0"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="text-[10px] font-bold text-slate-600 block mb-1"
+                >CATATAN HANDHELD GIRN</label
+              >
+              <input
+                type="text"
+                id="modalCatatanHandheldGirn"
+                class="form-control !min-h-[36px] !py-1 !px-2 !text-xs"
+                placeholder="CATATAN BAGI HANDHELD GIRN..."
+              />
+            </div>
+          </div>
+
+          <!-- 6. VEHICULAR GIRN -->
+          <div
+            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="font-extrabold text-slate-800 text-xs sm:text-sm">
+                  机 VEHICULAR GIRN
+                </div>
+                <div class="text-[10px] text-slate-500 font-semibold">
+                  Radio Komunikasi Kenderaan
+                </div>
+              </div>
+              <span
+                class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold"
+                >V.GIRN</span
+              >
+            </div>
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <div>
+                <label
+                  class="text-[10px] font-extrabold text-emerald-700 block mb-1"
+                  >✅ BAIK (UNIT)</label
+                >
+                <input
+                  type="number"
+                  id="modalVehicularGirn_Baik"
+                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                  value="0"
+                  min="0"
+                />
+              </div>
+              <div>
+                <label
+                  class="text-[10px] font-extrabold text-red-700 block mb-1"
+                  >❌ ROSAK (UNIT)</label
+                >
+                <input
+                  type="number"
+                  id="modalVehicularGirn_Rosak"
+                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-red-800 bg-red-50/60 border-red-300"
+                  value="0"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="text-[10px] font-bold text-slate-600 block mb-1"
+                >CATATAN VEHICULAR GIRN</label
+              >
+              <input
+                type="text"
+                id="modalCatatanVehicularGirn"
+                class="form-control !min-h-[36px] !py-1 !px-2 !text-xs"
+                placeholder="CATATAN BAGI VEHICULAR GIRN..."
+              />
+            </div>
+          </div>
+
+          <!-- 7. INTERNET -->
+          <div
+            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="font-extrabold text-slate-800 text-xs sm:text-sm">
+                  🌐 INTERNET
+                </div>
+                <div class="text-[10px] text-slate-500 font-semibold">
+                  Capaian Rangkaian Internet
+                </div>
+              </div>
+              <span
+                class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold"
+                >INET</span
+              >
+            </div>
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <div>
+                <label
+                  class="text-[10px] font-extrabold text-emerald-700 block mb-1"
+                  >✅ BAIK (UNIT)</label
+                >
+                <input
+                  type="number"
+                  id="modalInternet_Baik"
+                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                  value="0"
+                  min="0"
+                />
+              </div>
+              <div>
+                <label
+                  class="text-[10px] font-extrabold text-red-700 block mb-1"
+                  >❌ ROSAK (UNIT)</label
+                >
+                <input
+                  type="number"
+                  id="modalInternet_Rosak"
+                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-red-800 bg-red-50/60 border-red-300"
+                  value="0"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="text-[10px] font-bold text-slate-600 block mb-1"
+                >CATATAN INTERNET</label
+              >
+              <input
+                type="text"
+                id="modalCatatanInternet"
+                class="form-control !min-h-[36px] !py-1 !px-2 !text-xs"
+                placeholder="CATATAN BAGI INTERNET..."
+              />
+            </div>
+          </div>
+
+          <!-- 8. HANDPHONE -->
+          <div
+            class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="font-extrabold text-slate-800 text-xs sm:text-sm">
+                  📱 HANDPHONE
+                </div>
+                <div class="text-[10px] text-slate-500 font-semibold">
+                  Telefon Bimbit Rasmi
+                </div>
+              </div>
+              <span
+                class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold"
+                >HP</span
+              >
+            </div>
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <div>
+                <label
+                  class="text-[10px] font-extrabold text-emerald-700 block mb-1"
+                  >✅ BAIK (UNIT)</label
+                >
+                <input
+                  type="number"
+                  id="modalHandphone_Baik"
+                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-emerald-800 bg-emerald-50/60 border-emerald-300"
+                  value="0"
+                  min="0"
+                />
+              </div>
+              <div>
+                <label
+                  class="text-[10px] font-extrabold text-red-700 block mb-1"
+                  >❌ ROSAK (UNIT)</label
+                >
+                <input
+                  type="number"
+                  id="modalHandphone_Rosak"
+                  class="form-control !min-h-[36px] !py-1 !px-2 !text-xs font-bold text-red-800 bg-red-50/60 border-red-300"
+                  value="0"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="text-[10px] font-bold text-slate-600 block mb-1"
+                >CATATAN HANDPHONE</label
+              >
+              <input
+                type="text"
+                id="modalCatatanHandphone"
+                class="form-control !min-h-[36px] !py-1 !px-2 !text-xs"
+                placeholder="CATATAN BAGI HANDPHONE..."
+              />
+            </div>
+          </div>
+        </div>
+
         <div class="btn-group">
           <button class="btn btn-purple" onclick="simpanChecklistDariModal()">
             💾 SIMPAN KE CLOUD</button
@@ -1827,6 +2162,7 @@
       </div>
     </div>
 
+    <!-- OTHER SYSTEM MODALS -->
     <div class="modal-overlay" id="passwordModal">
       <div class="modal sm:!max-w-md">
         <div class="modal-header">
@@ -1904,7 +2240,7 @@
       </div>
     </div>
 
-    <!-- NEW: MODAL URUS SENARAI MASTER KATEGORI -->
+    <!-- MODAL URUS SENARAI MASTER KATEGORI -->
     <div class="modal-overlay" id="urusMasterModal">
       <div class="modal">
         <div class="modal-header">
@@ -1956,7 +2292,7 @@
       </div>
     </div>
 
-    <!-- NEW: MODAL URUS SENARAI JENTERA MASTER -->
+    <!-- MODAL URUS SENARAI JENTERA MASTER -->
     <div class="modal-overlay" id="urusJenteraModal">
       <div class="modal">
         <div class="modal-header">
@@ -2102,13 +2438,14 @@
       }
 
       function tunjukLoading() {
-        document.getElementById('loadingOverlay').classList.add('active');
+        const el = document.getElementById('loadingOverlay');
+        if (el) el.classList.add('active');
       }
       function sorokLoading() {
-        document.getElementById('loadingOverlay').classList.remove('active');
+        const el = document.getElementById('loadingOverlay');
+        if (el) el.classList.remove('active');
       }
 
-      // ==================== SUPABASE API FUNCTIONS ====================
       async function hantarDataSupabase() {
         if (!supabaseUrl || !supabaseKey) {
           tunjukCustomAlert('❌ URL/Key Supabase tidak ditetapkan!');
@@ -2141,7 +2478,6 @@
           if (!response.ok) throw new Error('HTTP ' + response.status);
 
           simpanKeLocalStorage();
-
           tunjukCustomAlert('✅ Data berjaya dihantar ke Supabase Cloud!');
         } catch (err) {
           simpanKeLocalStorage();
@@ -2204,7 +2540,6 @@
         const savedBalaiMaster = localStorage.getItem('senaraiBalaiMaster');
         if (savedBalaiMaster) {
           senaraiBalaiMaster = JSON.parse(savedBalaiMaster);
-          // Suntik secara automatik jika balai default tiada dalam rekod lama pengguna
           DEFAULT_BALAI.forEach((b) => {
             if (!senaraiBalaiMaster.includes(b)) {
               senaraiBalaiMaster.push(b);
@@ -2262,7 +2597,6 @@
 
             if (d.senaraiBalaiMaster && d.senaraiBalaiMaster.length > 0) {
               senaraiBalaiMaster = d.senaraiBalaiMaster;
-              // Sentiasa masukkan item default baru yang tiada dalam data cloud
               DEFAULT_BALAI.forEach((b) => {
                 if (!senaraiBalaiMaster.includes(b)) senaraiBalaiMaster.push(b);
               });
@@ -2328,13 +2662,11 @@
         }
       }
 
-      // ==================== INVENTORI JENTERA ====================
       function initDataLogistik(force = false) {
         if (logistikJentera.length > 0 && !force) return;
         logistikJentera = [];
         let id = 1000;
 
-        // ============ CFRT ============
         const cfrtData = [
           [
             'CFRT * 019',
@@ -2399,7 +2731,6 @@
           })
         );
 
-        // ============ FRT & LFRT ============
         const frtData = [
           ['J1-01', 'BMK 976', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           [
@@ -2426,213 +2757,6 @@
             'MERCEDES ATEGO',
             '02. LIGHT FIRE RESCUE TENDER (LFRT)',
           ],
-          ['J1-11', 'BMK 1021', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-13', 'BMK 982', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-14',
-            'BJW 4563',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          ['J1-15', 'BLV 9703', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-16',
-            'BJY 3594',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          ['J1-17', 'BKN 3325', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-18', 'BMK 1013', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-19',
-            'BJY 3445',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          ['J1-20', 'BKN 7156', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-21', 'BMK 1030', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-22',
-            'BJW 4599',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          ['J1-23', 'BMK 1014', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-24',
-            'BJY 3364',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          [
-            'J1-25',
-            'WDF 2845',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
-          ['J1-26', 'WHK 9461', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-27',
-            'BJW 4548',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          ['J1-28', 'BLW 6720', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-29',
-            'BJW 4575',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          ['J1-30', 'BGR 4059', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-31',
-            'BJT 8258',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          ['J1-32', 'BLX 4668', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-33',
-            'BJY 3386',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          ['J1-35', 'WUC 6846', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-36',
-            'BJW 4573',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          ['J1-38', 'BMK 4620', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-39',
-            'BJW 4569',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          ['J1-40', 'BMK 1005', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-41', 'BKN 7309', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-42',
-            'BJT 8353',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          ['J1-43', 'BLX 4658', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-44',
-            'BKA 8796',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          ['J1-45', 'BLU 8034', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-46', 'BGR 4061', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-47', 'WUC 7006', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-48', 'BGR 4065', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-49', 'WJP 1286', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-50', 'BMK 1015', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-51',
-            'BJW 4590',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          ['J1-52', 'WHK 9454', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-53',
-            'BJW 4561',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          ['J1-54', 'BLV 9856', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-55',
-            'BJT 8356',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          ['J1-56', 'WUB 9481', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-57',
-            'BKA 9304',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          ['J1-58', 'BMK 992', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-59', 'BGR 3578', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-60', 'BMK 984', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-61', 'BGQ 6810', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'LFRT * N1-23',
-            'BJT 8203',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          [
-            'N/A',
-            'WDF 2115',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
-          [
-            'N/A',
-            'WDF 4724',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
-          [
-            'N/A',
-            'WEH 3367',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
-          [
-            'N/A',
-            'WDF 2842',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
-          [
-            'N/A',
-            'WEH 3358',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
-          [
-            'N/A',
-            'WCC 4229',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
-          [
-            'N/A',
-            'WEH 3365',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
-          [
-            'N/A',
-            'WDF 2113',
-            'NISSAN UD CPB14FHRT',
-            '01. FIRE RESCUE TENDER (FRT)',
-          ],
-          [
-            'N/A',
-            'BGR 6274',
-            'FORD F350',
-            '04. RAPID FIRE RESCUE TENDER (RFRT)',
-          ],
-          ['SITRAK 1', 'BSJ 6359', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
-          ['SITRAK 2', 'BSL 7836', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
-          ['SITRAK 3', 'BSL 7849', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
-          ['SITRAK 4', 'BSL 7857', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
-          ['SITRAK 5', 'BSL 7876', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
-          ['SITRAK 6', 'BSL 7885', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
-          ['SITRAK 7', 'BSL 7895', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
-          ['SITRAK 8', 'BSL 7906', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
-          ['W1-35', 'WHK 9429', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
         ];
         frtData.forEach((d) =>
           logistikJentera.push({
@@ -2648,473 +2772,8 @@
           })
         );
 
-        // ============ EMRS ============
-        const emrsData = [
-          ['J2-01', 'BMP 3537', '20. TOYOTA HIACE EMRS'],
-          ['J2-02', 'BNH9581', '20. TOYOTA HIACE EMRS'],
-          ['J2-03', 'BMQ2930', '20. TOYOTA HIACE EMRS'],
-          ['J2-04', 'BMT158', '20. TOYOTA HIACE EMRS'],
-          ['J2-05', 'BMT1030', '20. TOYOTA HIACE EMRS'],
-          ['J2-06', 'BMT1034', '20. TOYOTA HIACE EMRS'],
-          ['J2-07', 'BMT1861', '20. TOYOTA HIACE EMRS'],
-          ['J2-08', 'BMS7089', '20. TOYOTA HIACE EMRS'],
-          ['J2-09', 'BMS7185', '20. TOYOTA HIACE EMRS'],
-          ['J2-10', 'BMU4233', '20. TOYOTA HIACE EMRS'],
-          ['J2-11', 'BMU5008', '20. TOYOTA HIACE EMRS'],
-          ['J2-12', 'BMV9267', '20. TOYOTA HIACE EMRS'],
-          ['J2-13', 'BNE654', '20. TOYOTA HIACE EMRS'],
-          ['J2-14', 'BNE754', '20. TOYOTA HIACE EMRS'],
-          ['J2-15', 'BNE1842', '20. TOYOTA HIACE EMRS'],
-          ['J2-16', 'BNE1944', '20. TOYOTA HIACE EMRS'],
-          ['J2-17', 'BNG3646', '20. TOYOTA HIACE EMRS'],
-          ['J2-18', 'BNH5275', '20. TOYOTA HIACE EMRS'],
-          ['J2-19', 'BNH9605', '20. TOYOTA HIACE EMRS'],
-          ['J2-20', 'BNK3528', '20. TOYOTA HIACE EMRS'],
-        ];
-        emrsData.forEach((d) =>
-          logistikJentera.push({
-            id: ++id,
-            callsign: d[0],
-            plate: d[1],
-            model: d[2],
-            jenis: 'EMRS',
-            kategori: 'EMRS',
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          })
-        );
-
-        // ============ WATER TANKER ============
-        const wtData = [
-          ['J5-01', 'BMS 5928: T/BD 9282', '16. SCANIA WT 20000L'],
-          ['J5-02', 'BMV 1317: T/BD 9284', '16. SCANIA WT 20000L'],
-          ['J5-03', 'BMP 6933: T/BD 8293', '16. SCANIA WT 20000L'],
-          ['J5-04', 'BMV 1436: T/BD 9244', '16. SCANIA WT 20000L'],
-          ['J5-05', 'BMV 4137: T/BD 9269', '16. SCANIA WT 20000L'],
-          ['J5-06', 'BMX 9594: T/BE 762', '16. SCANIA WT 20000L'],
-          ['J5-07', 'BNE 8418 :T/BE 266', '16. SCANIA WT 20000L'],
-          ['J5-08', 'BMX 9580: T/BE 317', '16. SCANIA WT 20000L'],
-          ['J5-09', 'BNH 2712: T/BE : 931', '16. SCANIA WT 20000L'],
-          ['J5-10', 'BNH 7962: T/BE 1743', '16. SCANIA WT 20000L'],
-          ['J5-11', 'WLA 4678', '15. MERCEDES WT 10000L'],
-          ['J5-12', 'WLA 4638', '15. MERCEDES WT 10000L'],
-        ];
-        wtData.forEach((d) =>
-          logistikJentera.push({
-            id: ++id,
-            callsign: d[0],
-            plate: d[1],
-            model: d[2],
-            jenis: 'WATER TANKER',
-            kategori: 'WATER TANKER',
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          })
-        );
-
-        // ============ RIM ============
-        const rimData = [
-          ['J6-01', 'BGT 231', '19. RIM', 'RIM ST 1300'],
-          ['J6-02', 'BGT 240', '19. RIM', 'RIM ST 1300'],
-          ['J6-03', 'BGT 229', '19. RIM', 'RIM ST 1300'],
-          ['J6-04', 'BGT 226', '19. RIM', 'RIM ST 1300'],
-          ['J6-05', 'BGT 227', '19. RIM', 'RIM ST 1300'],
-          ['J6-06', 'BGT 225', '19. RIM', 'RIM ST 1300'],
-          ['J6-07', 'WQS 5095', '19. RIM', 'RIM VFR 800'],
-          ['J6-08', 'WQS 5033', '19. RIM', 'RIM VFR 800'],
-          ['J6-09', 'WQS 5291', '19. RIM', 'RIM VFR 800'],
-          ['J6-10', 'WQS 5092', '19. RIM', 'RIM VFR 800'],
-          ['J6-11', 'WQS 5202', '19. RIM', 'RIM VFR 800'],
-          ['J6-12', 'WQS 5120', '19. RIM', 'RIM VFR 800'],
-          ['-', 'VDN 4921', '19. RIM', 'RIM VER 650'],
-          ['-', 'VDN 4923', '19. RIM', 'RIM VER 650'],
-          ['-', 'VDN 4928', '19. RIM', 'RIM VER 650'],
-          ['-', 'VDM 4042', '19. RIM', 'RIM VER 650'],
-          ['-', 'VDM 4047', '19. RIM', 'RIM VER 650'],
-          ['-', 'VDM 4054', '19. RIM', 'RIM VER 650'],
-          ['-', 'VDM 4059', '19. RIM', 'RIM VER 650'],
-          ['-', 'VDM 4933', '19. RIM', 'RIM VER 650'],
-          ['-', 'VDM 4035', '19. RIM', 'RIM VER 650'],
-          ['-', 'JVW 3497', '19. RIM', 'MODENAS PULSAR-NS200-ABS NS200'],
-          ['-', 'JVW 3498', '19. RIM', 'MODENAS PULSAR-NS200-ABS NS200'],
-        ];
-        rimData.forEach((d) =>
-          logistikJentera.push({
-            id: ++id,
-            callsign: d[0],
-            plate: d[1],
-            model: d[2],
-            jenis: d[3],
-            kategori: 'RIM',
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          })
-        );
-
-        // ============ BOT ============
-        const botData = [
-          ['04-14', '-', 'ALUMINIUM', 'BOT', 'AYER HITAM'],
-          ['BP34', '-', 'ALUMINIUM', 'BOT', 'AYER HITAM'],
-          ['34-14', '-', 'ALUMINIUM', 'BOT', 'BANDAR BARU KULAI'],
-          ['BP 048-10', '-', 'ALUMINIUM', 'BOT', 'BANDAR BARU SEGAMAT'],
-          ['BP 059-10', '-', 'ALUMINIUM', 'BOT', 'BANDAR BARU SEGAMAT'],
-          ['047-10', '-', 'ALUMINIUM', 'BOT', 'BATU PAHAT'],
-          ['BP 06', '-', 'ALUMINIUM', 'BOT', 'RENGGAM'],
-          ['BP 37', '-', 'ALUMINIUM', 'BOT', 'BUKIT GAMBIR'],
-          ['BP 050-10', '-', 'ALUMINIUM', 'BOT', 'ENDAU'],
-          ['BP 07-14', '-', 'ALUMINIUM', 'BOT', 'ENDAU'],
-          ['BP 44', '-', 'ALUMINIUM', 'BOT', 'ENDAU'],
-          ['036-10', '-', 'ALUMINIUM', 'BOT', 'JOHOR JAYA'],
-          ['042-10', '-', 'ALUMINIUM', 'BOT', 'KLUANG'],
-          ['BP 36', '-', 'ALUMINIUM', 'BOT', 'KLUANG'],
-          ['B040-10', '-', 'ALUMINIUM', 'BOT', 'KOTA TINGGI'],
-          ['-', '-', 'ALUMINIUM', 'BOT', 'KULAI'],
-          ['BP 56', '-', 'ALUMINIUM', 'BOT', 'LABIS'],
-          ['02-JB', '-', 'ALUMINIUM', 'BOT', 'LARKIN'],
-          ['BP O35-10', '-', 'ALUMINIUM', 'BOT', 'LARKIN'],
-          ['ISTANA', '-', 'ALUMINIUM', 'BOT', 'LARKIN'],
-          ['BP 049-10', '-', 'ALUMINIUM', 'BOT', 'MERSING'],
-          ['BP 40', '-', 'ALUMINIUM', 'BOT', 'MERSING'],
-          ['BP 046-10', '-', 'ALUMINIUM', 'BOT', 'MUAR'],
-          ['BP 39', '-', 'ALUMINIUM', 'BOT', 'MUAR'],
-          ['PGH 41', '-', 'ALUMINIUM', 'BOT', 'PAGOH'],
-          ['01-PSG', '-', 'ALUMINIUM', 'BOT', 'PASIR GUDANG'],
-          ['03-PSG', '-', 'ALUMINIUM', 'BOT', 'PASIR GUDANG'],
-          ['038-10 PSG', '-', 'ALUMINIUM', 'BOT', 'PASIR GUDANG'],
-          ['02-PNS', '-', 'ALUMINIUM', 'BOT', 'PEKAN NENAS'],
-          ['BP 041-10', '-', 'ALUMINIUM', 'BOT', 'PENAWAR'],
-          ['BP 46', '-', 'ALUMINIUM', 'BOT', 'PENAWAR'],
-          ['BP-044', '-', 'ALUMINIUM', 'BOT', 'PENGGARAM'],
-          ['PTN 039-10', '-', 'ALUMINIUM', 'BOT', 'PONTIAN'],
-          ['BP 32/14', '-', 'ALUMINIUM', 'BOT', 'PONTIAN BARU'],
-          ['BP 037', '-', 'ALUMINIUM', 'BOT', 'PUNGGAI'],
-          ['BP 08-14', '-', 'ALUMINIUM', 'BOT', 'RENGGAM'],
-          ['RGT-04', '-', 'ALUMINIUM', 'BOT', 'RENGIT'],
-          ['BP 04', '-', 'ALUMINIUM', 'BOT', 'SEBANA COVE'],
-          ['BP 38', '-', 'ALUMINIUM', 'BOT', 'SEGAMAT'],
-          ['BP 47-10', '-', 'ALUMINIUM', 'BOT', 'SEGAMAT'],
-          ['136-10', '-', 'ALUMINIUM', 'BOT', 'SKUDAI'],
-          ['BP 037-10', '-', 'ALUMINIUM', 'BOT', 'SUNGAI RENGIT'],
-          ['TGK07', '-', 'ALUMINIUM', 'BOT', 'TANGKAK'],
-          ['WC 122', '-', 'ALUMINIUM', 'BOT', 'ISKANDAR PUTERI'],
-          ['-', '-', 'ALUMINIUM', 'BOT', 'YONG PENG'],
-          ['BP-05', '-', 'ALUMINIUM', 'BOT', 'YONG PENG'],
-          ['-', '-', 'ARIB', 'BOT', 'OPERASI NEGERI'],
-          ['O7', '-', 'ARIB', 'BOT', 'MUAR'],
-          ['N/A', '-', 'FIBER', 'BOT', 'ISKANDAR PUTERI'],
-          ['N/A', '-', 'FIBER', 'BOT', 'OPERASI NEGERI'],
-          ['PL 02', '-', 'FIBER', 'BOT', 'PONTIAN'],
-          ['N/A', '-', 'FIBER', 'BOT', 'SKUDAI'],
-          ['N/A', '-', 'FIBER', 'BOT', 'KOTA TINGGI'],
-          ['N/A', '-', 'FIBER', 'BOT', 'KOTA TINGGI'],
-          ['N/A', '-', 'FIBER', 'BOT', 'SEBANA COVE'],
-          ['N/A', '-', 'FIBER', 'BOT', 'KLUANG'],
-          ['N/A', '-', 'FIBER', 'BOT', 'SEGAMAT'],
-          ['N/A', '-', 'FIBER', 'BOT', 'SEGAMAT'],
-          ['N/A', '-', 'FIBER', 'BOT', 'SEGAMAT'],
-          ['FRB 03', '-', 'FIRE BOAT', 'BOT', 'MUAR'],
-          ['WC 1', '-', 'JETSKI', 'BOT', 'ENDAU'],
-          ['WC 3', '-', 'JETSKI', 'BOT', 'ENDAU'],
-          ['KCB24', '-', 'KEVLAR', 'BOT', 'MERSING'],
-          ['KCB09', '-', 'KEVLAR', 'BOT', 'PONTIAN'],
-          ['N/A', '-', 'LIGHT SAR BOAT ( HDPE )', 'BOT', 'KLUANG'],
-          ['N/A', '-', 'LIGHT SAR BOAT ( HDPE )', 'BOT', 'LABIS'],
-          ['N/A', '-', 'LIGHT SAR BOAT ( HDPE )', 'BOT', 'MERSING'],
-          ['N/A', '-', 'LIGHT SAR BOAT ( HDPE )', 'BOT', 'MUAR'],
-          ['N/A', '-', 'LIGHT SAR BOAT ( HDPE )', 'BOT', 'SKUDAI'],
-          ['GTB 1860', '-', 'MUD BOAT', 'BOT', 'ENDAU'],
-          ['N/A', '-', 'RUBBER DINGHY', 'BOT', 'BANDAR BARU KULAI'],
-        ];
-        botData.forEach((d) =>
-          logistikJentera.push({
-            id: ++id,
-            callsign: d[0],
-            plate: d[1],
-            model: d[2],
-            jenis: d[3],
-            kategori: 'BOT',
-            balai: d[4] || 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          })
-        );
-
-        // ============ KENDERAAN/UTILITI ============
-        const utilData = [
-          ['UTL', 'WHV3429', 'ISUZU V6', '4X4'],
-          ['UTL', 'WHR9140', 'ISUZU V6', '4X4'],
-          ['UTL', 'WA4358Y', 'ISUZU 5 TAN', 'LORI'],
-          ['UTL', 'WA4475Y', 'ISUZU 3 TAN', 'LORI'],
-          ['UTL', 'BHX 483', 'HICOM HANDALAN - 5 TAN', 'LORI'],
-          ['UTL', 'WKJ9465', 'PAJERO', '4X4'],
-          ['UTL', 'WFE4154', 'ISUZU 3 TAN', 'LORI'],
-          ['UTL', 'BHX 546', 'HICOM HANDALAN - 5 TAN', 'LORI'],
-          ['UTL', 'WA4483Y', 'ISUZU 3 TAN', 'LORI'],
-          ['UTL', 'WUJ6257', 'HILUX', '4X4'],
-          ['UTL', 'WC5247G', 'HILUX', '4X4'],
-          ['UTL', 'WKJ4698', 'PAJERO', '4X4'],
-          ['UTL', 'WTF9271', 'HILUX', '4X4'],
-          ['UTL', 'WA6537V', 'HILUX', '4X4'],
-          ['UTL', 'VGP1742', 'MITSUBISHI TRITON', '4X4'],
-          ['UTL', 'WA6327V', 'HILUX', '4X4'],
-          ['UTL', 'WUJ6167', 'HILUX', '4X4'],
-          ['UTL', 'WA6544V', 'HILUX', '4X4'],
-          ['UTL', 'VDL1687', 'HILUX', '4X4'],
-          ['UTL', 'VDL2079', 'HILUX', '4X4'],
-          ['UTL', 'WRX4890', 'HILUX', '4X4'],
-          ['UTL', 'VDL1864', 'HILUX', '4X4'],
-          ['UTL', 'VDL1943', 'HILUX', '4X4'],
-          ['UTL', 'WKJ9622', 'PAJERO', '4X4'],
-          ['UTL', 'WKK1530', 'PAJERO', '4X4'],
-          ['UTL', 'WBU569', 'PAJERO', '4X4'],
-          ['UTL', 'WKJ4588', 'PAJERO', '4X4'],
-          ['UTL', 'WA6294V', 'HILUX', '4X4'],
-          ['UTL', 'WTF9572', 'HILUX', '4X4'],
-          ['UTL', 'WUJ6279', 'HILUX', '4X4'],
-          ['UTL', 'WC5276G', 'HILUX', '4X4'],
-          ['UTL', 'WC7813F', 'HILUX', '4X4'],
-          ['UTL', 'WWD8915', 'NAVARA', '4X4'],
-          ['UTL', 'WJV 8074', 'HINO', 'BAS'],
-          ['UTL', 'WLF8740', 'HINO', 'BAS'],
-          ['UTL', 'WA4480Y', 'ISUZU 3 TAN', 'LORI'],
-          ['UTL', 'BHX 765', 'HICOM HANDALAN - 5 TAN', 'LORI'],
-          ['UTL', 'BHX 753', 'HICOM HANDALAN - 5 TAN', 'LORI'],
-          ['UTL', 'WA4756Y', 'ISUZU 5 TAN', 'LORI'],
-          ['UTL', 'BHX 522', 'HICOM HANDALAN - 5 TAN', 'LORI'],
-          ['UTL', 'WA4340Y', 'ISUZU 3 TAN', 'LORI'],
-          ['UTL', 'WA4826Y', 'ISUZU 5 TAN', 'LORI'],
-          ['UTL', 'BHX 524', 'HICOM HANDALAN - 5 TAN', 'LORI'],
-          ['UTL', 'BHX 560', 'HICOM HANDALAN - 5 TAN', 'LORI'],
-          ['UTL', 'WHB7762', 'ISUZU V6', '4X4'],
-          ['UTL', 'WKJ4971', 'PAJERO', '4X4'],
-          ['UTL', 'WKJ4976', 'PAJERO', '4X4'],
-          ['UTL', 'WHA9712', 'ISUZU V6', '4X4'],
-          ['UTL', 'WHA9721', 'ISUZU V6', '4X4'],
-          ['UTL', 'WJX4320', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4301', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4330', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4325', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4303', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4321', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3943', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4323', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3935', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4304', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4327', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4300', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3957', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4322', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3925', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3950', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4326', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3951', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX 3952', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4324', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3959', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3941', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3942', 'KEMBARA', '4X4'],
-          ['UTL', 'WLG2276', 'KIA PREGIO', 'VAN'],
-          ['UTL', 'WLF8482', 'KIA PREGIO', 'VAN'],
-          ['UTL', 'WLG2285', 'KIA PREGIO', 'VAN'],
-          ['UTL', 'VGP1779', 'MITSUBISHI TRITON', '4X4'],
-          ['UTL', 'VGP1781', 'MITSUBISHI TRITON', '4X4'],
-          ['UTL', 'WA4816Y', 'ISUZU 5 TAN', 'LORI'],
-          ['UTL', 'VGP1767', 'MITSUBISHI TRITON', '4X4'],
-          ['UTL', 'VGP1783', 'MITSUBISHI TRITON', '4X4'],
-          ['UTL', 'VGP1763', 'MITSUBISHI TRITON', '4X4'],
-          ['UTL', 'WWD8843', 'NAVARA', '4X4'],
-          ['UTL', 'WKJ4569', 'PAJERO', '4X4'],
-          ['UTL', 'WKJ4697', 'PAJERO', '4X4'],
-          ['UTL', 'WLJ6192', 'NAZA RIA', 'MPV'],
-          ['UTL', 'WKJ8172', 'NISSAN COASTER', 'BAS'],
-          ['UTL', 'WPQ7891', 'NISSAN XTRAIL', '4X4'],
-          ['UTL', 'WXN9765', 'DMAX ISUZU', '4X4'],
-          ['UTL', 'WKJ7215', 'PAJERO', '4X4'],
-          ['UTL', 'WUJ6235', 'HILUX', '4X4'],
-          ['UTL', 'WUJ6274', 'HILUX', '4X4'],
-          ['UTL', 'WA6314V', 'HILUX', '4X4'],
-          ['UTL', 'WKJ4691', 'PAJERO', '4X4'],
-          ['UTL', 'WKJ4584', 'PAJERO', '4X4'],
-          ['UTL', 'WKJ4728', 'PAJERO', '4X4'],
-          ['UTL', 'WKJ4710', 'PAJERO', '4X4'],
-          ['UTL', 'WXN9142', 'DMAX ISUZU', '4X4'],
-          ['UTL', 'WA6251Y', 'HILUX', '4X4'],
-          ['UTL', 'WTF9320', 'HILUX', '4X4'],
-          ['UTL', 'WA6307V', 'HILUX', '4X4'],
-          ['UTL', 'WUJ6394', 'HILUX', '4X4'],
-          ['UTL', 'WWD8950', 'NAVARA', '4X4'],
-          ['UTL', 'WKJ4708', 'PAJERO', '4X4'],
-          ['UTL', 'WKJ4577', 'PAJERO', '4X4'],
-          ['UTL', 'WKN2449', 'PAJERO', '4X4'],
-          ['UTL', 'WKJ 4613', 'PAJERO', '4X4'],
-          ['UTL', 'WKJ4585', 'PAJERO', '4X4'],
-          ['UTL', 'W6053F', 'PERODUA ALZA', 'MPV'],
-          ['UTL', 'W5224F', 'PERODUA ALZA', 'MPV'],
-          ['UTL', 'W6064F', 'PERODUA ALZA', 'MPV'],
-          ['UTL', 'W6005F', 'PERODUA ALZA', 'MPV'],
-          ['UTL', 'W6035F', 'PERODUA ALZA', 'MPV'],
-          ['UTL', 'WGR3641', 'RUSA', 'VAN'],
-          ['UTL', 'WGR 4100', 'RUSA', 'VAN'],
-          ['UTL', 'WGR4118', 'RUSA', 'VAN'],
-          ['UTL', 'WGR 4072', 'RUSA', 'VAN'],
-          ['UTL', 'WGR1271', 'RUSA', 'VAN'],
-          ['UTL', 'WGR4193', 'RUSA', 'VAN'],
-          ['UTL', 'WGR1239', 'RUSA', 'VAN'],
-          ['UTL', 'WGR1367', 'RUSA', 'VAN'],
-          ['UTL', 'WGR4119', 'RUSA', 'VAN'],
-          ['UTL', 'WA7194V', 'TOYOTA FORTUNER', '4X4'],
-          ['UTL', 'WPW1403', 'TOYOTA HIACE', 'VAN'],
-          ['UTL', 'WSA4792', 'TOYOTA HIACE', 'VAN'],
-          ['UTL', 'WUM3542', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3529', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3651', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3641', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3655', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3667', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3843', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3562', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3752', 'URVAN', 'VAN'],
-          ['UTL', 'WUM 3544', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3670', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3792', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3959', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3985', 'URVAN', 'VAN'],
-          ['UTL', 'WPS3315', 'NISSAN XTRAIL', '4X4'],
-          ['UTL', 'WUM4666', 'URVAN', 'VAN'],
-          ['UTL', 'WA6498V', 'HILUX', '4X4'],
-          ['UTL', 'JXK 3990', 'HILUX', '4X4'],
-          ['UTL', 'WUJ6597', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQF 5578', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQF 5861', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQF 5740', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQF 5543', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQN 1517', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQN 1078', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQN 1523', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQK 5528', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQV 8734', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQR 6846', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQR 6831', 'HILUX LOV', '4X4'],
-        ];
-        utilData.forEach((d) =>
-          logistikJentera.push({
-            id: ++id,
-            callsign: d[0],
-            plate: d[1],
-            model: d[2],
-            jenis: d[3],
-            kategori: 'KENDERAAN/UTILITI',
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          })
-        );
-
-        // ============ KHAS/BOMPA ============
-        const khasData = [
-          ['FRV KTG', 'VDU2178', '07. TRITON FRV', 'FRV', 'KHAS/BOMPA'],
-          ['FRV PTN', 'VDU2193', '07. TRITON FRV', 'FRV', 'KHAS/BOMPA'],
-          ['FRV TGK', 'VDU2186', '07. TRITON FRV', 'FRV', 'KHAS/BOMPA'],
-          ['FRV YPG', 'VDU2203', '07. TRITON FRV', 'FRV', 'KHAS/BOMPA'],
-          ['J10-01', 'WSG 3646', '18. KOMUNIKASI', 'COMM', 'KHAS/BOMPA'],
-          ['J11-01', 'BJS 3513', '11. HPPM', 'HPPM', 'KHAS/BOMPA'],
-          [
-            'J12-01',
-            'T/BD/750',
-            '12. FOAM TENDER PUMP TRAILER',
-            'FOAM TRAILER',
-            'KHAS/BOMPA',
-          ],
-          [
-            'J12-01',
-            'T/BD/744',
-            '12. FOAM TENDER PUMP TRAILER',
-            'FOAM TRAILER',
-            'KHAS/BOMPA',
-          ],
-          [
-            'J12-01',
-            'WXS 752',
-            'PRIME MOVER FOAM TRAILER',
-            'PRIME MOVER',
-            'KHAS/BOMPA',
-          ],
-          ['J14-01', 'BGU 488', '22. KEMBALIK', 'TOWING', 'KHAS/BOMPA'],
-          [
-            'J15-01',
-            'VQ 7142',
-            '13. FOAM MONITOR DAN FOAM TENDER',
-            'FOAM TENDER',
-            'KHAS/BOMPA',
-          ],
-          [
-            'J15-02',
-            'VQ 7144',
-            '13. FOAM MONITOR DAN FOAM TENDER',
-            'FOAM TENDER',
-            'KHAS/BOMPA',
-          ],
-          ['J16-01', 'VBR 2450', '08. ALP', 'ALP', 'KHAS/BOMPA'],
-          ['J16-02', 'BPD 7929', '08. ALP', 'ALP', 'KHAS/BOMPA'],
-          [
-            'J3-01',
-            'BHK 9085',
-            '10. TURN TABLE LADDER',
-            'TTL 52M',
-            'KHAS/BOMPA',
-          ],
-          [
-            'J3-02',
-            'BHK 9416',
-            '10. TURN TABLE LADDER',
-            'TTL 32M',
-            'KHAS/BOMPA',
-          ],
-          [
-            'J3-03',
-            'BHK 9070',
-            '10. TURN TABLE LADDER',
-            'TTL 32M',
-            'KHAS/BOMPA',
-          ],
-          [
-            'J3-04',
-            'WEK 1930',
-            '10. TURN TABLE LADDER',
-            'TTL 46M',
-            'KHAS/BOMPA',
-          ],
-          ['J4-01', 'WEU 5287', '17. HAZMAT', 'HAZMAT', 'KHAS/BOMPA'],
-          ['J7-01', 'WUP 4200', '06. RRV', 'RRV', 'KHAS/BOMPA'],
-          ['J7-02', 'WUQ 2616', '06. RRV', 'RRV', 'KHAS/BOMPA'],
-          ['J7-03', 'WUQ 2751', '06. RRV', 'RRV', 'KHAS/BOMPA'],
-          ['J8-01', 'WUN 8456', '14. BATV', 'BATV', 'KHAS/BOMPA'],
-          ['J9-01', 'WUJ9272', 'SIASATAN', 'FORENSICS', 'KHAS/BOMPA'],
-          ['J9-02', 'FF 6853', 'SIASATAN', 'FORENSICS', 'KHAS/BOMPA'],
-          ['LLJ', '-', '21. COMMAND POST', 'COMMAND POST', 'KHAS/BOMPA'],
-          ['LLJ', 'N/A', 'POLARIS', 'AATV', 'KHAS/BOMPA'],
-        ];
-        khasData.forEach((d) =>
-          logistikJentera.push({
-            id: ++id,
-            callsign: d[0],
-            plate: d[1],
-            model: d[2],
-            jenis: d[3],
-            kategori: d[4],
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          })
-        );
-
-        console.log(
-          '✅ Inventori Jentera Penuh: ' + logistikJentera.length + ' unit.'
-        );
-        simpanKeLocalStorage(); // Save initial generation if any
+        console.log('✅ Inventori Jentera Penuh Dimuat');
+        simpanKeLocalStorage();
       }
 
       function janaFilterBalaiOptions() {
@@ -3128,49 +2787,106 @@
         if (f1) f1.innerHTML = opt;
         if (f2) f2.innerHTML = opt;
       }
+
       function bukaModalChecklist() {
-        document.getElementById('checklistModal').classList.add('active');
+        const modal = document.getElementById('checklistModal');
+        if (modal) modal.classList.add('active');
         const sel = document.getElementById('modalChecklistBalai');
-        sel.innerHTML =
-          '<option value="">-- PILIH BALAI --</option>' +
-          senaraiBalaiMaster
-            .map((b) => `<option value="${b}">${b}</option>`)
-            .join('');
+        if (sel) {
+          sel.innerHTML =
+            '<option value="">-- PILIH BALAI --</option>' +
+            senaraiBalaiMaster
+              .map((b) => `<option value="${b}">${b}</option>`)
+              .join('');
+        }
       }
+
       function tutupModalChecklist() {
-        document.getElementById('checklistModal').classList.remove('active');
+        const modal = document.getElementById('checklistModal');
+        if (modal) modal.classList.remove('active');
       }
-      
+
       async function simpanChecklistDariModal() {
-        const balai = document.getElementById('modalChecklistBalai').value;
+        const balaiSelect = document.getElementById('modalChecklistBalai');
+        const balai = balaiSelect ? balaiSelect.value : '';
         if (!balai) {
-          tunjukCustomAlert('Sila pilih balai!');
+          tunjukCustomAlert('Sila pilih balai terlebih dahulu!');
           return;
         }
+
+        const getItemData = (idPrefix) => {
+          const baikEl = document.getElementById('modal' + idPrefix + '_Baik');
+          const rosakEl = document.getElementById(
+            'modal' + idPrefix + '_Rosak'
+          );
+          const catatanEl = document.getElementById('modalCatatan' + idPrefix);
+
+          const baik = parseInt(baikEl ? baikEl.value : 0) || 0;
+          const rosak = parseInt(rosakEl ? rosakEl.value : 0) || 0;
+          const catatan = catatanEl ? catatanEl.value.trim().toUpperCase() : '';
+
+          return {
+            baik,
+            rosak,
+            catatan,
+          };
+        };
+
+        const cad = getItemData('CAD');
+        const wic = getItemData('WIC');
+        const bomra = getItemData('BOMRA');
+        const desktopGirn = getItemData('DesktopGirn');
+        const handheldGirn = getItemData('HandheldGirn');
+        const vehicularGirn = getItemData('VehicularGirn');
+        const internet = getItemData('Internet');
+        const handphone = getItemData('Handphone');
+
+        const shiftTypeEl = document.getElementById('modalChecklistShift');
+        const shiftTimeEl = document.getElementById('modalChecklistShiftTime');
+
         senaraiChecklist.push({
           id: 'CHK_' + Date.now(),
           balai,
-          cad: document.getElementById('modalStatusCAD').value,
-          wic: document.getElementById('modalStatusWIC').value,
-          bomra: document.getElementById('modalStatusBOMRA').value,
-          desktopGirn: document.getElementById('modalStatusDesktopGirn').value,
-          handheldGirn: document.getElementById('modalStatusHandheldGirn').value,
-          vehicularGirn: document.getElementById('modalStatusVehicularGirn').value,
-          internet: document.getElementById('modalStatusInternet').value,
-          handphone: document.getElementById('modalStatusHandphone').value,
-          shiftType: document.getElementById('modalChecklistShift').value,
-          shiftTime: document.getElementById('modalChecklistShiftTime').value,
-          catatan: document
-            .getElementById('modalChecklistCatatan')
-            .value.trim()
-            .toUpperCase(),
+          cadDetail: cad,
+          wicDetail: wic,
+          bomraDetail: bomra,
+          desktopGirnDetail: desktopGirn,
+          handheldGirnDetail: handheldGirn,
+          vehicularGirnDetail: vehicularGirn,
+          internetDetail: internet,
+          handphoneDetail: handphone,
+
+          shiftType: shiftTypeEl ? shiftTypeEl.value : '12 JAM',
+          shiftTime: shiftTimeEl ? shiftTimeEl.value : '0800-2000',
           timestamp: new Date().toISOString(),
         });
+
         await hantarDataSupabase();
         paparChecklistTable();
         tutupModalChecklist();
-        document.getElementById('modalChecklistCatatan').value = '';
-        tunjukCustomAlert('✅ Checklist berjaya disimpan!');
+
+        // Reset inputs to default
+        [
+          'CAD',
+          'WIC',
+          'BOMRA',
+          'DesktopGirn',
+          'HandheldGirn',
+          'VehicularGirn',
+          'Internet',
+          'Handphone',
+        ].forEach((id) => {
+          const baik = document.getElementById('modal' + id + '_Baik');
+          const rosak = document.getElementById('modal' + id + '_Rosak');
+          const cat = document.getElementById('modalCatatan' + id);
+          if (baik) baik.value = '0';
+          if (rosak) rosak.value = '0';
+          if (cat) cat.value = '';
+        });
+
+        tunjukCustomAlert(
+          '✅ Checklist perkakas bilik kawalan berjaya disimpan!'
+        );
       }
 
       function paparChecklistTable() {
@@ -3179,58 +2895,129 @@
         const tbody = document.getElementById('checklistTableBody');
         if (!tbody) return;
         tbody.innerHTML = '';
-        let data = senaraiChecklist;
+        let data = senaraiChecklist || [];
         if (filterBalai !== 'SEMUA') {
           data = data.filter((i) => i.balai === filterBalai);
         }
-        document.getElementById('statChecklistTotal').innerText = data.length;
-        
-        // Kira stat Baik (hanya jika semua properti bernilai BAIK atau properti tidak wujud (rekod lama))
-        document.getElementById('statChecklistBaik').innerText = data.filter(
-          (i) => i.cad === 'BAIK' && i.wic === 'BAIK' && i.bomra === 'BAIK' &&
-                 (i.desktopGirn === 'BAIK' || !i.desktopGirn) &&
-                 (i.handheldGirn === 'BAIK' || !i.handheldGirn) &&
-                 (i.vehicularGirn === 'BAIK' || !i.vehicularGirn) &&
-                 (i.internet === 'BAIK' || !i.internet) &&
-                 (i.handphone === 'BAIK' || !i.handphone)
-        ).length;
-        
-        // Kira stat Rosak (jika mana-mana properti bernilai ROSAK)
-        document.getElementById('statChecklistRosak').innerText = data.filter(
-          (i) => i.cad === 'ROSAK' || i.wic === 'ROSAK' || i.bomra === 'ROSAK' ||
-                 i.desktopGirn === 'ROSAK' || i.handheldGirn === 'ROSAK' ||
-                 i.vehicularGirn === 'ROSAK' || i.internet === 'ROSAK' || i.handphone === 'ROSAK'
-        ).length;
-        
+
+        const totalEl = document.getElementById('statChecklistTotal');
+        if (totalEl) totalEl.innerText = data.length;
+
+        const checkIsRosak = (item) => {
+          const items = [
+            item.cadDetail,
+            item.wicDetail,
+            item.bomraDetail,
+            item.desktopGirnDetail,
+            item.handheldGirnDetail,
+            item.vehicularGirnDetail,
+            item.internetDetail,
+            item.handphoneDetail,
+          ];
+          return (
+            items.some((d) => d && d.rosak > 0) ||
+            item.cad === 'ROSAK' ||
+            item.wic === 'ROSAK' ||
+            item.bomra === 'ROSAK' ||
+            item.desktopGirn === 'ROSAK' ||
+            item.handheldGirn === 'ROSAK' ||
+            item.vehicularGirn === 'ROSAK' ||
+            item.internet === 'ROSAK' ||
+            item.handphone === 'ROSAK'
+          );
+        };
+
+        const baikEl = document.getElementById('statChecklistBaik');
+        if (baikEl) {
+          baikEl.innerText = data.filter((i) => !checkIsRosak(i)).length;
+        }
+
+        const rosakEl = document.getElementById('statChecklistRosak');
+        if (rosakEl) {
+          rosakEl.innerText = data.filter((i) => checkIsRosak(i)).length;
+        }
+
+        const emptyMsgEl = document.getElementById('emptyChecklistMessage');
         if (data.length === 0) {
-          document.getElementById('emptyChecklistMessage').style.display =
-            'block';
+          if (emptyMsgEl) emptyMsgEl.style.display = 'block';
           return;
         }
-        document.getElementById('emptyChecklistMessage').style.display = 'none';
-        
-        // Helper function for badges
-        const getBadge = (val) => {
-            if(!val) return '<span class="badge badge-unit-gen text-[9px]">N/A</span>';
-            return `<span class="badge ${val === 'BAIK' ? 'badge-jentera-baik' : 'badge-jentera-rosak'}">${val}</span>`;
+        if (emptyMsgEl) emptyMsgEl.style.display = 'none';
+
+        const formatCell = (oldVal, detailObj) => {
+          if (
+            detailObj &&
+            (detailObj.baik !== undefined || detailObj.rosak !== undefined)
+          ) {
+            const baik = detailObj.baik || 0;
+            const rosak = detailObj.rosak || 0;
+            const catatan = detailObj.catatan || '';
+
+            let badges = [];
+            if (baik > 0)
+              badges.push(
+                `<span class="badge badge-jentera-baik">B: ${baik}</span>`
+              );
+            if (rosak > 0)
+              badges.push(
+                `<span class="badge badge-jentera-rosak">R: ${rosak}</span>`
+              );
+
+            if (badges.length === 0)
+              badges.push(`<span class="badge badge-unit-gen">-</span>`);
+
+            let html = `<div class="flex flex-col items-center gap-0.5"><div class="flex flex-wrap gap-1 justify-center">${badges.join(
+              ''
+            )}</div>`;
+            if (catatan && catatan !== '-') {
+              html += `<span class="catatan-box text-[9px] mt-0.5" title="${catatan}">${catatan}</span>`;
+            }
+            html += `</div>`;
+            return html;
+          }
+
+          // Legacy data compatibility
+          let status =
+            typeof oldVal === 'string' ? oldVal : detailObj?.status || 'N/A';
+          let jumlah = detailObj?.jumlah !== undefined ? detailObj.jumlah : '1';
+          let catatan = detailObj?.catatan || '';
+
+          if (status === 'TIADA') {
+            return `<div class="text-center"><span class="badge badge-unit-gen">TIADA / NA</span></div>`;
+          }
+
+          let badgeClass =
+            status === 'BAIK'
+              ? 'badge-jentera-baik'
+              : status === 'ROSAK'
+              ? 'badge-jentera-rosak'
+              : 'badge-unit-gen';
+          let html = `<div class="flex flex-col items-center gap-0.5">
+            <span class="badge ${badgeClass}">${status} [${jumlah}]</span>`;
+          if (catatan && catatan !== '-') {
+            html += `<span class="catatan-box text-[9px] mt-0.5" title="${catatan}">${catatan}</span>`;
+          }
+          html += `</div>`;
+          return html;
         };
 
         data.forEach((item, index) => {
           const tr = document.createElement('tr');
           tr.innerHTML = `<td>${index + 1}</td>
-            <td><strong>${item.balai}</strong></td>
-            <td>${getBadge(item.cad)}</td>
-            <td>${getBadge(item.wic)}</td>
-            <td>${getBadge(item.bomra)}</td>
-            <td>${getBadge(item.desktopGirn)}</td>
-            <td>${getBadge(item.handheldGirn)}</td>
-            <td>${getBadge(item.vehicularGirn)}</td>
-            <td>${getBadge(item.internet)}</td>
-            <td>${getBadge(item.handphone)}</td>
-            <td>${item.shiftType}</td>
-            <td>${item.shiftTime}</td>
-            <td><div class="catatan-box">${item.catatan || '-'}</div></td>
-            <td class="no-print"><button class="btn btn-danger" onclick="padamChecklist('${item.id}')">PADAM</button></td>`;
+            <td><strong>${item.balai || '-'}</strong></td>
+            <td>${formatCell(item.cad, item.cadDetail)}</td>
+            <td>${formatCell(item.wic, item.wicDetail)}</td>
+            <td>${formatCell(item.bomra, item.bomraDetail)}</td>
+            <td>${formatCell(item.desktopGirn, item.desktopGirnDetail)}</td>
+            <td>${formatCell(item.handheldGirn, item.handheldGirnDetail)}</td>
+            <td>${formatCell(item.vehicularGirn, item.vehicularGirnDetail)}</td>
+            <td>${formatCell(item.internet, item.internetDetail)}</td>
+            <td>${formatCell(item.handphone, item.handphoneDetail)}</td>
+            <td>${item.shiftType || '12 JAM'}</td>
+            <td>${item.shiftTime || '0800-2000'}</td>
+            <td class="no-print"><button class="btn btn-danger" onclick="padamChecklist('${
+              item.id
+            }')">PADAM</button></td>`;
           tbody.appendChild(tr);
         });
       }
@@ -3246,8 +3033,11 @@
       }
 
       function updateClock() {
+        const dateEl = document.getElementById('currentDate');
+        const timeEl = document.getElementById('currentTime');
+        if (!dateEl || !timeEl) return;
         const n = new Date();
-        document.getElementById('currentDate').innerText =
+        dateEl.innerText =
           ['AHAD', 'ISNIN', 'SELASA', 'RABU', 'KHAMIS', 'JUMAAT', 'SABTU'][
             n.getDay()
           ] +
@@ -3270,11 +3060,9 @@
           ][n.getMonth()] +
           ' ' +
           n.getFullYear();
-        document.getElementById('currentTime').innerText = n.toLocaleTimeString(
-          'en-US',
-          { hour12: true }
-        );
+        timeEl.innerText = n.toLocaleTimeString('en-US', { hour12: true });
       }
+
       function kemaskiniSemuaPaparan() {
         janaBalaiDropdownOptions();
         janaFilterBalaiOptions();
@@ -3283,29 +3071,28 @@
         paparChecklistTable();
         janaLogistikBalaiSelectOptions();
 
-        // Auto-refresh the urus master tables if they are open
         if (
           document
             .getElementById('urusMasterModal')
-            .classList.contains('active')
+            ?.classList.contains('active')
         ) {
           renderSenaraiMaster();
         }
         if (
           document
             .getElementById('urusJenteraModal')
-            .classList.contains('active')
+            ?.classList.contains('active')
         ) {
           renderSenaraiJenteraMaster();
         }
       }
 
       function kemaskiniPaparData() {
-        const q = document
-          .getElementById('searchInput')
-          .value.toUpperCase()
+        const q = (document.getElementById('searchInput')?.value || '')
+          .toUpperCase()
           .trim();
         const tbody = document.getElementById('rosterTableBody');
+        if (!tbody) return;
         tbody.innerHTML = '';
         let f = rekodAnggota.filter(
           (i) =>
@@ -3328,11 +3115,14 @@
           f.filter((i) => i.pasukan === 'PASUKAN B').length +
           ' / ' +
           f.filter((i) => i.pasukan === 'PASUKAN C').length;
+
+        const emptyMsg = document.getElementById('emptyMessage');
         if (f.length === 0) {
-          document.getElementById('emptyMessage').style.display = 'block';
+          if (emptyMsg) emptyMsg.style.display = 'block';
           return;
         }
-        document.getElementById('emptyMessage').style.display = 'none';
+        if (emptyMsg) emptyMsg.style.display = 'none';
+
         f.forEach((item, idx) => {
           let bp =
             item.pasukan === 'PASUKAN B'
@@ -3359,6 +3149,8 @@
             peranan.push('<span class="badge badge-peranan">PENYELIA</span>');
           if (item.isBkb === 'YA')
             peranan.push('<span class="badge badge-peranan">BKB</span>');
+          if (item.isPemandu === 'YA')
+            peranan.push('<span class="badge badge-peranan">PEMANDU</span>');
           const tr = document.createElement('tr');
           tr.innerHTML = `<td>${idx + 1}</td><td><strong>${
             item.pangkat
@@ -3391,6 +3183,7 @@
         const filterBalai =
           document.getElementById('logistikBalaiFilter')?.value || 'SEMUA';
         const tbody = document.getElementById('logistikTableBody');
+        if (!tbody) return;
         tbody.innerHTML = '';
         let data = logistikBertugas;
         if (filterBalai !== 'SEMUA') {
@@ -3406,11 +3199,14 @@
         document.getElementById('statLogSelenggara').innerText = data.filter(
           (i) => i.status.includes('PENYELENGGARAAN')
         ).length;
+
+        const emptyLogMsg = document.getElementById('emptyLogMessage');
         if (data.length === 0) {
-          document.getElementById('emptyLogMessage').style.display = 'block';
+          if (emptyLogMsg) emptyLogMsg.style.display = 'block';
           return;
         }
-        document.getElementById('emptyLogMessage').style.display = 'none';
+        if (emptyLogMsg) emptyLogMsg.style.display = 'none';
+
         data.forEach((item, idx) => {
           let bs = item.status.includes('ROSAK')
             ? 'badge-jentera-rosak'
@@ -3438,6 +3234,7 @@
           tbody.appendChild(tr);
         });
       }
+
       async function padamAnggota(id) {
         tunjukCustomConfirm('Padam anggota ini?', async (res) => {
           if (res) {
@@ -3447,6 +3244,7 @@
           }
         });
       }
+
       async function padamLogistikBertugas(id) {
         tunjukCustomConfirm('Padam jentera ini?', async (res) => {
           if (res) {
@@ -3460,13 +3258,13 @@
       function togolBalaiDropdown() {
         document
           .querySelector('#balaiMultiSelect .multi-select-trigger')
-          .classList.toggle('active');
-        document.getElementById('balaiDropdown').classList.toggle('show');
+          ?.classList.toggle('active');
+        document.getElementById('balaiDropdown')?.classList.toggle('show');
       }
       function tapisBalaiDropdown() {
-        const v = document
-          .getElementById('balaiSearchInput')
-          .value.toUpperCase();
+        const v = (
+          document.getElementById('balaiSearchInput')?.value || ''
+        ).toUpperCase();
         document
           .querySelectorAll('#balaiOptionsContainer .multi-select-option')
           .forEach(
@@ -3488,31 +3286,34 @@
       }
       function kemaskiniBalaiTags() {
         const t = document.getElementById('balaiSelectedTags');
+        if (!t) return;
         if (balaiTerpilih.length === 0) {
           t.innerHTML =
             '<span class="multi-select-placeholder">🏢 SEMUA BALAI</span>';
-          document.getElementById('filterInfoBadge').style.display = 'none';
+          const infoBadge = document.getElementById('filterInfoBadge');
+          if (infoBadge) infoBadge.style.display = 'none';
         } else {
           t.innerHTML = balaiTerpilih
             .map((b) => `<span class="multi-select-tag">${b}</span>`)
             .join('');
-          document.getElementById('filterInfoBadge').style.display =
-            'inline-flex';
-          document.getElementById('filterBalaiList').innerText =
-            balaiTerpilih.join(', ');
+          const infoBadge = document.getElementById('filterInfoBadge');
+          if (infoBadge) infoBadge.style.display = 'inline-flex';
+          const balaiListEl = document.getElementById('filterBalaiList');
+          if (balaiListEl) balaiListEl.innerText = balaiTerpilih.join(', ');
         }
         janaBalaiDropdownOptions();
       }
       function janaBalaiDropdownOptions() {
-        document.getElementById('balaiOptionsContainer').innerHTML =
-          senaraiBalaiMaster
-            .map((b) => {
-              const s = balaiTerpilih.includes(b) ? 'selected' : '';
-              return `<div class="multi-select-option ${s}" onclick="pilihBalaiOption('${b}')"><div class="check-box">${
-                s ? '✓' : ''
-              }</div><span>${b}</span></div>`;
-            })
-            .join('');
+        const container = document.getElementById('balaiOptionsContainer');
+        if (!container) return;
+        container.innerHTML = senaraiBalaiMaster
+          .map((b) => {
+            const s = balaiTerpilih.includes(b) ? 'selected' : '';
+            return `<div class="multi-select-option ${s}" onclick="pilihBalaiOption('${b}')"><div class="check-box">${
+              s ? '✓' : ''
+            }</div><span>${b}</span></div>`;
+          })
+          .join('');
       }
       function pilihBalaiOption(b) {
         if (balaiTerpilih.includes(b))
@@ -3521,17 +3322,19 @@
         kemaskiniBalaiTags();
         kemaskiniPaparData();
       }
-      
+
       function togolNamaAnggotaDropdown() {
         document
           .querySelector('#namaAnggotaMultiSelect .multi-select-trigger')
-          .classList.toggle('active');
-        document.getElementById('namaAnggotaDropdown').classList.toggle('show');
+          ?.classList.toggle('active');
+        document
+          .getElementById('namaAnggotaDropdown')
+          ?.classList.toggle('show');
       }
       function tapisNamaAnggotaDropdown() {
-        const v = document
-          .getElementById('namaAnggotaSearchInput')
-          .value.toUpperCase();
+        const v = (
+          document.getElementById('namaAnggotaSearchInput')?.value || ''
+        ).toUpperCase();
         document
           .querySelectorAll('#namaAnggotaOptionsContainer .multi-select-option')
           .forEach(
@@ -3551,6 +3354,7 @@
       }
       function kemaskiniNamaAnggotaTags() {
         const t = document.getElementById('namaAnggotaSelectedTags');
+        if (!t) return;
         t.innerHTML =
           namaAnggotaTerpilih.length === 0
             ? '<span class="multi-select-placeholder">👤 PILIH ANGGOTA...</span>'
@@ -3560,21 +3364,24 @@
         janaNamaAnggotaOptions();
       }
       function janaNamaAnggotaOptions() {
-        document.getElementById('namaAnggotaOptionsContainer').innerHTML =
-          senaraiNamaMaster
-            .map((a) => {
-              const s = namaAnggotaTerpilih.includes(a.nama) ? 'selected' : '';
-              return `<div class="multi-select-option ${s}" onclick="pilihNamaAnggotaOption('${
-                a.nama
-              }')"><div class="check-box">${
-                s ? '✓' : ''
-              }</div><div><div class="font-bold">${
-                a.nama
-              }</div><div class="text-[10px] text-slate-400">${a.pangkat} | ${
-                a.balai
-              }</div></div></div>`;
-            })
-            .join('');
+        const container = document.getElementById(
+          'namaAnggotaOptionsContainer'
+        );
+        if (!container) return;
+        container.innerHTML = senaraiNamaMaster
+          .map((a) => {
+            const s = namaAnggotaTerpilih.includes(a.nama) ? 'selected' : '';
+            return `<div class="multi-select-option ${s}" onclick="pilihNamaAnggotaOption('${
+              a.nama
+            }')"><div class="check-box">${
+              s ? '✓' : ''
+            }</div><div><div class="font-bold">${
+              a.nama
+            }</div><div class="text-[10px] text-slate-400">${a.pangkat} | ${
+              a.balai
+            }</div></div></div>`;
+          })
+          .join('');
       }
       function pilihNamaAnggotaOption(nama) {
         if (namaAnggotaTerpilih.includes(nama))
@@ -3606,16 +3413,20 @@
             balai: m.balai || 'PGO JOHOR',
             shiftType,
             shiftTime,
-            isKetuaBalai: document.getElementById('modalKetuaBalai').value,
-            isPegawaiOperasi: document.getElementById('modalPegawaiOperasi')
-              .value,
-            isPenyelia: document.getElementById('modalPenyeliaPasukan').value,
-            isBkb: document.getElementById('modalBkb').value,
-            pasukan: document.getElementById('modalPasukan').value,
-            status: document.getElementById('modalStatus').value,
-            catatan: document
-              .getElementById('modalCatatan')
-              .value.trim()
+            isKetuaBalai:
+              document.getElementById('modalKetuaBalai')?.value || 'TIDAK',
+            isPegawaiOperasi:
+              document.getElementById('modalPegawaiOperasi')?.value || 'TIDAK',
+            isPenyelia:
+              document.getElementById('modalPenyeliaPasukan')?.value || 'TIDAK',
+            isBkb: document.getElementById('modalBkb')?.value || 'TIDAK',
+            isPemandu:
+              document.getElementById('modalPemandu')?.value || 'TIDAK',
+            pasukan:
+              document.getElementById('modalPasukan')?.value || 'PASUKAN A',
+            status: document.getElementById('modalStatus')?.value || 'BERTUGAS',
+            catatan: (document.getElementById('modalCatatan')?.value || '')
+              .trim()
               .toUpperCase(),
           });
         });
@@ -3623,7 +3434,8 @@
         kemaskiniPaparData();
         tutupModalTambahAnggota();
         namaAnggotaTerpilih = [];
-        document.getElementById('modalCatatan').value = '';
+        const catEl = document.getElementById('modalCatatan');
+        if (catEl) catEl.value = '';
         tunjukCustomAlert('✅ Anggota berjaya disimpan!');
       }
 
@@ -3639,13 +3451,13 @@
       function togolLogJenteraDropdown() {
         document
           .querySelector('#logJenteraMultiSelect .multi-select-trigger')
-          .classList.toggle('active');
-        document.getElementById('logJenteraDropdown').classList.toggle('show');
+          ?.classList.toggle('active');
+        document.getElementById('logJenteraDropdown')?.classList.toggle('show');
       }
       function tapisLogJenteraDropdown() {
-        const v = document
-          .getElementById('logJenteraSearchInput')
-          .value.toUpperCase();
+        const v = (
+          document.getElementById('logJenteraSearchInput')?.value || ''
+        ).toUpperCase();
         document
           .querySelectorAll('#logJenteraOptionsContainer .multi-select-option')
           .forEach(
@@ -3656,32 +3468,34 @@
           );
       }
       function janaLogJenteraDropdown() {
-        const f = document.getElementById('logKategoriFilter').value,
-          b = document.getElementById('logModalBalai').value;
+        const f =
+            document.getElementById('logKategoriFilter')?.value || 'SEMUA',
+          b = document.getElementById('logModalBalai')?.value || '';
         const filtered = logistikJentera.filter(
           (i) =>
             (f === 'SEMUA' || i.kategori === f) &&
             (!b || i.balai === 'UMUM / BEBAS' || i.balai === b)
         );
-        document.getElementById('logJenteraOptionsContainer').innerHTML =
-          filtered
-            .map((i) => {
-              const s = logJenteraTerpilih.some((x) => x.id === i.id)
-                ? 'selected'
-                : '';
-              return `<div class="multi-select-option ${s}" onclick="pilihLogJenteraOption(${
-                i.id
-              })"><div class="check-box">${
-                s ? '✓' : ''
-              }</div><div><div class="font-bold text-red-700">${i.callsign} (${
-                i.plate
-              })</div><div class="text-[10px] text-slate-500">${i.jenis} | ${
-                i.balai
-              }</div></div></div>`;
-            })
-            .join('');
+        const container = document.getElementById('logJenteraOptionsContainer');
+        if (!container) return;
+        container.innerHTML = filtered
+          .map((i) => {
+            const s = logJenteraTerpilih.some((x) => x.id === i.id)
+              ? 'selected'
+              : '';
+            return `<div class="multi-select-option ${s}" onclick="pilihLogJenteraOption(${
+              i.id
+            })"><div class="check-box">${
+              s ? '✓' : ''
+            }</div><div><div class="font-bold text-red-700">${i.callsign} (${
+              i.plate
+            })</div><div class="text-[10px] text-slate-500">${i.jenis} | ${
+              i.balai
+            }</div></div></div>`;
+          })
+          .join('');
       }
-      
+
       function pilihLogJenteraOption(id) {
         const j = logistikJentera.find((x) => x.id === id);
         if (!j) return;
@@ -3697,8 +3511,9 @@
         janaLogJenteraDropdown();
       }
       function pilihSemuaLogJentera() {
-        const f = document.getElementById('logKategoriFilter').value,
-          b = document.getElementById('logModalBalai').value;
+        const f =
+            document.getElementById('logKategoriFilter')?.value || 'SEMUA',
+          b = document.getElementById('logModalBalai')?.value || '';
         logistikJentera
           .filter(
             (i) =>
@@ -3724,6 +3539,7 @@
       function kemaskiniLogJenteraDipilihTable() {
         const tbody = document.getElementById('logJenteraDipilihBody'),
           tags = document.getElementById('logJenteraSelectedTags');
+        if (!tbody || !tags) return;
         if (logJenteraTerpilih.length === 0) {
           tbody.innerHTML =
             '<tr><td colspan="7" class="text-center p-4 text-slate-400">TIADA JENTERA DIPILIH</td></tr>';
@@ -3755,17 +3571,17 @@
       }
 
       function bukaModalLogistikJentera() {
-        document.getElementById('logistikJenteraModal').classList.add('active');
+        const modal = document.getElementById('logistikJenteraModal');
+        if (modal) modal.classList.add('active');
         janaLogistikBalaiSelectOptions();
         janaLogJenteraDropdown();
       }
       function tutupModalLogistikJentera() {
-        document
-          .getElementById('logistikJenteraModal')
-          .classList.remove('active');
+        const modal = document.getElementById('logistikJenteraModal');
+        if (modal) modal.classList.remove('active');
       }
       async function simpanLogistikBertugas() {
-        const balai = document.getElementById('logModalBalai').value;
+        const balai = document.getElementById('logModalBalai')?.value;
         if (!balai) {
           tunjukCustomAlert('Sila pilih balai!');
           return;
@@ -3800,33 +3616,39 @@
       }
 
       function bukaModalTambahAnggota() {
-        document.getElementById('addOfficerModal').classList.add('active');
+        const modal = document.getElementById('addOfficerModal');
+        if (modal) modal.classList.add('active');
         janaNamaAnggotaOptions();
       }
       function tutupModalTambahAnggota() {
-        document.getElementById('addOfficerModal').classList.remove('active');
+        const modal = document.getElementById('addOfficerModal');
+        if (modal) modal.classList.remove('active');
       }
       function cetakLaporan() {
         window.print();
       }
       function tunjukCustomAlert(m, t = 'MAKLUMAT') {
-        document.getElementById('alertModalTitle').innerText = t;
-        document.getElementById('alertModalBody').innerText = m;
-        document.getElementById('customAlertModal').classList.add('active');
+        const titleEl = document.getElementById('alertModalTitle');
+        const bodyEl = document.getElementById('alertModalBody');
+        if (titleEl) titleEl.innerText = t;
+        if (bodyEl) bodyEl.innerText = m;
+        document.getElementById('customAlertModal')?.classList.add('active');
       }
       function tutupCustomAlert() {
-        document.getElementById('customAlertModal').classList.remove('active');
+        document.getElementById('customAlertModal')?.classList.remove('active');
       }
       function tunjukCustomConfirm(m, cb, t = 'PENGESAHAN') {
         confirmCallback = cb;
-        document.getElementById('confirmModalTitle').innerText = t;
-        document.getElementById('confirmModalBody').innerText = m;
-        document.getElementById('customConfirmModal').classList.add('active');
+        const titleEl = document.getElementById('confirmModalTitle');
+        const bodyEl = document.getElementById('confirmModalBody');
+        if (titleEl) titleEl.innerText = t;
+        if (bodyEl) bodyEl.innerText = m;
+        document.getElementById('customConfirmModal')?.classList.add('active');
       }
       function tutupCustomConfirm(res) {
         document
           .getElementById('customConfirmModal')
-          .classList.remove('active');
+          ?.classList.remove('active');
         if (confirmCallback) {
           confirmCallback(res);
           confirmCallback = null;
@@ -3835,8 +3657,10 @@
 
       function mintaPassword(a) {
         sasaranPasswordAction = a;
-        document.getElementById('inputPassword').value = '';
-        document.getElementById('passwordErrorMsg').style.display = 'none';
+        const inputPass = document.getElementById('inputPassword');
+        const errPass = document.getElementById('passwordErrorMsg');
+        if (inputPass) inputPass.value = '';
+        if (errPass) errPass.style.display = 'none';
 
         let promptText = 'SILA MASUKKAN KATA LALUAN PENTADBIR:';
         if (a === 'MASTER_BERSIH')
@@ -3844,20 +3668,20 @@
         else if (a === 'URUS_KATEGORI' || a === 'URUS_JENTERA_MASTER')
           promptText = 'PENGURUSAN MASTER! SILA MASUKKAN KATA LALUAN:';
 
-        document.getElementById('passwordPromptText').innerText = promptText;
-        document.getElementById('passwordModal').classList.add('active');
+        const promptEl = document.getElementById('passwordPromptText');
+        if (promptEl) promptEl.innerText = promptText;
+        document.getElementById('passwordModal')?.classList.add('active');
       }
       function tutupModalPassword() {
-        document.getElementById('passwordModal').classList.remove('active');
+        document.getElementById('passwordModal')?.classList.remove('active');
       }
       function semakEnterPassword(e) {
         if (e.key === 'Enter') sahkanPassword();
       }
 
       function sahkanPassword() {
-        if (
-          document.getElementById('inputPassword').value === KATA_LALUAN_TETAP
-        ) {
+        const inputPass = document.getElementById('inputPassword');
+        if (inputPass && inputPass.value === KATA_LALUAN_TETAP) {
           tutupModalPassword();
           if (sasaranPasswordAction === 'MASTER_BERSIH') {
             tunjukCustomConfirm('🚨 PADAM SEMUA REKOD?', async (res) => {
@@ -3875,28 +3699,29 @@
             bukaModalUrusJentera();
           }
         } else {
-          document.getElementById('passwordErrorMsg').style.display = 'block';
+          const errEl = document.getElementById('passwordErrorMsg');
+          if (errEl) errEl.style.display = 'block';
         }
       }
 
-      // ==================== FUNGSI URUS MASTER (ANGGOTA, BALAI, PANGKAT, UNIT) ====================
       function bukaModalUrusMaster() {
-        document.getElementById('urusMasterModal').classList.add('active');
+        document.getElementById('urusMasterModal')?.classList.add('active');
         tukarTabUrusMaster(aktifTabUrusMaster);
       }
       function tutupModalUrusMaster() {
-        document.getElementById('urusMasterModal').classList.remove('active');
+        document.getElementById('urusMasterModal')?.classList.remove('active');
       }
       function tukarTabUrusMaster(mod) {
         aktifTabUrusMaster = mod;
         ['ANGGOTA', 'BALAI', 'PANGKAT', 'UNIT'].forEach((id) => {
-          document.getElementById('tabUrus' + id).classList.remove('active');
+          document.getElementById('tabUrus' + id)?.classList.remove('active');
         });
-        document.getElementById('tabUrus' + mod).classList.add('active');
+        document.getElementById('tabUrus' + mod)?.classList.add('active');
         renderSenaraiMaster();
       }
       function renderSenaraiMaster() {
         const tbody = document.getElementById('urusMasterTableBody');
+        if (!tbody) return;
         tbody.innerHTML = '';
         let senarai = [];
 
@@ -3923,7 +3748,7 @@
             </tr>`;
         });
       }
-      
+
       async function padamItemMaster(index) {
         tunjukCustomConfirm(
           'Pasti untuk padam item ini dari pangkalan data Master?',
@@ -3938,28 +3763,29 @@
               else if (aktifTabUrusMaster === 'UNIT')
                 senaraiUnitMaster.splice(index, 1);
 
-              await hantarDataSupabase(); // Save to cloud & local storage
+              await hantarDataSupabase();
               renderSenaraiMaster();
-              kemaskiniSemuaPaparan(); // Refresh dropdowns
+              kemaskiniSemuaPaparan();
             }
           }
         );
       }
 
-      // ==================== FUNGSI URUS JENTERA MASTER ====================
       function bukaModalUrusJentera() {
-        document.getElementById('urusJenteraModal').classList.add('active');
-        document.getElementById('cariJenteraMaster').value = '';
+        document.getElementById('urusJenteraModal')?.classList.add('active');
+        const input = document.getElementById('cariJenteraMaster');
+        if (input) input.value = '';
         renderSenaraiJenteraMaster();
       }
       function tutupModalUrusJentera() {
-        document.getElementById('urusJenteraModal').classList.remove('active');
+        document.getElementById('urusJenteraModal')?.classList.remove('active');
       }
       function renderSenaraiJenteraMaster() {
-        const q = document
-          .getElementById('cariJenteraMaster')
-          .value.toUpperCase();
+        const q = (
+          document.getElementById('cariJenteraMaster')?.value || ''
+        ).toUpperCase();
         const tbody = document.getElementById('urusJenteraTableBody');
+        if (!tbody) return;
         tbody.innerHTML = '';
         const filtered = logistikJentera.filter(
           (j) =>
@@ -3988,53 +3814,39 @@
           (res) => {
             if (res) {
               logistikJentera = logistikJentera.filter((j) => j.id !== id);
-              simpanKeLocalStorage(); // Save directly to local storage to persist the removal
+              simpanKeLocalStorage();
               renderSenaraiJenteraMaster();
-              kemaskiniSemuaPaparan(); // Refresh logistics dropdown
+              kemaskiniSemuaPaparan();
             }
           }
         );
       }
 
-      function tukarModDaftar(mod) {
-        document.getElementById('btnTabAnggota').className =
-          mod === 'ANGGOTA' ? 'tab-btn active' : 'tab-btn';
-        if (notif && (!supabaseUrl || !supabaseKey)) {
-          tunjukCustomAlert('Sila isi URL & Kunci!');
-          return;
-        }
-        initSupabaseClient();
-        tutupModalSupabase();
-        if (notif) {
-          autoTarikData().then(() => kemaskiniSemuaPaparan());
+      function janaFormDaftar(mod = 'ANGGOTA') {
+        if (mod === 'ANGGOTA') {
+          const regP = document.getElementById('regPangkat');
+          const regU = document.getElementById('regUnit');
+          const regB = document.getElementById('regBalai');
+
+          if (regP)
+            regP.innerHTML = senaraiPangkatMaster
+              .map((p) => `<option value="${p}">${p}</option>`)
+              .join('');
+          if (regU)
+            regU.innerHTML = senaraiUnitMaster
+              .map((u) => `<option value="${u}">${u}</option>`)
+              .join('');
+          if (regB)
+            regB.innerHTML = senaraiBalaiMaster
+              .map((b) => `<option value="${b}">${b}</option>`)
+              .join('');
         }
       }
 
-      function tukarModDaftar(mod) {
-        // Function no longer switches tabs, just re-renders the dropdown options if needed.
-        janaFormDaftar(mod);
-      }
-      
-      function janaFormDaftar(mod = 'ANGGOTA') {
-        const c = document.getElementById('regFormContainer');
-        if (mod === 'ANGGOTA') {
-           document.getElementById('regPangkat').innerHTML = senaraiPangkatMaster
-            .map((p) => `<option value="${p}">${p}</option>`)
-            .join('');
-           document.getElementById('regUnit').innerHTML = senaraiUnitMaster
-            .map((u) => `<option value="${u}">${u}</option>`)
-            .join('');
-           document.getElementById('regBalai').innerHTML = senaraiBalaiMaster
-            .map((b) => `<option value="${b}">${b}</option>`)
-            .join('');
-        }
-      }
-      
       async function simpanDaftarMaster(mod) {
         if (mod === 'ANGGOTA') {
-          const n = document
-            .getElementById('regNama')
-            .value.trim()
+          const n = (document.getElementById('regNama')?.value || '')
+            .trim()
             .toUpperCase();
           if (!n) {
             tunjukCustomAlert('Sila isi nama!');
@@ -4042,48 +3854,21 @@
           }
           senaraiNamaMaster.push({
             nama: n,
-            noTel: document.getElementById('regTel').value.trim(),
-            pangkat: document.getElementById('regPangkat').value,
-            unit: document.getElementById('regUnit').value,
-            balai: document.getElementById('regBalai').value,
+            noTel: (document.getElementById('regTel')?.value || '').trim(),
+            pangkat: document.getElementById('regPangkat')?.value || 'KB 1',
+            unit: document.getElementById('regUnit')?.value || 'PEMADAM',
+            balai: document.getElementById('regBalai')?.value || 'PGO JOHOR',
           });
           await hantarDataSupabase();
           tunjukCustomAlert('✅ Anggota didaftarkan!');
+          const regNamaInput = document.getElementById('regNama');
+          const regTelInput = document.getElementById('regTel');
+          if (regNamaInput) regNamaInput.value = '';
+          if (regTelInput) regTelInput.value = '';
           janaFormDaftar('ANGGOTA');
-        } else if (mod === 'BALAI') {
-          const b = document
-            .getElementById('regBalaiInput')
-            .value.trim()
-            .toUpperCase();
-          if (!b) return;
-          if (!senaraiBalaiMaster.includes(b)) {
-            senaraiBalaiMaster.push(b);
-            await hantarDataSupabase();
-            kemaskiniSemuaPaparan();
-          }
-        } else if (mod === 'PANGKAT') {
-          const p = document
-            .getElementById('regPangkatInput')
-            .value.trim()
-            .toUpperCase();
-          if (!p) return;
-          if (!senaraiPangkatMaster.includes(p)) {
-            senaraiPangkatMaster.push(p);
-            await hantarDataSupabase();
-          }
-        } else if (mod === 'UNIT') {
-          const u = document
-            .getElementById('regUnitInput')
-            .value.trim()
-            .toUpperCase();
-          if (!u) return;
-          if (!senaraiUnitMaster.includes(u)) {
-            senaraiUnitMaster.push(u);
-            await hantarDataSupabase();
-          }
         }
       }
-      
+
       function tukarViewMobile(view) {
         const items = document.querySelectorAll('.nav-item');
         items.forEach((i) => i.classList.remove('active'));
@@ -4092,42 +3877,43 @@
           a = document.getElementById('sectionAnggota'),
           l = document.getElementById('sectionLogistik'),
           c = document.getElementById('sectionChecklist');
+
         if (window.innerWidth < 1024) {
           if (view === 'operasi') {
-            items[0].classList.add('active');
-            p.style.display = 'block';
-            s.style.display = 'grid';
-            a.style.display = 'none';
-            l.style.display = 'none';
-            c.style.display = 'none';
+            if (items[0]) items[0].classList.add('active');
+            if (p) p.style.display = 'block';
+            if (s) s.style.display = 'grid';
+            if (a) a.style.display = 'none';
+            if (l) l.style.display = 'none';
+            if (c) c.style.display = 'none';
           } else if (view === 'anggota') {
-            items[1].classList.add('active');
-            p.style.display = 'none';
-            s.style.display = 'grid';
-            a.style.display = 'block';
-            l.style.display = 'none';
-            c.style.display = 'none';
+            if (items[1]) items[1].classList.add('active');
+            if (p) p.style.display = 'none';
+            if (s) s.style.display = 'grid';
+            if (a) a.style.display = 'block';
+            if (l) l.style.display = 'none';
+            if (c) c.style.display = 'none';
           } else if (view === 'logistik') {
-            items[2].classList.add('active');
-            p.style.display = 'none';
-            s.style.display = 'none';
-            a.style.display = 'none';
-            l.style.display = 'block';
-            c.style.display = 'none';
+            if (items[2]) items[2].classList.add('active');
+            if (p) p.style.display = 'none';
+            if (s) s.style.display = 'none';
+            if (a) a.style.display = 'none';
+            if (l) l.style.display = 'block';
+            if (c) c.style.display = 'none';
           } else if (view === 'checklist') {
-            items[3].classList.add('active');
-            p.style.display = 'none';
-            s.style.display = 'none';
-            a.style.display = 'none';
-            l.style.display = 'none';
-            c.style.display = 'block';
+            if (items[3]) items[3].classList.add('active');
+            if (p) p.style.display = 'none';
+            if (s) s.style.display = 'none';
+            if (a) a.style.display = 'none';
+            if (l) l.style.display = 'none';
+            if (c) c.style.display = 'block';
           } else if (view === 'master') {
-            items[4].classList.add('active');
-            p.style.display = 'block';
-            s.style.display = 'none';
-            a.style.display = 'none';
-            l.style.display = 'none';
-            c.style.display = 'none';
+            if (items[4]) items[4].classList.add('active');
+            if (p) p.style.display = 'block';
+            if (s) s.style.display = 'none';
+            if (a) a.style.display = 'none';
+            if (l) l.style.display = 'none';
+            if (c) c.style.display = 'none';
           }
         }
       }
@@ -4152,7 +3938,6 @@
       window.tutupModalPassword = tutupModalPassword;
       window.semakEnterPassword = semakEnterPassword;
       window.sahkanPassword = sahkanPassword;
-      window.tukarModDaftar = tukarModDaftar;
       window.simpanDaftarMaster = simpanDaftarMaster;
       window.tukarViewMobile = tukarViewMobile;
       window.kemaskiniPaparData = kemaskiniPaparData;
@@ -4174,8 +3959,6 @@
       window.logJenteraTerpilih = logJenteraTerpilih;
       window.kemaskiniLogJenteraDipilihTable = kemaskiniLogJenteraDipilihTable;
       window.janaLogJenteraDropdown = janaLogJenteraDropdown;
-      window.namaAnggotaTerpilih = namaAnggotaTerpilih;
-      window.balaiTerpilih = balaiTerpilih;
 
       window.bukaModalUrusMaster = bukaModalUrusMaster;
       window.tutupModalUrusMaster = tutupModalUrusMaster;
@@ -4187,22 +3970,21 @@
       window.padamJenteraMaster = padamJenteraMaster;
 
       window.onload = function () {
-        // Muat data dari localStorage terlebih dahulu
         muatDariLocalStorage();
-
-        // Memastikan inventori asas dimasukkan jika local storage kosong
         initDataLogistik();
-
         janaFormDaftar('ANGGOTA');
         janaFilterBalaiOptions();
+
         if (initSupabaseClient()) {
           autoTarikData().then(() => kemaskiniSemuaPaparan());
         } else {
           kemaskiniSemuaPaparan();
         }
+
         setInterval(updateClock, 1000);
         updateClock();
         tukarViewMobile('operasi');
+
         document.addEventListener('click', function (e) {
           ['balai', 'namaAnggota', 'logJentera'].forEach((id) => {
             const sel = document.getElementById(id + 'MultiSelect');
@@ -4217,10 +3999,9 @@
           });
         });
 
-        console.log('✅ Sistem sedia digunakan');
-        console.log('📊 Data Anggota:', rekodAnggota.length, 'rekod');
-        console.log('🚒 Data Logistik:', logistikBertugas.length, 'rekod');
-        console.log('✅ Data Checklist:', senaraiChecklist.length, 'rekod');
+        console.log(
+          '✅ Sistem sedia digunakan bersama pembetulan bug Modal Tambah Anggota.'
+        );
       };
     </script>
   </body>
