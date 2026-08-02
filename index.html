@@ -6,8 +6,8 @@
     <title>SISTEM KEKUATAN, LOGISTIK & CHECKLIST - JBPM NEGERI JOHOR</title>
 
     <!-- PWA / Standalone App Icons -->
-    <link rel="icon" type="image/png" href="fire-station.png" />
-    <link rel="apple-touch-icon" href="fire-station.png" />
+    <link rel="icon" type="image/png" href="balai-bomba.png" />
+    <link rel="apple-touch-icon" href="balai-bomba.png" />
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="manifest.json" />
@@ -125,7 +125,6 @@
         pointer-events: none;
       }
 
-      /* Overlay untuk splash */
       #splashScreen::before {
         content: '';
         position: absolute;
@@ -138,33 +137,35 @@
       }
 
       .splash-content {
-        position: relative;
-        z-index: 2;
-        text-align: center;
-      }
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 
-      .splash-logo {
-        width: 100px;
-        height: 100px;
-        background: var(--bomba-gold);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 900;
-        color: var(--bomba-red-dark);
-        font-size: 32px;
-        box-shadow: 0 0 30px rgba(234, 179, 8, 0.6);
-        border: 3px solid white;
-        margin: 0 auto 20px;
-        animation: pulse 1.5s ease-in-out infinite;
-      }
+.splash-logo-img {
+  width: 130px;              /* Besarkan sikit */
+  height: 130px;
+  border-radius: 20%;
+  border: 3px solid white;
+  box-shadow: 0 0 30px rgba(234, 179, 8, 0.6);
+  object-fit: contain;       /* ← Gambar tak terpotong */
+  object-position: center;
+  animation: pulse 1.5s ease-in-out infinite;
+  margin: 0 auto 20px;
+  display: block;
+  background-color: #b91c1c; /* ← Background merah JBPM */
+  padding: 12px;             /* ← Zoom out effect */
+}
 
-      @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-      }
-
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  40% { transform: scale(0.9); }    /* ← Tukar 1.05 → 1.03 */
+}
       .splash-title {
         color: white;
         font-size: 1.4rem;
@@ -172,6 +173,7 @@
         letter-spacing: 2px;
         text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         margin-bottom: 6px;
+        margin-top: 20px;
       }
 
       .splash-subtitle {
@@ -215,6 +217,24 @@
         letter-spacing: 2px;
       }
 
+      /* === HEADER LOGO === */
+      .logo-img-header {
+        width: 52px;
+        height: 52px;
+        border-radius: 20%;
+        border: 2px solid white;
+        box-shadow: 0 0 12px rgba(234, 179, 8, 0.4);
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      @media (min-width: 640px) {
+        .logo-img-header {
+          width: 60px;
+          height: 60px;
+        }
+      }
+
       ::-webkit-scrollbar {
         width: 6px;
         height: 6px;
@@ -236,28 +256,6 @@
         color: white;
         border-bottom: 4px solid var(--bomba-gold);
         box-shadow: var(--shadow-lg);
-      }
-      .logo-badge {
-        width: 52px;
-        height: 52px;
-        background: var(--bomba-gold);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 900;
-        color: var(--bomba-red-dark);
-        font-size: 18px;
-        box-shadow: 0 0 12px rgba(234, 179, 8, 0.4);
-        border: 2px solid white;
-        flex-shrink: 0;
-      }
-      @media (min-width: 640px) {
-        .logo-badge {
-          width: 60px;
-          height: 60px;
-          font-size: 22px;
-        }
       }
       .card {
         background: var(--card-bg);
@@ -1009,7 +1007,7 @@
     <!-- === SPLASH SCREEN === -->
     <div id="splashScreen">
       <div class="splash-content">
-        <div class="splash-logo">JBPM</div>
+        <img src="balai-bomba.png" alt="Logo JBPM" class="splash-logo-img" />
         <div class="splash-title">SISTEM KEKUATAN</div>
         <div class="splash-subtitle">LOGISTIK & CHECKLIST</div>
         <div class="splash-loader">
@@ -1029,7 +1027,7 @@
         class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-3"
       >
         <div class="flex items-center gap-3">
-          <div class="logo-badge">JBPM</div>
+          <img src="balai-bomba.png" alt="Logo JBPM" class="logo-img-header" />
           <div>
             <h1
               class="text-sm sm:text-xl font-black text-white leading-tight tracking-wide"
@@ -4231,7 +4229,6 @@
         }
       }
 
-      // Service Worker Registration
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js').catch(() => {});
