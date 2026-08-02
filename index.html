@@ -2,8 +2,21 @@
 <html lang="ms" class="h-full bg-slate-100">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <title>SISTEM KEKUATAN, LOGISTIK & CHECKLIST - JBPM NEGERI JOHOR</title>
+
+    <!-- PWA / Standalone App Icons -->
+    <link rel="icon" type="image/png" href="fire-station.png" />
+    <link rel="apple-touch-icon" href="fire-station.png" />
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="manifest.json" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="JBPM JHR" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#b91c1c" />
 
     <!-- Fonts & Styling CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2870,197 +2883,62 @@
         let id = 1000;
 
         const cfrtData = [
-          [
-            'CFRT 1',
-            'VLN 5716',
-            'HINO XZC720R ZKFRL3',
-            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
-          ],
-          [
-            'CFRT 2',
-            'VLN 5721',
-            'HINO XZC720R ZKFRL3',
-            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
-          ],
-          [
-            'CFRT 3',
-            'VNE 4357',
-            'HINO XZC720R ZKFRL3',
-            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
-          ],
-          [
-            'CFRT 4',
-            'VPG 3667',
-            'HINO XZC720R ZKFRL3',
-            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
-          ],
-          [
-            'CFRT 5',
-            'BSK 8079',
-            'HINO XZC720R ZKFRL3',
-            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
-          ],
-          [
-            'CFRT 6',
-            'VQJ 6595',
-            'HINO XZC720R ZKFRL3',
-            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
-          ],
-          [
-            'CFRT 7',
-            'VQJ 6576',
-            'HINO XZC720R ZKFRL3',
-            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
-          ],
+          ['CFRT 1', 'VLN 5716', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
+          ['CFRT 2', 'VLN 5721', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
+          ['CFRT 3', 'VNE 4357', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
+          ['CFRT 4', 'VPG 3667', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
+          ['CFRT 5', 'BSK 8079', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
+          ['CFRT 6', 'VQJ 6595', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
+          ['CFRT 7', 'VQJ 6576', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
         ];
 
         const frtData = [
           ['J1-01', 'BMK 976', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-02',
-            'BJT 8410',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-02', 'BJT 8410', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-03', 'WUC 170', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-04', 'BLU 8032', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-05', 'BGQ 6785', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-06',
-            'BJW 4572',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-06', 'BJW 4572', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-07', 'BMK 987', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-08', 'BLX 576', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-09', 'WUB 9615', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-10',
-            'BJW 4568',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-10', 'BJW 4568', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-11', 'BMK 1021', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-13', 'BMK 982', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-14',
-            'BJW 4563',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-14', 'BJW 4563', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-15', 'BLV 9703', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-16',
-            'BJY 3594',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-16', 'BJY 3594', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-17', 'BKN 3325', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-18', 'BMK 1013', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-19',
-            'BJY 3445',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-19', 'BJY 3445', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-20', 'BKN 7156', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-21', 'BMK 1030', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-22',
-            'BJW 4599',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-22', 'BJW 4599', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-23', 'BMK 1014', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-24',
-            'BJY 3364',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          [
-            'J1-27',
-            'BJW 4548',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-24', 'BJY 3364', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          ['J1-27', 'BJW 4548', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-28', 'BLW 6720', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-29',
-            'BJW 4575',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          [
-            'J1-31',
-            'BJT 8258',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-29', 'BJW 4575', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          ['J1-31', 'BJT 8258', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-32', 'BLX 4668', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-33',
-            'BJY 3386',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          [
-            'J1-36',
-            'BJW 4573',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-33', 'BJY 3386', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          ['J1-36', 'BJW 4573', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-38', 'BMK 4620', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-39',
-            'BJW 4569',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-39', 'BJW 4569', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-40', 'BMK 1005', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-41', 'BKN 7309', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-42',
-            'BJT 8353',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          [
-            'J1-44',
-            'BKA 8796',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-42', 'BJT 8353', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          ['J1-44', 'BKA 8796', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-45', 'BLU 8034', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-47', 'WUC 7006', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-48', 'BGR 4065', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-50', 'BMK 1015', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-51',
-            'BJW 4590',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
-          [
-            'J1-53',
-            'BJW 4561',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-51', 'BJW 4590', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          ['J1-53', 'BJW 4561', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-54', 'BLV 9856', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-55',
-            'BJT 8356',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-55', 'BJT 8356', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-56', 'WUB 9481', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          [
-            'J1-57',
-            'BKA 9304',
-            'MERCEDES ATEGO',
-            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
-          ],
+          ['J1-57', 'BKA 9304', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
           ['J1-58', 'BMK 992', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-59', 'BGR 3578', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-60', 'BMK 984', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
@@ -3103,11 +2981,7 @@
           })
         );
 
-        console.log(
-          '✅ Inventori Jentera Penuh Dimuat (' +
-            logistikJentera.length +
-            ' unit)'
-        );
+        console.log('✅ Inventori Jentera Penuh Dimuat (' + logistikJentera.length + ' unit)');
         simpanKeLocalStorage();
       }
 
@@ -3159,24 +3033,14 @@
       }
 
       function janaNamaAnggotaOptions() {
-        const container = document.getElementById(
-          'namaAnggotaOptionsContainer'
-        );
+        const container = document.getElementById('namaAnggotaOptionsContainer');
         if (!container) return;
         container.innerHTML = senaraiNamaMaster
           .map((a) => {
             const s = namaAnggotaTerpilih.some((x) => x.nama === a.nama)
               ? 'selected'
               : '';
-            return `<div class="multi-select-option ${s}" onclick="pilihNamaAnggotaOption('${
-              a.nama
-            }')"><div class="check-box">${
-              s ? '✓' : ''
-            }</div><div><div class="font-bold text-slate-800">${
-              a.nama
-            }</div><div class="text-[10px] text-slate-500">${a.pangkat} | ${
-              a.balai
-            }</div></div></div>`;
+            return `<div class="multi-select-option ${s}" onclick="pilihNamaAnggotaOption('${a.nama}')"><div class="check-box">${s ? '✓' : ''}</div><div><div class="font-bold text-slate-800">${a.nama}</div><div class="text-[10px] text-slate-500">${a.pangkat} | ${a.balai}</div></div></div>`;
           })
           .join('');
       }
@@ -3267,75 +3131,45 @@
             return `<tr>
             <td>
               <strong class="text-slate-800 text-xs">${item.nama}</strong>
-              <div class="text-[10px] text-slate-500 font-extrabold">${
-                item.pangkat
-              }</div>
+              <div class="text-[10px] text-slate-500 font-extrabold">${item.pangkat}</div>
             </td>
-            <td><strong class="text-red-800 text-[10px]">${
-              item.balai
-            }</strong></td>
+            <td><strong class="text-red-800 text-[10px]">${item.balai}</strong></td>
             <td>
               <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-bold" onchange="namaAnggotaTerpilih[${i}].pasukan=this.value">
-                <option value="PASUKAN A" ${
-                  item.pasukan === 'PASUKAN A' ? 'selected' : ''
-                }>PASUKAN A</option>
-                <option value="PASUKAN B" ${
-                  item.pasukan === 'PASUKAN B' ? 'selected' : ''
-                }>PASUKAN B</option>
-                <option value="PASUKAN C" ${
-                  item.pasukan === 'PASUKAN C' ? 'selected' : ''
-                }>PASUKAN C</option>
+                <option value="PASUKAN A" ${item.pasukan === 'PASUKAN A' ? 'selected' : ''}>PASUKAN A</option>
+                <option value="PASUKAN B" ${item.pasukan === 'PASUKAN B' ? 'selected' : ''}>PASUKAN B</option>
+                <option value="PASUKAN C" ${item.pasukan === 'PASUKAN C' ? 'selected' : ''}>PASUKAN C</option>
               </select>
             </td>
             <td>
               <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-bold" onchange="namaAnggotaTerpilih[${i}].status=this.value">
-                <option value="BERTUGAS" ${
-                  item.status === 'BERTUGAS' ? 'selected' : ''
-                }>✅ BERTUGAS</option>
-                <option value="CUTI" ${
-                  item.status === 'CUTI' ? 'selected' : ''
-                }>🟡 CUTI</option>
-                <option value="CUTI SAKIT" ${
-                  item.status === 'CUTI SAKIT' ? 'selected' : ''
-                }>🔴 CUTI SAKIT</option>
-                <option value="TUGAS KHAS" ${
-                  item.status === 'TUGAS KHAS' ? 'selected' : ''
-                }>🟣 TUGAS KHAS</option>
+                <option value="BERTUGAS" ${item.status === 'BERTUGAS' ? 'selected' : ''}>✅ BERTUGAS</option>
+                <option value="CUTI" ${item.status === 'CUTI' ? 'selected' : ''}>🟡 CUTI</option>
+                <option value="CUTI SAKIT" ${item.status === 'CUTI SAKIT' ? 'selected' : ''}>🔴 CUTI SAKIT</option>
+                <option value="TUGAS KHAS" ${item.status === 'TUGAS KHAS' ? 'selected' : ''}>🟣 TUGAS KHAS</option>
               </select>
             </td>
             <td>
               <div class="flex flex-wrap gap-1 text-[8px] font-bold">
                 <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
-                  <input type="checkbox" ${
-                    item.isKetuaBalai === 'YA' ? 'checked' : ''
-                  } onchange="namaAnggotaTerpilih[${i}].isKetuaBalai = this.checked ? 'YA' : 'TIDAK'"> KB
+                  <input type="checkbox" ${item.isKetuaBalai === 'YA' ? 'checked' : ''} onchange="namaAnggotaTerpilih[${i}].isKetuaBalai = this.checked ? 'YA' : 'TIDAK'"> KB
                 </label>
                 <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
-                  <input type="checkbox" ${
-                    item.isPegawaiOperasi === 'YA' ? 'checked' : ''
-                  } onchange="namaAnggotaTerpilih[${i}].isPegawaiOperasi = this.checked ? 'YA' : 'TIDAK'"> PB OPERASI
+                  <input type="checkbox" ${item.isPegawaiOperasi === 'YA' ? 'checked' : ''} onchange="namaAnggotaTerpilih[${i}].isPegawaiOperasi = this.checked ? 'YA' : 'TIDAK'"> PB OPERASI
                 </label>
                 <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
-                  <input type="checkbox" ${
-                    item.isPenyelia === 'YA' ? 'checked' : ''
-                  } onchange="namaAnggotaTerpilih[${i}].isPenyelia = this.checked ? 'YA' : 'TIDAK'"> PENYELIA
+                  <input type="checkbox" ${item.isPenyelia === 'YA' ? 'checked' : ''} onchange="namaAnggotaTerpilih[${i}].isPenyelia = this.checked ? 'YA' : 'TIDAK'"> PENYELIA
                 </label>
                 <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
-                  <input type="checkbox" ${
-                    item.isBkb === 'YA' ? 'checked' : ''
-                  } onchange="namaAnggotaTerpilih[${i}].isBkb = this.checked ? 'YA' : 'TIDAK'"> BKB
+                  <input type="checkbox" ${item.isBkb === 'YA' ? 'checked' : ''} onchange="namaAnggotaTerpilih[${i}].isBkb = this.checked ? 'YA' : 'TIDAK'"> BKB
                 </label>
                 <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
-                  <input type="checkbox" ${
-                    item.isPemandu === 'YA' ? 'checked' : ''
-                  } onchange="namaAnggotaTerpilih[${i}].isPemandu = this.checked ? 'YA' : 'TIDAK'"> PEMANDU
+                  <input type="checkbox" ${item.isPemandu === 'YA' ? 'checked' : ''} onchange="namaAnggotaTerpilih[${i}].isPemandu = this.checked ? 'YA' : 'TIDAK'"> PEMANDU
                 </label>
               </div>
             </td>
             <td>
-              <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${
-                item.catatan === '-' ? '' : item.catatan || ''
-              }" onchange="namaAnggotaTerpilih[${i}].catatan=this.value.toUpperCase() || '-'" placeholder="CATATAN"/>
+              <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${item.catatan === '-' ? '' : item.catatan || ''}" onchange="namaAnggotaTerpilih[${i}].catatan=this.value.toUpperCase() || '-'" placeholder="CATATAN"/>
             </td>
             <td class="text-center">
               <button class="px-1.5 py-0.5 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="namaAnggotaTerpilih.splice(${i},1);kemaskiniAnggotaDipilihTable();janaNamaAnggotaOptions();">✕</button>
@@ -3356,11 +3190,7 @@
 
         namaAnggotaTerpilih.forEach((item) => {
           rekodAnggota.push({
-            id:
-              'ANG_' +
-              Date.now() +
-              '_' +
-              Math.random().toString(36).substr(2, 4),
+            id: 'ANG_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
             nama: item.nama,
             noTel: item.noTel || '',
             pangkat: item.pangkat || 'KB 1',
@@ -3432,8 +3262,7 @@
       }
 
       function janaLogJenteraDropdown() {
-        const f =
-            document.getElementById('logKategoriFilter')?.value || 'SEMUA',
+        const f = document.getElementById('logKategoriFilter')?.value || 'SEMUA',
           b = document.getElementById('logModalBalai')?.value || '';
         const filtered = logistikJentera.filter(
           (i) =>
@@ -3447,15 +3276,7 @@
             const s = logJenteraTerpilih.some((x) => x.id === i.id)
               ? 'selected'
               : '';
-            return `<div class="multi-select-option ${s}" onclick="pilihLogJenteraOption(${
-              i.id
-            })"><div class="check-box">${
-              s ? '✓' : ''
-            }</div><div><div class="font-bold text-red-700">${i.callsign} (${
-              i.plate
-            })</div><div class="text-[10px] text-slate-500">${i.jenis} | ${
-              i.balai
-            }</div></div></div>`;
+            return `<div class="multi-select-option ${s}" onclick="pilihLogJenteraOption(${i.id})"><div class="check-box">${s ? '✓' : ''}</div><div><div class="font-bold text-red-700">${i.callsign} (${i.plate})</div><div class="text-[10px] text-slate-500">${i.jenis} | ${i.balai}</div></div></div>`;
           })
           .join('');
       }
@@ -3476,8 +3297,7 @@
       }
 
       function pilihSemuaLogJentera() {
-        const f =
-            document.getElementById('logKategoriFilter')?.value || 'SEMUA',
+        const f = document.getElementById('logKategoriFilter')?.value || 'SEMUA',
           b = document.getElementById('logModalBalai')?.value || '';
         logistikJentera
           .filter(
@@ -3532,28 +3352,18 @@
           .map((item, i) => {
             return `<tr>
             <td><strong class="text-red-700">${item.callsign}</strong></td>
-            <td><span class="bg-slate-100 border px-1.5 py-0.5 rounded text-[10px] font-black">${
-              item.plate
-            }</span></td>
+            <td><span class="bg-slate-100 border px-1.5 py-0.5 rounded text-[10px] font-black">${item.plate}</span></td>
             <td>${item.jenis}</td>
             <td><span class="badge badge-unit-gen">${item.kategori}</span></td>
             <td>
               <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-extrabold" onchange="logJenteraTerpilih[${i}].status=this.value">
-                <option value="SEDIA BEROPERASI" ${
-                  item.status === 'SEDIA BEROPERASI' ? 'selected' : ''
-                }>✅ SEDIA BEROPERASI</option>
-                <option value="DALAM PENYELENGGARAAN" ${
-                  item.status === 'DALAM PENYELENGGARAAN' ? 'selected' : ''
-                }>🟡 DALAM PENYELENGGARAAN</option>
-                <option value="ROSAK/TIDAK BOLEH GUNA" ${
-                  item.status === 'ROSAK/TIDAK BOLEH GUNA' ? 'selected' : ''
-                }>❌ ROSAK / TIDAK BOLEH GUNA</option>
+                <option value="SEDIA BEROPERASI" ${item.status === 'SEDIA BEROPERASI' ? 'selected' : ''}>✅ SEDIA BEROPERASI</option>
+                <option value="DALAM PENYELENGGARAAN" ${item.status === 'DALAM PENYELENGGARAAN' ? 'selected' : ''}>🟡 DALAM PENYELENGGARAAN</option>
+                <option value="ROSAK/TIDAK BOLEH GUNA" ${item.status === 'ROSAK/TIDAK BOLEH GUNA' ? 'selected' : ''}>❌ ROSAK / TIDAK BOLEH GUNA</option>
               </select>
             </td>
             <td>
-              <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${
-                item.catatan === '-' ? '' : item.catatan || ''
-              }" onchange="logJenteraTerpilih[${i}].catatan=this.value.toUpperCase() || '-'" placeholder="CATATAN"/>
+              <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${item.catatan === '-' ? '' : item.catatan || ''}" onchange="logJenteraTerpilih[${i}].catatan=this.value.toUpperCase() || '-'" placeholder="CATATAN"/>
             </td>
             <td class="text-center">
               <button class="px-1.5 py-0.5 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="logJenteraTerpilih.splice(${i},1);kemaskiniLogJenteraDipilihTable();janaLogJenteraDropdown();">✕</button>
@@ -3576,11 +3386,7 @@
 
         logJenteraTerpilih.forEach((item) =>
           logistikBertugas.push({
-            id:
-              'LOG_' +
-              Date.now() +
-              '_' +
-              Math.random().toString(36).substr(2, 4),
+            id: 'LOG_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
             callsign: item.callsign,
             plate: item.plate,
             model: item.model,
@@ -3630,14 +3436,8 @@
 
       function resetChecklistModalInputs() {
         const senaraiPerkakas = [
-          'CAD',
-          'WIC',
-          'BOMRA',
-          'DesktopGirn',
-          'HandheldGirn',
-          'VehicularGirn',
-          'Internet',
-          'Handphone',
+          'CAD', 'WIC', 'BOMRA', 'DesktopGirn', 'HandheldGirn',
+          'VehicularGirn', 'Internet', 'Handphone',
         ];
         senaraiPerkakas.forEach((id) => {
           const baik = document.getElementById('modal' + id + '_Baik');
@@ -3666,9 +3466,7 @@
 
         const getItemData = (idPrefix) => {
           const baikEl = document.getElementById('modal' + idPrefix + '_Baik');
-          const rosakEl = document.getElementById(
-            'modal' + idPrefix + '_Rosak'
-          );
+          const rosakEl = document.getElementById('modal' + idPrefix + '_Rosak');
           const catatanEl = document.getElementById('modalCatatan' + idPrefix);
 
           const baik = Math.max(0, parseInt(baikEl ? baikEl.value : 0) || 0);
@@ -3712,9 +3510,7 @@
 
         resetChecklistModalInputs();
 
-        tunjukCustomAlert(
-          '✅ Checklist perkakas bilik kawalan berjaya disimpan!'
-        );
+        tunjukCustomAlert('✅ Checklist perkakas bilik kawalan berjaya disimpan!');
       }
 
       function paparChecklistTable() {
@@ -3733,14 +3529,9 @@
 
         const checkIsRosak = (item) => {
           const items = [
-            item.cadDetail,
-            item.wicDetail,
-            item.bomraDetail,
-            item.desktopGirnDetail,
-            item.handheldGirnDetail,
-            item.vehicularGirnDetail,
-            item.internetDetail,
-            item.handphoneDetail,
+            item.cadDetail, item.wicDetail, item.bomraDetail,
+            item.desktopGirnDetail, item.handheldGirnDetail,
+            item.vehicularGirnDetail, item.internetDetail, item.handphoneDetail,
           ];
           return items.some((d) => d && d.rosak > 0);
         };
@@ -3771,19 +3562,13 @@
 
           let badges = [];
           if (baik > 0)
-            badges.push(
-              `<span class="badge badge-jentera-baik">B: ${baik}</span>`
-            );
+            badges.push(`<span class="badge badge-jentera-baik">B: ${baik}</span>`);
           if (rosak > 0)
-            badges.push(
-              `<span class="badge badge-jentera-rosak">R: ${rosak}</span>`
-            );
+            badges.push(`<span class="badge badge-jentera-rosak">R: ${rosak}</span>`);
           if (badges.length === 0)
             badges.push(`<span class="badge badge-unit-gen">-</span>`);
 
-          let html = `<div class="flex flex-col items-center gap-0.5"><div class="flex flex-wrap gap-1 justify-center">${badges.join(
-            ''
-          )}</div>`;
+          let html = `<div class="flex flex-col items-center gap-0.5"><div class="flex flex-wrap gap-1 justify-center">${badges.join('')}</div>`;
           if (catatan && catatan !== '-') {
             html += `<span class="catatan-box text-[9px] mt-0.5" title="${catatan}">${catatan}</span>`;
           }
@@ -3805,9 +3590,7 @@
             <td>${formatCell(item.handphoneDetail)}</td>
             <td>${item.shiftType || '12 JAM'}</td>
             <td>${item.shiftTime || '0800-2000'}</td>
-            <td class="no-print"><button class="btn btn-danger" onclick="padamChecklist('${
-              item.id
-            }')">PADAM</button></td>`;
+            <td class="no-print"><button class="btn btn-danger" onclick="padamChecklist('${item.id}')">PADAM</button></td>`;
           tbody.appendChild(tr);
         });
       }
@@ -3828,25 +3611,13 @@
         if (!dateEl || !timeEl) return;
         const n = new Date();
         dateEl.innerText =
-          ['AHAD', 'ISNIN', 'SELASA', 'RABU', 'KHAMIS', 'JUMAAT', 'SABTU'][
-            n.getDay()
-          ] +
+          ['AHAD', 'ISNIN', 'SELASA', 'RABU', 'KHAMIS', 'JUMAAT', 'SABTU'][n.getDay()] +
           ', ' +
           String(n.getDate()).padStart(2, '0') +
           ' ' +
           [
-            'JANUARI',
-            'FEBRUARI',
-            'MAC',
-            'APRIL',
-            'MEI',
-            'JUN',
-            'JULAI',
-            'OGOS',
-            'SEPTEMBER',
-            'OKTOBER',
-            'NOVEMBER',
-            'DISEMBER',
+            'JANUARI', 'FEBRUARI', 'MAC', 'APRIL', 'MEI', 'JUN',
+            'JULAI', 'OGOS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DISEMBER',
           ][n.getMonth()] +
           ' ' +
           n.getFullYear();
@@ -3863,9 +3634,7 @@
       }
 
       function kemaskiniPaparData() {
-        const q = (document.getElementById('searchInput')?.value || '')
-          .toUpperCase()
-          .trim();
+        const q = (document.getElementById('searchInput')?.value || '').toUpperCase().trim();
         const tbody = document.getElementById('rosterTableBody');
         if (!tbody) return;
         tbody.innerHTML = '';
@@ -3915,9 +3684,7 @@
               : 'badge-status-bertugas';
           let peranan = [];
           if (item.isKetuaBalai === 'YA')
-            peranan.push(
-              '<span class="badge badge-peranan">KETUA BALAI</span>'
-            );
+            peranan.push('<span class="badge badge-peranan">KETUA BALAI</span>');
           if (item.isPegawaiOperasi === 'YA')
             peranan.push('<span class="badge badge-peranan">PB/OPERASI</span>');
           if (item.isPenyelia === 'YA')
@@ -3928,29 +3695,7 @@
             peranan.push('<span class="badge badge-peranan">PEMANDU</span>');
 
           const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${idx + 1}</td><td><strong>${
-            item.pangkat
-          }</strong></td><td><div class="font-black">${item.nama}</div>${
-            item.noTel ? `<span class="badge-tel">📞 ${item.noTel}</span>` : ''
-          }</td><td><span class="badge ${bp}">${
-            item.pasukan
-          }</span></td><td><span class="badge badge-unit-gen">${
-            item.unit
-          }</span></td><td>${
-            peranan.join(' ') || '-'
-          }</td><td><span class="badge ${bs}">${
-            item.status
-          }</span></td><td><div class="catatan-box">${
-            item.catatan || '-'
-          }</div></td><td><div class="text-[10px] font-bold text-slate-500">${
-            item.shiftType || '12 JAM'
-          } | ${
-            item.shiftTime || '0800-2000'
-          }</div><div class="font-extrabold">${
-            item.balai
-          }</div></td><td class="no-print"><button class="btn btn-danger" onclick="padamAnggota('${
-            item.id
-          }')">PADAM</button></td>`;
+          tr.innerHTML = `<td>${idx + 1}</td><td><strong>${item.pangkat}</strong></td><td><div class="font-black">${item.nama}</div>${item.noTel ? `<span class="badge-tel">📞 ${item.noTel}</span>` : ''}</td><td><span class="badge ${bp}">${item.pasukan}</span></td><td><span class="badge badge-unit-gen">${item.unit}</span></td><td>${peranan.join(' ') || '-'}</td><td><span class="badge ${bs}">${item.status}</span></td><td><div class="catatan-box">${item.catatan || '-'}</div></td><td><div class="text-[10px] font-bold text-slate-500">${item.shiftType || '12 JAM'} | ${item.shiftTime || '0800-2000'}</div><div class="font-extrabold">${item.balai}</div></td><td class="no-print"><button class="btn btn-danger" onclick="padamAnggota('${item.id}')">PADAM</button></td>`;
           tbody.appendChild(tr);
         });
       }
@@ -3990,23 +3735,7 @@
             ? 'badge-jentera-selenggara'
             : 'badge-jentera-baik';
           const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${idx + 1}</td><td><strong class="text-red-700">${
-            item.callsign
-          }</strong></td><td><span class="bg-slate-100 border px-2 py-0.5 rounded text-[11px] font-black">${
-            item.plate
-          }</span></td><td>${item.model || '-'}</td><td><strong>${
-            item.jenis
-          }</strong></td><td><span class="badge badge-unit-gen">${
-            item.kategori
-          }</span></td><td><strong>${
-            item.balai
-          }</strong></td><td><span class="badge ${bs}">${
-            item.status
-          }</span></td><td><div class="catatan-box">${
-            item.catatan || '-'
-          }</div></td><td class="no-print"><button class="btn btn-danger" onclick="padamLogistikBertugas('${
-            item.id
-          }')">PADAM</button></td>`;
+          tr.innerHTML = `<td>${idx + 1}</td><td><strong class="text-red-700">${item.callsign}</strong></td><td><span class="bg-slate-100 border px-2 py-0.5 rounded text-[11px] font-black">${item.plate}</span></td><td>${item.model || '-'}</td><td><strong>${item.jenis}</strong></td><td><span class="badge badge-unit-gen">${item.kategori}</span></td><td><strong>${item.balai}</strong></td><td><span class="badge ${bs}">${item.status}</span></td><td><div class="catatan-box">${item.catatan || '-'}</div></td><td class="no-print"><button class="btn btn-danger" onclick="padamLogistikBertugas('${item.id}')">PADAM</button></td>`;
           tbody.appendChild(tr);
         });
       }
@@ -4085,9 +3814,7 @@
         container.innerHTML = senaraiBalaiMaster
           .map((b) => {
             const s = balaiTerpilih.includes(b) ? 'selected' : '';
-            return `<div class="multi-select-option ${s}" onclick="pilihBalaiOption('${b}')"><div class="check-box">${
-              s ? '✓' : ''
-            }</div><span>${b}</span></div>`;
+            return `<div class="multi-select-option ${s}" onclick="pilihBalaiOption('${b}')"><div class="check-box">${s ? '✓' : ''}</div><span>${b}</span></div>`;
           })
           .join('');
       }
@@ -4121,9 +3848,7 @@
         document.getElementById('customConfirmModal')?.classList.add('active');
       }
       function tutupCustomConfirm(res) {
-        document
-          .getElementById('customConfirmModal')
-          ?.classList.remove('active');
+        document.getElementById('customConfirmModal')?.classList.remove('active');
         if (confirmCallback) {
           confirmCallback(res);
           confirmCallback = null;
@@ -4206,8 +3931,7 @@
               `<div class="font-bold">${a.nama}</div><div class="text-[10px] text-slate-500">${a.pangkat} | ${a.balai}</div>`
           );
         } else if (aktifTabUrusMaster === 'BALAI') senarai = senaraiBalaiMaster;
-        else if (aktifTabUrusMaster === 'PANGKAT')
-          senarai = senaraiPangkatMaster;
+        else if (aktifTabUrusMaster === 'PANGKAT') senarai = senaraiPangkatMaster;
         else if (aktifTabUrusMaster === 'UNIT') senarai = senaraiUnitMaster;
 
         if (senarai.length === 0) {
@@ -4321,9 +4045,7 @@
 
       async function simpanDaftarMaster(mod) {
         if (mod === 'ANGGOTA') {
-          const n = (document.getElementById('regNama')?.value || '')
-            .trim()
-            .toUpperCase();
+          const n = (document.getElementById('regNama')?.value || '').trim().toUpperCase();
           if (!n) {
             tunjukCustomAlert('Sila isi nama!');
             return;
@@ -4343,6 +4065,13 @@
           if (regTelInput) regTelInput.value = '';
           janaFormDaftar('ANGGOTA');
         }
+      }
+
+      // Service Worker Registration (for PWA offline support)
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
       }
 
       window.hantarDataSupabase = hantarDataSupabase;
@@ -4423,9 +4152,7 @@
           ['balai', 'namaAnggota', 'logJentera'].forEach((id) => {
             const sel = document.getElementById(id + 'MultiSelect');
             if (sel && !sel.contains(e.target)) {
-              document
-                .getElementById(id + 'Dropdown')
-                ?.classList.remove('show');
+              document.getElementById(id + 'Dropdown')?.classList.remove('show');
               document
                 .querySelector('#' + id + 'MultiSelect .multi-select-trigger')
                 ?.classList.remove('active');
@@ -4433,7 +4160,7 @@
           });
         });
 
-        console.log('✅ Sistem Landing Page JBPM Johor sedia digunakan.');
+        console.log('✅ Sistem JBPM Johor sedia sebagai App Standalone.');
       };
     </script>
   </body>

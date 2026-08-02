@@ -1,0 +1,17 @@
+{
+    "name": "JBPM JOHOR - Sistem Kekuatan Anggota",
+    "short_name": "JBPM JHR",
+    "icons": [
+      {
+        "src": "fire-station.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any maskable"
+      }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#b91c1c",
+    "theme_color": "#b91c1c",
+    "orientation": "portrait-primary"
+  }
