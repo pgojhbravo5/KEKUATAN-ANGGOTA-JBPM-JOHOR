@@ -1,19 +1,25 @@
 <!DOCTYPE html>
-<html lang="ms" class="h-full">
+<html lang="ms" class="h-full bg-slate-100">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
     <title>SISTEM KEKUATAN, LOGISTIK & CHECKLIST - JBPM NEGERI JOHOR</title>
 
     <!-- PWA / Standalone App Icons -->
-    <link rel="icon" type="image/png" href="balai-bomba.png" />
-    <link rel="apple-touch-icon" href="balai-bomba.png" />
+    <link rel="icon" type="image/png" href="fire-station.png" />
+    <link rel="apple-touch-icon" href="fire-station.png" />
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="manifest.json" />
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <meta name="apple-mobile-web-app-title" content="JBPM JHR" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#b91c1c" />
@@ -24,11 +30,6 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
-    />
-    <!-- Font Awesome Professional Icon Library -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -66,8 +67,6 @@
           0 2px 4px -2px rgb(0 0 0 / 0.1);
         --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
           0 4px 6px -4px rgb(0 0 0 / 0.1);
-        --sat: env(safe-area-inset-top, 0px);
-        --sab: env(safe-area-inset-bottom, 0px);
       }
       * {
         box-sizing: border-box;
@@ -77,190 +76,16 @@
         text-transform: uppercase;
         -webkit-tap-highlight-color: transparent;
       }
-
-      /* === BODY BACKGROUND & MOBILE STANDALONE FIT === */
       body {
-        background-image: url('firetruck-BG.png');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
+        background-color: var(--bg-gray);
         color: var(--text-main);
         line-height: 1.5;
-        padding-top: calc(var(--sat));
-        padding-bottom: calc(85px + var(--sab));
+        padding-bottom: 40px;
         overflow-x: hidden;
-        position: relative;
-        min-height: 100vh;
-        min-height: -webkit-fill-available;
       }
-
-      @media (min-width: 1024px) {
-        body {
-          padding-bottom: 40px;
-        }
-      }
-
-      /* Overlay gelap untuk background */
-      body::after {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(15, 23, 42, 0.65);
-        backdrop-filter: blur(3px);
-        -webkit-backdrop-filter: blur(3px);
-        z-index: -2;
-        pointer-events: none;
-      }
-
-      /* === SPLASH SCREEN === */
-      #splashScreen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url('firetruck-BG.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        z-index: 9999;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transition: opacity 0.5s ease, visibility 0.5s ease;
-        opacity: 1;
-        visibility: visible;
-        padding: 20px;
-      }
-
-      #splashScreen.hidden {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-      }
-
-      #splashScreen::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.65);
-        z-index: 1;
-      }
-
-      .splash-content {
-        position: relative;
-        z-index: 2;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-      }
-
-      .splash-logo-img {
-        width: 120px;
-        height: 120px;
-        border-radius: 24px;
-        border: 3px solid white;
-        box-shadow: 0 0 30px rgba(234, 179, 8, 0.6);
-        object-fit: contain;
-        object-position: center;
-        animation: pulse 1.5s ease-in-out infinite;
-        margin: 0 auto 20px;
-        display: block;
-        background-color: #b91c1c;
-        padding: 12px;
-      }
-
-      @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        40% { transform: scale(0.97); }
-      }
-
-      .splash-title {
-        color: white;
-        font-size: 1.3rem;
-        font-weight: 900;
-        letter-spacing: 1.5px;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        margin-bottom: 6px;
-        margin-top: 10px;
-      }
-
-      .splash-subtitle {
-        color: var(--bomba-gold);
-        font-size: 0.75rem;
-        font-weight: 800;
-        letter-spacing: 2.5px;
-        text-shadow: 0 1px 5px rgba(0,0,0,0.5);
-        margin-bottom: 24px;
-      }
-
-      .splash-loader {
-        width: 60px;
-        height: 4px;
-        background: rgba(255,255,255,0.25);
-        border-radius: 4px;
-        overflow: hidden;
-        margin: 0 auto;
-      }
-
-      .splash-loader-bar {
-        width: 50%;
-        height: 100%;
-        background: var(--bomba-gold);
-        border-radius: 4px;
-        animation: loading 1s ease-in-out infinite;
-      }
-
-      @keyframes loading {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(200%); }
-      }
-
-      .splash-footer {
-        position: absolute;
-        bottom: calc(20px + var(--sab));
-        z-index: 2;
-        color: rgba(255,255,255,0.75);
-        font-size: 0.65rem;
-        font-weight: 700;
-        letter-spacing: 1.5px;
-        text-align: center;
-        padding: 0 15px;
-      }
-
-      /* === HEADER LOGO === */
-      .logo-img-header {
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        border: 2px solid white;
-        box-shadow: 0 0 10px rgba(234, 179, 8, 0.4);
-        object-fit: cover;
-        flex-shrink: 0;
-      }
-
-      @media (min-width: 640px) {
-        .logo-img-header {
-          width: 56px;
-          height: 56px;
-          border-radius: 16px;
-        }
-      }
-
       ::-webkit-scrollbar {
-        width: 5px;
-        height: 5px;
+        width: 6px;
+        height: 6px;
       }
       ::-webkit-scrollbar-track {
         background: #f1f5f9;
@@ -269,7 +94,6 @@
         background: #cbd5e1;
         border-radius: 9999px;
       }
-
       header {
         background: linear-gradient(
           135deg,
@@ -278,36 +102,52 @@
           #dc2626 100%
         );
         color: white;
-        border-bottom: 3px solid var(--bomba-gold);
+        border-bottom: 4px solid var(--bomba-gold);
         box-shadow: var(--shadow-lg);
-        position: sticky;
-        top: 0;
-        z-index: 40;
       }
-
+      .logo-badge {
+        width: 52px;
+        height: 52px;
+        background: var(--bomba-gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        color: var(--bomba-red-dark);
+        font-size: 18px;
+        box-shadow: 0 0 12px rgba(234, 179, 8, 0.4);
+        border: 2px solid white;
+        flex-shrink: 0;
+      }
+      @media (min-width: 640px) {
+        .logo-badge {
+          width: 60px;
+          height: 60px;
+          font-size: 22px;
+        }
+      }
       .card {
         background: var(--card-bg);
         border-radius: 16px;
         border: 1px solid var(--border-color);
-        box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
-        padding: 14px;
-        margin-bottom: 14px;
+        box-shadow: var(--shadow-sm);
+        padding: 16px;
+        margin-bottom: 16px;
         transition: box-shadow 0.2s ease, transform 0.2s ease;
       }
       @media (min-width: 640px) {
         .card {
-          padding: 20px;
-          margin-bottom: 20px;
-          border-radius: 20px;
+          padding: 22px;
+          margin-bottom: 22px;
         }
       }
-
       .card-title {
-        font-size: 0.88rem;
+        font-size: 0.95rem;
         font-weight: 800;
         color: var(--bomba-navy);
-        margin-bottom: 12px;
-        padding-bottom: 8px;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
         border-bottom: 2px solid var(--bomba-gold);
         display: flex;
         align-items: center;
@@ -320,16 +160,15 @@
           font-size: 1.05rem;
         }
       }
-
       .form-group {
-        margin-bottom: 10px;
+        margin-bottom: 12px;
       }
       .form-group label {
         display: block;
-        font-size: 0.7rem;
+        font-size: 0.72rem;
         font-weight: 800;
         color: var(--bomba-navy);
-        margin-bottom: 4px;
+        margin-bottom: 5px;
         letter-spacing: 0.5px;
       }
       .form-control,
@@ -338,7 +177,7 @@
         width: 100%;
         padding: 10px 12px;
         border: 1.5px solid var(--border-color);
-        border-radius: 12px;
+        border-radius: 10px;
         font-size: 0.82rem;
         font-weight: 700;
         color: var(--bomba-navy);
@@ -346,7 +185,7 @@
         transition: all 0.2s ease;
         outline: none;
         text-transform: uppercase;
-        min-height: 46px; /* Optimized Touch Target */
+        min-height: 44px;
       }
       .form-control:focus,
       select.form-control:focus,
@@ -355,13 +194,12 @@
         background-color: #ffffff;
         box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.15);
       }
-
       .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         width: 100%;
-        padding: 12px 14px;
+        padding: 10px 14px;
         border-radius: 12px;
         font-weight: 800;
         font-size: 0.82rem;
@@ -371,12 +209,10 @@
         gap: 8px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        min-height: 48px; /* Mobile Friendly Touch Target */
-        touch-action: manipulation;
+        min-height: 46px;
       }
       .btn:active {
         transform: scale(0.97);
-        opacity: 0.9;
       }
       .btn-primary {
         background: linear-gradient(
@@ -385,17 +221,17 @@
           var(--bomba-red-dark) 100%
         );
         color: white;
-        box-shadow: 0 4px 12px rgba(185, 28, 28, 0.28);
+        box-shadow: 0 4px 10px rgba(185, 28, 28, 0.25);
       }
       .btn-orange {
         background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
         color: white;
-        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.28);
+        box-shadow: 0 4px 10px rgba(245, 158, 11, 0.25);
       }
       .btn-emerald {
         background: linear-gradient(135deg, #10b981 0%, #047857 100%);
         color: white;
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.28);
+        box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
       }
       .btn-secondary {
         background: #f1f5f9;
@@ -409,7 +245,7 @@
         font-size: 0.7rem;
         width: auto;
         border-radius: 8px;
-        min-height: 38px;
+        min-height: 36px;
       }
       .btn-master-purge {
         background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
@@ -420,7 +256,7 @@
       .btn-purple {
         background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
         color: white;
-        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.28);
+        box-shadow: 0 4px 10px rgba(139, 92, 246, 0.25);
       }
       .required-star {
         color: var(--bomba-red);
@@ -437,7 +273,7 @@
         margin-bottom: 14px;
       }
       .tab-btn {
-        padding: 10px 6px;
+        padding: 8px 6px;
         font-size: 0.72rem;
         font-weight: 800;
         border: none;
@@ -457,8 +293,8 @@
       .stats-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-        margin-bottom: 14px;
+        gap: 10px;
+        margin-bottom: 16px;
       }
       @media (min-width: 640px) {
         .stats-grid {
@@ -470,7 +306,7 @@
       .stat-card {
         background: white;
         border-radius: 12px;
-        padding: 10px 12px;
+        padding: 12px;
         border: 1px solid var(--border-color);
         box-shadow: var(--shadow-sm);
         border-left: 4px solid var(--bomba-red);
@@ -489,28 +325,25 @@
       }
 
       .stat-label {
-        font-size: 0.62rem;
+        font-size: 0.65rem;
         font-weight: 800;
         color: var(--text-muted);
         margin-bottom: 2px;
       }
       .stat-value {
-        font-size: 1.15rem;
+        font-size: 1.2rem;
         font-weight: 900;
         color: var(--bomba-navy);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
-
-      /* === RESPONSIVE MOBILE TABLES === */
       .table-responsive {
         width: 100%;
         overflow-x: auto;
         border-radius: 12px;
         border: 1px solid var(--border-color);
         -webkit-overflow-scrolling: touch;
-        background: white;
       }
       .roster-table,
       .logistik-table,
@@ -518,7 +351,7 @@
         width: 100%;
         border-collapse: collapse;
         background: white;
-        font-size: 0.74rem;
+        font-size: 0.76rem;
         text-align: left;
       }
       .roster-table th,
@@ -526,11 +359,11 @@
       .checklist-table th {
         background: #f1f5f9;
         color: var(--bomba-navy);
-        padding: 10px 10px;
+        padding: 10px 12px;
         font-weight: 800;
         border-bottom: 2px solid var(--border-color);
         white-space: nowrap;
-        font-size: 0.66rem;
+        font-size: 0.68rem;
       }
       .logistik-table th {
         background: #fef3c7;
@@ -544,12 +377,12 @@
       .roster-table td,
       .logistik-table td,
       .checklist-table td {
-        padding: 9px 10px;
+        padding: 10px 12px;
         border-bottom: 1px solid var(--border-color);
         font-weight: 600;
         color: var(--text-main);
         vertical-align: middle;
-        font-size: 0.74rem;
+        font-size: 0.75rem;
       }
       .badge {
         display: inline-block;
@@ -648,7 +481,7 @@
       }
       .empty-state {
         text-align: center;
-        padding: 24px 12px;
+        padding: 30px 12px;
         color: var(--text-muted);
       }
 
@@ -661,7 +494,7 @@
         width: 100%;
         padding: 8px 12px;
         border: 1.5px solid var(--border-color);
-        border-radius: 12px;
+        border-radius: 10px;
         font-size: 0.8rem;
         font-weight: 700;
         color: var(--bomba-navy);
@@ -672,7 +505,7 @@
         justify-content: space-between;
         gap: 6px;
         transition: all 0.2s ease;
-        min-height: 46px;
+        min-height: 44px;
         text-transform: uppercase;
         user-select: none;
       }
@@ -753,7 +586,7 @@
         padding: 4px 0;
       }
       .multi-select-option {
-        padding: 10px 12px;
+        padding: 8px 12px;
         cursor: pointer;
         font-size: 0.74rem;
         font-weight: 700;
@@ -772,15 +605,15 @@
         font-weight: 800;
       }
       .multi-select-option .check-box {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
         border: 2px solid var(--border-color);
-        border-radius: 6px;
+        border-radius: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        font-size: 0.72rem;
+        font-size: 0.68rem;
       }
       .multi-select-option.selected .check-box {
         background: var(--bomba-red);
@@ -799,7 +632,7 @@
       }
       .multi-select-actions button {
         flex: 1;
-        padding: 8px 10px;
+        padding: 6px 10px;
         border-radius: 8px;
         font-size: 0.72rem;
         font-weight: 800;
@@ -818,93 +651,46 @@
         border: 1px solid #fca5a5;
       }
 
-      /* === MOBILE MODAL OVERLAY & BOTTOM SHEET UI === */
+      /* Standard Modal Overlay */
       .modal-overlay {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(15, 23, 42, 0.75);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
+        background: rgba(15, 23, 42, 0.65);
+        backdrop-filter: blur(4px);
         display: flex;
-        align-items: flex-end;
+        align-items: center;
         justify-content: center;
         z-index: 1000;
         opacity: 0;
         pointer-events: none;
-        transition: opacity 0.25s ease;
-        padding: 0;
+        transition: opacity 0.2s ease;
+        padding: 16px;
       }
-
-      @media (min-width: 640px) {
-        .modal-overlay {
-          align-items: center;
-          padding: 16px;
-        }
-      }
-
       .modal-overlay.active {
         opacity: 1;
         pointer-events: auto;
       }
-
       #customAlertModal,
       #customConfirmModal,
       #passwordModal {
         z-index: 1500;
       }
-
       .modal {
         background: white;
-        border-top-left-radius: 24px;
-        border-top-right-radius: 24px;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
+        border-radius: 20px;
         width: 100%;
-        max-width: 880px;
-        padding: 18px 16px calc(18px + var(--sab)) 16px;
-        box-shadow: 0 -10px 25px -5px rgba(0,0,0,0.2);
-        max-height: 92vh;
+        max-width: 860px;
+        padding: 20px;
+        box-shadow: var(--shadow-lg);
+        max-height: 90vh;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
         position: relative;
-        transform: translateY(20px);
-        transition: transform 0.25s ease;
       }
-
-      @media (min-width: 640px) {
-        .modal {
-          border-radius: 20px;
-          padding: 20px;
-          transform: translateY(0);
-          max-height: 90vh;
-        }
-      }
-
-      .modal-overlay.active .modal {
-        transform: translateY(0);
-      }
-
-      /* Mobile Sheet Drag Handle */
-      .modal::before {
-        content: '';
-        width: 40px;
-        height: 4px;
-        background: #cbd5e1;
-        border-radius: 4px;
-        margin: 0 auto 12px auto;
-        display: block;
-      }
-
-      @media (min-width: 640px) {
-        .modal::before {
-          display: none;
-        }
-      }
-
       .modal-header {
         display: flex;
         justify-content: space-between;
@@ -914,15 +700,15 @@
         border-bottom: 2px solid var(--border-color);
       }
       .modal-header h3 {
-        font-size: 0.92rem;
+        font-size: 0.95rem;
         font-weight: 800;
         color: var(--bomba-red);
       }
       .close-modal {
         background: #f1f5f9;
         border: none;
-        width: 34px;
-        height: 34px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
         font-size: 1.2rem;
         cursor: pointer;
@@ -932,14 +718,13 @@
         justify-content: center;
         flex-shrink: 0;
       }
-
       .sync-badge {
         display: inline-flex;
         align-items: center;
         gap: 4px;
         padding: 4px 10px;
         border-radius: 20px;
-        font-size: 0.65rem;
+        font-size: 0.68rem;
         font-weight: 800;
       }
       .sync-active {
@@ -1024,52 +809,6 @@
         margin-top: 12px;
       }
 
-      /* === STANDALONE MOBILE BOTTOM NAVIGATION BAR === */
-      .mobile-bottom-nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(15, 23, 42, 0.95);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-top: 2px solid var(--bomba-gold);
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        padding: 6px 4px calc(6px + var(--sab)) 4px;
-        z-index: 50;
-        box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
-      }
-      @media (min-width: 1024px) {
-        .mobile-bottom-nav {
-          display: none !important;
-        }
-      }
-      .mobile-nav-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: #94a3b8;
-        font-size: 0.58rem;
-        font-weight: 800;
-        padding: 4px 6px;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: all 0.2s ease;
-        flex: 1;
-        text-align: center;
-      }
-      .mobile-nav-item.active {
-        color: var(--bomba-gold);
-        background: rgba(255,255,255,0.08);
-      }
-      .mobile-nav-item i {
-        font-size: 1.1rem;
-        margin-bottom: 2px;
-      }
-
       .loading-overlay {
         position: fixed;
         top: 0;
@@ -1109,9 +848,6 @@
           color: black;
           padding-bottom: 0;
         }
-        body::after {
-          display: none;
-        }
         .no-print {
           display: none !important;
         }
@@ -1135,38 +871,25 @@
     </style>
   </head>
   <body>
-    <!-- === SPLASH SCREEN === -->
-    <div id="splashScreen">
-      <div class="splash-content">
-        <img src="balai-bomba.png" alt="Logo JBPM" class="splash-logo-img" />
-        <div class="splash-title">SISTEM KEKUATAN</div>
-        <div class="splash-subtitle">LOGISTIK & CHECKLIST</div>
-        <div class="splash-loader">
-          <div class="splash-loader-bar"></div>
-        </div>
-      </div>
-      <div class="splash-footer">JABATAN BOMBA DAN PENYELAMAT MALAYSIA NEGERI JOHOR</div>
-    </div>
-
     <div class="loading-overlay" id="loadingOverlay">
       <div class="spinner"></div>
     </div>
 
     <!-- MAIN LANDING PAGE HEADER -->
-    <header class="no-print py-2.5 sm:py-3.5 px-3 sm:px-6">
+    <header class="no-print py-3 sm:py-4 px-3 sm:px-6">
       <div
-        class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-2"
+        class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-3"
       >
-        <div class="flex items-center gap-2.5">
-          <img src="balai-bomba.png" alt="Logo JBPM" class="logo-img-header" />
+        <div class="flex items-center gap-3">
+          <div class="logo-badge">JBPM</div>
           <div>
             <h1
-              class="text-xs sm:text-lg lg:text-xl font-black text-white leading-tight tracking-wide"
+              class="text-sm sm:text-xl font-black text-white leading-tight tracking-wide"
             >
               SISTEM KEKUATAN, LOGISTIK & CHECKLIST
             </h1>
             <p
-              class="text-[9px] sm:text-xs text-yellow-400 font-extrabold tracking-wider mt-0.5"
+              class="text-[10px] sm:text-xs text-yellow-400 font-extrabold tracking-wider mt-0.5"
             >
               JABATAN BOMBA DAN PENYELAMAT MALAYSIA NEGERI JOHOR
             </p>
@@ -1174,16 +897,16 @@
         </div>
 
         <div
-          class="flex items-center justify-between w-full lg:w-auto gap-2 border-t border-red-800/50 pt-2 lg:pt-0 lg:border-0"
+          class="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-between sm:justify-end border-t sm:border-0 pt-2 sm:pt-0 border-red-800/40"
         >
           <div id="cloudStatusBadge" class="sync-badge sync-inactive">
-            <span><i class="fa-solid fa-circle text-[9px] text-amber-500 mr-1"></i> SUPABASE: MENYAMBUNG...</span>
+            <span>🟡 SUPABASE: MENYAMBUNG...</span>
           </div>
           <div
-            class="bg-black/30 border border-white/20 px-2.5 py-1 rounded-xl text-right"
+            class="bg-black/30 border border-white/20 px-3 py-1.5 rounded-xl text-right"
           >
             <div
-              class="text-[9px] sm:text-xs text-slate-200 font-semibold"
+              class="text-[10px] sm:text-xs text-slate-200 font-semibold"
               id="currentDate"
             >
               ISNIN, 01 JULAI 2026
@@ -1200,37 +923,37 @@
     </header>
 
     <div
-      class="max-w-[1440px] mx-auto px-2.5 sm:px-5 mt-3 sm:mt-6 grid grid-cols-1 lg:grid-cols-[360px_1fr] xl:grid-cols-[400px_1fr] gap-4 sm:gap-5"
+      class="max-w-[1440px] mx-auto px-3 sm:px-5 mt-4 sm:mt-6 grid grid-cols-1 lg:grid-cols-[360px_1fr] xl:grid-cols-[400px_1fr] gap-5"
     >
       <!-- LEFT COLUMN: CONTROL PANELS -->
-      <div id="sectionPanels" class="no-print space-y-3 sm:space-y-4">
+      <div id="sectionPanels" class="no-print space-y-4">
         <!-- Panel 1: Tugasan Operasi -->
         <div class="card border-l-4 border-l-red-600">
           <div class="card-title">
-            <span><i class="fa-solid fa-clipboard-list text-red-600 mr-1.5"></i> 1. TUGASAN & OPERASI HARIAN</span>
+            <span>📋 1. TUGASAN & OPERASI HARIAN</span>
             <span
               class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-red-100 text-red-900"
               >OPERASI</span
             >
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-1 gap-2 mt-1">
+          <div class="flex flex-col gap-2 mt-1">
             <button
               class="btn btn-primary font-black"
               onclick="bukaModalTambahAnggota()"
             >
-              <i class="fa-solid fa-user-plus mr-1.5"></i> ISI ANGGOTA BERTUGAS
+              👤 ISI ANGGOTA BERTUGAS
             </button>
             <button
               class="btn btn-orange font-black"
               onclick="bukaModalLogistikJentera()"
             >
-              <i class="fa-solid fa-truck-field mr-1.5"></i> ISI MAKLUMAT JENTERA BERTUGAS
+              🚒 ISI MAKLUMAT JENTERA BERTUGAS
             </button>
             <button
               class="btn btn-purple font-black"
               onclick="bukaModalChecklist()"
             >
-              <i class="fa-solid fa-list-check mr-1.5"></i> ISI CHECKLIST PERKAKAS
+              ✅ ISI CHECKLIST PERKAKAS
             </button>
           </div>
         </div>
@@ -1238,13 +961,13 @@
         <!-- Panel 2: Daftar Master -->
         <div class="card border-l-4 border-l-slate-800">
           <div class="card-title">
-            <span><i class="fa-solid fa-users-gear text-slate-800 mr-1.5"></i> 2. DAFTAR ANGGOTA & MASTER</span>
+            <span>👤 2. DAFTAR ANGGOTA & MASTER</span>
             <span
               class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-indigo-100 text-indigo-900"
               >MASTER</span
             >
           </div>
-          <p class="text-[10px] sm:text-[11px] text-slate-500 font-extrabold mb-2">
+          <p class="text-[11px] text-slate-500 font-extrabold mb-2">
             DAFTAR MAKLUMAT MASTER ANGGOTA BAHARU:
           </p>
           <div id="regFormContainer">
@@ -1274,27 +997,27 @@
               class="btn btn-primary"
               onclick="simpanDaftarMaster('ANGGOTA')"
             >
-              <i class="fa-solid fa-plus mr-1"></i> DAFTAR ANGGOTA
+              + DAFTAR ANGGOTA
             </button>
           </div>
-          <div class="flex flex-col gap-2 mt-3">
+          <div class="flex flex-col gap-1.5 mt-3">
             <button
-              class="btn btn-secondary !min-h-[42px] !text-[11px]"
+              class="btn btn-secondary !min-h-[40px] !text-[11px]"
               onclick="mintaPassword('URUS_KATEGORI')"
             >
-              <i class="fa-solid fa-lock mr-1.5"></i> URUS / PADAM SENARAI MASTER
+              🔒 URUS / PADAM SENARAI MASTER
             </button>
             <button
-              class="btn btn-secondary !min-h-[42px] !text-[11px]"
+              class="btn btn-secondary !min-h-[40px] !text-[11px]"
               onclick="mintaPassword('URUS_JENTERA_MASTER')"
             >
-              <i class="fa-solid fa-wrench mr-1.5"></i> URUS SENARAI JENTERA (MASTER) <i class="fa-solid fa-lock ml-1 text-xs opacity-75"></i>
+              🔧 URUS SENARAI JENTERA (MASTER) 🔒
             </button>
             <button
-              class="btn btn-master-purge !min-h-[42px] !text-[11px]"
+              class="btn btn-master-purge !min-h-[40px] !text-[11px]"
               onclick="mintaPassword('MASTER_BERSIH')"
             >
-              <i class="fa-solid fa-triangle-exclamation mr-1.5"></i> MASTER PEMBERSIHAN <i class="fa-solid fa-lock ml-1 text-xs opacity-75"></i>
+              🚨 MASTER PEMBERSIHAN 🔒
             </button>
           </div>
         </div>
@@ -1302,7 +1025,7 @@
         <!-- Panel 3: Cloud Storage (Supabase) -->
         <div class="card border-l-4 border-l-emerald-500">
           <div class="card-title">
-            <span><i class="fa-solid fa-cloud text-emerald-600 mr-1.5"></i> 3. PANGKALAN DATA CLOUD</span>
+            <span>☁️ 3. PANGKALAN DATA CLOUD</span>
             <span
               class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-emerald-100 text-emerald-900"
               >SUPABASE</span
@@ -1311,16 +1034,16 @@
           <div class="flex flex-col gap-2">
             <div class="grid grid-cols-2 gap-2">
               <button
-                class="btn btn-secondary !min-h-[42px] !text-[11px]"
+                class="btn btn-secondary !min-h-[40px] !text-[11px]"
                 onclick="tarikDataSupabase()"
               >
-                <i class="fa-solid fa-rotate mr-1"></i> MUAT DATA
+                🔄 MUAT DATA
               </button>
               <button
-                class="btn btn-emerald !min-h-[42px] !text-[11px]"
+                class="btn btn-emerald !min-h-[40px] !text-[11px]"
                 onclick="hantarDataSupabase()"
               >
-                <i class="fa-solid fa-cloud-arrow-up mr-1"></i> SIMPAN DATA
+                ☁️ SIMPAN DATA
               </button>
             </div>
           </div>
@@ -1328,7 +1051,7 @@
       </div>
 
       <!-- RIGHT COLUMN: STATS & MAIN CONTENT TABLES -->
-      <div class="content-area space-y-3 sm:space-y-4">
+      <div class="content-area space-y-4">
         <!-- STATS OVERVIEW -->
         <div id="sectionStats" class="stats-grid no-print">
           <div class="stat-card">
@@ -1356,19 +1079,19 @@
         <!-- ROSTER TABLE CARD -->
         <div id="sectionAnggota" class="card">
           <div class="card-title">
-            <span><i class="fa-solid fa-users text-red-700 mr-1.5"></i> BORANG KEKUATAN ANGGOTA BERTUGAS</span>
+            <span>👤 BORANG KEKUATAN ANGGOTA BERTUGAS</span>
             <div class="no-print flex items-center gap-1.5">
               <button
-                class="btn btn-secondary !w-auto !py-1 !px-2.5 !text-[11px] !min-h-[36px]"
+                class="btn btn-secondary !w-auto !py-1 !px-2.5 !text-[11px] !min-h-[34px]"
                 onclick="cetakLaporan()"
               >
-                <i class="fa-solid fa-print mr-1"></i> CETAK
+                🖨️ CETAK
               </button>
               <button
-                class="btn btn-secondary !w-auto !py-1 !px-2.5 !text-[11px] !min-h-[36px] text-red-700 border-red-300"
+                class="btn btn-secondary !w-auto !py-1 !px-2.5 !text-[11px] !min-h-[34px] text-red-700 border-red-300"
                 onclick="mintaPassword('MASTER_BERSIH')"
               >
-                <i class="fa-solid fa-broom mr-1"></i> BERSIHKAN <i class="fa-solid fa-lock ml-1 text-[9px]"></i>
+                🗑️ BERSIHKAN 🔒
               </button>
             </div>
           </div>
@@ -1378,7 +1101,7 @@
                 type="text"
                 id="searchInput"
                 class="form-control"
-                placeholder="CARI NAMA / TEL / PANGKAT..."
+                placeholder="🔍 CARI NAMA / TEL / PANGKAT..."
                 onkeyup="kemaskiniPaparData()"
               />
             </div>
@@ -1389,16 +1112,16 @@
                   onclick="togolBalaiDropdown()"
                 >
                   <div class="multi-select-tags" id="balaiSelectedTags">
-                    <span class="multi-select-placeholder"><i class="fa-solid fa-building mr-1"></i> SEMUA BALAI</span>
+                    <span class="multi-select-placeholder">🏢 SEMUA BALAI</span>
                   </div>
-                  <span class="multi-select-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                  <span class="multi-select-arrow">▼</span>
                 </div>
                 <div class="multi-select-dropdown" id="balaiDropdown">
                   <div class="multi-select-search">
                     <input
                       type="text"
                       id="balaiSearchInput"
-                      placeholder="CARI BALAI..."
+                      placeholder="🔍 CARI BALAI..."
                       onkeyup="tapisBalaiDropdown()"
                       onclick="event.stopPropagation();"
                     />
@@ -1412,13 +1135,13 @@
                       class="btn-select-all"
                       onclick="pilihSemuaBalai();event.stopPropagation();"
                     >
-                      <i class="fa-solid fa-check-double mr-1"></i> PILIH SEMUA
+                      ✅ PILIH SEMUA
                     </button>
                     <button
                       class="btn-clear-all"
                       onclick="kosongkanBalai();event.stopPropagation();"
                     >
-                      <i class="fa-solid fa-xmark mr-1"></i> KOSONGKAN
+                      🗑️ KOSONGKAN
                     </button>
                   </div>
                 </div>
@@ -1428,7 +1151,7 @@
               class="btn btn-secondary sm:!w-auto !px-5"
               onclick="kemaskiniPaparData()"
             >
-              <i class="fa-solid fa-magnifying-glass mr-1"></i> CARI
+              🔍 CARI
             </button>
           </div>
           <div
@@ -1437,7 +1160,7 @@
             style="display: none"
           >
             <span
-              ><i class="fa-solid fa-filter mr-1"></i> <strong>BALAI DITAPIS:</strong>
+              >📋 <strong>BALAI DITAPIS:</strong>
               <span id="filterBalaiList"></span
             ></span>
             <span
@@ -1473,25 +1196,16 @@
         <!-- LOGISTICS TABLE CARD -->
         <div id="sectionLogistik" class="card border-t-4 border-t-yellow-500">
           <div class="card-title">
-            <span><i class="fa-solid fa-truck-field text-amber-600 mr-1.5"></i> LOGISTIK JENTERA BERTUGAS</span>
+            <span>🚒 LOGISTIK JENTERA BERTUGAS</span>
           </div>
           <div class="no-print flex flex-col sm:flex-row gap-2 mb-3">
-            <div class="form-group flex-1 !mb-0">
-              <input
-                type="text"
-                id="logistikSearchInput"
-                class="form-control"
-                placeholder="CARI CALLSIGN / PLAT / MODEL / JENIS / KATEGORI / STATUS..."
-                onkeyup="paparLogistikTable()"
-              />
-            </div>
             <div class="form-group flex-1 !mb-0">
               <select
                 id="logistikBalaiFilter"
                 class="form-control"
                 onchange="paparLogistikTable()"
               >
-                <option value="SEMUA">SEMUA BALAI</option>
+                <option value="SEMUA">🏢 SEMUA BALAI</option>
               </select>
             </div>
           </div>
@@ -1540,25 +1254,16 @@
         <!-- CHECKLIST TABLE CARD -->
         <div id="sectionChecklist" class="card border-t-4 border-t-purple-500">
           <div class="card-title">
-            <span><i class="fa-solid fa-list-check text-purple-600 mr-1.5"></i> CHECKLIST PERKAKAS BILIK KAWALAN</span>
+            <span>✅ CHECKLIST PERKAKAS BILIK KAWALAN</span>
           </div>
           <div class="no-print flex flex-col sm:flex-row gap-2 mb-3">
-            <div class="form-group flex-1 !mb-0">
-              <input
-                type="text"
-                id="checklistSearchInput"
-                class="form-control"
-                placeholder="CARI BALAI / SHIF / WAKTU / CATATAN PERKAKAS..."
-                onkeyup="paparChecklistTable()"
-              />
-            </div>
             <div class="form-group flex-1 !mb-0">
               <select
                 id="checklistBalaiFilter"
                 class="form-control"
                 onchange="paparChecklistTable()"
               >
-                <option value="SEMUA">SEMUA BALAI</option>
+                <option value="SEMUA">🏢 SEMUA BALAI</option>
               </select>
             </div>
           </div>
@@ -1614,7 +1319,7 @@
       <div class="modal sm:!max-w-4xl">
         <div class="modal-header">
           <div class="flex items-center gap-2">
-            <i class="fa-solid fa-user-shield text-red-600 text-lg"></i>
+            <span class="text-lg">👤</span>
             <h3>ISI KEKUATAN ANGGOTA BERTUGAS</h3>
           </div>
           <button class="close-modal" onclick="tutupModalTambahAnggota()">
@@ -1623,7 +1328,7 @@
         </div>
 
         <div class="info-pill bg-red-50 border-red-200 text-red-900">
-          <i class="fa-solid fa-circle-info text-red-700"></i>
+          <span>💡</span>
           <span
             >PILIH ANGGOTA DARI MASTER & TETAPKAN PASUKAN, STATUS DAN
             PERANAN.</span
@@ -1649,17 +1354,17 @@
             >
               <div class="multi-select-tags" id="namaAnggotaSelectedTags">
                 <span class="multi-select-placeholder"
-                  >TEKAN UNTUK PILIH ANGGOTA...</span
+                  >👤 TEKAN UNTUK PILIH ANGGOTA...</span
                 >
               </div>
-              <span class="multi-select-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+              <span class="multi-select-arrow">▼</span>
             </div>
             <div class="multi-select-dropdown" id="namaAnggotaDropdown">
               <div class="multi-select-search">
                 <input
                   type="text"
                   id="namaAnggotaSearchInput"
-                  placeholder="CARI NAMA / PANGKAT / BALAI..."
+                  placeholder="🔍 CARI NAMA / PANGKAT / BALAI..."
                   onkeyup="tapisNamaAnggotaDropdown()"
                   onclick="event.stopPropagation();"
                 />
@@ -1673,13 +1378,13 @@
                   class="btn-select-all"
                   onclick="pilihSemuaNamaAnggota();event.stopPropagation();"
                 >
-                  <i class="fa-solid fa-check-double mr-1"></i> PILIH SEMUA
+                  ✅ PILIH SEMUA
                 </button>
                 <button
                   class="btn-clear-all"
                   onclick="kosongkanNamaAnggota();event.stopPropagation();"
                 >
-                  <i class="fa-solid fa-xmark mr-1"></i> KOSONGKAN
+                  🗑️ KOSONGKAN
                 </button>
               </div>
             </div>
@@ -1688,13 +1393,13 @@
 
         <div class="flex items-center justify-between mb-1.5 mt-1">
           <span class="font-extrabold text-xs text-slate-800"
-            ><i class="fa-solid fa-list-check mr-1"></i> SENARAI ANGGOTA DIPILIH & PERANAN:</span
+            >📋 SENARAI ANGGOTA DIPILIH & PERANAN:</span
           >
           <button
             class="px-2 py-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-[10px] font-black rounded-lg border border-emerald-300 transition"
             onclick="setSemuaAnggotaStatus('BERTUGAS')"
           >
-            <i class="fa-solid fa-bolt mr-1"></i> SET ALL BERTUGAS
+            ⚡ SET ALL BERTUGAS
           </button>
         </div>
 
@@ -1728,7 +1433,7 @@
 
         <div class="btn-group">
           <button class="btn btn-primary" onclick="simpanAnggotaBaharu()">
-            <i class="fa-solid fa-floppy-disk mr-1.5"></i> SIMPAN KEKUATAN ANGGOTA
+            💾 SIMPAN KEKUATAN ANGGOTA
           </button>
           <button class="btn btn-secondary" onclick="tutupModalTambahAnggota()">
             BATAL
@@ -1742,7 +1447,7 @@
       <div class="modal sm:!max-w-4xl">
         <div class="modal-header">
           <div class="flex items-center gap-2">
-            <i class="fa-solid fa-truck-field text-amber-600 text-lg"></i>
+            <span class="text-lg">🚒</span>
             <h3>LOGISTIK JENTERA BERTUGAS</h3>
           </div>
           <button class="close-modal" onclick="tutupModalLogistikJentera()">
@@ -1751,7 +1456,7 @@
         </div>
 
         <div class="info-pill bg-amber-50 border-amber-200 text-amber-900">
-          <i class="fa-solid fa-circle-info text-amber-700"></i>
+          <span>💡</span>
           <span
             >PILIH BALAI & TAPIS KATEGORI UNTUK MEMILIH JENTERA DARI
             INVENTORI.</span
@@ -1778,18 +1483,18 @@
               class="form-control border-amber-300"
               onchange="janaLogJenteraDropdown()"
             >
-              <option value="SEMUA">SEMUA KATEGORI</option>
+              <option value="SEMUA">🌐 SEMUA KATEGORI</option>
               <option value="FRT/LFRT/CFRT/RFRT">
-                JENTERA PEMADAM (FRT/CFRT)
+                🚒 JENTERA PEMADAM (FRT/CFRT)
               </option>
-              <option value="EMRS">EMRS</option>
-              <option value="WATER TANKER">TANGKI AIR (WATER TANKER)</option>
-              <option value="KHAS/BOMPA">KHAS / BOMPA</option>
-              <option value="BOT">BOT PENYELAMAT</option>
+              <option value="EMRS">🚑 EMRS</option>
+              <option value="WATER TANKER">💧 TANGKI AIR (WATER TANKER)</option>
+              <option value="KHAS/BOMPA">⚡ KHAS / BOMPA</option>
+              <option value="BOT">🚤 BOT PENYELAMAT</option>
               <option value="RIM">
-                RIM (RAPID INTERVENTION MOTORCYCLE)
+                🏍️ RIM (RAPID INTERVENTION MOTORCYCLE)
               </option>
-              <option value="KENDERAAN/UTILITI">KENDERAAN / UTILITI</option>
+              <option value="KENDERAAN/UTILITI">🚙 KENDERAAN / UTILITI</option>
             </select>
           </div>
         </div>
@@ -1810,17 +1515,17 @@
             >
               <div class="multi-select-tags" id="logJenteraSelectedTags">
                 <span class="multi-select-placeholder"
-                  >TEKAN UNTUK PILIH JENTERA...</span
+                  >🔧 TEKAN UNTUK PILIH JENTERA...</span
                 >
               </div>
-              <span class="multi-select-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+              <span class="multi-select-arrow">▼</span>
             </div>
             <div class="multi-select-dropdown" id="logJenteraDropdown">
               <div class="multi-select-search">
                 <input
                   type="text"
                   id="logJenteraSearchInput"
-                  placeholder="CARI CALLSIGN / PLAT..."
+                  placeholder="🔍 CARI CALLSIGN / PLAT..."
                   onkeyup="tapisLogJenteraDropdown()"
                   onclick="event.stopPropagation();"
                 />
@@ -1834,13 +1539,13 @@
                   class="btn-select-all"
                   onclick="pilihSemuaLogJentera();event.stopPropagation();"
                 >
-                  <i class="fa-solid fa-check-double mr-1"></i> PILIH SEMUA
+                  ✅ PILIH SEMUA
                 </button>
                 <button
                   class="btn-clear-all"
                   onclick="kosongkanLogJentera();event.stopPropagation();"
                 >
-                  <i class="fa-solid fa-xmark mr-1"></i> KOSONGKAN
+                  🗑️ KOSONGKAN
                 </button>
               </div>
             </div>
@@ -1849,13 +1554,13 @@
 
         <div class="flex items-center justify-between mb-1.5 mt-1">
           <span class="font-extrabold text-xs text-slate-800"
-            ><i class="fa-solid fa-list-check mr-1"></i> SENARAI JENTERA DIPILIH & STATUS:</span
+            >📋 SENARAI JENTERA DIPILIH & STATUS:</span
           >
           <button
             class="px-2 py-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-[10px] font-black rounded-lg border border-emerald-300 transition"
             onclick="setSemuaJenteraStatus('SEDIA BEROPERASI')"
           >
-            <i class="fa-solid fa-bolt mr-1"></i> SET ALL SEDIA
+            ⚡ SET ALL SEDIA
           </button>
         </div>
 
@@ -1889,7 +1594,7 @@
 
         <div class="btn-group">
           <button class="btn btn-orange" onclick="simpanLogistikBertugas()">
-            <i class="fa-solid fa-floppy-disk mr-1.5"></i> SIMPAN LOGISTIK JENTERA
+            💾 SIMPAN LOGISTIK JENTERA
           </button>
           <button
             class="btn btn-secondary"
@@ -1906,7 +1611,7 @@
       <div class="modal sm:!max-w-4xl">
         <div class="modal-header">
           <div class="flex items-center gap-2">
-            <i class="fa-solid fa-list-check text-purple-600 text-lg"></i>
+            <span class="text-lg">✅</span>
             <h3>CHECKLIST PERKAKAS BILIK KAWALAN</h3>
           </div>
           <button class="close-modal" onclick="tutupModalChecklist()">
@@ -1918,14 +1623,14 @@
           class="info-pill bg-purple-50 border-purple-200 text-purple-900 flex flex-wrap items-center justify-between gap-1.5"
         >
           <span
-            ><i class="fa-solid fa-circle-info text-purple-700 mr-1"></i> STATUS <strong>BAIK</strong> & <strong>ROSAK</strong> BAGI
+            >💡 STATUS <strong>BAIK</strong> & <strong>ROSAK</strong> BAGI
             SETIAP PERKAKAS.</span
           >
           <button
             class="bg-purple-700 text-white px-2.5 py-1 rounded-lg text-[9px] font-black hover:bg-purple-800 transition shadow-sm"
             onclick="setSemuaChecklistDefault()"
           >
-            <i class="fa-solid fa-bolt mr-1"></i> SET SEMUA BAIK (DEFAULT)
+            ⚡ SET SEMUA BAIK (DEFAULT)
           </button>
         </div>
 
@@ -1967,7 +1672,7 @@
 
         <div class="mb-1.5 flex items-center justify-between">
           <label class="text-xs font-black text-slate-800"
-            ><i class="fa-solid fa-toolbox text-purple-700 mr-1"></i> 8 PERKAKAS BILIK KAWALAN & UNIT STATUS:</label
+            >📋 8 PERKAKAS BILIK KAWALAN & UNIT STATUS:</label
           >
           <span class="text-[9px] text-purple-700 font-bold"
             >BAIK / ROSAK + CATATAN</span
@@ -1984,8 +1689,8 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-black text-slate-800 text-xs sm:text-sm flex items-center gap-1.5">
-                  <i class="fa-solid fa-desktop text-purple-600"></i> COMPUTER AIDED DISPATCH (CAD)
+                <div class="font-black text-slate-800 text-xs sm:text-sm">
+                  🖥️ COMPUTER AIDED DISPATCH (CAD)
                 </div>
                 <div class="text-[9px] text-slate-500 font-semibold">
                   Sistem Penghantaran Bantuan Komputer
@@ -2000,7 +1705,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
-                  ><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> BAIK (UNIT)</label
+                  >✅ BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2027,7 +1732,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-red-700 block mb-0.5"
-                  ><i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> ROSAK (UNIT)</label
+                  >❌ ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2069,8 +1774,8 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-black text-slate-800 text-xs sm:text-sm flex items-center gap-1.5">
-                  <i class="fa-solid fa-globe text-purple-600"></i> WEB INTEGRATED CONSOLE (WIC)
+                <div class="font-black text-slate-800 text-xs sm:text-sm">
+                  🌐 WEB INTEGRATED CONSOLE (WIC)
                 </div>
                 <div class="text-[9px] text-slate-500 font-semibold">
                   Konsol Bersepadu Web
@@ -2085,7 +1790,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
-                  ><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> BAIK (UNIT)</label
+                  >✅ BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2112,7 +1817,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-red-700 block mb-0.5"
-                  ><i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> ROSAK (UNIT)</label
+                  >❌ ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2154,8 +1859,8 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-black text-slate-800 text-xs sm:text-sm flex items-center gap-1.5">
-                  <i class="fa-solid fa-mobile-screen-button text-purple-600"></i> BOMBA RESPONDER APPS (BOMRA)
+                <div class="font-black text-slate-800 text-xs sm:text-sm">
+                  📱 BOMBA RESPONDER APPS (BOMRA)
                 </div>
                 <div class="text-[9px] text-slate-500 font-semibold">
                   Aplikasi Responder Bomba
@@ -2170,7 +1875,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
-                  ><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> BAIK (UNIT)</label
+                  >✅ BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2197,7 +1902,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-red-700 block mb-0.5"
-                  ><i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> ROSAK (UNIT)</label
+                  >❌ ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2239,8 +1944,8 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-black text-slate-800 text-xs sm:text-sm flex items-center gap-1.5">
-                  <i class="fa-solid fa-laptop text-purple-600"></i> DESKTOP GIRN
+                <div class="font-black text-slate-800 text-xs sm:text-sm">
+                  💻 DESKTOP GIRN
                 </div>
                 <div class="text-[9px] text-slate-500 font-semibold">
                   Radio Komunikasi Desktop
@@ -2255,7 +1960,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
-                  ><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> BAIK (UNIT)</label
+                  >✅ BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2282,7 +1987,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-red-700 block mb-0.5"
-                  ><i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> ROSAK (UNIT)</label
+                  >❌ ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2324,8 +2029,8 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-black text-slate-800 text-xs sm:text-sm flex items-center gap-1.5">
-                  <i class="fa-solid fa-walkie-talkie text-purple-600"></i> HANDHELD GIRN
+                <div class="font-black text-slate-800 text-xs sm:text-sm">
+                  📻 HANDHELD GIRN
                 </div>
                 <div class="text-[9px] text-slate-500 font-semibold">
                   Radio Komunikasi Mudah Alih
@@ -2340,7 +2045,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
-                  ><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> BAIK (UNIT)</label
+                  >✅ BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2367,7 +2072,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-red-700 block mb-0.5"
-                  ><i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> ROSAK (UNIT)</label
+                  >❌ ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2409,8 +2114,8 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-black text-slate-800 text-xs sm:text-sm flex items-center gap-1.5">
-                  <i class="fa-solid fa-car text-purple-600"></i> VEHICULAR GIRN
+                <div class="font-black text-slate-800 text-xs sm:text-sm">
+                  🚙 VEHICULAR GIRN
                 </div>
                 <div class="text-[9px] text-slate-500 font-semibold">
                   Radio Komunikasi Kenderaan
@@ -2425,7 +2130,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
-                  ><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> BAIK (UNIT)</label
+                  >✅ BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2452,7 +2157,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-red-700 block mb-0.5"
-                  ><i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> ROSAK (UNIT)</label
+                  >❌ ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2494,8 +2199,8 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-black text-slate-800 text-xs sm:text-sm flex items-center gap-1.5">
-                  <i class="fa-solid fa-network-wired text-purple-600"></i> INTERNET
+                <div class="font-black text-slate-800 text-xs sm:text-sm">
+                  🌐 INTERNET
                 </div>
                 <div class="text-[9px] text-slate-500 font-semibold">
                   Capaian Rangkaian Internet
@@ -2510,7 +2215,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
-                  ><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> BAIK (UNIT)</label
+                  >✅ BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2537,7 +2242,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-red-700 block mb-0.5"
-                  ><i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> ROSAK (UNIT)</label
+                  >❌ ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2579,8 +2284,8 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <div class="font-black text-slate-800 text-xs sm:text-sm flex items-center gap-1.5">
-                  <i class="fa-solid fa-phone text-purple-600"></i> HANDPHONE RASMI
+                <div class="font-black text-slate-800 text-xs sm:text-sm">
+                  📱 HANDPHONE RASMI
                 </div>
                 <div class="text-[9px] text-slate-500 font-semibold">
                   Telefon Bimbit Rasmi Bilik Kawalan
@@ -2595,7 +2300,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-emerald-700 block mb-0.5"
-                  ><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> BAIK (UNIT)</label
+                  >✅ BAIK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2622,7 +2327,7 @@
               <div>
                 <label
                   class="text-[9px] font-extrabold text-red-700 block mb-0.5"
-                  ><i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> ROSAK (UNIT)</label
+                  >❌ ROSAK (UNIT)</label
                 >
                 <div class="flex items-center gap-1">
                   <button
@@ -2660,7 +2365,7 @@
 
         <div class="btn-group">
           <button class="btn btn-purple" onclick="simpanChecklistDariModal()">
-            <i class="fa-solid fa-floppy-disk mr-1.5"></i> SIMPAN CHECKLIST PERKAKAS
+            💾 SIMPAN CHECKLIST PERKAKAS
           </button>
           <button class="btn btn-secondary" onclick="tutupModalChecklist()">
             BATAL
@@ -2673,7 +2378,7 @@
     <div class="modal-overlay" id="passwordModal">
       <div class="modal sm:!max-w-md">
         <div class="modal-header">
-          <h3><i class="fa-solid fa-shield-halved text-red-600 mr-1.5"></i> PENGESAHAN KATA LALUAN</h3>
+          <h3>🔒 PENGESAHAN KATA LALUAN</h3>
           <button class="close-modal" onclick="tutupModalPassword()">
             &times;
           </button>
@@ -2691,7 +2396,7 @@
             onkeyup="semakEnterPassword(event)"
           />
           <div id="passwordErrorMsg" class="error-message">
-            <i class="fa-solid fa-triangle-exclamation mr-1"></i> KATA LALUAN SALAH!
+            ⚠️ KATA LALUAN SALAH!
           </div>
         </div>
         <div class="btn-group">
@@ -2754,13 +2459,13 @@
     <div class="modal-overlay" id="urusMasterModal">
       <div class="modal">
         <div class="modal-header">
-          <h3><i class="fa-solid fa-sliders text-slate-800 mr-1.5"></i> URUS / PADAM SENARAI MASTER</h3>
+          <h3>🔒 URUS / PADAM SENARAI MASTER</h3>
           <button class="close-modal" onclick="tutupModalUrusMaster()">
             &times;
           </button>
         </div>
         <div class="info-pill mb-2">
-          <i class="fa-solid fa-circle-info text-blue-700 mr-1"></i> PADAM ITEM DARI SENARAI PILIHAN UTAMA
+          💡 PADAM ITEM DARI SENARAI PILIHAN UTAMA
         </div>
         <div class="tab-btn-group mb-2">
           <button
@@ -2806,18 +2511,18 @@
     <div class="modal-overlay" id="urusJenteraModal">
       <div class="modal">
         <div class="modal-header">
-          <h3><i class="fa-solid fa-truck-gear text-slate-800 mr-1.5"></i> URUS SENARAI JENTERA (MASTER)</h3>
+          <h3>🔧 URUS SENARAI JENTERA (MASTER)</h3>
           <button class="close-modal" onclick="tutupModalUrusJentera()">
             &times;
           </button>
         </div>
-        <div class="info-pill mb-2"><i class="fa-solid fa-circle-info text-blue-700 mr-1"></i> PADAM JENTERA DARI INVENTORI UTAMA</div>
+        <div class="info-pill mb-2">💡 PADAM JENTERA DARI INVENTORI UTAMA</div>
         <div class="form-group mb-2">
           <input
             type="text"
             id="cariJenteraMaster"
             class="form-control"
-            placeholder="CARI CALLSIGN / PLAT / KATEGORI..."
+            placeholder="🔍 CARI CALLSIGN / PLAT / KATEGORI..."
             onkeyup="renderSenaraiJenteraMaster()"
           />
         </div>
@@ -2839,60 +2544,21 @@
       </div>
     </div>
 
-    <!-- STANDALONE MOBILE BOTTOM NAVIGATION BAR -->
-    <nav class="mobile-bottom-nav no-print" id="mobileBottomNav">
-      <a href="#sectionPanels" class="mobile-nav-item active" onclick="aktifkanTabBottomNav(this)">
-        <i class="fa-solid fa-clipboard-list"></i>
-        <span>TUGASAN</span>
-      </a>
-      <a href="#sectionAnggota" class="mobile-nav-item" onclick="aktifkanTabBottomNav(this)">
-        <i class="fa-solid fa-user-shield"></i>
-        <span>ANGGOTA</span>
-      </a>
-      <a href="#sectionLogistik" class="mobile-nav-item" onclick="aktifkanTabBottomNav(this)">
-        <i class="fa-solid fa-truck-field"></i>
-        <span>LOGISTIK</span>
-      </a>
-      <a href="#sectionChecklist" class="mobile-nav-item" onclick="aktifkanTabBottomNav(this)">
-        <i class="fa-solid fa-list-check"></i>
-        <span>CHECKLIST</span>
-      </a>
-      <a href="#sectionPanels" class="mobile-nav-item" onclick="aktifkanTabBottomNav(this)">
-        <i class="fa-solid fa-gears"></i>
-        <span>MASTER</span>
-      </a>
-    </nav>
-
     <!-- FOOTER -->
     <footer
-      class="text-center py-6 px-4 no-print border-t border-slate-200/80 mt-8 mb-16 lg:mb-0"
+      class="text-center py-6 px-4 no-print border-t border-slate-200/80 mt-8"
     >
-      <p class="text-xs font-black text-slate-300 tracking-wider">
-        &copy; 2026 PGO JOHOR
+      <p class="text-xs font-black text-slate-600 tracking-wider">
+        &copy; 2026 PGO JOHOR | Hak Cipta Terpelihara
       </p>
       <p
-        class="text-[11px] font-extrabold text-yellow-400 tracking-widest mt-0.5"
+        class="text-[11px] font-extrabold text-slate-400 tracking-widest mt-0.5"
       >
-      PB MOHAMAD AIDIL | Hak Cipta Terpelihara
+        PEMBANGUN APLIKASI : PB MOHAMAD AIDIL
       </p>
     </footer>
 
     <script>
-      // === SPLASH SCREEN LOGIC ===
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          var splash = document.getElementById('splashScreen');
-          if (splash) {
-            splash.classList.add('hidden');
-          }
-        }, 2500);
-      });
-
-      function aktifkanTabBottomNav(el) {
-        document.querySelectorAll('.mobile-nav-item').forEach(item => item.classList.remove('active'));
-        if (el) el.classList.add('active');
-      }
-
       const KATA_LALUAN_TETAP = 'PGO1234';
       let sasaranPasswordAction = '',
         confirmCallback = null,
@@ -2982,10 +2648,10 @@
 
       function initSupabaseClient() {
         if (supabaseUrl && supabaseKey) {
-          kemaskiniStatusCloud('active', '<i class="fa-solid fa-circle text-[9px] text-emerald-500 mr-1"></i> SUPABASE: DISAMBUNG');
+          kemaskiniStatusCloud('active', '🟢 SUPABASE: DISAMBUNG');
           return true;
         } else {
-          kemaskiniStatusCloud('inactive', '<i class="fa-solid fa-circle text-[9px] text-amber-500 mr-1"></i> SUPABASE: BELUM DISAMBUNG');
+          kemaskiniStatusCloud('inactive', '🟡 SUPABASE: BELUM DISAMBUNG');
           return false;
         }
       }
@@ -3011,7 +2677,7 @@
       async function hantarDataSupabase() {
         if (!supabaseUrl || !supabaseKey) {
           simpanKeLocalStorage();
-          tunjukCustomAlert('Data disimpan dalam storan tempatan.');
+          tunjukCustomAlert('ℹ️ Data disimpan dalam storan tempatan.');
           return;
         }
         tunjukLoading();
@@ -3041,11 +2707,11 @@
           if (!response.ok) throw new Error('HTTP ' + response.status);
 
           simpanKeLocalStorage();
-          tunjukCustomAlert('Data berjaya dihantar ke Supabase Cloud!');
+          tunjukCustomAlert('✅ Data berjaya dihantar ke Supabase Cloud!');
         } catch (err) {
           simpanKeLocalStorage();
           tunjukCustomAlert(
-            'Gagal hantar ke Supabase tetapi data disimpan secara tempatan.'
+            '⚠️ Gagal hantar ke Supabase tetapi data disimpan secara tempatan.'
           );
           console.error(err);
         } finally {
@@ -3128,7 +2794,7 @@
 
       async function tarikDataSupabase() {
         if (!supabaseUrl || !supabaseKey) {
-          tunjukCustomAlert('URL/Key Supabase tidak ditetapkan!');
+          tunjukCustomAlert('❌ URL/Key Supabase tidak ditetapkan!');
           return;
         }
         tunjukLoading();
@@ -3165,12 +2831,12 @@
 
             simpanKeLocalStorage();
             kemaskiniSemuaPaparan();
-            tunjukCustomAlert('Data berjaya dimuat turun!');
+            tunjukCustomAlert('✅ Data berjaya dimuat turun!');
           } else {
-            tunjukCustomAlert('Tiada rekod dijumpai.');
+            tunjukCustomAlert('⚠️ Tiada rekod dijumpai.');
           }
         } catch (err) {
-          tunjukCustomAlert('Gagal tarik: ' + err.message);
+          tunjukCustomAlert('❌ Gagal tarik: ' + err.message);
           console.error(err);
         } finally {
           sorokLoading();
@@ -3223,96 +2889,203 @@
         let id = 1000;
 
         const cfrtData = [
-          ['CFRT 1', 'VLN 5716', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
-          ['CFRT 2', 'VLN 5721', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
-          ['CFRT 3', 'VNE 4357', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
-          ['CFRT 4', 'VPG 3667', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
-          ['CFRT 5', 'BSK 8079', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
-          ['CFRT 6', 'VQJ 6595', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
-          ['CFRT 7', 'VQJ 6576', 'HINO XZC720R ZKFRL3', '03. COMPACT FIRE RESCUE TENDER (CFRT)'],
+          [
+            'CFRT 1',
+            'VLN 5716',
+            'HINO XZC720R ZKFRL3',
+            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
+          ],
+          [
+            'CFRT 2',
+            'VLN 5721',
+            'HINO XZC720R ZKFRL3',
+            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
+          ],
+          [
+            'CFRT 3',
+            'VNE 4357',
+            'HINO XZC720R ZKFRL3',
+            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
+          ],
+          [
+            'CFRT 4',
+            'VPG 3667',
+            'HINO XZC720R ZKFRL3',
+            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
+          ],
+          [
+            'CFRT 5',
+            'BSK 8079',
+            'HINO XZC720R ZKFRL3',
+            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
+          ],
+          [
+            'CFRT 6',
+            'VQJ 6595',
+            'HINO XZC720R ZKFRL3',
+            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
+          ],
+          [
+            'CFRT 7',
+            'VQJ 6576',
+            'HINO XZC720R ZKFRL3',
+            '03. COMPACT FIRE RESCUE TENDER (CFRT)',
+          ],
         ];
 
         const frtData = [
           ['J1-01', 'BMK 976', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-02', 'BJT 8410', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          [
+            'J1-02',
+            'BJT 8410',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
           ['J1-03', 'WUC 170', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-04', 'BLU 8032', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-05', 'BGQ 6785', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-06', 'BJW 4572', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          [
+            'J1-06',
+            'BJW 4572',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
           ['J1-07', 'BMK 987', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-08', 'BLX 576', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-09', 'WUB 9615', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-10', 'BJW 4568', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          [
+            'J1-10',
+            'BJW 4568',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
           ['J1-11', 'BMK 1021', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-13', 'BMK 982', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-14', 'BJW 4563', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          [
+            'J1-14',
+            'BJW 4563',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
           ['J1-15', 'BLV 9703', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-16', 'BJY 3594', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          [
+            'J1-16',
+            'BJY 3594',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
           ['J1-17', 'BKN 3325', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-18', 'BMK 1013', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-19', 'BJY 3445', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          [
+            'J1-19',
+            'BJY 3445',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
           ['J1-20', 'BKN 7156', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-21', 'BMK 1030', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-22', 'BJW 4599', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          [
+            'J1-22',
+            'BJW 4599',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
           ['J1-23', 'BMK 1014', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-24', 'BJY 3364', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
-          ['J1-27', 'BJW 4548', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          [
+            'J1-24',
+            'BJY 3364',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          [
+            'J1-27',
+            'BJW 4548',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
           ['J1-28', 'BLW 6720', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-29', 'BJW 4575', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
-          ['J1-31', 'BJT 8258', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          [
+            'J1-29',
+            'BJW 4575',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          [
+            'J1-31',
+            'BJT 8258',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
           ['J1-32', 'BLX 4668', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-33', 'BJY 3386', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
-          ['J1-36', 'BJW 4573', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          [
+            'J1-33',
+            'BJY 3386',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          [
+            'J1-36',
+            'BJW 4573',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
           ['J1-38', 'BMK 4620', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-39', 'BJW 4569', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          [
+            'J1-39',
+            'BJW 4569',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
           ['J1-40', 'BMK 1005', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-41', 'BKN 7309', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-42', 'BJT 8353', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
-          ['J1-44', 'BKA 8796', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          [
+            'J1-42',
+            'BJT 8353',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          [
+            'J1-44',
+            'BKA 8796',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
           ['J1-45', 'BLU 8034', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-47', 'WUC 7006', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-48', 'BGR 4065', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-50', 'BMK 1015', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-51', 'BJW 4590', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
-          ['J1-53', 'BJW 4561', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          [
+            'J1-51',
+            'BJW 4590',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
+          [
+            'J1-53',
+            'BJW 4561',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
           ['J1-54', 'BLV 9856', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-55', 'BJT 8356', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          [
+            'J1-55',
+            'BJT 8356',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
           ['J1-56', 'WUB 9481', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['J1-57', 'BKA 9304', 'MERCEDES ATEGO', '02. LIGHT FIRE RESCUE TENDER (LFRT)'],
+          [
+            'J1-57',
+            'BKA 9304',
+            'MERCEDES ATEGO',
+            '02. LIGHT FIRE RESCUE TENDER (LFRT)',
+          ],
           ['J1-58', 'BMK 992', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-59', 'BGR 3578', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
           ['J1-60', 'BMK 984', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
-          ['N/A', 'WDF 2115', 'NISSAN UD CPB14FHRT', '01. FIRE RESCUE TENDER (FRT)'],
-          ['N/A', 'WDF 4724', 'NISSAN UD CPB14FHRT', '01. FIRE RESCUE TENDER (FRT)'],
-          ['N/A', 'WEH 3367', 'NISSAN UD CPB14FHRT', '01. FIRE RESCUE TENDER (FRT)'],
-          ['N/A', 'WDF 2842', 'NISSAN UD CPB14FHRT', '01. FIRE RESCUE TENDER (FRT)'],
-          ['N/A', 'WEH 3358', 'NISSAN UD CPB14FHRT', '01. FIRE RESCUE TENDER (FRT)'],
-          ['N/A', 'WCC 4229', 'NISSAN UD CPB14FHRT', '01. FIRE RESCUE TENDER (FRT)'],
-          ['N/A', 'WEH 3365', 'NISSAN UD CPB14FHRT', '01. FIRE RESCUE TENDER (FRT)'],
-          ['N/A', 'WDF 2113', 'NISSAN UD CPB14FHRT', '01. FIRE RESCUE TENDER (FRT)'],
         ];
 
-        const rfrtData = [
-          ['N/A', 'BGR 6274', 'FORD F350', '04. RAPID FIRE RESCUE TENDER (RFRT)'],
-        ];
-
-        const sitrakData = [
-          ['SITRAK 1', 'BSJ 6359', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
-          ['SITRAK 2', 'BSL 7836', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
-          ['SITRAK 3', 'BSL 7849', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
-          ['SITRAK 4', 'BSL 7857', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
-          ['SITRAK 5', 'BSL 7876', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
-          ['SITRAK 6', 'BSL 7885', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
-          ['SITRAK 7', 'BSL 7895', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
-          ['SITRAK 8', 'BSL 7906', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
-        ];
-
-        const scaniaP94Data = [
-          ['W1-35', 'WHK 9429', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
-        ];
-
-        const semuaPemadam = [...cfrtData, ...frtData, ...rfrtData, ...sitrakData, ...scaniaP94Data];
-        
+        const semuaPemadam = [...cfrtData, ...frtData];
         semuaPemadam.forEach((d) =>
           logistikJentera.push({
             id: ++id,
@@ -3333,21 +3106,6 @@
           ['J2-03', 'BMQ 2930', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
           ['J2-04', 'BMT 158', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
           ['J2-05', 'BMT 1030', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
-          ['J2-06', 'BMT 1034', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
-          ['J2-07', 'BMT 1861', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
-          ['J2-08', 'BMS 7089', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
-          ['J2-09', 'BMS 7185', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
-          ['J2-10', 'BMU 4233', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
-          ['J2-11', 'BMU 5008', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
-          ['J2-12', 'BMV 9267', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
-          ['J2-13', 'BNE 654', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
-          ['J2-14', 'BNE 754', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
-          ['J2-15', 'BNE 1842', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
-          ['J2-16', 'BNE 1944', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
-          ['J2-17', 'BNG 3646', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
-          ['J2-18', 'BNH 5275', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
-          ['J2-19', 'BNH 9605', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
-          ['J2-20', 'BNK 3528', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
         ];
 
         emrsData.forEach((d) =>
@@ -3364,356 +3122,17 @@
           })
         );
 
-        const waterTankerData = [
-          ['J5-01', 'BMS 5928', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
-          ['J5-02', 'BMV 1317', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
-          ['J5-03', 'BMP 6933', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
-          ['J5-04', 'BMV 1436', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
-          ['J5-05', 'BMV 4137', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
-          ['J5-06', 'BMX 9594', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
-          ['J5-07', 'BNE 8418', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
-          ['J5-08', 'BMX 9580', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
-          ['J5-09', 'BNH 2712', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
-          ['J5-10', 'BNH 7962', 'SCANIA WT 20000L', '16. SCANIA WT 20000L'],
-          ['J5-11', 'WLA 4678', 'MERCEDES WT 10000L', '15. MERCEDES WT 10000L'],
-          ['J5-12', 'WLA 4638', 'MERCEDES WT 10000L', '15. MERCEDES WT 10000L'],
-        ];
-
-        waterTankerData.forEach((d) =>
-          logistikJentera.push({
-            id: ++id,
-            callsign: d[0],
-            plate: d[1],
-            model: d[2],
-            jenis: d[3],
-            kategori: 'WATER TANKER',
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          })
+        console.log(
+          '✅ Inventori Jentera Penuh Dimuat (' +
+            logistikJentera.length +
+            ' unit)'
         );
-
-        const khasBompaData = [
-          ['J3-01', 'BHK 9085', 'TURN TABLE LADDER', '10. TURN TABLE LADDER 52M'],
-          ['J3-02', 'BHK 9416', 'TURN TABLE LADDER', '10. TURN TABLE LADDER 32M'],
-          ['J3-03', 'BHK 9070', 'TURN TABLE LADDER', '10. TURN TABLE LADDER 32M'],
-          ['J4-01', 'WEU 5287', 'HAZMAT', '17. HAZMAT'],
-          ['J7-01', 'WUP 4200', 'RRV', '06. RRV'],
-          ['J7-02', 'WUQ 2616', 'RRV', '06. RRV'],
-          ['J7-03', 'WUQ 2751', 'RRV', '06. RRV'],
-          ['J8-01', 'WUN 8456', 'BATV', '14. BATV'],
-          ['J9-01', 'WUJ 9272', 'SIASATAN', 'FORENSICS'],
-          ['J9-02', 'FF 6853', 'SIASATAN', 'FORENSICS'],
-          ['J10-01', 'WSG 3646', 'KOMUNIKASI', '18. KOMUNIKASI'],
-          ['J11-01', 'BJS 3513', 'HPPM', '11. HPPM'],
-          ['J12-01', 'T/BD/750', 'FOAM TENDER PUMP TRAILER', '12. FOAM TENDER PUMP TRAILER'],
-          ['J12-01', 'T/BD/744', 'FOAM TENDER PUMP TRAILER', '12. FOAM TENDER PUMP TRAILER'],
-          ['J12-01', 'WXS 752', 'PRIME MOVER FOAM TRAILER', 'PRIME MOVER'],
-          ['J14-01', 'BGU 488', 'KEMBALIK', '22. KEMBALIK'],
-          ['J15-01', 'VQ 7142', 'FOAM MONITOR DAN FOAM TENDER', '13. FOAM MONITOR DAN FOAM TENDER'],
-          ['J15-02', 'VQ 7144', 'FOAM MONITOR DAN FOAM TENDER', '13. FOAM MONITOR DAN FOAM TENDER'],
-          ['J16-01', 'VBR 2450', 'ALP', '08. ALP'],
-          ['J16-02', 'BPD 7929', 'ALP', '08. ALP'],
-          ['LLJ', '-', 'COMMAND POST', '21. COMMAND POST'],
-          ['LLJ', 'N/A', 'POLARIS', 'AATV'],
-        ];
-
-        khasBompaData.forEach((d) =>
-          logistikJentera.push({
-            id: ++id,
-            callsign: d[0],
-            plate: d[1],
-            model: d[2],
-            jenis: d[3],
-            kategori: 'KHAS/BOMPA',
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          })
-        );
-
-        const botData = [
-          ['04-14', '', 'ALUMINIUM', 'BOT'],
-          ['BP34', '', 'ALUMINIUM', 'BOT'],
-          ['34-14', '', 'ALUMINIUM', 'BOT'],
-          ['BP 048-10', '', 'ALUMINIUM', 'BOT'],
-          ['BP 059-10', '', 'ALUMINIUM', 'BOT'],
-          ['047-10', '', 'ALUMINIUM', 'BOT'],
-          ['BP 06', '', 'ALUMINIUM', 'BOT'],
-          ['BP 37', '', 'ALUMINIUM', 'BOT'],
-          ['BP 050-10', '', 'ALUMINIUM', 'BOT'],
-          ['BP 07-14', '', 'ALUMINIUM', 'BOT'],
-          ['BP 44', '', 'ALUMINIUM', 'BOT'],
-          ['036-10', '', 'ALUMINIUM', 'BOT'],
-          ['042-10', '', 'ALUMINIUM', 'BOT'],
-          ['BP 36', '', 'ALUMINIUM', 'BOT'],
-          ['B040-10', '', 'ALUMINIUM', 'BOT'],
-          ['-', '', 'ALUMINIUM', 'BOT'],
-          ['BP 56', '', 'ALUMINIUM', 'BOT'],
-          ['02-JB', '', 'ALUMINIUM', 'BOT'],
-          ['BP O35-10', '', 'ALUMINIUM', 'BOT'],
-          ['ISTANA', '', 'ALUMINIUM', 'BOT'],
-          ['BP 049-10', '', 'ALUMINIUM', 'BOT'],
-          ['BP 40', '', 'ALUMINIUM', 'BOT'],
-          ['BP 046-10', '', 'ALUMINIUM', 'BOT'],
-          ['BP 39', '', 'ALUMINIUM', 'BOT'],
-          ['PGH 41', '', 'ALUMINIUM', 'BOT'],
-          ['01-PSG', '', 'ALUMINIUM', 'BOT'],
-          ['03-PSG', '', 'ALUMINIUM', 'BOT'],
-          ['038-10 PSG', '', 'ALUMINIUM', 'BOT'],
-          ['02-PNS', '', 'ALUMINIUM', 'BOT'],
-          ['BP 041-10', '', 'ALUMINIUM', 'BOT'],
-          ['BP 46', '', 'ALUMINIUM', 'BOT'],
-          ['BP-044', '', 'ALUMINIUM', 'BOT'],
-          ['PTN 039-10', '', 'ALUMINIUM', 'BOT'],
-          ['BP 32/14', '', 'ALUMINIUM', 'BOT'],
-          ['BP 037', '', 'ALUMINIUM', 'BOT'],
-          ['BP 08-14', '', 'ALUMINIUM', 'BOT'],
-          ['RGT-04', '', 'ALUMINIUM', 'BOT'],
-          ['BP 04', '', 'ALUMINIUM', 'BOT'],
-          ['BP 38', '', 'ALUMINIUM', 'BOT'],
-          ['BP 47-10', '', 'ALUMINIUM', 'BOT'],
-          ['136-10', '', 'ALUMINIUM', 'BOT'],
-          ['BP 037-10', '', 'ALUMINIUM', 'BOT'],
-          ['TGK07', '', 'ALUMINIUM', 'BOT'],
-          ['WC 122', '', 'ALUMINIUM', 'BOT'],
-          ['-', '', 'ALUMINIUM', 'BOT'],
-          ['BP-05', '', 'ALUMINIUM', 'BOT'],
-          ['-', '', 'ARIB', 'BOT'],
-          ['O7', '', 'ARIB', 'BOT'],
-          ['N/A', '', 'FIBER', 'BOT'],
-          ['N/A', '', 'FIBER', 'BOT'],
-          ['PL 02', '', 'FIBER', 'BOT'],
-          ['N/A', '', 'FIBER', 'BOT'],
-          ['N/A', '', 'FIBER', 'BOT'],
-          ['N/A', '', 'FIBER', 'BOT'],
-          ['N/A', '', 'FIBER', 'BOT'],
-          ['N/A', '', 'FIBER', 'BOT'],
-          ['N/A', '', 'FIBER', 'BOT'],
-          ['N/A', '', 'FIBER', 'BOT'],
-          ['N/A', '', 'FIBER', 'BOT'],
-          ['WC 1', '', 'JETSKI', 'BOT'],
-          ['WC 3', '', 'JETSKI', 'BOT'],
-          ['KCB24', '', 'KEVLAR', 'BOT'],
-          ['KCB09', '', 'KEVLAR', 'BOT'],
-          ['N/A', '', 'LIGHT SAR BOAT (HDPE)', 'BOT'],
-          ['N/A', '', 'LIGHT SAR BOAT (HDPE)', 'BOT'],
-          ['N/A', '', 'LIGHT SAR BOAT (HDPE)', 'BOT'],
-          ['N/A', '', 'LIGHT SAR BOAT (HDPE)', 'BOT'],
-          ['N/A', '', 'LIGHT SAR BOAT (HDPE)', 'BOT'],
-          ['GTB 1860', '', 'MUD BOAT', 'BOT'],
-          ['N/A', '', 'RUBBER DINGHY', 'BOT'],
-        ];
-
-        botData.forEach((d) =>
-          logistikJentera.push({
-            id: ++id,
-            callsign: d[0],
-            plate: d[1],
-            model: d[2],
-            jenis: d[3],
-            kategori: 'BOT',
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          })
-        );
-
-        const rimData = [
-          ['J6-01', 'BGT 231', 'RIM', '19. RIM'],
-          ['J6-02', 'BGT 240', 'RIM', '19. RIM'],
-          ['J6-03', 'BGT 229', 'RIM', '19. RIM'],
-          ['J6-04', 'BGT 226', 'RIM', '19. RIM'],
-          ['J6-05', 'BGT 227', 'RIM', '19. RIM'],
-          ['J6-06', 'BGT 225', 'RIM', '19. RIM'],
-          ['J6-07', 'WQS 5095', 'RIM', '19. RIM'],
-          ['J6-08', 'WQS 5033', 'RIM', '19. RIM'],
-          ['J6-09', 'WQS 5291', 'RIM', '19. RIM'],
-          ['J6-10', 'WQS 5092', 'RIM', '19. RIM'],
-          ['J6-11', 'WQS 5202', 'RIM', '19. RIM'],
-          ['J6-12', 'WQS 5120', 'RIM', '19. RIM'],
-          ['', 'VDN 4921', 'RIM', '19. RIM'],
-          ['', 'VDN 4923', 'RIM', '19. RIM'],
-          ['', 'VDN 4928', 'RIM', '19. RIM'],
-          ['', 'VDM 4042', 'RIM', '19. RIM'],
-          ['', 'VDM 4047', 'RIM', '19. RIM'],
-          ['', 'VDM 4054', 'RIM', '19. RIM'],
-          ['', 'VDM 4059', 'RIM', '19. RIM'],
-          ['', 'VDM 4933', 'RIM', '19. RIM'],
-          ['', 'VDM 4035', 'RIM', '19. RIM'],
-          ['', 'JVW 3497', 'RIM', '19. RIM'],
-          ['', 'JVW 3498', 'RIM', '19. RIM'],
-        ];
-
-        rimData.forEach((d) =>
-          logistikJentera.push({
-            id: ++id,
-            callsign: d[0] || 'N/A',
-            plate: d[1],
-            model: d[2],
-            jenis: d[3],
-            kategori: 'RIM',
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          })
-        );
-
-        const kenderaanData = [
-          ['UTL', 'WA4358Y', 'ISUZU 5 TAN', 'LORI'],
-          ['UTL', 'WA4475Y', 'ISUZU 3 TAN', 'LORI'],
-          ['UTL', 'BHX 483', 'HICOM HANDALAN - 5 TAN', 'LORI'],
-          ['UTL', 'WFE4154', 'ISUZU 3 TAN', 'LORI'],
-          ['UTL', 'BHX 546', 'HICOM HANDALAN - 5 TAN', 'LORI'],
-          ['UTL', 'WA4483Y', 'ISUZU 3 TAN', 'LORI'],
-          ['UTL', 'WUJ6257', 'HILUX', '4X4'],
-          ['UTL', 'WC5247G', 'HILUX', '4X4'],
-          ['UTL', 'WKJ4698', 'PAJERO', '4X4'],
-          ['UTL', 'WTF9271', 'HILUX', '4X4'],
-          ['UTL', 'WA6537V', 'HILUX', '4X4'],
-          ['UTL', 'VGP1742', 'MITSUBISHI TRITON', '4X4'],
-          ['UTL', 'WA6327V', 'HILUX', '4X4'],
-          ['UTL', 'WUJ6167', 'HILUX', '4X4'],
-          ['UTL', 'WA6544V', 'HILUX', '4X4'],
-          ['UTL', 'VDL1687', 'HILUX', '4X4'],
-          ['UTL', 'VDL2079', 'HILUX', '4X4'],
-          ['UTL', 'WRX4890', 'HILUX', '4X4'],
-          ['UTL', 'VDL1864', 'HILUX', '4X4'],
-          ['UTL', 'VDL1943', 'HILUX', '4X4'],
-          ['UTL', 'WKK1530', 'PAJERO', '4X4'],
-          ['UTL', 'WBU569', 'PAJERO', '4X4'],
-          ['UTL', 'WKJ4588', 'PAJERO', '4X4'],
-          ['UTL', 'WA6294V', 'HILUX', '4X4'],
-          ['UTL', 'WTF9572', 'HILUX', '4X4'],
-          ['UTL', 'WC5276G', 'HILUX', '4X4'],
-          ['UTL', 'WC7813F', 'HILUX', '4X4'],
-          ['UTL', 'WWD8915', 'NAVARA', '4X4'],
-          ['UTL', 'WJV 8074', 'HINO', 'BAS'],
-          ['UTL', 'WLF8740', 'HINO', 'BAS'],
-          ['UTL', 'WA4480Y', 'ISUZU 3 TAN', 'LORI'],
-          ['UTL', 'BHX 765', 'HICOM HANDALAN - 5 TAN', 'LORI'],
-          ['UTL', 'BHX 753', 'HICOM HANDALAN - 5 TAN', 'LORI'],
-          ['UTL', 'WA4756Y', 'ISUZU 5 TAN', 'LORI'],
-          ['UTL', 'BHX 522', 'HICOM HANDALAN - 5 TAN', 'LORI'],
-          ['UTL', 'WA4340Y', 'ISUZU 3 TAN', 'LORI'],
-          ['UTL', 'WA4826Y', 'ISUZU 5 TAN', 'LORI'],
-          ['UTL', 'BHX 524', 'HICOM HANDALAN - 5 TAN', 'LORI'],
-          ['UTL', 'BHX 560', 'HICOM HANDALAN - 5 TAN', 'LORI'],
-          ['UTL', 'WHA9712', 'ISUZU V6', '4X4'],
-          ['UTL', 'WJX4320', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4301', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4330', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4325', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4303', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4321', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3943', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3953', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4304', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4327', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4300', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3957', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4322', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4326', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3951', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX 3952', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX4324', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3959', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3941', 'KEMBARA', '4X4'],
-          ['UTL', 'WJX3942', 'KEMBARA', '4X4'],
-          ['UTL', 'WLG2276', 'KIA PREGIO', 'VAN'],
-          ['UTL', 'WLG2285', 'KIA PREGIO', 'VAN'],
-          ['UTL', 'VGP1779', 'MITSUBISHI TRITON', '4X4'],
-          ['UTL', 'VGP1781', 'MITSUBISHI TRITON', '4X4'],
-          ['UTL', 'WA4816Y', 'ISUZU 5 TAN', 'LORI'],
-          ['UTL', 'VGP1767', 'MITSUBISHI TRITON', '4X4'],
-          ['UTL', 'VGP1783', 'MITSUBISHI TRITON', '4X4'],
-          ['UTL', 'VGP1763', 'MITSUBISHI TRITON', '4X4'],
-          ['UTL', 'WWD8843', 'NAVARA', '4X4'],
-          ['UTL', 'WKJ4569', 'PAJERO', '4X4'],
-          ['UTL', 'WKJ8172', 'NISSAN COASTER', 'BAS'],
-          ['UTL', 'WPQ7891', 'NISSAN XTRAIL', '4X4'],
-          ['UTL', 'WXN9765', 'DMAX ISUZU', '4X4'],
-          ['UTL', 'WUJ6235', 'HILUX', '4X4'],
-          ['UTL', 'WUJ6274', 'HILUX', '4X4'],
-          ['UTL', 'WA6314V', 'HILUX', '4X4'],
-          ['UTL', 'WKJ4691', 'PAJERO', '4X4'],
-          ['UTL', 'WXN9142', 'DMAX ISUZU', '4X4'],
-          ['UTL', 'WA6251Y', 'HILUX', '4X4'],
-          ['UTL', 'WTF9320', 'HILUX', '4X4'],
-          ['UTL', 'WA6307V', 'HILUX', '4X4'],
-          ['UTL', 'WUJ6394', 'HILUX', '4X4'],
-          ['UTL', 'WWD8950', 'NAVARA', '4X4'],
-          ['UTL', 'WKJ4708', 'PAJERO', '4X4'],
-          ['UTL', 'WKJ 4613', 'PAJERO', '4X4'],
-          ['UTL', 'WKJ4585', 'PAJERO', '4X4'],
-          ['UTL', 'W6053F', 'PERODUA ALZA', 'MPV'],
-          ['UTL', 'W5224F', 'PERODUA ALZA', 'MPV'],
-          ['UTL', 'W6064F', 'PERODUA ALZA', 'MPV'],
-          ['UTL', 'W6005F', 'PERODUA ALZA', 'MPV'],
-          ['UTL', 'W6035F', 'PERODUA ALZA', 'MPV'],
-          ['UTL', 'WGR3641', 'RUSA', 'VAN'],
-          ['UTL', 'WGR 4100', 'RUSA', 'VAN'],
-          ['UTL', 'WGR4118', 'RUSA', 'VAN'],
-          ['UTL', 'WGR 4072', 'RUSA', 'VAN'],
-          ['UTL', 'WGR4193', 'RUSA', 'VAN'],
-          ['UTL', 'WGR1239', 'RUSA', 'VAN'],
-          ['UTL', 'WGR1367', 'RUSA', 'VAN'],
-          ['UTL', 'WGR4119', 'RUSA', 'VAN'],
-          ['UTL', 'WA7194V', 'TOYOTA FORTUNER', '4X4'],
-          ['UTL', 'WPW1403', 'TOYOTA HIACE', 'VAN'],
-          ['UTL', 'WSA4792', 'TOYOTA HIACE', 'VAN'],
-          ['UTL', 'WUM3542', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3529', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3651', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3641', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3667', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3843', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3562', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3752', 'URVAN', 'VAN'],
-          ['UTL', 'WUM 3544', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3670', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3792', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3959', 'URVAN', 'VAN'],
-          ['UTL', 'WUM3985', 'URVAN', 'VAN'],
-          ['UTL', 'WPS3315', 'NISSAN XTRAIL', '4X4'],
-          ['UTL', 'WUM4666', 'URVAN', 'VAN'],
-          ['UTL', 'WA6498V', 'HILUX', '4X4'],
-          ['UTL', 'JXK 3990', 'HILUX', '4X4'],
-          ['UTL', 'WUJ6597', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQF 5578', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQF 5861', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQF 5740', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQF 5543', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQN 1517', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQN 1078', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQN 1523', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQK 5528', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQV 8734', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQR 6846', 'HILUX LOV', '4X4'],
-          ['UTL', 'VQR 6831', 'HILUX LOV', '4X4'],
-        ];
-
-        kenderaanData.forEach((d) =>
-          logistikJentera.push({
-            id: ++id,
-            callsign: d[0],
-            plate: d[1],
-            model: d[2],
-            jenis: d[3],
-            kategori: 'KENDERAAN/UTILITI',
-            balai: 'UMUM / BEBAS',
-            status: 'SEDIA BEROPERASI',
-            catatan: '-',
-          })
-        );
-
-        console.log('✅ Inventori Jentera Penuh Dimuat (' + logistikJentera.length + ' unit)');
         simpanKeLocalStorage();
       }
 
       function janaFilterBalaiOptions() {
         const opt =
-          '<option value="SEMUA">SEMUA BALAI</option>' +
+          '<option value="SEMUA">🏢 SEMUA BALAI</option>' +
           senaraiBalaiMaster
             .map((b) => `<option value="${b}">${b}</option>`)
             .join('');
@@ -3759,14 +3178,24 @@
       }
 
       function janaNamaAnggotaOptions() {
-        const container = document.getElementById('namaAnggotaOptionsContainer');
+        const container = document.getElementById(
+          'namaAnggotaOptionsContainer'
+        );
         if (!container) return;
         container.innerHTML = senaraiNamaMaster
           .map((a) => {
             const s = namaAnggotaTerpilih.some((x) => x.nama === a.nama)
               ? 'selected'
               : '';
-            return `<div class="multi-select-option ${s}" onclick="pilihNamaAnggotaOption('${a.nama}')"><div class="check-box">${s ? '<i class="fa-solid fa-check"></i>' : ''}</div><div><div class="font-bold text-slate-800">${a.nama}</div><div class="text-[10px] text-slate-500">${a.pangkat} | ${a.balai}</div></div></div>`;
+            return `<div class="multi-select-option ${s}" onclick="pilihNamaAnggotaOption('${
+              a.nama
+            }')"><div class="check-box">${
+              s ? '✓' : ''
+            }</div><div><div class="font-bold text-slate-800">${
+              a.nama
+            }</div><div class="text-[10px] text-slate-500">${a.pangkat} | ${
+              a.balai
+            }</div></div></div>`;
           })
           .join('');
       }
@@ -3844,7 +3273,7 @@
           tbody.innerHTML =
             '<tr><td colspan="7" class="text-center p-4 text-slate-400 font-bold">TIADA ANGGOTA DIPILIH</td></tr>';
           tags.innerHTML =
-            '<span class="multi-select-placeholder">PILIH ANGGOTA...</span>';
+            '<span class="multi-select-placeholder">👤 PILIH ANGGOTA...</span>';
           return;
         }
 
@@ -3857,45 +3286,75 @@
             return `<tr>
             <td>
               <strong class="text-slate-800 text-xs">${item.nama}</strong>
-              <div class="text-[10px] text-slate-500 font-extrabold">${item.pangkat}</div>
+              <div class="text-[10px] text-slate-500 font-extrabold">${
+                item.pangkat
+              }</div>
             </td>
-            <td><strong class="text-red-800 text-[10px]">${item.balai}</strong></td>
+            <td><strong class="text-red-800 text-[10px]">${
+              item.balai
+            }</strong></td>
             <td>
               <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-bold" onchange="namaAnggotaTerpilih[${i}].pasukan=this.value">
-                <option value="PASUKAN A" ${item.pasukan === 'PASUKAN A' ? 'selected' : ''}>PASUKAN A</option>
-                <option value="PASUKAN B" ${item.pasukan === 'PASUKAN B' ? 'selected' : ''}>PASUKAN B</option>
-                <option value="PASUKAN C" ${item.pasukan === 'PASUKAN C' ? 'selected' : ''}>PASUKAN C</option>
+                <option value="PASUKAN A" ${
+                  item.pasukan === 'PASUKAN A' ? 'selected' : ''
+                }>PASUKAN A</option>
+                <option value="PASUKAN B" ${
+                  item.pasukan === 'PASUKAN B' ? 'selected' : ''
+                }>PASUKAN B</option>
+                <option value="PASUKAN C" ${
+                  item.pasukan === 'PASUKAN C' ? 'selected' : ''
+                }>PASUKAN C</option>
               </select>
             </td>
             <td>
               <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-bold" onchange="namaAnggotaTerpilih[${i}].status=this.value">
-                <option value="BERTUGAS" ${item.status === 'BERTUGAS' ? 'selected' : ''}>BERTUGAS</option>
-                <option value="CUTI" ${item.status === 'CUTI' ? 'selected' : ''}>CUTI</option>
-                <option value="CUTI SAKIT" ${item.status === 'CUTI SAKIT' ? 'selected' : ''}>CUTI SAKIT</option>
-                <option value="TUGAS KHAS" ${item.status === 'TUGAS KHAS' ? 'selected' : ''}>TUGAS KHAS</option>
+                <option value="BERTUGAS" ${
+                  item.status === 'BERTUGAS' ? 'selected' : ''
+                }>✅ BERTUGAS</option>
+                <option value="CUTI" ${
+                  item.status === 'CUTI' ? 'selected' : ''
+                }>🟡 CUTI</option>
+                <option value="CUTI SAKIT" ${
+                  item.status === 'CUTI SAKIT' ? 'selected' : ''
+                }>🔴 CUTI SAKIT</option>
+                <option value="TUGAS KHAS" ${
+                  item.status === 'TUGAS KHAS' ? 'selected' : ''
+                }>🟣 TUGAS KHAS</option>
               </select>
             </td>
             <td>
               <div class="flex flex-wrap gap-1 text-[8px] font-bold">
                 <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
-                  <input type="checkbox" ${item.isKetuaBalai === 'YA' ? 'checked' : ''} onchange="namaAnggotaTerpilih[${i}].isKetuaBalai = this.checked ? 'YA' : 'TIDAK'"> KB
+                  <input type="checkbox" ${
+                    item.isKetuaBalai === 'YA' ? 'checked' : ''
+                  } onchange="namaAnggotaTerpilih[${i}].isKetuaBalai = this.checked ? 'YA' : 'TIDAK'"> K.BALAI
                 </label>
                 <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
-                  <input type="checkbox" ${item.isPegawaiOperasi === 'YA' ? 'checked' : ''} onchange="namaAnggotaTerpilih[${i}].isPegawaiOperasi = this.checked ? 'YA' : 'TIDAK'"> PB OPERASI
+                  <input type="checkbox" ${
+                    item.isPegawaiOperasi === 'YA' ? 'checked' : ''
+                  } onchange="namaAnggotaTerpilih[${i}].isPegawaiOperasi = this.checked ? 'YA' : 'TIDAK'"> P.OPERASI
                 </label>
                 <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
-                  <input type="checkbox" ${item.isPenyelia === 'YA' ? 'checked' : ''} onchange="namaAnggotaTerpilih[${i}].isPenyelia = this.checked ? 'YA' : 'TIDAK'"> PENYELIA
+                  <input type="checkbox" ${
+                    item.isPenyelia === 'YA' ? 'checked' : ''
+                  } onchange="namaAnggotaTerpilih[${i}].isPenyelia = this.checked ? 'YA' : 'TIDAK'"> PENYELIA
                 </label>
                 <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
-                  <input type="checkbox" ${item.isBkb === 'YA' ? 'checked' : ''} onchange="namaAnggotaTerpilih[${i}].isBkb = this.checked ? 'YA' : 'TIDAK'"> BKB
+                  <input type="checkbox" ${
+                    item.isBkb === 'YA' ? 'checked' : ''
+                  } onchange="namaAnggotaTerpilih[${i}].isBkb = this.checked ? 'YA' : 'TIDAK'"> BKB
                 </label>
                 <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
-                  <input type="checkbox" ${item.isPemandu === 'YA' ? 'checked' : ''} onchange="namaAnggotaTerpilih[${i}].isPemandu = this.checked ? 'YA' : 'TIDAK'"> PEMANDU
+                  <input type="checkbox" ${
+                    item.isPemandu === 'YA' ? 'checked' : ''
+                  } onchange="namaAnggotaTerpilih[${i}].isPemandu = this.checked ? 'YA' : 'TIDAK'"> PEMANDU
                 </label>
               </div>
             </td>
             <td>
-              <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${item.catatan === '-' ? '' : item.catatan || ''}" onchange="namaAnggotaTerpilih[${i}].catatan=this.value.toUpperCase() || '-'" placeholder="CATATAN"/>
+              <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${
+                item.catatan === '-' ? '' : item.catatan || ''
+              }" onchange="namaAnggotaTerpilih[${i}].catatan=this.value.toUpperCase() || '-'" placeholder="CATATAN"/>
             </td>
             <td class="text-center">
               <button class="px-1.5 py-0.5 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="namaAnggotaTerpilih.splice(${i},1);kemaskiniAnggotaDipilihTable();janaNamaAnggotaOptions();">✕</button>
@@ -3916,7 +3375,11 @@
 
         namaAnggotaTerpilih.forEach((item) => {
           rekodAnggota.push({
-            id: 'ANG_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+            id:
+              'ANG_' +
+              Date.now() +
+              '_' +
+              Math.random().toString(36).substr(2, 4),
             nama: item.nama,
             noTel: item.noTel || '',
             pangkat: item.pangkat || 'KB 1',
@@ -3940,7 +3403,7 @@
         tutupModalTambahAnggota();
         namaAnggotaTerpilih = [];
         kemaskiniAnggotaDipilihTable();
-        tunjukCustomAlert('Rekod kekuatan anggota berjaya disimpan!');
+        tunjukCustomAlert('✅ Rekod kekuatan anggota berjaya disimpan!');
       }
 
       function bukaModalLogistikJentera() {
@@ -3988,7 +3451,8 @@
       }
 
       function janaLogJenteraDropdown() {
-        const f = document.getElementById('logKategoriFilter')?.value || 'SEMUA',
+        const f =
+            document.getElementById('logKategoriFilter')?.value || 'SEMUA',
           b = document.getElementById('logModalBalai')?.value || '';
         const filtered = logistikJentera.filter(
           (i) =>
@@ -4002,7 +3466,15 @@
             const s = logJenteraTerpilih.some((x) => x.id === i.id)
               ? 'selected'
               : '';
-            return `<div class="multi-select-option ${s}" onclick="pilihLogJenteraOption(${i.id})"><div class="check-box">${s ? '<i class="fa-solid fa-check"></i>' : ''}</div><div><div class="font-bold text-red-700">${i.callsign} (${i.plate})</div><div class="text-[10px] text-slate-500">${i.jenis} | ${i.balai}</div></div></div>`;
+            return `<div class="multi-select-option ${s}" onclick="pilihLogJenteraOption(${
+              i.id
+            })"><div class="check-box">${
+              s ? '✓' : ''
+            }</div><div><div class="font-bold text-red-700">${i.callsign} (${
+              i.plate
+            })</div><div class="text-[10px] text-slate-500">${i.jenis} | ${
+              i.balai
+            }</div></div></div>`;
           })
           .join('');
       }
@@ -4023,7 +3495,8 @@
       }
 
       function pilihSemuaLogJentera() {
-        const f = document.getElementById('logKategoriFilter')?.value || 'SEMUA',
+        const f =
+            document.getElementById('logKategoriFilter')?.value || 'SEMUA',
           b = document.getElementById('logModalBalai')?.value || '';
         logistikJentera
           .filter(
@@ -4066,7 +3539,7 @@
           tbody.innerHTML =
             '<tr><td colspan="7" class="text-center p-4 text-slate-400 font-bold">TIADA JENTERA DIPILIH</td></tr>';
           tags.innerHTML =
-            '<span class="multi-select-placeholder">PILIH JENTERA...</span>';
+            '<span class="multi-select-placeholder">🔧 PILIH JENTERA...</span>';
           return;
         }
 
@@ -4078,18 +3551,28 @@
           .map((item, i) => {
             return `<tr>
             <td><strong class="text-red-700">${item.callsign}</strong></td>
-            <td><span class="bg-slate-100 border px-1.5 py-0.5 rounded text-[10px] font-black">${item.plate}</span></td>
+            <td><span class="bg-slate-100 border px-1.5 py-0.5 rounded text-[10px] font-black">${
+              item.plate
+            }</span></td>
             <td>${item.jenis}</td>
             <td><span class="badge badge-unit-gen">${item.kategori}</span></td>
             <td>
               <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-extrabold" onchange="logJenteraTerpilih[${i}].status=this.value">
-                <option value="SEDIA BEROPERASI" ${item.status === 'SEDIA BEROPERASI' ? 'selected' : ''}>SEDIA BEROPERASI</option>
-                <option value="DALAM PENYELENGGARAAN" ${item.status === 'DALAM PENYELENGGARAAN' ? 'selected' : ''}>DALAM PENYELENGGARAAN</option>
-                <option value="ROSAK/TIDAK BOLEH GUNA" ${item.status === 'ROSAK/TIDAK BOLEH GUNA' ? 'selected' : ''}>ROSAK / TIDAK BOLEH GUNA</option>
+                <option value="SEDIA BEROPERASI" ${
+                  item.status === 'SEDIA BEROPERASI' ? 'selected' : ''
+                }>✅ SEDIA BEROPERASI</option>
+                <option value="DALAM PENYELENGGARAAN" ${
+                  item.status === 'DALAM PENYELENGGARAAN' ? 'selected' : ''
+                }>🟡 DALAM PENYELENGGARAAN</option>
+                <option value="ROSAK/TIDAK BOLEH GUNA" ${
+                  item.status === 'ROSAK/TIDAK BOLEH GUNA' ? 'selected' : ''
+                }>❌ ROSAK / TIDAK BOLEH GUNA</option>
               </select>
             </td>
             <td>
-              <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${item.catatan === '-' ? '' : item.catatan || ''}" onchange="logJenteraTerpilih[${i}].catatan=this.value.toUpperCase() || '-'" placeholder="CATATAN"/>
+              <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${
+                item.catatan === '-' ? '' : item.catatan || ''
+              }" onchange="logJenteraTerpilih[${i}].catatan=this.value.toUpperCase() || '-'" placeholder="CATATAN"/>
             </td>
             <td class="text-center">
               <button class="px-1.5 py-0.5 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="logJenteraTerpilih.splice(${i},1);kemaskiniLogJenteraDipilihTable();janaLogJenteraDropdown();">✕</button>
@@ -4112,7 +3595,11 @@
 
         logJenteraTerpilih.forEach((item) =>
           logistikBertugas.push({
-            id: 'LOG_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+            id:
+              'LOG_' +
+              Date.now() +
+              '_' +
+              Math.random().toString(36).substr(2, 4),
             callsign: item.callsign,
             plate: item.plate,
             model: item.model,
@@ -4129,7 +3616,7 @@
         tutupModalLogistikJentera();
         logJenteraTerpilih = [];
         kemaskiniLogJenteraDipilihTable();
-        tunjukCustomAlert('Logistik Jentera Bertugas berjaya disimpan!');
+        tunjukCustomAlert('✅ Logistik Jentera Bertugas berjaya disimpan!');
       }
 
       function bukaModalChecklist() {
@@ -4162,8 +3649,14 @@
 
       function resetChecklistModalInputs() {
         const senaraiPerkakas = [
-          'CAD', 'WIC', 'BOMRA', 'DesktopGirn', 'HandheldGirn',
-          'VehicularGirn', 'Internet', 'Handphone',
+          'CAD',
+          'WIC',
+          'BOMRA',
+          'DesktopGirn',
+          'HandheldGirn',
+          'VehicularGirn',
+          'Internet',
+          'Handphone',
         ];
         senaraiPerkakas.forEach((id) => {
           const baik = document.getElementById('modal' + id + '_Baik');
@@ -4178,7 +3671,7 @@
       function setSemuaChecklistDefault(paparAlert = true) {
         resetChecklistModalInputs();
         if (paparAlert === true) {
-          tunjukCustomAlert('Semua perkakas di-set kepada BAIK (1 Unit)!');
+          tunjukCustomAlert('⚡ Semua perkakas di-set kepada BAIK (1 Unit)!');
         }
       }
 
@@ -4192,7 +3685,9 @@
 
         const getItemData = (idPrefix) => {
           const baikEl = document.getElementById('modal' + idPrefix + '_Baik');
-          const rosakEl = document.getElementById('modal' + idPrefix + '_Rosak');
+          const rosakEl = document.getElementById(
+            'modal' + idPrefix + '_Rosak'
+          );
           const catatanEl = document.getElementById('modalCatatan' + idPrefix);
 
           const baik = Math.max(0, parseInt(baikEl ? baikEl.value : 0) || 0);
@@ -4236,13 +3731,14 @@
 
         resetChecklistModalInputs();
 
-        tunjukCustomAlert('Checklist perkakas bilik kawalan berjaya disimpan!');
+        tunjukCustomAlert(
+          '✅ Checklist perkakas bilik kawalan berjaya disimpan!'
+        );
       }
 
       function paparChecklistTable() {
         const filterBalai =
           document.getElementById('checklistBalaiFilter')?.value || 'SEMUA';
-        const q = (document.getElementById('checklistSearchInput')?.value || '').toUpperCase().trim();
         const tbody = document.getElementById('checklistTableBody');
         if (!tbody) return;
         tbody.innerHTML = '';
@@ -4250,27 +3746,20 @@
         if (filterBalai !== 'SEMUA') {
           data = data.filter((i) => i.balai === filterBalai);
         }
-        if (q) {
-          data = data.filter((i) => {
-            const getCat = (d) => (d && d.catatan ? d.catatan : '');
-            let allCatatan = [
-              getCat(i.cadDetail), getCat(i.wicDetail), getCat(i.bomraDetail),
-              getCat(i.desktopGirnDetail), getCat(i.handheldGirnDetail),
-              getCat(i.vehicularGirnDetail), getCat(i.internetDetail), getCat(i.handphoneDetail)
-            ].join(' ');
-            let fullText = `${i.balai || ''} ${i.shiftType || ''} ${i.shiftTime || ''} ${allCatatan}`.toUpperCase();
-            return fullText.includes(q);
-          });
-        }
 
         const totalEl = document.getElementById('statChecklistTotal');
         if (totalEl) totalEl.innerText = data.length;
 
         const checkIsRosak = (item) => {
           const items = [
-            item.cadDetail, item.wicDetail, item.bomraDetail,
-            item.desktopGirnDetail, item.handheldGirnDetail,
-            item.vehicularGirnDetail, item.internetDetail, item.handphoneDetail,
+            item.cadDetail,
+            item.wicDetail,
+            item.bomraDetail,
+            item.desktopGirnDetail,
+            item.handheldGirnDetail,
+            item.vehicularGirnDetail,
+            item.internetDetail,
+            item.handphoneDetail,
           ];
           return items.some((d) => d && d.rosak > 0);
         };
@@ -4301,13 +3790,19 @@
 
           let badges = [];
           if (baik > 0)
-            badges.push(`<span class="badge badge-jentera-baik">B: ${baik}</span>`);
+            badges.push(
+              `<span class="badge badge-jentera-baik">B: ${baik}</span>`
+            );
           if (rosak > 0)
-            badges.push(`<span class="badge badge-jentera-rosak">R: ${rosak}</span>`);
+            badges.push(
+              `<span class="badge badge-jentera-rosak">R: ${rosak}</span>`
+            );
           if (badges.length === 0)
             badges.push(`<span class="badge badge-unit-gen">-</span>`);
 
-          let html = `<div class="flex flex-col items-center gap-0.5"><div class="flex flex-wrap gap-1 justify-center">${badges.join('')}</div>`;
+          let html = `<div class="flex flex-col items-center gap-0.5"><div class="flex flex-wrap gap-1 justify-center">${badges.join(
+            ''
+          )}</div>`;
           if (catatan && catatan !== '-') {
             html += `<span class="catatan-box text-[9px] mt-0.5" title="${catatan}">${catatan}</span>`;
           }
@@ -4329,7 +3824,9 @@
             <td>${formatCell(item.handphoneDetail)}</td>
             <td>${item.shiftType || '12 JAM'}</td>
             <td>${item.shiftTime || '0800-2000'}</td>
-            <td class="no-print"><button class="btn btn-danger" onclick="padamChecklist('${item.id}')">PADAM</button></td>`;
+            <td class="no-print"><button class="btn btn-danger" onclick="padamChecklist('${
+              item.id
+            }')">PADAM</button></td>`;
           tbody.appendChild(tr);
         });
       }
@@ -4350,13 +3847,25 @@
         if (!dateEl || !timeEl) return;
         const n = new Date();
         dateEl.innerText =
-          ['AHAD', 'ISNIN', 'SELASA', 'RABU', 'KHAMIS', 'JUMAAT', 'SABTU'][n.getDay()] +
+          ['AHAD', 'ISNIN', 'SELASA', 'RABU', 'KHAMIS', 'JUMAAT', 'SABTU'][
+            n.getDay()
+          ] +
           ', ' +
           String(n.getDate()).padStart(2, '0') +
           ' ' +
           [
-            'JANUARI', 'FEBRUARI', 'MAC', 'APRIL', 'MEI', 'JUN',
-            'JULAI', 'OGOS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DISEMBER',
+            'JANUARI',
+            'FEBRUARI',
+            'MAC',
+            'APRIL',
+            'MEI',
+            'JUN',
+            'JULAI',
+            'OGOS',
+            'SEPTEMBER',
+            'OKTOBER',
+            'NOVEMBER',
+            'DISEMBER',
           ][n.getMonth()] +
           ' ' +
           n.getFullYear();
@@ -4373,22 +3882,16 @@
       }
 
       function kemaskiniPaparData() {
-        const q = (document.getElementById('searchInput')?.value || '').toUpperCase().trim();
+        const q = (document.getElementById('searchInput')?.value || '')
+          .toUpperCase()
+          .trim();
         const tbody = document.getElementById('rosterTableBody');
         if (!tbody) return;
         tbody.innerHTML = '';
         let f = rekodAnggota.filter(
-          (i) => {
-            let perananStr = [
-              i.isKetuaBalai === 'YA' ? 'KETUA BALAI KB' : '',
-              i.isPegawaiOperasi === 'YA' ? 'PEGAWAI OPERASI PB OPERASI PB/OPERASI' : '',
-              i.isPenyelia === 'YA' ? 'PENYELIA' : '',
-              i.isBkb === 'YA' ? 'BKB' : '',
-              i.isPemandu === 'YA' ? 'PEMANDU' : ''
-            ].join(' ');
-            let fullText = `${i.pangkat || ''} ${i.nama || ''} ${i.noTel || ''} ${i.pasukan || ''} ${i.unit || ''} ${perananStr} ${i.status || ''} ${i.catatan || ''} ${i.shiftType || ''} ${i.shiftTime || ''} ${i.balai || ''}`.toUpperCase();
-            return (balaiTerpilih.length === 0 || balaiTerpilih.includes(i.balai)) && (!q || fullText.includes(q));
-          }
+          (i) =>
+            (balaiTerpilih.length === 0 || balaiTerpilih.includes(i.balai)) &&
+            (!q || i.nama.toUpperCase().includes(q) || i.noTel.includes(q))
         );
         document.getElementById('statTotal').innerText = f.length;
         document.getElementById('statBertugas').innerText = f.filter(
@@ -4431,7 +3934,9 @@
               : 'badge-status-bertugas';
           let peranan = [];
           if (item.isKetuaBalai === 'YA')
-            peranan.push('<span class="badge badge-peranan">KETUA BALAI</span>');
+            peranan.push(
+              '<span class="badge badge-peranan">KETUA BALAI</span>'
+            );
           if (item.isPegawaiOperasi === 'YA')
             peranan.push('<span class="badge badge-peranan">PB/OPERASI</span>');
           if (item.isPenyelia === 'YA')
@@ -4442,7 +3947,29 @@
             peranan.push('<span class="badge badge-peranan">PEMANDU</span>');
 
           const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${idx + 1}</td><td><strong>${item.pangkat}</strong></td><td><div class="font-black">${item.nama}</div>${item.noTel ? `<span class="badge-tel"><i class="fa-solid fa-phone text-[9px]"></i> ${item.noTel}</span>` : ''}</td><td><span class="badge ${bp}">${item.pasukan}</span></td><td><span class="badge badge-unit-gen">${item.unit}</span></td><td>${peranan.join(' ') || '-'}</td><td><span class="badge ${bs}">${item.status}</span></td><td><div class="catatan-box">${item.catatan || '-'}</div></td><td><div class="text-[10px] font-bold text-slate-500">${item.shiftType || '12 JAM'} | ${item.shiftTime || '0800-2000'}</div><div class="font-extrabold">${item.balai}</div></td><td class="no-print"><button class="btn btn-danger" onclick="padamAnggota('${item.id}')">PADAM</button></td>`;
+          tr.innerHTML = `<td>${idx + 1}</td><td><strong>${
+            item.pangkat
+          }</strong></td><td><div class="font-black">${item.nama}</div>${
+            item.noTel ? `<span class="badge-tel">📞 ${item.noTel}</span>` : ''
+          }</td><td><span class="badge ${bp}">${
+            item.pasukan
+          }</span></td><td><span class="badge badge-unit-gen">${
+            item.unit
+          }</span></td><td>${
+            peranan.join(' ') || '-'
+          }</td><td><span class="badge ${bs}">${
+            item.status
+          }</span></td><td><div class="catatan-box">${
+            item.catatan || '-'
+          }</div></td><td><div class="text-[10px] font-bold text-slate-500">${
+            item.shiftType || '12 JAM'
+          } | ${
+            item.shiftTime || '0800-2000'
+          }</div><div class="font-extrabold">${
+            item.balai
+          }</div></td><td class="no-print"><button class="btn btn-danger" onclick="padamAnggota('${
+            item.id
+          }')">PADAM</button></td>`;
           tbody.appendChild(tr);
         });
       }
@@ -4450,19 +3977,12 @@
       function paparLogistikTable() {
         const filterBalai =
           document.getElementById('logistikBalaiFilter')?.value || 'SEMUA';
-        const q = (document.getElementById('logistikSearchInput')?.value || '').toUpperCase().trim();
         const tbody = document.getElementById('logistikTableBody');
         if (!tbody) return;
         tbody.innerHTML = '';
         let data = logistikBertugas;
         if (filterBalai !== 'SEMUA') {
           data = data.filter((i) => i.balai === filterBalai);
-        }
-        if (q) {
-          data = data.filter((i) => {
-            let fullText = `${i.callsign || ''} ${i.plate || ''} ${i.model || ''} ${i.jenis || ''} ${i.kategori || ''} ${i.balai || ''} ${i.status || ''} ${i.catatan || ''}`.toUpperCase();
-            return fullText.includes(q);
-          });
         }
         document.getElementById('statLogTotal').innerText = data.length;
         document.getElementById('statLogBaik').innerText = data.filter(
@@ -4489,7 +4009,23 @@
             ? 'badge-jentera-selenggara'
             : 'badge-jentera-baik';
           const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${idx + 1}</td><td><strong class="text-red-700">${item.callsign}</strong></td><td><span class="bg-slate-100 border px-2 py-0.5 rounded text-[11px] font-black">${item.plate}</span></td><td>${item.model || '-'}</td><td><strong>${item.jenis}</strong></td><td><span class="badge badge-unit-gen">${item.kategori}</span></td><td><strong>${item.balai}</strong></td><td><span class="badge ${bs}">${item.status}</span></td><td><div class="catatan-box">${item.catatan || '-'}</div></td><td class="no-print"><button class="btn btn-danger" onclick="padamLogistikBertugas('${item.id}')">PADAM</button></td>`;
+          tr.innerHTML = `<td>${idx + 1}</td><td><strong class="text-red-700">${
+            item.callsign
+          }</strong></td><td><span class="bg-slate-100 border px-2 py-0.5 rounded text-[11px] font-black">${
+            item.plate
+          }</span></td><td>${item.model || '-'}</td><td><strong>${
+            item.jenis
+          }</strong></td><td><span class="badge badge-unit-gen">${
+            item.kategori
+          }</span></td><td><strong>${
+            item.balai
+          }</strong></td><td><span class="badge ${bs}">${
+            item.status
+          }</span></td><td><div class="catatan-box">${
+            item.catatan || '-'
+          }</div></td><td class="no-print"><button class="btn btn-danger" onclick="padamLogistikBertugas('${
+            item.id
+          }')">PADAM</button></td>`;
           tbody.appendChild(tr);
         });
       }
@@ -4548,7 +4084,7 @@
         if (!t) return;
         if (balaiTerpilih.length === 0) {
           t.innerHTML =
-            '<span class="multi-select-placeholder"><i class="fa-solid fa-building mr-1"></i> SEMUA BALAI</span>';
+            '<span class="multi-select-placeholder">🏢 SEMUA BALAI</span>';
           const infoBadge = document.getElementById('filterInfoBadge');
           if (infoBadge) infoBadge.style.display = 'none';
         } else {
@@ -4568,7 +4104,9 @@
         container.innerHTML = senaraiBalaiMaster
           .map((b) => {
             const s = balaiTerpilih.includes(b) ? 'selected' : '';
-            return `<div class="multi-select-option ${s}" onclick="pilihBalaiOption('${b}')"><div class="check-box">${s ? '<i class="fa-solid fa-check"></i>' : ''}</div><span>${b}</span></div>`;
+            return `<div class="multi-select-option ${s}" onclick="pilihBalaiOption('${b}')"><div class="check-box">${
+              s ? '✓' : ''
+            }</div><span>${b}</span></div>`;
           })
           .join('');
       }
@@ -4602,7 +4140,9 @@
         document.getElementById('customConfirmModal')?.classList.add('active');
       }
       function tutupCustomConfirm(res) {
-        document.getElementById('customConfirmModal')?.classList.remove('active');
+        document
+          .getElementById('customConfirmModal')
+          ?.classList.remove('active');
         if (confirmCallback) {
           confirmCallback(res);
           confirmCallback = null;
@@ -4638,7 +4178,7 @@
         if (inputPass && inputPass.value === KATA_LALUAN_TETAP) {
           tutupModalPassword();
           if (sasaranPasswordAction === 'MASTER_BERSIH') {
-            tunjukCustomConfirm('PADAM SEMUA REKOD?', async (res) => {
+            tunjukCustomConfirm('🚨 PADAM SEMUA REKOD?', async (res) => {
               if (res) {
                 rekodAnggota = [];
                 logistikBertugas = [];
@@ -4685,7 +4225,8 @@
               `<div class="font-bold">${a.nama}</div><div class="text-[10px] text-slate-500">${a.pangkat} | ${a.balai}</div>`
           );
         } else if (aktifTabUrusMaster === 'BALAI') senarai = senaraiBalaiMaster;
-        else if (aktifTabUrusMaster === 'PANGKAT') senarai = senaraiPangkatMaster;
+        else if (aktifTabUrusMaster === 'PANGKAT')
+          senarai = senaraiPangkatMaster;
         else if (aktifTabUrusMaster === 'UNIT') senarai = senaraiUnitMaster;
 
         if (senarai.length === 0) {
@@ -4799,7 +4340,9 @@
 
       async function simpanDaftarMaster(mod) {
         if (mod === 'ANGGOTA') {
-          const n = (document.getElementById('regNama')?.value || '').trim().toUpperCase();
+          const n = (document.getElementById('regNama')?.value || '')
+            .trim()
+            .toUpperCase();
           if (!n) {
             tunjukCustomAlert('Sila isi nama!');
             return;
@@ -4812,7 +4355,7 @@
             balai: document.getElementById('regBalai')?.value || 'PGO JOHOR',
           });
           await hantarDataSupabase();
-          tunjukCustomAlert('Anggota didaftarkan!');
+          tunjukCustomAlert('✅ Anggota didaftarkan!');
           const regNamaInput = document.getElementById('regNama');
           const regTelInput = document.getElementById('regTel');
           if (regNamaInput) regNamaInput.value = '';
@@ -4821,6 +4364,7 @@
         }
       }
 
+      // Service Worker Registration (for PWA offline support)
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js').catch(() => {});
@@ -4885,7 +4429,6 @@
       window.tutupModalUrusJentera = tutupModalUrusJentera;
       window.renderSenaraiJenteraMaster = renderSenaraiJenteraMaster;
       window.padamJenteraMaster = padamJenteraMaster;
-      window.aktifkanTabBottomNav = aktifkanTabBottomNav;
 
       window.onload = function () {
         muatDariLocalStorage();
@@ -4906,7 +4449,9 @@
           ['balai', 'namaAnggota', 'logJentera'].forEach((id) => {
             const sel = document.getElementById(id + 'MultiSelect');
             if (sel && !sel.contains(e.target)) {
-              document.getElementById(id + 'Dropdown')?.classList.remove('show');
+              document
+                .getElementById(id + 'Dropdown')
+                ?.classList.remove('show');
               document
                 .querySelector('#' + id + 'MultiSelect .multi-select-trigger')
                 ?.classList.remove('active');
@@ -4914,7 +4459,7 @@
           });
         });
 
-        console.log('✅ Sistem JBPM Johor sedia sebagai App Standalone Mobile.');
+        console.log('✅ Sistem JBPM Johor sedia sebagai App Standalone.');
       };
     </script>
   </body>
