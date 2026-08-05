@@ -5025,7 +5025,9 @@
           }</span></td><td><span class="badge badge-unit-gen">${
             item.unit
           }</span></td><td>${
-            peranan.join(' ') || '-'
+            peranan.length > 0
+              ? peranan.join(' ')
+              : '<span class="badge badge-peranan">PEMADAM</span>'
           }</td><td><span class="badge ${bs}">${
             item.status
           }</span></td><td><div class="catatan-box">${
