@@ -3152,7 +3152,7 @@
 
       // GANTI dengan URL "Web app" dari Apps Script > Deploy > Manage deployments
       // Contoh: https://script.google.com/macros/s/AKfycb.../exec
-      const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby-7lP5aKB1Mc2QRjRPsDw-oc42wPm3nU0hQQQPkJv8CJy3sgtNnYIz0-azRjlCspkg/exec';
+      const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwBOkshHDavaoKtXC--ozvzfn4FMKg5hp5GlYrFwaVwvoXLaGDopJnEMMFgGbXCl0wX/exec';
 
       function initSupabaseClient() {
         if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'PASTE_URL_APPS_SCRIPT_DI_SINI') {
@@ -3188,44 +3188,78 @@
         if (el) el.classList.remove('active');
       }
 
+      // ---- PEMBAIKAN: had audit trail + kawalan hantaran serentak ----
+      const HAD_AUDIT_TRAIL = 300; // elak payload membesar tanpa noktah -> makin lambat/mudah timeout
+      let sedangHantarData = false; // mutex: elak 2 request PATCH bertindih dari client yang sama
+      let hantarTertunda = false; // kalau ada permintaan hantar semasa mutex dikunci, gabung jadi 1 susulan
+
       async function hantarDataSupabase() {
         if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'PASTE_URL_APPS_SCRIPT_DI_SINI') {
           simpanKeLocalStorage();
           tunjukCustomAlert('URL Apps Script belum ditetapkan. Data disimpan dalam storan tempatan sahaja.');
           return;
         }
+
+        // Kalau satu hantaran sedang berjalan, jangan tembak request kedua serentak
+        // (punca biasa "kerap error"/data bertindih) — tunggu, lepas tu hantar SEKALI
+        // sahaja untuk cover perubahan terkini.
+        if (sedangHantarData) {
+          hantarTertunda = true;
+          return;
+        }
+        sedangHantarData = true;
         tunjukLoading();
-        try {
-          // PENTING: guna 'text/plain' bukan 'application/json' untuk elak
-          // isu CORS preflight — Apps Script tetap boleh JSON.parse() body ni.
-          const response = await fetch(APPS_SCRIPT_URL, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'text/plain;charset=utf-8',
-            },
-            body: JSON.stringify({
-              action: 'hantarData',
-              payload: {
-                rekodAnggota,
-                logistikBertugas,
-                checklistPerkakas: senaraiChecklist,
-                senaraiNamaMaster,
-                senaraiBalaiMaster,
-                senaraiPangkatMaster,
-                senaraiUnitMaster,
-                senaraiAuditTrail,
+
+        // Pangkas audit trail tempatan supaya payload tak membesar tanpa had
+        if (senaraiAuditTrail.length > HAD_AUDIT_TRAIL) {
+          senaraiAuditTrail = senaraiAuditTrail.slice(-HAD_AUDIT_TRAIL);
+        }
+
+        const cubaHantar = async (percubaan) => {
+          try {
+            // PENTING: guna 'text/plain' bukan 'application/json' untuk elak
+            // isu CORS preflight — Apps Script tetap boleh JSON.parse() body ni.
+            const response = await fetch(APPS_SCRIPT_URL, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'text/plain;charset=utf-8',
               },
-            }),
-          });
+              body: JSON.stringify({
+                action: 'hantarData',
+                payload: {
+                  rekodAnggota,
+                  logistikBertugas,
+                  checklistPerkakas: senaraiChecklist,
+                  senaraiNamaMaster,
+                  senaraiBalaiMaster,
+                  senaraiPangkatMaster,
+                  senaraiUnitMaster,
+                  senaraiAuditTrail,
+                },
+              }),
+            });
 
-          if (!response.ok) throw new Error('HTTP ' + response.status);
+            if (!response.ok) throw new Error('HTTP ' + response.status);
 
-          const hasil = await response.json();
+            const hasil = await response.json();
 
-          if (!hasil.success) {
-            throw new Error(hasil.error || 'Ralat tidak diketahui dari server.');
+            if (!hasil.success) {
+              throw new Error(hasil.error || 'Ralat tidak diketahui dari server.');
+            }
+            return true;
+          } catch (err) {
+            // Cuba semula (backoff) untuk gangguan sementara — elak "error" akibat
+            // hicap rangkaian sekejap atau server sibuk seketika.
+            if (percubaan < 2) {
+              await new Promise((r) => setTimeout(r, 800 * (percubaan + 1)));
+              return cubaHantar(percubaan + 1);
+            }
+            throw err;
           }
+        };
 
+        try {
+          await cubaHantar(0);
           simpanKeLocalStorage();
           tunjukCustomAlert('Data berjaya dihantar ke Cloud!');
           return true;
@@ -3237,7 +3271,12 @@
           console.error(err);
           return false;
         } finally {
+          sedangHantarData = false;
           sorokLoading();
+          if (hantarTertunda) {
+            hantarTertunda = false;
+            hantarDataSupabase();
+          }
         }
       }
 
@@ -3336,6 +3375,27 @@
         if (savedAuditTrail) senaraiAuditTrail = JSON.parse(savedAuditTrail);
       }
 
+      // Helper: GET data dari Apps Script dengan cuba-semula (backoff) — elak
+      // "Gagal tarik" akibat hicap rangkaian/Apps Script sesekali lambat balas.
+      async function ambilDataDenganCubaSemula_(percubaanMax = 2) {
+        let ralatTerakhir;
+        for (let i = 0; i <= percubaanMax; i++) {
+          try {
+            const response = await fetch(APPS_SCRIPT_URL + '?action=getData', {
+              method: 'GET',
+            });
+            if (!response.ok) throw new Error('HTTP ' + response.status);
+            return await response.json();
+          } catch (err) {
+            ralatTerakhir = err;
+            if (i < percubaanMax) {
+              await new Promise((r) => setTimeout(r, 700 * (i + 1)));
+            }
+          }
+        }
+        throw ralatTerakhir;
+      }
+
       async function tarikDataSupabase() {
         if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'PASTE_URL_APPS_SCRIPT_DI_SINI') {
           tunjukCustomAlert('URL Apps Script belum ditetapkan!');
@@ -3343,11 +3403,7 @@
         }
         tunjukLoading();
         try {
-          const response = await fetch(APPS_SCRIPT_URL + '?action=getData', {
-            method: 'GET',
-          });
-          if (!response.ok) throw new Error('HTTP ' + response.status);
-          const hasil = await response.json();
+          const hasil = await ambilDataDenganCubaSemula_();
           if (!hasil.success) throw new Error(hasil.error || 'Ralat tidak diketahui.');
           const d = hasil.data;
           if (d) {
@@ -3393,11 +3449,8 @@
 
       async function autoTarikData() {
         try {
-          const response = await fetch(APPS_SCRIPT_URL + '?action=getData', {
-            method: 'GET',
-          });
-          if (response.ok) {
-            const hasil = await response.json();
+          const hasil = await ambilDataDenganCubaSemula_();
+          {
             if (hasil.success && hasil.data) {
               const d = hasil.data;
               if (d.rekodAnggota) rekodAnggota = d.rekodAnggota;
