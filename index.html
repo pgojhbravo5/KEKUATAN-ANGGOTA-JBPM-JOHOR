@@ -31,15 +31,11 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <!-- Font Awesome Professional Icon Library -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Supabase JS Client — digunakan HANYA untuk Realtime (dengar perubahan live).
-         Hantar data tulis kekal lalu Apps Script seperti sebelum ini. -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -87,7 +83,6 @@
         -webkit-tap-highlight-color: transparent;
       }
 
-      /* === BODY BACKGROUND & MOBILE STANDALONE FIT === */
       body {
         background-image: url('firetruck-BG.png');
         background-size: cover;
@@ -103,14 +98,12 @@
         min-height: 100vh;
         min-height: -webkit-fill-available;
       }
-
       @media (min-width: 1024px) {
         body {
           padding-bottom: 40px;
         }
       }
 
-      /* Overlay gelap untuk background */
       body::after {
         content: '';
         position: fixed;
@@ -125,7 +118,6 @@
         pointer-events: none;
       }
 
-      /* === SPLASH SCREEN === */
       #splashScreen {
         position: fixed;
         top: 0;
@@ -146,13 +138,11 @@
         visibility: visible;
         padding: 20px;
       }
-
       #splashScreen.hidden {
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
       }
-
       #splashScreen::before {
         content: '';
         position: absolute;
@@ -163,7 +153,6 @@
         background: rgba(0, 0, 0, 0.65);
         z-index: 1;
       }
-
       .splash-content {
         position: relative;
         z-index: 2;
@@ -174,7 +163,6 @@
         justify-content: center;
         width: 100%;
       }
-
       .splash-logo-img {
         width: 120px;
         height: 120px;
@@ -189,7 +177,6 @@
         background-color: #b91c1c;
         padding: 12px;
       }
-
       @keyframes pulse {
         0%,
         100% {
@@ -199,7 +186,6 @@
           transform: scale(0.97);
         }
       }
-
       .splash-title {
         color: white;
         font-size: 1.3rem;
@@ -209,7 +195,6 @@
         margin-bottom: 6px;
         margin-top: 10px;
       }
-
       .splash-subtitle {
         color: var(--bomba-gold);
         font-size: 0.75rem;
@@ -218,7 +203,6 @@
         text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
         margin-bottom: 24px;
       }
-
       .splash-loader {
         width: 60px;
         height: 4px;
@@ -227,7 +211,6 @@
         overflow: hidden;
         margin: 0 auto;
       }
-
       .splash-loader-bar {
         width: 50%;
         height: 100%;
@@ -235,7 +218,6 @@
         border-radius: 4px;
         animation: loading 1s ease-in-out infinite;
       }
-
       @keyframes loading {
         0% {
           transform: translateX(-100%);
@@ -244,7 +226,6 @@
           transform: translateX(200%);
         }
       }
-
       .splash-footer {
         position: absolute;
         bottom: calc(20px + var(--sab));
@@ -257,7 +238,6 @@
         padding: 0 15px;
       }
 
-      /* === HEADER LOGO === */
       .logo-img-header {
         width: 44px;
         height: 44px;
@@ -267,7 +247,6 @@
         object-fit: cover;
         flex-shrink: 0;
       }
-
       @media (min-width: 640px) {
         .logo-img-header {
           width: 56px;
@@ -364,7 +343,7 @@
         transition: all 0.2s ease;
         outline: none;
         text-transform: uppercase;
-        min-height: 46px; /* Optimized Touch Target */
+        min-height: 46px;
       }
       .form-control:focus,
       select.form-control:focus,
@@ -389,7 +368,7 @@
         gap: 8px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        min-height: 48px; /* Mobile Friendly Touch Target */
+        min-height: 48px;
         touch-action: manipulation;
       }
       .btn:active {
@@ -521,7 +500,6 @@
         text-overflow: ellipsis;
       }
 
-      /* === RESPONSIVE MOBILE TABLES === */
       .table-responsive {
         width: 100%;
         overflow-x: auto;
@@ -670,7 +648,6 @@
         color: var(--text-muted);
       }
 
-      /* Multi-Select Components */
       .multi-select-container {
         position: relative;
         width: 100%;
@@ -836,7 +813,6 @@
         border: 1px solid #fca5a5;
       }
 
-      /* === MOBILE MODAL OVERLAY & BOTTOM SHEET UI === */
       .modal-overlay {
         position: fixed;
         top: 0;
@@ -855,19 +831,16 @@
         transition: opacity 0.25s ease;
         padding: 0;
       }
-
       @media (min-width: 640px) {
         .modal-overlay {
           align-items: center;
           padding: 16px;
         }
       }
-
       .modal-overlay.active {
         opacity: 1;
         pointer-events: auto;
       }
-
       #customAlertModal,
       #customConfirmModal,
       #passwordModal {
@@ -892,7 +865,6 @@
         transform: translateY(20px);
         transition: transform 0.25s ease;
       }
-
       @media (min-width: 640px) {
         .modal {
           border-radius: 20px;
@@ -901,12 +873,10 @@
           max-height: 90vh;
         }
       }
-
       .modal-overlay.active .modal {
         transform: translateY(0);
       }
 
-      /* Mobile Sheet Drag Handle */
       .modal::before {
         content: '';
         width: 40px;
@@ -916,7 +886,6 @@
         margin: 0 auto 12px auto;
         display: block;
       }
-
       @media (min-width: 640px) {
         .modal::before {
           display: none;
@@ -1042,7 +1011,6 @@
         margin-top: 12px;
       }
 
-      /* === STANDALONE MOBILE BOTTOM NAVIGATION BAR === */
       .mobile-bottom-nav {
         position: fixed;
         bottom: 0;
@@ -1153,7 +1121,7 @@
     </style>
   </head>
   <body>
-    <!-- === SPLASH SCREEN === -->
+    <!-- SPLASH SCREEN -->
     <div id="splashScreen">
       <div class="splash-content">
         <img src="balai-bomba.png" alt="Logo JBPM" class="splash-logo-img" />
@@ -1172,7 +1140,7 @@
       <div class="spinner"></div>
     </div>
 
-    <!-- MAIN LANDING PAGE HEADER -->
+    <!-- HEADER -->
     <header class="no-print py-2.5 sm:py-3.5 px-3 sm:px-6">
       <div
         class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-2"
@@ -1192,7 +1160,6 @@
             </p>
           </div>
         </div>
-
         <div
           class="flex items-center justify-between w-full lg:w-auto gap-2 border-t border-red-800/50 pt-2 lg:pt-0 lg:border-0"
         >
@@ -1289,19 +1256,35 @@
               <label>NO. TELEFON</label>
               <input type="text" id="regTel" class="form-control" />
             </div>
+            <!-- PANGKAT + UNIT BERBAYAR -->
             <div class="grid grid-cols-2 gap-2">
               <div class="form-group">
                 <label>PANGKAT</label>
                 <select id="regPangkat" class="form-control"></select>
               </div>
               <div class="form-group">
-                <label>UNIT KHAS</label>
-                <select id="regUnit" class="form-control"></select>
+                <label>UNIT BERBAYAR</label>
+                <select id="regUnitBerbayar" class="form-control">
+                  <option value="EMRS">EMRS</option>
+                  <option value="HAZMAT">HAZMAT</option>
+                  <option value="PPDA">PPDA</option>
+                </select>
               </div>
             </div>
-            <div class="form-group">
-              <label>BALAI</label>
-              <select id="regBalai" class="form-control"></select>
+            <!-- UNIT TIDAK BERBAYAR + BALAI -->
+            <div class="grid grid-cols-2 gap-2">
+              <div class="form-group">
+                <label>UNIT TIDAK BERBAYAR</label>
+                <select id="regUnitTidakBerbayar" class="form-control">
+                  <option value="PEMADAM">PEMADAM</option>
+                  <option value="RIM">RIM</option>
+                  <option value="STOM/MUST">STOM/MUST</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>BALAI</label>
+                <select id="regBalai" class="form-control"></select>
+              </div>
             </div>
             <button
               class="btn btn-primary"
@@ -1503,7 +1486,8 @@
                   <th>PANGKAT</th>
                   <th>NAMA & NO. TEL</th>
                   <th>PASUKAN</th>
-                  <th>UNIT</th>
+                  <th>UNIT BERBAYAR</th>
+                  <th>UNIT TIDAK BERBAYAR</th>
                   <th>PERANAN</th>
                   <th>STATUS</th>
                   <th>CATATAN</th>
@@ -1664,7 +1648,7 @@
       </div>
     </div>
 
-    <!-- 👤 MODAL: ANGGOTA BERTUGAS -->
+    <!-- ========== MODAL: ANGGOTA BERTUGAS ========== -->
     <div class="modal-overlay" id="addOfficerModal">
       <div class="modal sm:!max-w-4xl">
         <div class="modal-header">
@@ -1766,7 +1750,9 @@
                 <th>BALAI</th>
                 <th>PASUKAN</th>
                 <th>STATUS</th>
-                <th>PERANAN / JAWATAN</th>
+                <th>UNIT BERBAYAR</th>
+                <th>UNIT TIDAK BERBAYAR</th>
+                <th>PERANAN</th>
                 <th>CATATAN</th>
                 <th class="text-center">BUANG</th>
               </tr>
@@ -1774,7 +1760,7 @@
             <tbody id="anggotaDipilihBody">
               <tr>
                 <td
-                  colspan="7"
+                  colspan="9"
                   class="text-center p-4 text-slate-400 font-bold"
                 >
                   TIADA ANGGOTA DIPILIH
@@ -1796,7 +1782,7 @@
       </div>
     </div>
 
-    <!-- 🚒 MODAL: LOGISTIK JENTERA BERTUGAS -->
+    <!-- ========== MODAL: LOGISTIK JENTERA BERTUGAS ========== -->
     <div class="modal-overlay" id="logistikJenteraModal">
       <div class="modal sm:!max-w-4xl">
         <div class="modal-header">
@@ -1962,7 +1948,7 @@
       </div>
     </div>
 
-    <!-- ✅ MODAL: CHECKLIST PERKAKAS BILIK KAWALAN -->
+    <!-- ========== MODAL: CHECKLIST PERKAKAS BILIK KAWALAN ========== -->
     <div class="modal-overlay" id="checklistModal">
       <div class="modal sm:!max-w-4xl">
         <div class="modal-header">
@@ -2040,7 +2026,7 @@
         <div
           class="space-y-2.5 mb-3 max-h-[50vh] sm:max-h-[58vh] overflow-y-auto pr-1 border border-slate-200 p-2 rounded-xl bg-slate-50 flex-1"
         >
-          <!-- 1. CAD -->
+          <!-- CAD -->
           <div
             class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-1.5 hover:border-purple-300 transition"
             id="card_CAD"
@@ -2132,7 +2118,7 @@
             </div>
           </div>
 
-          <!-- 2. WIC -->
+          <!-- WIC -->
           <div
             class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-1.5 hover:border-purple-300 transition"
             id="card_WIC"
@@ -2224,7 +2210,7 @@
             </div>
           </div>
 
-          <!-- 3. BOMRA -->
+          <!-- BOMRA -->
           <div
             class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-1.5 hover:border-purple-300 transition"
             id="card_BOMRA"
@@ -2318,7 +2304,7 @@
             </div>
           </div>
 
-          <!-- 4. DESKTOP GIRN -->
+          <!-- DESKTOP GIRN -->
           <div
             class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-1.5 hover:border-purple-300 transition"
             id="card_DesktopGirn"
@@ -2410,7 +2396,7 @@
             </div>
           </div>
 
-          <!-- 5. HANDHELD GIRN -->
+          <!-- HANDHELD GIRN -->
           <div
             class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-1.5 hover:border-purple-300 transition"
             id="card_HandheldGirn"
@@ -2502,7 +2488,7 @@
             </div>
           </div>
 
-          <!-- 6. VEHICULAR GIRN -->
+          <!-- VEHICULAR GIRN -->
           <div
             class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-1.5 hover:border-purple-300 transition"
             id="card_VehicularGirn"
@@ -2593,7 +2579,7 @@
             </div>
           </div>
 
-          <!-- 7. INTERNET -->
+          <!-- INTERNET -->
           <div
             class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-1.5 hover:border-purple-300 transition"
             id="card_Internet"
@@ -2685,7 +2671,7 @@
             </div>
           </div>
 
-          <!-- 8. HANDPHONE -->
+          <!-- HANDPHONE -->
           <div
             class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-1.5 hover:border-purple-300 transition"
             id="card_Handphone"
@@ -2790,7 +2776,7 @@
       </div>
     </div>
 
-    <!-- PASSWORD MODAL -->
+    <!-- ========== PASSWORD MODAL ========== -->
     <div class="modal-overlay" id="passwordModal">
       <div class="modal sm:!max-w-md">
         <div class="modal-header">
@@ -2807,8 +2793,8 @@
           class="text-xs font-semibold mb-2.5 text-slate-700"
         ></p>
         <div class="form-group">
-          <label>KATA LALUAN</label
-          ><input
+          <label>KATA LALUAN</label>
+          <input
             type="password"
             id="inputPassword"
             class="form-control"
@@ -2830,7 +2816,7 @@
       </div>
     </div>
 
-    <!-- ALERT MODAL -->
+    <!-- ========== ALERT MODAL ========== -->
     <div class="modal-overlay" id="customAlertModal">
       <div class="modal sm:!max-w-md">
         <div class="modal-header">
@@ -2851,7 +2837,7 @@
       </div>
     </div>
 
-    <!-- CONFIRM MODAL -->
+    <!-- ========== CONFIRM MODAL ========== -->
     <div class="modal-overlay" id="customConfirmModal">
       <div class="modal sm:!max-w-md">
         <div class="modal-header">
@@ -2875,7 +2861,7 @@
       </div>
     </div>
 
-    <!-- MODAL URUS MASTER -->
+    <!-- ========== MODAL URUS MASTER ========== -->
     <div class="modal-overlay" id="urusMasterModal">
       <div class="modal">
         <div class="modal-header">
@@ -2931,7 +2917,7 @@
       </div>
     </div>
 
-    <!-- MODAL URUS JENTERA MASTER -->
+    <!-- ========== MODAL URUS JENTERA MASTER ========== -->
     <div class="modal-overlay" id="urusJenteraModal">
       <div class="modal">
         <div class="modal-header">
@@ -2974,7 +2960,7 @@
       </div>
     </div>
 
-    <!-- STANDALONE MOBILE BOTTOM NAVIGATION BAR -->
+    <!-- ========== MOBILE BOTTOM NAV ========== -->
     <nav class="mobile-bottom-nav no-print" id="mobileBottomNav">
       <a
         href="#sectionPanels"
@@ -3033,13 +3019,13 @@
     </footer>
 
     <script>
-      // === SPLASH SCREEN LOGIC ===
+      // ============================================================
+      //  SPLASH SCREEN
+      // ============================================================
       window.addEventListener('load', function () {
         setTimeout(function () {
           var splash = document.getElementById('splashScreen');
-          if (splash) {
-            splash.classList.add('hidden');
-          }
+          if (splash) splash.classList.add('hidden');
         }, 2500);
       });
 
@@ -3050,6 +3036,9 @@
         if (el) el.classList.add('active');
       }
 
+      // ============================================================
+      //  GLOBAL STATE
+      // ============================================================
       const KATA_LALUAN_TETAP = 'PGO1234';
       let sasaranPasswordAction = '',
         confirmCallback = null,
@@ -3062,17 +3051,6 @@
         logistikBertugas = [],
         senaraiChecklist = [];
       let senaraiNamaMaster = [];
-      let senaraiAuditTrail = [];
-
-      function catatAuditTrail(aksi, jenis, butiran) {
-        senaraiAuditTrail.unshift({
-          aksi,
-          jenis,
-          butiran,
-          masa: new Date().toISOString(),
-        });
-        if (senaraiAuditTrail.length > 500) senaraiAuditTrail.length = 500;
-      }
 
       const DEFAULT_BALAI = [
         'PGO JOHOR',
@@ -3136,135 +3114,39 @@
         'PBBK TEST 4',
       ];
 
-      const DEFAULT_UNIT = [
-        'PEMADAM',
+      // === UNIT MASTER list for URUS MASTER panel (kept separate) ===
+      const DEFAULT_UNIT_MASTER = [
         'EMRS',
         'HAZMAT',
         'PPDA',
+        'PEMADAM',
         'RIM',
         'STOM/MUST',
-        'STOM/MUST TEST 1',
-        'STOM/MUST TEST 2',
-        'STOM/MUST TEST 3',
       ];
+      let senaraiUnitMaster = [...DEFAULT_UNIT_MASTER];
 
       let senaraiBalaiMaster = [...DEFAULT_BALAI];
       let senaraiPangkatMaster = [...DEFAULT_PANGKAT];
-      let senaraiUnitMaster = [...DEFAULT_UNIT];
       let logistikJentera = [];
 
-      // GANTI dengan URL "Web app" dari Apps Script > Deploy > Manage deployments
-      // Contoh: https://script.google.com/macros/s/AKfycb.../exec
-      const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzVq50_3rfPAvFS0TtEnzq6IdHfhhOSqBKz60oE3I3V8TBv5WgiaxgXqRIGzgVuJWan/exec';
+      let supabaseUrl = 'https://hglmbrqweijpguxfeloq.supabase.co';
+      let supabaseKey =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnbG1icnF3ZWlqcGd1eGZlbG9xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU1NDcyNDAsImV4cCI6MjEwMTEyMzI0MH0.xBuhxHVmkuIPC34421QfuCERIpBPFiyVi1sSC-PQAiQ';
 
-      // ---- REALTIME (baharu): sambungan terus ke Supabase untuk dengar
-      // perubahan LIVE. Anon key ni sengaja "public" — akses sebenar dikawal
-      // oleh RLS di Supabase, bukan oleh key ni dirahsiakan. Tulis data kekal
-      // lalu Apps Script (APPS_SCRIPT_URL) seperti sebelum ini, tak berubah.
-      const SUPABASE_URL = 'https://hglmbrqweijpguxfeloq.supabase.co';
-      const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnbG1icnF3ZWlqcGd1eGZlbG9xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU1NDcyNDAsImV4cCI6MjEwMTEyMzI0MH0.xBuhxHVmkuIPC34421QfuCERIpBPFiyVi1sSC-PQAiQ';
-      let supabaseRealtimeClient = null;
-      let salurRealtimeJbpm = null;
-
-      // Terapkan data yang diterima dari event realtime (sama struktur macam
-      // hasil getData) ke state tempatan + papar semula UI.
-      function terapkanDataDariRealtime_(d) {
-        if (!d) return;
-        if (d.rekodAnggota) rekodAnggota = d.rekodAnggota;
-        if (d.logistikBertugas) logistikBertugas = d.logistikBertugas;
-        if (d.checklistPerkakas) senaraiChecklist = d.checklistPerkakas;
-        if (d.senaraiNamaMaster) senaraiNamaMaster = d.senaraiNamaMaster;
-        if (d.senaraiBalaiMaster && d.senaraiBalaiMaster.length > 0) {
-          senaraiBalaiMaster = d.senaraiBalaiMaster;
-          DEFAULT_BALAI.forEach((b) => {
-            if (!senaraiBalaiMaster.includes(b)) senaraiBalaiMaster.push(b);
-          });
-        }
-        if (d.senaraiPangkatMaster && d.senaraiPangkatMaster.length > 0) {
-          senaraiPangkatMaster = d.senaraiPangkatMaster;
-          DEFAULT_PANGKAT.forEach((p) => {
-            if (!senaraiPangkatMaster.includes(p)) senaraiPangkatMaster.push(p);
-          });
-        }
-        if (d.senaraiUnitMaster && d.senaraiUnitMaster.length > 0) {
-          senaraiUnitMaster = d.senaraiUnitMaster;
-          DEFAULT_UNIT.forEach((u) => {
-            if (!senaraiUnitMaster.includes(u)) senaraiUnitMaster.push(u);
-          });
-        }
-        if (d.senaraiAuditTrail) senaraiAuditTrail = d.senaraiAuditTrail;
-
-        simpanKeLocalStorage();
-        kemaskiniSemuaPaparan();
-      }
-
-      // Mulakan sambungan realtime (websocket) ke Supabase. Kalau jadual
-      // belum diaktifkan Realtime di Supabase Dashboard, langganan akan gagal
-      // dengan senyap (status CHANNEL_ERROR) dan app terus jalan macam biasa
-      // guna butang muat turun manual sebagai gantian.
-      function initRealtimeSync() {
-        if (!window.supabase || typeof window.supabase.createClient !== 'function') {
-          console.warn('⚠️ Pustaka Supabase JS gagal dimuatkan — realtime dilangkau.');
-          return false;
-        }
-        if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return false;
-
-        try {
-          supabaseRealtimeClient = window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_ANON_KEY
-          );
-
-          salurRealtimeJbpm = supabaseRealtimeClient
-            .channel('jbpm_data_changes')
-            .on(
-              'postgres_changes',
-              { event: 'UPDATE', schema: 'public', table: 'jbpm_data', filter: 'id=eq.1' },
-              (payload) => {
-                console.log('🔴 LIVE: perubahan diterima dari Supabase', payload);
-                terapkanDataDariRealtime_(payload.new);
-              }
-            )
-            .subscribe((status) => {
-              if (status === 'SUBSCRIBED') {
-                kemaskiniStatusCloud(
-                  'active',
-                  '<i class="fa-solid fa-bolt text-[9px] text-emerald-500 mr-1"></i> CLOUD: LIVE'
-                );
-              } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
-                kemaskiniStatusCloud(
-                  'error',
-                  '<i class="fa-solid fa-triangle-exclamation text-[9px] text-red-500 mr-1"></i> LIVE TERPUTUS (guna refresh manual)'
-                );
-                console.warn(
-                  '⚠️ Realtime gagal sambung. Pastikan Realtime diaktifkan untuk jadual jbpm_data di Supabase Dashboard > Database > Replication.'
-                );
-              } else if (status === 'CLOSED') {
-                kemaskiniStatusCloud(
-                  'inactive',
-                  '<i class="fa-solid fa-circle text-[9px] text-amber-500 mr-1"></i> CLOUD: LIVE DIHENTIKAN'
-                );
-              }
-            });
-
-          return true;
-        } catch (err) {
-          console.error('Gagal mulakan realtime sync:', err);
-          return false;
-        }
-      }
-
+      // ============================================================
+      //  SUPABASE HELPERS
+      // ============================================================
       function initSupabaseClient() {
-        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'PASTE_URL_APPS_SCRIPT_DI_SINI') {
+        if (supabaseUrl && supabaseKey) {
           kemaskiniStatusCloud(
             'active',
-            '<i class="fa-solid fa-circle text-[9px] text-emerald-500 mr-1"></i> CLOUD: DISAMBUNG'
+            '<i class="fa-solid fa-circle text-[9px] text-emerald-500 mr-1"></i> SUPABASE: DISAMBUNG'
           );
           return true;
         } else {
           kemaskiniStatusCloud(
             'inactive',
-            '<i class="fa-solid fa-circle text-[9px] text-amber-500 mr-1"></i> CLOUD: URL BELUM DITETAPKAN'
+            '<i class="fa-solid fa-circle text-[9px] text-amber-500 mr-1"></i> SUPABASE: BELUM DISAMBUNG'
           );
           return false;
         }
@@ -3283,100 +3165,54 @@
         const el = document.getElementById('loadingOverlay');
         if (el) el.classList.add('active');
       }
+
       function sorokLoading() {
         const el = document.getElementById('loadingOverlay');
         if (el) el.classList.remove('active');
       }
 
-      // ---- PEMBAIKAN: had audit trail + kawalan hantaran serentak ----
-      const HAD_AUDIT_TRAIL = 300; // elak payload membesar tanpa noktah -> makin lambat/mudah timeout
-      let sedangHantarData = false; // mutex: elak 2 request PATCH bertindih dari client yang sama
-      let hantarTertunda = false; // kalau ada permintaan hantar semasa mutex dikunci, gabung jadi 1 susulan
-
       async function hantarDataSupabase() {
-        if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'PASTE_URL_APPS_SCRIPT_DI_SINI') {
+        if (!supabaseUrl || !supabaseKey) {
           simpanKeLocalStorage();
-          tunjukCustomAlert('URL Apps Script belum ditetapkan. Data disimpan dalam storan tempatan sahaja.');
+          tunjukCustomAlert('Data disimpan dalam storan tempatan.');
           return;
         }
-
-        // Kalau satu hantaran sedang berjalan, jangan tembak request kedua serentak
-        // (punca biasa "kerap error"/data bertindih) — tunggu, lepas tu hantar SEKALI
-        // sahaja untuk cover perubahan terkini.
-        if (sedangHantarData) {
-          hantarTertunda = true;
-          return;
-        }
-        sedangHantarData = true;
         tunjukLoading();
-
-        // Pangkas audit trail tempatan supaya payload tak membesar tanpa had
-        if (senaraiAuditTrail.length > HAD_AUDIT_TRAIL) {
-          senaraiAuditTrail = senaraiAuditTrail.slice(-HAD_AUDIT_TRAIL);
-        }
-
-        const cubaHantar = async (percubaan) => {
-          try {
-            // PENTING: guna 'text/plain' bukan 'application/json' untuk elak
-            // isu CORS preflight — Apps Script tetap boleh JSON.parse() body ni.
-            const response = await fetch(APPS_SCRIPT_URL, {
-              method: 'POST',
+        try {
+          const response = await fetch(
+            supabaseUrl + '/rest/v1/jbpm_data?id=eq.1',
+            {
+              method: 'PATCH',
               headers: {
-                'Content-Type': 'text/plain;charset=utf-8',
+                apikey: supabaseKey,
+                Authorization: 'Bearer ' + supabaseKey,
+                'Content-Type': 'application/json',
+                Prefer: 'return=representation',
               },
               body: JSON.stringify({
-                action: 'hantarData',
-                payload: {
-                  rekodAnggota,
-                  logistikBertugas,
-                  checklistPerkakas: senaraiChecklist,
-                  senaraiNamaMaster,
-                  senaraiBalaiMaster,
-                  senaraiPangkatMaster,
-                  senaraiUnitMaster,
-                  senaraiAuditTrail,
-                },
+                rekodAnggota,
+                logistikBertugas,
+                checklistPerkakas: senaraiChecklist,
+                senaraiNamaMaster,
+                senaraiBalaiMaster,
+                senaraiPangkatMaster,
+                senaraiUnitMaster,
+                updated_at: new Date().toISOString(),
               }),
-            });
-
-            if (!response.ok) throw new Error('HTTP ' + response.status);
-
-            const hasil = await response.json();
-
-            if (!hasil.success) {
-              throw new Error(hasil.error || 'Ralat tidak diketahui dari server.');
             }
-            return true;
-          } catch (err) {
-            // Cuba semula (backoff) untuk gangguan sementara — elak "error" akibat
-            // hicap rangkaian sekejap atau server sibuk seketika.
-            if (percubaan < 2) {
-              await new Promise((r) => setTimeout(r, 800 * (percubaan + 1)));
-              return cubaHantar(percubaan + 1);
-            }
-            throw err;
-          }
-        };
+          );
+          if (!response.ok) throw new Error('HTTP ' + response.status);
 
-        try {
-          await cubaHantar(0);
           simpanKeLocalStorage();
-          tunjukCustomAlert('Data berjaya dihantar ke Cloud!');
-          return true;
+          tunjukCustomAlert('Data berjaya dihantar ke Supabase Cloud!');
         } catch (err) {
           simpanKeLocalStorage();
           tunjukCustomAlert(
-            'Gagal hantar ke Cloud: ' + err.message + ' (Data disimpan secara tempatan.)'
+            'Gagal hantar ke Supabase tetapi data disimpan secara tempatan.'
           );
           console.error(err);
-          return false;
         } finally {
-          sedangHantarData = false;
           sorokLoading();
-          if (hantarTertunda) {
-            hantarTertunda = false;
-            hantarDataSupabase();
-          }
         }
       }
 
@@ -3410,10 +3246,6 @@
           'logistikJentera',
           JSON.stringify(logistikJentera)
         );
-        localStorage.setItem(
-          'senaraiAuditTrail',
-          JSON.stringify(senaraiAuditTrail)
-        );
       }
 
       function muatDariLocalStorage() {
@@ -3427,7 +3259,37 @@
         if (savedChecklist) senaraiChecklist = JSON.parse(savedChecklist);
 
         const savedNamaMaster = localStorage.getItem('senaraiNamaMaster');
-        if (savedNamaMaster) senaraiNamaMaster = JSON.parse(savedNamaMaster);
+        if (savedNamaMaster) {
+          senaraiNamaMaster = JSON.parse(savedNamaMaster);
+          // Migrate legacy `unit` → `unitBerbayar` + `unitTidakBerbayar` if needed
+          senaraiNamaMaster = senaraiNamaMaster.map((m) => {
+            if (!m.unitBerbayar && !m.unitTidakBerbayar && m.unit) {
+              const val = (m.unit || '').toUpperCase();
+              if (['EMRS', 'HAZMAT', 'PPDA'].includes(val)) {
+                return {
+                  ...m,
+                  unitBerbayar: val,
+                  unitTidakBerbayar: 'PEMADAM',
+                  unit: undefined,
+                };
+              } else if (['PEMADAM', 'RIM', 'STOM/MUST'].includes(val)) {
+                return {
+                  ...m,
+                  unitBerbayar: 'EMRS',
+                  unitTidakBerbayar: val,
+                  unit: undefined,
+                };
+              }
+              return {
+                ...m,
+                unitBerbayar: 'EMRS',
+                unitTidakBerbayar: 'PEMADAM',
+                unit: undefined,
+              };
+            }
+            return m;
+          });
+        }
 
         const savedBalaiMaster = localStorage.getItem('senaraiBalaiMaster');
         if (savedBalaiMaster) {
@@ -3442,9 +3304,9 @@
         const savedPangkatMaster = localStorage.getItem('senaraiPangkatMaster');
         if (savedPangkatMaster) {
           senaraiPangkatMaster = JSON.parse(savedPangkatMaster);
-          if (senaraiPangkatMaster.length === 0) {
+          if (senaraiPangkatMaster.length === 0)
             senaraiPangkatMaster = [...DEFAULT_PANGKAT];
-          } else {
+          else {
             DEFAULT_PANGKAT.forEach((p) => {
               if (!senaraiPangkatMaster.includes(p))
                 senaraiPangkatMaster.push(p);
@@ -3457,60 +3319,76 @@
         const savedUnitMaster = localStorage.getItem('senaraiUnitMaster');
         if (savedUnitMaster) {
           senaraiUnitMaster = JSON.parse(savedUnitMaster);
-          if (senaraiUnitMaster.length === 0) {
-            senaraiUnitMaster = [...DEFAULT_UNIT];
-          } else {
-            DEFAULT_UNIT.forEach((u) => {
+          if (senaraiUnitMaster.length === 0)
+            senaraiUnitMaster = [...DEFAULT_UNIT_MASTER];
+          else {
+            DEFAULT_UNIT_MASTER.forEach((u) => {
               if (!senaraiUnitMaster.includes(u)) senaraiUnitMaster.push(u);
             });
           }
         } else {
-          senaraiUnitMaster = [...DEFAULT_UNIT];
+          senaraiUnitMaster = [...DEFAULT_UNIT_MASTER];
         }
 
         const savedLogJentera = localStorage.getItem('logistikJentera');
         if (savedLogJentera) logistikJentera = JSON.parse(savedLogJentera);
-
-        const savedAuditTrail = localStorage.getItem('senaraiAuditTrail');
-        if (savedAuditTrail) senaraiAuditTrail = JSON.parse(savedAuditTrail);
-      }
-
-      // Helper: GET data dari Apps Script dengan cuba-semula (backoff) — elak
-      // "Gagal tarik" akibat hicap rangkaian/Apps Script sesekali lambat balas.
-      async function ambilDataDenganCubaSemula_(percubaanMax = 2) {
-        let ralatTerakhir;
-        for (let i = 0; i <= percubaanMax; i++) {
-          try {
-            const response = await fetch(APPS_SCRIPT_URL + '?action=getData', {
-              method: 'GET',
-            });
-            if (!response.ok) throw new Error('HTTP ' + response.status);
-            return await response.json();
-          } catch (err) {
-            ralatTerakhir = err;
-            if (i < percubaanMax) {
-              await new Promise((r) => setTimeout(r, 700 * (i + 1)));
-            }
-          }
-        }
-        throw ralatTerakhir;
       }
 
       async function tarikDataSupabase() {
-        if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'PASTE_URL_APPS_SCRIPT_DI_SINI') {
-          tunjukCustomAlert('URL Apps Script belum ditetapkan!');
+        if (!supabaseUrl || !supabaseKey) {
+          tunjukCustomAlert('URL/Key Supabase tidak ditetapkan!');
           return;
         }
         tunjukLoading();
         try {
-          const hasil = await ambilDataDenganCubaSemula_();
-          if (!hasil.success) throw new Error(hasil.error || 'Ralat tidak diketahui.');
-          const d = hasil.data;
-          if (d) {
+          const response = await fetch(
+            supabaseUrl + '/rest/v1/jbpm_data?id=eq.1&select=*',
+            {
+              method: 'GET',
+              headers: {
+                apikey: supabaseKey,
+                Authorization: 'Bearer ' + supabaseKey,
+              },
+            }
+          );
+          if (!response.ok) throw new Error('HTTP ' + response.status);
+          const data = await response.json();
+          if (data && data.length > 0) {
+            const d = data[0];
             if (d.rekodAnggota) rekodAnggota = d.rekodAnggota;
             if (d.logistikBertugas) logistikBertugas = d.logistikBertugas;
             if (d.checklistPerkakas) senaraiChecklist = d.checklistPerkakas;
-            if (d.senaraiNamaMaster) senaraiNamaMaster = d.senaraiNamaMaster;
+            if (d.senaraiNamaMaster) {
+              senaraiNamaMaster = d.senaraiNamaMaster;
+              // Migrate legacy `unit` → `unitBerbayar` + `unitTidakBerbayar`
+              senaraiNamaMaster = senaraiNamaMaster.map((m) => {
+                if (!m.unitBerbayar && !m.unitTidakBerbayar && m.unit) {
+                  const val = (m.unit || '').toUpperCase();
+                  if (['EMRS', 'HAZMAT', 'PPDA'].includes(val)) {
+                    return {
+                      ...m,
+                      unitBerbayar: val,
+                      unitTidakBerbayar: 'PEMADAM',
+                      unit: undefined,
+                    };
+                  } else if (['PEMADAM', 'RIM', 'STOM/MUST'].includes(val)) {
+                    return {
+                      ...m,
+                      unitBerbayar: 'EMRS',
+                      unitTidakBerbayar: val,
+                      unit: undefined,
+                    };
+                  }
+                  return {
+                    ...m,
+                    unitBerbayar: 'EMRS',
+                    unitTidakBerbayar: 'PEMADAM',
+                    unit: undefined,
+                  };
+                }
+                return m;
+              });
+            }
 
             if (d.senaraiBalaiMaster && d.senaraiBalaiMaster.length > 0) {
               senaraiBalaiMaster = d.senaraiBalaiMaster;
@@ -3527,11 +3405,10 @@
             }
             if (d.senaraiUnitMaster && d.senaraiUnitMaster.length > 0) {
               senaraiUnitMaster = d.senaraiUnitMaster;
-              DEFAULT_UNIT.forEach((u) => {
+              DEFAULT_UNIT_MASTER.forEach((u) => {
                 if (!senaraiUnitMaster.includes(u)) senaraiUnitMaster.push(u);
               });
             }
-            if (d.senaraiAuditTrail) senaraiAuditTrail = d.senaraiAuditTrail;
 
             simpanKeLocalStorage();
             kemaskiniSemuaPaparan();
@@ -3549,14 +3426,53 @@
 
       async function autoTarikData() {
         try {
-          const hasil = await ambilDataDenganCubaSemula_();
-          {
-            if (hasil.success && hasil.data) {
-              const d = hasil.data;
+          const response = await fetch(
+            supabaseUrl + '/rest/v1/jbpm_data?id=eq.1&select=*',
+            {
+              method: 'GET',
+              headers: {
+                apikey: supabaseKey,
+                Authorization: 'Bearer ' + supabaseKey,
+              },
+            }
+          );
+          if (response.ok) {
+            const data = await response.json();
+            if (data && data.length > 0) {
+              const d = data[0];
               if (d.rekodAnggota) rekodAnggota = d.rekodAnggota;
               if (d.logistikBertugas) logistikBertugas = d.logistikBertugas;
               if (d.checklistPerkakas) senaraiChecklist = d.checklistPerkakas;
-              if (d.senaraiNamaMaster) senaraiNamaMaster = d.senaraiNamaMaster;
+              if (d.senaraiNamaMaster) {
+                senaraiNamaMaster = d.senaraiNamaMaster;
+                senaraiNamaMaster = senaraiNamaMaster.map((m) => {
+                  if (!m.unitBerbayar && !m.unitTidakBerbayar && m.unit) {
+                    const val = (m.unit || '').toUpperCase();
+                    if (['EMRS', 'HAZMAT', 'PPDA'].includes(val)) {
+                      return {
+                        ...m,
+                        unitBerbayar: val,
+                        unitTidakBerbayar: 'PEMADAM',
+                        unit: undefined,
+                      };
+                    } else if (['PEMADAM', 'RIM', 'STOM/MUST'].includes(val)) {
+                      return {
+                        ...m,
+                        unitBerbayar: 'EMRS',
+                        unitTidakBerbayar: val,
+                        unit: undefined,
+                      };
+                    }
+                    return {
+                      ...m,
+                      unitBerbayar: 'EMRS',
+                      unitTidakBerbayar: 'PEMADAM',
+                      unit: undefined,
+                    };
+                  }
+                  return m;
+                });
+              }
               if (d.senaraiBalaiMaster && d.senaraiBalaiMaster.length > 0) {
                 senaraiBalaiMaster = d.senaraiBalaiMaster;
                 DEFAULT_BALAI.forEach((b) => {
@@ -3573,13 +3489,10 @@
               }
               if (d.senaraiUnitMaster && d.senaraiUnitMaster.length > 0) {
                 senaraiUnitMaster = d.senaraiUnitMaster;
-                DEFAULT_UNIT.forEach((u) => {
-                  if (!senaraiUnitMaster.includes(u))
-                    senaraiUnitMaster.push(u);
+                DEFAULT_UNIT_MASTER.forEach((u) => {
+                  if (!senaraiUnitMaster.includes(u)) senaraiUnitMaster.push(u);
                 });
               }
-              if (d.senaraiAuditTrail) senaraiAuditTrail = d.senaraiAuditTrail;
-
               simpanKeLocalStorage();
             }
           }
@@ -3588,6 +3501,9 @@
         }
       }
 
+      // ============================================================
+      //  INIT LOGISTIK JENTERA (MASTER INVENTORY)
+      // ============================================================
       function initDataLogistik(force = false) {
         if (logistikJentera.length > 0 && !force) return;
         logistikJentera = [];
@@ -3637,7 +3553,6 @@
             '03. COMPACT FIRE RESCUE TENDER (CFRT)',
           ],
         ];
-
         const frtData = [
           ['J1-01', 'BMK 976', 'SCANIA P310', '01. FIRE RESCUE TENDER (FRT)'],
           [
@@ -3837,7 +3752,6 @@
             '01. FIRE RESCUE TENDER (FRT)',
           ],
         ];
-
         const rfrtData = [
           [
             'N/A',
@@ -3846,7 +3760,6 @@
             '04. RAPID FIRE RESCUE TENDER (RFRT)',
           ],
         ];
-
         const sitrakData = [
           ['SITRAK 1', 'BSJ 6359', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
           ['SITRAK 2', 'BSL 7836', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
@@ -3857,11 +3770,9 @@
           ['SITRAK 7', 'BSL 7895', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
           ['SITRAK 8', 'BSL 7906', 'SITRAK', '01. FIRE RESCUE TENDER (FRT)'],
         ];
-
         const scaniaP94Data = [
           ['W1-35', 'WHK 9429', 'SCANIA P94', '01. FIRE RESCUE TENDER (FRT)'],
         ];
-
         const semuaPemadam = [
           ...cfrtData,
           ...frtData,
@@ -3869,7 +3780,6 @@
           ...sitrakData,
           ...scaniaP94Data,
         ];
-
         semuaPemadam.forEach((d) =>
           logistikJentera.push({
             id: ++id,
@@ -3906,7 +3816,6 @@
           ['J2-19', 'BNH 9605', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
           ['J2-20', 'BNK 3528', 'TOYOTA HIACE EMRS', '20. TOYOTA HIACE EMRS'],
         ];
-
         emrsData.forEach((d) =>
           logistikJentera.push({
             id: ++id,
@@ -3935,7 +3844,6 @@
           ['J5-11', 'WLA 4678', 'MERCEDES WT 10000L', '15. MERCEDES WT 10000L'],
           ['J5-12', 'WLA 4638', 'MERCEDES WT 10000L', '15. MERCEDES WT 10000L'],
         ];
-
         waterTankerData.forEach((d) =>
           logistikJentera.push({
             id: ++id,
@@ -4009,7 +3917,6 @@
           ['LLJ', '-', 'COMMAND POST', '21. COMMAND POST'],
           ['LLJ', 'N/A', 'POLARIS', 'AATV'],
         ];
-
         khasBompaData.forEach((d) =>
           logistikJentera.push({
             id: ++id,
@@ -4096,7 +4003,6 @@
           ['GTB 1860', '', 'MUD BOAT', 'BOT'],
           ['N/A', '', 'RUBBER DINGHY', 'BOT'],
         ];
-
         botData.forEach((d) =>
           logistikJentera.push({
             id: ++id,
@@ -4136,7 +4042,6 @@
           ['', 'JVW 3497', 'RIM', '19. RIM'],
           ['', 'JVW 3498', 'RIM', '19. RIM'],
         ];
-
         rimData.forEach((d) =>
           logistikJentera.push({
             id: ++id,
@@ -4284,7 +4189,6 @@
           ['UTL', 'VQR 6846', 'HILUX LOV', '4X4'],
           ['UTL', 'VQR 6831', 'HILUX LOV', '4X4'],
         ];
-
         kenderaanData.forEach((d) =>
           logistikJentera.push({
             id: ++id,
@@ -4307,6 +4211,9 @@
         simpanKeLocalStorage();
       }
 
+      // ============================================================
+      //  FILTER BALAI OPTIONS
+      // ============================================================
       function janaFilterBalaiOptions() {
         const opt =
           '<option value="SEMUA">SEMUA BALAI</option>' +
@@ -4319,6 +4226,9 @@
         if (f2) f2.innerHTML = opt;
       }
 
+      // ============================================================
+      //  MODAL: ANGGOTA BERTUGAS
+      // ============================================================
       function bukaModalTambahAnggota() {
         const modal = document.getElementById('addOfficerModal');
         if (modal) modal.classList.add('active');
@@ -4364,15 +4274,23 @@
             const s = namaAnggotaTerpilih.some((x) => x.nama === a.nama)
               ? 'selected'
               : '';
+            const unitDisplay =
+              (a.unitBerbayar || 'EMRS') +
+              ' / ' +
+              (a.unitTidakBerbayar || 'PEMADAM');
             return `<div class="multi-select-option ${s}" onclick="pilihNamaAnggotaOption('${
               a.nama
-            }')"><div class="check-box">${
-              s ? '<i class="fa-solid fa-check"></i>' : ''
-            }</div><div><div class="font-bold text-slate-800">${
-              a.nama
-            }</div><div class="text-[10px] text-slate-500">${a.pangkat} | ${
-              a.balai
-            }</div></div></div>`;
+            }')">
+                    <div class="check-box">${
+                      s ? '<i class="fa-solid fa-check"></i>' : ''
+                    }</div>
+                    <div>
+                        <div class="font-bold text-slate-800">${a.nama}</div>
+                        <div class="text-[10px] text-slate-500">${
+                          a.pangkat || 'KB 1'
+                        } | ${unitDisplay} | ${a.balai || 'PGO JOHOR'}</div>
+                    </div>
+                </div>`;
           })
           .join('');
       }
@@ -4387,7 +4305,8 @@
             nama,
             noTel: masterItem.noTel || '',
             pangkat: masterItem.pangkat || 'KB 1',
-            unit: masterItem.unit || 'PEMADAM',
+            unitBerbayar: masterItem.unitBerbayar || 'EMRS',
+            unitTidakBerbayar: masterItem.unitTidakBerbayar || 'PEMADAM',
             balai: masterItem.balai || 'PGO JOHOR',
             pasukan: 'PASUKAN A',
             status: 'BERTUGAS',
@@ -4410,7 +4329,8 @@
               nama: a.nama,
               noTel: a.noTel || '',
               pangkat: a.pangkat || 'KB 1',
-              unit: a.unit || 'PEMADAM',
+              unitBerbayar: a.unitBerbayar || 'EMRS',
+              unitTidakBerbayar: a.unitTidakBerbayar || 'PEMADAM',
               balai: a.balai || 'PGO JOHOR',
               pasukan: 'PASUKAN A',
               status: 'BERTUGAS',
@@ -4448,7 +4368,7 @@
 
         if (namaAnggotaTerpilih.length === 0) {
           tbody.innerHTML =
-            '<tr><td colspan="7" class="text-center p-4 text-slate-400 font-bold">TIADA ANGGOTA DIPILIH</td></tr>';
+            '<tr><td colspan="9" class="text-center p-4 text-slate-400 font-bold">TIADA ANGGOTA DIPILIH</td></tr>';
           tags.innerHTML =
             '<span class="multi-select-placeholder">PILIH ANGGOTA...</span>';
           return;
@@ -4461,82 +4381,89 @@
         tbody.innerHTML = namaAnggotaTerpilih
           .map((item, i) => {
             return `<tr>
-            <td>
-              <strong class="text-slate-800 text-xs">${item.nama}</strong>
-              <div class="text-[10px] text-slate-500 font-extrabold">${
-                item.pangkat
-              }</div>
-            </td>
-            <td><strong class="text-red-800 text-[10px]">${
-              item.balai
-            }</strong></td>
-            <td>
-              <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-bold" onchange="namaAnggotaTerpilih[${i}].pasukan=this.value">
-                <option value="PASUKAN A" ${
-                  item.pasukan === 'PASUKAN A' ? 'selected' : ''
-                }>PASUKAN A</option>
-                <option value="PASUKAN B" ${
-                  item.pasukan === 'PASUKAN B' ? 'selected' : ''
-                }>PASUKAN B</option>
-                <option value="PASUKAN C" ${
-                  item.pasukan === 'PASUKAN C' ? 'selected' : ''
-                }>PASUKAN C</option>
-              </select>
-            </td>
-            <td>
-              <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-bold" onchange="namaAnggotaTerpilih[${i}].status=this.value">
-                <option value="BERTUGAS" ${
-                  item.status === 'BERTUGAS' ? 'selected' : ''
-                }>BERTUGAS</option>
-                <option value="CUTI" ${
-                  item.status === 'CUTI' ? 'selected' : ''
-                }>CUTI</option>
-                <option value="CUTI SAKIT" ${
-                  item.status === 'CUTI SAKIT' ? 'selected' : ''
-                }>CUTI SAKIT</option>
-                <option value="TUGAS KHAS" ${
-                  item.status === 'TUGAS KHAS' ? 'selected' : ''
-                }>TUGAS KHAS</option>
-              </select>
-            </td>
-            <td>
-              <div class="flex flex-wrap gap-1 text-[8px] font-bold">
-                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
-                  <input type="checkbox" ${
-                    item.isKetuaBalai === 'YA' ? 'checked' : ''
-                  } onchange="namaAnggotaTerpilih[${i}].isKetuaBalai = this.checked ? 'YA' : 'TIDAK'"> K.BALAI
-                </label>
-                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
-                  <input type="checkbox" ${
-                    item.isPegawaiOperasi === 'YA' ? 'checked' : ''
-                  } onchange="namaAnggotaTerpilih[${i}].isPegawaiOperasi = this.checked ? 'YA' : 'TIDAK'"> P.OPERASI
-                </label>
-                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
-                  <input type="checkbox" ${
-                    item.isPenyelia === 'YA' ? 'checked' : ''
-                  } onchange="namaAnggotaTerpilih[${i}].isPenyelia = this.checked ? 'YA' : 'TIDAK'"> PENYELIA
-                  <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
-                  <input type="checkbox" ${
-                    item.isPemandu === 'YA' ? 'checked' : ''
-                  } onchange="namaAnggotaTerpilih[${i}].isPemandu = this.checked ? 'YA' : 'TIDAK'"> PEMANDU
-                </label>
-                </label>
-                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
-                  <input type="checkbox" ${
-                    item.isBkb === 'YA' ? 'checked' : ''
-                  } onchange="namaAnggotaTerpilih[${i}].isBkb = this.checked ? 'YA' : 'TIDAK'"> BKB
-                </label>
-              </div>
-            </td>
-            <td>
-              <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${
-                item.catatan === '-' ? '' : item.catatan || ''
-              }" onchange="namaAnggotaTerpilih[${i}].catatan=this.value.toUpperCase() || '-'" placeholder="CATATAN"/>
-            </td>
-            <td class="text-center">
-              <button class="px-1.5 py-0.5 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="namaAnggotaTerpilih.splice(${i},1);kemaskiniAnggotaDipilihTable();janaNamaAnggotaOptions();">✕</button>
-            </td>
-          </tr>`;
+                    <td><strong class="text-slate-800 text-xs">${
+                      item.nama
+                    }</strong><div class="text-[10px] text-slate-500 font-extrabold">${
+              item.pangkat
+            }</div></td>
+                    <td><strong class="text-red-800 text-[10px]">${
+                      item.balai
+                    }</strong></td>
+                    <td>
+                        <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-bold" onchange="namaAnggotaTerpilih[${i}].pasukan=this.value">
+                            <option value="PASUKAN A" ${
+                              item.pasukan === 'PASUKAN A' ? 'selected' : ''
+                            }>PASUKAN A</option>
+                            <option value="PASUKAN B" ${
+                              item.pasukan === 'PASUKAN B' ? 'selected' : ''
+                            }>PASUKAN B</option>
+                            <option value="PASUKAN C" ${
+                              item.pasukan === 'PASUKAN C' ? 'selected' : ''
+                            }>PASUKAN C</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-bold" onchange="namaAnggotaTerpilih[${i}].status=this.value">
+                            <option value="BERTUGAS" ${
+                              item.status === 'BERTUGAS' ? 'selected' : ''
+                            }>BERTUGAS</option>
+                            <option value="CUTI" ${
+                              item.status === 'CUTI' ? 'selected' : ''
+                            }>CUTI</option>
+                            <option value="CUTI SAKIT" ${
+                              item.status === 'CUTI SAKIT' ? 'selected' : ''
+                            }>CUTI SAKIT</option>
+                            <option value="TUGAS KHAS" ${
+                              item.status === 'TUGAS KHAS' ? 'selected' : ''
+                            }>TUGAS KHAS</option>
+                        </select>
+                    </td>
+                    <td><span class="badge badge-unit-gen">${
+                      item.unitBerbayar || 'EMRS'
+                    }</span></td>
+                    <td><span class="badge badge-unit-gen">${
+                      item.unitTidakBerbayar || 'PEMADAM'
+                    }</span></td>
+                    <td>
+                        <div class="flex flex-wrap gap-1 text-[8px] font-bold">
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
+                                <input type="checkbox" ${
+                                  item.isKetuaBalai === 'YA' ? 'checked' : ''
+                                } onchange="namaAnggotaTerpilih[${i}].isKetuaBalai = this.checked ? 'YA' : 'TIDAK'"> K.BALAI
+                            </label>
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
+                                <input type="checkbox" ${
+                                  item.isPegawaiOperasi === 'YA'
+                                    ? 'checked'
+                                    : ''
+                                } onchange="namaAnggotaTerpilih[${i}].isPegawaiOperasi = this.checked ? 'YA' : 'TIDAK'"> P.OPERASI
+                            </label>
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
+                                <input type="checkbox" ${
+                                  item.isPenyelia === 'YA' ? 'checked' : ''
+                                } onchange="namaAnggotaTerpilih[${i}].isPenyelia = this.checked ? 'YA' : 'TIDAK'"> PENYELIA
+                            </label>
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
+                                <input type="checkbox" ${
+                                  item.isPemandu === 'YA' ? 'checked' : ''
+                                } onchange="namaAnggotaTerpilih[${i}].isPemandu = this.checked ? 'YA' : 'TIDAK'"> PEMANDU
+                            </label>
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
+                                <input type="checkbox" ${
+                                  item.isBkb === 'YA' ? 'checked' : ''
+                                } onchange="namaAnggotaTerpilih[${i}].isBkb = this.checked ? 'YA' : 'TIDAK'"> BKB
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${
+                          item.catatan === '-' ? '' : item.catatan || ''
+                        }" onchange="namaAnggotaTerpilih[${i}].catatan=this.value.toUpperCase() || '-'" placeholder="CATATAN"/>
+                    </td>
+                    <td class="text-center">
+                        <button class="px-1.5 py-0.5 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="namaAnggotaTerpilih.splice(${i},1);kemaskiniAnggotaDipilihTable();janaNamaAnggotaOptions();">✕</button>
+                    </td>
+                </tr>`;
           })
           .join('');
       }
@@ -4560,7 +4487,8 @@
             nama: item.nama,
             noTel: item.noTel || '',
             pangkat: item.pangkat || 'KB 1',
-            unit: item.unit || 'PEMADAM',
+            unitBerbayar: item.unitBerbayar || 'EMRS',
+            unitTidakBerbayar: item.unitTidakBerbayar || 'PEMADAM',
             balai: item.balai || 'PGO JOHOR',
             shiftType,
             shiftTime,
@@ -4575,16 +4503,17 @@
           });
         });
 
-        const berjaya = await hantarDataSupabase();
+        await hantarDataSupabase();
         kemaskiniPaparData();
         tutupModalTambahAnggota();
         namaAnggotaTerpilih = [];
         kemaskiniAnggotaDipilihTable();
-        if (berjaya) {
-          tunjukCustomAlert('Rekod kekuatan anggota berjaya disimpan!');
-        }
+        tunjukCustomAlert('Rekod kekuatan anggota berjaya disimpan!');
       }
 
+      // ============================================================
+      //  MODAL: LOGISTIK JENTERA BERTUGAS
+      // ============================================================
       function bukaModalLogistikJentera() {
         const modal = document.getElementById('logistikJenteraModal');
         if (modal) modal.classList.add('active');
@@ -4647,13 +4576,19 @@
               : '';
             return `<div class="multi-select-option ${s}" onclick="pilihLogJenteraOption(${
               i.id
-            })"><div class="check-box">${
-              s ? '<i class="fa-solid fa-check"></i>' : ''
-            }</div><div><div class="font-bold text-red-700">${i.callsign} (${
+            })">
+                    <div class="check-box">${
+                      s ? '<i class="fa-solid fa-check"></i>' : ''
+                    }</div>
+                    <div>
+                        <div class="font-bold text-red-700">${i.callsign} (${
               i.plate
-            })</div><div class="text-[10px] text-slate-500">${i.jenis} | ${
+            })</div>
+                        <div class="text-[10px] text-slate-500">${i.jenis} | ${
               i.balai
-            }</div></div></div>`;
+            }</div>
+                    </div>
+                </div>`;
           })
           .join('');
       }
@@ -4729,34 +4664,44 @@
         tbody.innerHTML = logJenteraTerpilih
           .map((item, i) => {
             return `<tr>
-            <td><strong class="text-red-700">${item.callsign}</strong></td>
-            <td><span class="bg-slate-100 border px-1.5 py-0.5 rounded text-[10px] font-black">${
-              item.plate
-            }</span></td>
-            <td>${item.jenis}</td>
-            <td><span class="badge badge-unit-gen">${item.kategori}</span></td>
-            <td>
-              <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-extrabold" onchange="logJenteraTerpilih[${i}].status=this.value">
-                <option value="SEDIA BEROPERASI" ${
-                  item.status === 'SEDIA BEROPERASI' ? 'selected' : ''
-                }>SEDIA BEROPERASI</option>
-                <option value="DALAM PENYELENGGARAAN" ${
-                  item.status === 'DALAM PENYELENGGARAAN' ? 'selected' : ''
-                }>DALAM PENYELENGGARAAN</option>
-                <option value="ROSAK/TIDAK BOLEH GUNA" ${
-                  item.status === 'ROSAK/TIDAK BOLEH GUNA' ? 'selected' : ''
-                }>ROSAK / TIDAK BOLEH GUNA</option>
-              </select>
-            </td>
-            <td>
-              <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${
-                item.catatan === '-' ? '' : item.catatan || ''
-              }" onchange="logJenteraTerpilih[${i}].catatan=this.value.toUpperCase() || '-'" placeholder="CATATAN"/>
-            </td>
-            <td class="text-center">
-              <button class="px-1.5 py-0.5 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="logJenteraTerpilih.splice(${i},1);kemaskiniLogJenteraDipilihTable();janaLogJenteraDropdown();">✕</button>
-            </td>
-          </tr>`;
+                    <td><strong class="text-red-700">${
+                      item.callsign
+                    }</strong></td>
+                    <td><span class="bg-slate-100 border px-1.5 py-0.5 rounded text-[10px] font-black">${
+                      item.plate
+                    }</span></td>
+                    <td>${item.jenis}</td>
+                    <td><span class="badge badge-unit-gen">${
+                      item.kategori
+                    }</span></td>
+                    <td>
+                        <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-extrabold" onchange="logJenteraTerpilih[${i}].status=this.value">
+                            <option value="SEDIA BEROPERASI" ${
+                              item.status === 'SEDIA BEROPERASI'
+                                ? 'selected'
+                                : ''
+                            }>SEDIA BEROPERASI</option>
+                            <option value="DALAM PENYELENGGARAAN" ${
+                              item.status === 'DALAM PENYELENGGARAAN'
+                                ? 'selected'
+                                : ''
+                            }>DALAM PENYELENGGARAAN</option>
+                            <option value="ROSAK/TIDAK BOLEH GUNA" ${
+                              item.status === 'ROSAK/TIDAK BOLEH GUNA'
+                                ? 'selected'
+                                : ''
+                            }>ROSAK / TIDAK BOLEH GUNA</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${
+                          item.catatan === '-' ? '' : item.catatan || ''
+                        }" onchange="logJenteraTerpilih[${i}].catatan=this.value.toUpperCase() || '-'" placeholder="CATATAN"/>
+                    </td>
+                    <td class="text-center">
+                        <button class="px-1.5 py-0.5 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="logJenteraTerpilih.splice(${i},1);kemaskiniLogJenteraDipilihTable();janaLogJenteraDropdown();">✕</button>
+                    </td>
+                </tr>`;
           })
           .join('');
       }
@@ -4790,16 +4735,17 @@
           })
         );
 
-        const berjaya = await hantarDataSupabase();
+        await hantarDataSupabase();
         paparLogistikTable();
         tutupModalLogistikJentera();
         logJenteraTerpilih = [];
         kemaskiniLogJenteraDipilihTable();
-        if (berjaya) {
-          tunjukCustomAlert('Logistik Jentera Bertugas berjaya disimpan!');
-        }
+        tunjukCustomAlert('Logistik Jentera Bertugas berjaya disimpan!');
       }
 
+      // ============================================================
+      //  MODAL: CHECKLIST PERKAKAS
+      // ============================================================
       function bukaModalChecklist() {
         const modal = document.getElementById('checklistModal');
         if (modal) modal.classList.add('active');
@@ -4870,11 +4816,9 @@
             'modal' + idPrefix + '_Rosak'
           );
           const catatanEl = document.getElementById('modalCatatan' + idPrefix);
-
           const baik = Math.max(0, parseInt(baikEl ? baikEl.value : 0) || 0);
           const rosak = Math.max(0, parseInt(rosakEl ? rosakEl.value : 0) || 0);
           const catatan = catatanEl ? catatanEl.value.trim().toUpperCase() : '';
-
           return { baik, rosak, catatan };
         };
 
@@ -4906,17 +4850,16 @@
           timestamp: new Date().toISOString(),
         });
 
-        const berjaya = await hantarDataSupabase();
+        await hantarDataSupabase();
         paparChecklistTable();
         tutupModalChecklist();
-
         resetChecklistModalInputs();
-
-        if (berjaya) {
-          tunjukCustomAlert('Checklist perkakas bilik kawalan berjaya disimpan!');
-        }
+        tunjukCustomAlert('Checklist perkakas bilik kawalan berjaya disimpan!');
       }
 
+      // ============================================================
+      //  PAPAR TABLES
+      // ============================================================
       function paparChecklistTable() {
         const filterBalai =
           document.getElementById('checklistBalaiFilter')?.value || 'SEMUA';
@@ -4927,9 +4870,8 @@
         if (!tbody) return;
         tbody.innerHTML = '';
         let data = senaraiChecklist || [];
-        if (filterBalai !== 'SEMUA') {
+        if (filterBalai !== 'SEMUA')
           data = data.filter((i) => i.balai === filterBalai);
-        }
         if (q) {
           data = data.filter((i) => {
             const getCat = (d) => (d && d.catatan ? d.catatan : '');
@@ -4968,14 +4910,12 @@
         };
 
         const baikEl = document.getElementById('statChecklistBaik');
-        if (baikEl) {
+        if (baikEl)
           baikEl.innerText = data.filter((i) => !checkIsRosak(i)).length;
-        }
 
         const rosakEl = document.getElementById('statChecklistRosak');
-        if (rosakEl) {
+        if (rosakEl)
           rosakEl.innerText = data.filter((i) => checkIsRosak(i)).length;
-        }
 
         const emptyMsgEl = document.getElementById('emptyChecklistMessage');
         if (data.length === 0) {
@@ -4990,7 +4930,6 @@
           const baik = detailObj.baik || 0;
           const rosak = detailObj.rosak || 0;
           const catatan = detailObj.catatan || '';
-
           let badges = [];
           if (baik > 0)
             badges.push(
@@ -5002,7 +4941,6 @@
             );
           if (badges.length === 0)
             badges.push(`<span class="badge badge-unit-gen">-</span>`);
-
           let html = `<div class="flex flex-col items-center gap-0.5"><div class="flex flex-wrap gap-1 justify-center">${badges.join(
             ''
           )}</div>`;
@@ -5016,20 +4954,20 @@
         data.forEach((item, index) => {
           const tr = document.createElement('tr');
           tr.innerHTML = `<td>${index + 1}</td>
-            <td><strong>${item.balai || '-'}</strong></td>
-            <td>${formatCell(item.cadDetail)}</td>
-            <td>${formatCell(item.wicDetail)}</td>
-            <td>${formatCell(item.bomraDetail)}</td>
-            <td>${formatCell(item.desktopGirnDetail)}</td>
-            <td>${formatCell(item.handheldGirnDetail)}</td>
-            <td>${formatCell(item.vehicularGirnDetail)}</td>
-            <td>${formatCell(item.internetDetail)}</td>
-            <td>${formatCell(item.handphoneDetail)}</td>
-            <td>${item.shiftType || '12 JAM'}</td>
-            <td>${item.shiftTime || '0800-2000'}</td>
-            <td class="no-print"><button class="btn btn-danger" onclick="padamChecklist('${
-              item.id
-            }')">PADAM</button></td>`;
+                    <td><strong>${item.balai || '-'}</strong></td>
+                    <td>${formatCell(item.cadDetail)}</td>
+                    <td>${formatCell(item.wicDetail)}</td>
+                    <td>${formatCell(item.bomraDetail)}</td>
+                    <td>${formatCell(item.desktopGirnDetail)}</td>
+                    <td>${formatCell(item.handheldGirnDetail)}</td>
+                    <td>${formatCell(item.vehicularGirnDetail)}</td>
+                    <td>${formatCell(item.internetDetail)}</td>
+                    <td>${formatCell(item.handphoneDetail)}</td>
+                    <td>${item.shiftType || '12 JAM'}</td>
+                    <td>${item.shiftTime || '0800-2000'}</td>
+                    <td class="no-print"><button class="btn btn-danger" onclick="padamChecklist('${
+                      item.id
+                    }')">PADAM</button></td>`;
           tbody.appendChild(tr);
         });
       }
@@ -5084,6 +5022,9 @@
         janaLogistikBalaiSelectOptions();
       }
 
+      // ============================================================
+      //  ROSTER TABLE (ANGGOTA)
+      // ============================================================
       function kemaskiniPaparData() {
         const q = (document.getElementById('searchInput')?.value || '')
           .toUpperCase()
@@ -5103,11 +5044,11 @@
           ].join(' ');
           let fullText = `${i.pangkat || ''} ${i.nama || ''} ${i.noTel || ''} ${
             i.pasukan || ''
-          } ${i.unit || ''} ${perananStr} ${i.status || ''} ${
-            i.catatan || ''
-          } ${i.shiftType || ''} ${i.shiftTime || ''} ${
-            i.balai || ''
-          }`.toUpperCase();
+          } ${i.unitBerbayar || ''} ${
+            i.unitTidakBerbayar || ''
+          } ${perananStr} ${i.status || ''} ${i.catatan || ''} ${
+            i.shiftType || ''
+          } ${i.shiftTime || ''} ${i.balai || ''}`.toUpperCase();
           return (
             (balaiTerpilih.length === 0 || balaiTerpilih.includes(i.balai)) &&
             (!q || fullText.includes(q))
@@ -5167,37 +5108,50 @@
             peranan.push('<span class="badge badge-peranan">PEMANDU</span>');
 
           const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${idx + 1}</td><td><strong>${
-            item.pangkat
-          }</strong></td><td><div class="font-black">${item.nama}</div>${
+          tr.innerHTML = `<td>${idx + 1}</td>
+                    <td><strong>${item.pangkat}</strong></td>
+                    <td><div class="font-black">${item.nama}</div>${
             item.noTel
               ? `<span class="badge-tel"><i class="fa-solid fa-phone text-[9px]"></i> ${item.noTel}</span>`
               : ''
-          }</td><td><span class="badge ${bp}">${
-            item.pasukan
-          }</span></td><td><span class="badge badge-unit-gen">${
-            item.unit
-          }</span></td><td>${
-            peranan.length > 0
-              ? peranan.join(' ')
-              : '<span class="badge badge-peranan">PEMADAM</span>'
-          }</td><td><span class="badge ${bs}">${
-            item.status
-          }</span></td><td><div class="catatan-box">${
-            item.catatan || '-'
-          }</div></td><td><div class="text-[10px] font-bold text-slate-500">${
-            item.shiftType || '12 JAM'
-          } | ${
+          }</td>
+                    <td><span class="badge ${bp}">${item.pasukan}</span></td>
+                    <td><span class="badge badge-unit-gen">${
+                      item.unitBerbayar || 'EMRS'
+                    }</span></td>
+                    <td><span class="badge badge-unit-gen">${
+                      item.unitTidakBerbayar || 'PEMADAM'
+                    }</span></td>
+                    <td>${peranan.join(' ') || '-'}</td>
+                    <td><span class="badge ${bs}">${item.status}</span></td>
+                    <td><div class="catatan-box">${
+                      item.catatan || '-'
+                    }</div></td>
+                    <td><div class="text-[10px] font-bold text-slate-500">${
+                      item.shiftType || '12 JAM'
+                    } | ${
             item.shiftTime || '0800-2000'
-          }</div><div class="font-extrabold">${
-            item.balai
-          }</div></td><td class="no-print"><button class="btn btn-danger" onclick="padamAnggota('${
-            item.id
-          }')">PADAM</button></td>`;
+          }</div><div class="font-extrabold">${item.balai}</div></td>
+                    <td class="no-print"><button class="btn btn-danger" onclick="padamAnggota('${
+                      item.id
+                    }')">PADAM</button></td>`;
           tbody.appendChild(tr);
         });
       }
 
+      async function padamAnggota(id) {
+        tunjukCustomConfirm('Padam anggota ini?', async (res) => {
+          if (res) {
+            rekodAnggota = rekodAnggota.filter((i) => i.id !== id);
+            await hantarDataSupabase();
+            kemaskiniPaparData();
+          }
+        });
+      }
+
+      // ============================================================
+      //  LOGISTIK TABLE
+      // ============================================================
       function paparLogistikTable() {
         const filterBalai =
           document.getElementById('logistikBalaiFilter')?.value || 'SEMUA';
@@ -5208,9 +5162,8 @@
         if (!tbody) return;
         tbody.innerHTML = '';
         let data = logistikBertugas;
-        if (filterBalai !== 'SEMUA') {
+        if (filterBalai !== 'SEMUA')
           data = data.filter((i) => i.balai === filterBalai);
-        }
         if (q) {
           data = data.filter((i) => {
             let fullText = `${i.callsign || ''} ${i.plate || ''} ${
@@ -5246,34 +5199,27 @@
             ? 'badge-jentera-selenggara'
             : 'badge-jentera-baik';
           const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${idx + 1}</td><td><strong class="text-red-700">${
-            item.callsign
-          }</strong></td><td><span class="bg-slate-100 border px-2 py-0.5 rounded text-[11px] font-black">${
-            item.plate
-          }</span></td><td>${item.model || '-'}</td><td><strong>${
-            item.jenis
-          }</strong></td><td><span class="badge badge-unit-gen">${
-            item.kategori
-          }</span></td><td><strong>${
-            item.balai
-          }</strong></td><td><span class="badge ${bs}">${
-            item.status
-          }</span></td><td><div class="catatan-box">${
-            item.catatan || '-'
-          }</div></td><td class="no-print"><button class="btn btn-danger" onclick="padamLogistikBertugas('${
-            item.id
-          }')">PADAM</button></td>`;
+          tr.innerHTML = `<td>${idx + 1}</td>
+                    <td><strong class="text-red-700">${
+                      item.callsign
+                    }</strong></td>
+                    <td><span class="bg-slate-100 border px-2 py-0.5 rounded text-[11px] font-black">${
+                      item.plate
+                    }</span></td>
+                    <td>${item.model || '-'}</td>
+                    <td><strong>${item.jenis}</strong></td>
+                    <td><span class="badge badge-unit-gen">${
+                      item.kategori
+                    }</span></td>
+                    <td><strong>${item.balai}</strong></td>
+                    <td><span class="badge ${bs}">${item.status}</span></td>
+                    <td><div class="catatan-box">${
+                      item.catatan || '-'
+                    }</div></td>
+                    <td class="no-print"><button class="btn btn-danger" onclick="padamLogistikBertugas('${
+                      item.id
+                    }')">PADAM</button></td>`;
           tbody.appendChild(tr);
-        });
-      }
-
-      async function padamAnggota(id) {
-        tunjukCustomConfirm('Padam anggota ini?', async (res) => {
-          if (res) {
-            rekodAnggota = rekodAnggota.filter((i) => i.id !== id);
-            await hantarDataSupabase();
-            kemaskiniPaparData();
-          }
         });
       }
 
@@ -5287,12 +5233,16 @@
         });
       }
 
+      // ============================================================
+      //  BALAI MULTI-SELECT
+      // ============================================================
       function togolBalaiDropdown() {
         document
           .querySelector('#balaiMultiSelect .multi-select-trigger')
           ?.classList.toggle('active');
         document.getElementById('balaiDropdown')?.classList.toggle('show');
       }
+
       function tapisBalaiDropdown() {
         const v = (
           document.getElementById('balaiSearchInput')?.value || ''
@@ -5306,16 +5256,19 @@
                 : 'none')
           );
       }
+
       function pilihSemuaBalai() {
         balaiTerpilih = [...senaraiBalaiMaster];
         kemaskiniBalaiTags();
         kemaskiniPaparData();
       }
+
       function kosongkanBalai() {
         balaiTerpilih = [];
         kemaskiniBalaiTags();
         kemaskiniPaparData();
       }
+
       function kemaskiniBalaiTags() {
         const t = document.getElementById('balaiSelectedTags');
         if (!t) return;
@@ -5335,18 +5288,23 @@
         }
         janaBalaiDropdownOptions();
       }
+
       function janaBalaiDropdownOptions() {
         const container = document.getElementById('balaiOptionsContainer');
         if (!container) return;
         container.innerHTML = senaraiBalaiMaster
           .map((b) => {
             const s = balaiTerpilih.includes(b) ? 'selected' : '';
-            return `<div class="multi-select-option ${s}" onclick="pilihBalaiOption('${b}')"><div class="check-box">${
-              s ? '<i class="fa-solid fa-check"></i>' : ''
-            }</div><span>${b}</span></div>`;
+            return `<div class="multi-select-option ${s}" onclick="pilihBalaiOption('${b}')">
+                    <div class="check-box">${
+                      s ? '<i class="fa-solid fa-check"></i>' : ''
+                    }</div>
+                    <span>${b}</span>
+                </div>`;
           })
           .join('');
       }
+
       function pilihBalaiOption(b) {
         if (balaiTerpilih.includes(b))
           balaiTerpilih = balaiTerpilih.filter((x) => x !== b);
@@ -5355,9 +5313,13 @@
         kemaskiniPaparData();
       }
 
+      // ============================================================
+      //  CETAK & MODAL HELPERS
+      // ============================================================
       function cetakLaporan() {
         window.print();
       }
+
       function tunjukCustomAlert(m, t = 'MAKLUMAT') {
         const titleEl = document.getElementById('alertModalTitle');
         const bodyEl = document.getElementById('alertModalBody');
@@ -5365,9 +5327,11 @@
         if (bodyEl) bodyEl.innerText = m;
         document.getElementById('customAlertModal')?.classList.add('active');
       }
+
       function tutupCustomAlert() {
         document.getElementById('customAlertModal')?.classList.remove('active');
       }
+
       function tunjukCustomConfirm(m, cb, t = 'PENGESAHAN') {
         confirmCallback = cb;
         const titleEl = document.getElementById('confirmModalTitle');
@@ -5376,6 +5340,7 @@
         if (bodyEl) bodyEl.innerText = m;
         document.getElementById('customConfirmModal')?.classList.add('active');
       }
+
       function tutupCustomConfirm(res) {
         document
           .getElementById('customConfirmModal')
@@ -5386,6 +5351,9 @@
         }
       }
 
+      // ============================================================
+      //  PASSWORD / ADMIN
+      // ============================================================
       function mintaPassword(a) {
         sasaranPasswordAction = a;
         const inputPass = document.getElementById('inputPassword');
@@ -5403,9 +5371,11 @@
         if (promptEl) promptEl.innerText = promptText;
         document.getElementById('passwordModal')?.classList.add('active');
       }
+
       function tutupModalPassword() {
         document.getElementById('passwordModal')?.classList.remove('active');
       }
+
       function semakEnterPassword(e) {
         if (e.key === 'Enter') sahkanPassword();
       }
@@ -5435,13 +5405,18 @@
         }
       }
 
+      // ============================================================
+      //  URUS MASTER
+      // ============================================================
       function bukaModalUrusMaster() {
         document.getElementById('urusMasterModal')?.classList.add('active');
         tukarTabUrusMaster(aktifTabUrusMaster);
       }
+
       function tutupModalUrusMaster() {
         document.getElementById('urusMasterModal')?.classList.remove('active');
       }
+
       function tukarTabUrusMaster(mod) {
         aktifTabUrusMaster = mod;
         ['ANGGOTA', 'BALAI', 'PANGKAT', 'UNIT'].forEach((id) => {
@@ -5450,6 +5425,7 @@
         document.getElementById('tabUrus' + mod)?.classList.add('active');
         renderSenaraiMaster();
       }
+
       function renderSenaraiMaster() {
         const tbody = document.getElementById('urusMasterTableBody');
         if (!tbody) return;
@@ -5459,7 +5435,11 @@
         if (aktifTabUrusMaster === 'ANGGOTA') {
           senarai = senaraiNamaMaster.map(
             (a) =>
-              `<div class="font-bold">${a.nama}</div><div class="text-[10px] text-slate-500">${a.pangkat} | ${a.balai}</div>`
+              `<div class="font-bold">${
+                a.nama
+              }</div><div class="text-[10px] text-slate-500">${a.pangkat} | ${
+                a.unitBerbayar || 'EMRS'
+              } / ${a.unitTidakBerbayar || 'PEMADAM'} | ${a.balai}</div>`
           );
         } else if (aktifTabUrusMaster === 'BALAI') senarai = senaraiBalaiMaster;
         else if (aktifTabUrusMaster === 'PANGKAT')
@@ -5474,9 +5454,9 @@
 
         senarai.forEach((itemHTML, index) => {
           tbody.innerHTML += `<tr>
-              <td>${itemHTML}</td>
-              <td width="80"><button class="btn btn-danger" onclick="padamItemMaster(${index})">PADAM</button></td>
-            </tr>`;
+                    <td>${itemHTML}</td>
+                    <td width="80"><button class="btn btn-danger" onclick="padamItemMaster(${index})">PADAM</button></td>
+                </tr>`;
         });
       }
 
@@ -5485,21 +5465,14 @@
           'Pasti untuk padam item ini dari pangkalan data Master?',
           async (res) => {
             if (res) {
-              let butiranPadam = '';
-              if (aktifTabUrusMaster === 'ANGGOTA') {
-                butiranPadam = senaraiNamaMaster[index]?.nama || '';
+              if (aktifTabUrusMaster === 'ANGGOTA')
                 senaraiNamaMaster.splice(index, 1);
-              } else if (aktifTabUrusMaster === 'BALAI') {
-                butiranPadam = senaraiBalaiMaster[index] || '';
+              else if (aktifTabUrusMaster === 'BALAI')
                 senaraiBalaiMaster.splice(index, 1);
-              } else if (aktifTabUrusMaster === 'PANGKAT') {
-                butiranPadam = senaraiPangkatMaster[index] || '';
+              else if (aktifTabUrusMaster === 'PANGKAT')
                 senaraiPangkatMaster.splice(index, 1);
-              } else if (aktifTabUrusMaster === 'UNIT') {
-                butiranPadam = senaraiUnitMaster[index] || '';
+              else if (aktifTabUrusMaster === 'UNIT')
                 senaraiUnitMaster.splice(index, 1);
-              }
-              catatAuditTrail('PADAM', aktifTabUrusMaster, butiranPadam);
 
               await hantarDataSupabase();
               renderSenaraiMaster();
@@ -5509,15 +5482,20 @@
         );
       }
 
+      // ============================================================
+      //  URUS JENTERA MASTER
+      // ============================================================
       function bukaModalUrusJentera() {
         document.getElementById('urusJenteraModal')?.classList.add('active');
         const input = document.getElementById('cariJenteraMaster');
         if (input) input.value = '';
         renderSenaraiJenteraMaster();
       }
+
       function tutupModalUrusJentera() {
         document.getElementById('urusJenteraModal')?.classList.remove('active');
       }
+
       function renderSenaraiJenteraMaster() {
         const q = (
           document.getElementById('cariJenteraMaster')?.value || ''
@@ -5539,11 +5517,11 @@
         }
         filtered.forEach((item) => {
           tbody.innerHTML += `<tr>
-             <td class="font-bold text-red-700">${item.callsign}</td>
-             <td><span class="bg-slate-100 border px-2 py-0.5 rounded text-[10px] font-black">${item.plate}</span></td>
-             <td><div class="text-[10px] font-bold">${item.kategori}</div><div class="text-[9px] text-slate-500">${item.jenis}</div></td>
-             <td width="80"><button class="btn btn-danger" onclick="padamJenteraMaster(${item.id})">PADAM</button></td>
-           </tr>`;
+                    <td class="font-bold text-red-700">${item.callsign}</td>
+                    <td><span class="bg-slate-100 border px-2 py-0.5 rounded text-[10px] font-black">${item.plate}</span></td>
+                    <td><div class="text-[10px] font-bold">${item.kategori}</div><div class="text-[9px] text-slate-500">${item.jenis}</div></td>
+                    <td width="80"><button class="btn btn-danger" onclick="padamJenteraMaster(${item.id})">PADAM</button></td>
+                </tr>`;
         });
       }
 
@@ -5552,13 +5530,7 @@
           'Pasti untuk padam jentera ini dari Senarai Master Inventori?',
           (res) => {
             if (res) {
-              const itemPadam = logistikJentera.find((j) => j.id === id);
               logistikJentera = logistikJentera.filter((j) => j.id !== id);
-              catatAuditTrail(
-                'PADAM',
-                'JENTERA',
-                itemPadam ? itemPadam.callsign + ' (' + itemPadam.plate + ')' : ''
-              );
               simpanKeLocalStorage();
               renderSenaraiJenteraMaster();
               kemaskiniSemuaPaparan();
@@ -5567,19 +5539,17 @@
         );
       }
 
+      // ============================================================
+      //  DAFTAR MASTER (REGISTRATION FORM)
+      // ============================================================
       function janaFormDaftar(mod = 'ANGGOTA') {
         if (mod === 'ANGGOTA') {
           const regP = document.getElementById('regPangkat');
-          const regU = document.getElementById('regUnit');
           const regB = document.getElementById('regBalai');
-
+          // regUnitBerbayar & regUnitTidakBerbayar are hardcoded in HTML
           if (regP)
             regP.innerHTML = senaraiPangkatMaster
               .map((p) => `<option value="${p}">${p}</option>`)
-              .join('');
-          if (regU)
-            regU.innerHTML = senaraiUnitMaster
-              .map((u) => `<option value="${u}">${u}</option>`)
               .join('');
           if (regB)
             regB.innerHTML = senaraiBalaiMaster
@@ -5597,25 +5567,20 @@
             tunjukCustomAlert('Sila isi nama!');
             return;
           }
-          const namaSudahWujud = senaraiNamaMaster.some(
-            (item) => (item.nama || '').trim().toUpperCase() === n
-          );
-          if (namaSudahWujud) {
-            tunjukCustomAlert('Nama ini sudah wujud dalam Senarai Master!');
-            return;
-          }
+          const unitBerbayar =
+            document.getElementById('regUnitBerbayar')?.value || 'EMRS';
+          const unitTidakBerbayar =
+            document.getElementById('regUnitTidakBerbayar')?.value || 'PEMADAM';
           senaraiNamaMaster.push({
             nama: n,
             noTel: (document.getElementById('regTel')?.value || '').trim(),
             pangkat: document.getElementById('regPangkat')?.value || 'KB 1',
-            unit: document.getElementById('regUnit')?.value || 'PEMADAM',
+            unitBerbayar,
+            unitTidakBerbayar,
             balai: document.getElementById('regBalai')?.value || 'PGO JOHOR',
           });
-          catatAuditTrail('TAMBAH', 'ANGGOTA', n);
-          const berjaya = await hantarDataSupabase();
-          if (berjaya) {
-            tunjukCustomAlert('Anggota didaftarkan!');
-          }
+          await hantarDataSupabase();
+          tunjukCustomAlert('Anggota didaftarkan!');
           const regNamaInput = document.getElementById('regNama');
           const regTelInput = document.getElementById('regTel');
           if (regNamaInput) regNamaInput.value = '';
@@ -5624,15 +5589,20 @@
         }
       }
 
+      // ============================================================
+      //  SERVICE WORKER
+      // ============================================================
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js').catch(() => {});
         });
       }
 
+      // ============================================================
+      //  EXPOSE GLOBALS
+      // ============================================================
       window.hantarDataSupabase = hantarDataSupabase;
       window.tarikDataSupabase = tarikDataSupabase;
-      window.initRealtimeSync = initRealtimeSync;
       window.rekodAnggota = rekodAnggota;
 
       window.bukaModalTambahAnggota = bukaModalTambahAnggota;
@@ -5691,6 +5661,9 @@
       window.padamJenteraMaster = padamJenteraMaster;
       window.aktifkanTabBottomNav = aktifkanTabBottomNav;
 
+      // ============================================================
+      //  ONLOAD
+      // ============================================================
       window.onload = function () {
         muatDariLocalStorage();
         initDataLogistik();
@@ -5699,7 +5672,6 @@
 
         if (initSupabaseClient()) {
           autoTarikData().then(() => kemaskiniSemuaPaparan());
-          initRealtimeSync(); // mula dengar perubahan LIVE selepas data awal ditarik
         } else {
           kemaskiniSemuaPaparan();
         }
