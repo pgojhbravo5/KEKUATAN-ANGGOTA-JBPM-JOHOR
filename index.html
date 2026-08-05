@@ -3407,7 +3407,8 @@
               if (d.senaraiUnitMaster && d.senaraiUnitMaster.length > 0) {
                 senaraiUnitMaster = d.senaraiUnitMaster;
                 DEFAULT_UNIT.forEach((u) => {
-                  if (!senaraiUnitMaster.includes(u)) senaraiUnitMaster.push(u);
+                  if (!senaraiUnitMaster.includes(u))
+                    senaraiUnitMaster.push(u);
                 });
               }
 
@@ -5405,6 +5406,13 @@
             .toUpperCase();
           if (!n) {
             tunjukCustomAlert('Sila isi nama!');
+            return;
+          }
+          const namaSudahWujud = senaraiNamaMaster.some(
+            (item) => (item.nama || '').trim().toUpperCase() === n
+          );
+          if (namaSudahWujud) {
+            tunjukCustomAlert('Nama ini sudah wujud dalam Senarai Master!');
             return;
           }
           senaraiNamaMaster.push({
