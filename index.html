@@ -3059,6 +3059,17 @@
         logistikBertugas = [],
         senaraiChecklist = [];
       let senaraiNamaMaster = [];
+      let senaraiAuditTrail = [];
+
+      function catatAuditTrail(aksi, jenis, butiran) {
+        senaraiAuditTrail.unshift({
+          aksi,
+          jenis,
+          butiran,
+          masa: new Date().toISOString(),
+        });
+        if (senaraiAuditTrail.length > 500) senaraiAuditTrail.length = 500;
+      }
 
       const DEFAULT_BALAI = [
         'PGO JOHOR',
@@ -3203,6 +3214,7 @@
                 senaraiBalaiMaster,
                 senaraiPangkatMaster,
                 senaraiUnitMaster,
+                senaraiAuditTrail,
                 updated_at: new Date().toISOString(),
               }),
             }
@@ -3251,6 +3263,10 @@
         localStorage.setItem(
           'logistikJentera',
           JSON.stringify(logistikJentera)
+        );
+        localStorage.setItem(
+          'senaraiAuditTrail',
+          JSON.stringify(senaraiAuditTrail)
         );
       }
 
@@ -3308,6 +3324,9 @@
 
         const savedLogJentera = localStorage.getItem('logistikJentera');
         if (savedLogJentera) logistikJentera = JSON.parse(savedLogJentera);
+
+        const savedAuditTrail = localStorage.getItem('senaraiAuditTrail');
+        if (savedAuditTrail) senaraiAuditTrail = JSON.parse(savedAuditTrail);
       }
 
       async function tarikDataSupabase() {
@@ -3355,6 +3374,7 @@
                 if (!senaraiUnitMaster.includes(u)) senaraiUnitMaster.push(u);
               });
             }
+            if (d.senaraiAuditTrail) senaraiAuditTrail = d.senaraiAuditTrail;
 
             simpanKeLocalStorage();
             kemaskiniSemuaPaparan();
@@ -3411,6 +3431,7 @@
                     senaraiUnitMaster.push(u);
                 });
               }
+              if (d.senaraiAuditTrail) senaraiAuditTrail = d.senaraiAuditTrail;
 
               simpanKeLocalStorage();
             }
@@ -5309,14 +5330,21 @@
           'Pasti untuk padam item ini dari pangkalan data Master?',
           async (res) => {
             if (res) {
-              if (aktifTabUrusMaster === 'ANGGOTA')
+              let butiranPadam = '';
+              if (aktifTabUrusMaster === 'ANGGOTA') {
+                butiranPadam = senaraiNamaMaster[index]?.nama || '';
                 senaraiNamaMaster.splice(index, 1);
-              else if (aktifTabUrusMaster === 'BALAI')
+              } else if (aktifTabUrusMaster === 'BALAI') {
+                butiranPadam = senaraiBalaiMaster[index] || '';
                 senaraiBalaiMaster.splice(index, 1);
-              else if (aktifTabUrusMaster === 'PANGKAT')
+              } else if (aktifTabUrusMaster === 'PANGKAT') {
+                butiranPadam = senaraiPangkatMaster[index] || '';
                 senaraiPangkatMaster.splice(index, 1);
-              else if (aktifTabUrusMaster === 'UNIT')
+              } else if (aktifTabUrusMaster === 'UNIT') {
+                butiranPadam = senaraiUnitMaster[index] || '';
                 senaraiUnitMaster.splice(index, 1);
+              }
+              catatAuditTrail('PADAM', aktifTabUrusMaster, butiranPadam);
 
               await hantarDataSupabase();
               renderSenaraiMaster();
@@ -5369,7 +5397,13 @@
           'Pasti untuk padam jentera ini dari Senarai Master Inventori?',
           (res) => {
             if (res) {
+              const itemPadam = logistikJentera.find((j) => j.id === id);
               logistikJentera = logistikJentera.filter((j) => j.id !== id);
+              catatAuditTrail(
+                'PADAM',
+                'JENTERA',
+                itemPadam ? itemPadam.callsign + ' (' + itemPadam.plate + ')' : ''
+              );
               simpanKeLocalStorage();
               renderSenaraiJenteraMaster();
               kemaskiniSemuaPaparan();
@@ -5422,6 +5456,7 @@
             unit: document.getElementById('regUnit')?.value || 'PEMADAM',
             balai: document.getElementById('regBalai')?.value || 'PGO JOHOR',
           });
+          catatAuditTrail('TAMBAH', 'ANGGOTA', n);
           await hantarDataSupabase();
           tunjukCustomAlert('Anggota didaftarkan!');
           const regNamaInput = document.getElementById('regNama');
