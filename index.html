@@ -1288,7 +1288,7 @@
               <div class="form-group">
                 <label>UNIT BERBAYAR</label>
                 <select id="regUnitBerbayar" class="form-control">
-                  <option value="TIADA">TIADA</option>
+                  <option value="EMRS">TIADA</option>
                   <option value="EMRS">EMRS</option>
                   <option value="HAZMAT">HAZMAT</option>
                   <option value="PPDA">PPDA</option>
@@ -1700,6 +1700,30 @@
             >PILIH ANGGOTA DARI MASTER & TETAPKAN PASUKAN, STATUS DAN
             PERANAN.</span
           >
+        </div>
+
+        <!-- TAMBAHAN: Pilihan Shift / Masa Bertugas -->
+        <div class="grid grid-cols-2 gap-2 mb-2">
+          <div class="form-group !mb-0">
+            <label class="text-slate-800 font-extrabold">JENIS SHIF</label>
+            <select
+              id="modalShiftType"
+              class="form-control border-red-300 font-bold"
+            >
+              <option value="12 JAM">12 JAM</option>
+              <option value="24 JAM">24 JAM</option>
+            </select>
+          </div>
+          <div class="form-group !mb-0">
+            <label class="text-slate-800 font-extrabold">WAKTU TUGAS</label>
+            <select
+              id="modalShiftTime"
+              class="form-control border-red-300 font-bold"
+            >
+              <option value="0800-2000">0800-2000 (SIANG)</option>
+              <option value="2000-0800">2000-0800 (MALAM)</option>
+            </select>
+          </div>
         </div>
 
         <div class="form-group mb-2.5">
@@ -3319,6 +3343,10 @@
                 unit: undefined,
               };
             }
+            // Perbaiki nilai "TIADA" jika pernah tersimpan sebagai "EMRS" (pembetulan)
+            if (m.unitTidakBerbayar === 'EMRS' && !m.unitBerbayar) {
+              m.unitTidakBerbayar = 'TIADA';
+            }
             return m;
           });
         }
@@ -3417,6 +3445,9 @@
                     unit: undefined,
                   };
                 }
+                if (m.unitTidakBerbayar === 'EMRS' && !m.unitBerbayar) {
+                  m.unitTidakBerbayar = 'TIADA';
+                }
                 return m;
               });
             }
@@ -3500,6 +3531,9 @@
                       unitTidakBerbayar: 'PEMADAM',
                       unit: undefined,
                     };
+                  }
+                  if (m.unitTidakBerbayar === 'EMRS' && !m.unitBerbayar) {
+                    m.unitTidakBerbayar = 'TIADA';
                   }
                   return m;
                 });
@@ -4599,8 +4633,11 @@
           return;
         }
 
-        const shiftType = '12 JAM';
-        const shiftTime = '0800-2000';
+        // Ambil nilai shift dari dropdown
+        const shiftType =
+          document.getElementById('modalShiftType')?.value || '12 JAM';
+        const shiftTime =
+          document.getElementById('modalShiftTime')?.value || '0800-2000';
 
         namaAnggotaTerpilih.forEach((item) => {
           rekodAnggota.push({
@@ -5732,13 +5769,11 @@
             return;
           }
 
-          // ---------- TAMBAH BAHAGIAN INI ----------
           const tel = (document.getElementById('regTel')?.value || '').trim();
           if (!tel) {
             tunjukCustomAlert('Sila isi no. telefon!');
             return;
           }
-          // Semak format mesti mengandungi tanda '-' dan sekurang-kurangnya satu digit di kedua-dua belah
           const telPattern = /^\d+-\d+$/;
           if (!telPattern.test(tel)) {
             tunjukCustomAlert(
@@ -5746,7 +5781,6 @@
             );
             return;
           }
-          // ----------------------------------------
 
           const unitBerbayar =
             document.getElementById('regUnitBerbayar')?.value || 'EMRS';
@@ -5754,7 +5788,7 @@
             document.getElementById('regUnitTidakBerbayar')?.value || 'PEMADAM';
           senaraiNamaMaster.push({
             nama: n,
-            noTel: tel, // <-- Simpan no. telefon yang telah disahkan
+            noTel: tel,
             pangkat: document.getElementById('regPangkat')?.value || 'KB 1',
             unitBerbayar,
             unitTidakBerbayar,
