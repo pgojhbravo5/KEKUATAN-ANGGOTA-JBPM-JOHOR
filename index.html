@@ -629,6 +629,13 @@
         font-size: 0.58rem;
         padding: 1px 5px;
       }
+      .badge-peranan-pemadam {
+        background: #f3f4f6;
+        color: #374151;
+        border: 1px solid #d1d5db;
+        font-size: 0.58rem;
+        padding: 1px 5px;
+      }
 
       .catatan-box {
         font-size: 0.68rem;
@@ -1752,7 +1759,9 @@
                 <th>STATUS</th>
                 <th>UNIT BERBAYAR</th>
                 <th>UNIT TIDAK BERBAYAR</th>
-                <th>PERANAN</th>
+                <th>
+                  PERANAN <span class="text-red-600 font-extrabold">*</span>
+                </th>
                 <th>CATATAN</th>
                 <th class="text-center">BUANG</th>
               </tr>
@@ -3052,6 +3061,12 @@
         senaraiChecklist = [];
       let senaraiNamaMaster = [];
 
+      // For pending delete operations requiring password
+      let pendingDelete = {
+        type: null, // 'anggota', 'logistik', 'checklist'
+        id: null,
+      };
+
       const DEFAULT_BALAI = [
         'PGO JOHOR',
         'BBP LARKIN',
@@ -3114,7 +3129,6 @@
         'PBBK TEST 4',
       ];
 
-      // === UNIT MASTER list for URUS MASTER panel (kept separate) ===
       const DEFAULT_UNIT_MASTER = [
         'EMRS',
         'HAZMAT',
@@ -3261,7 +3275,6 @@
         const savedNamaMaster = localStorage.getItem('senaraiNamaMaster');
         if (savedNamaMaster) {
           senaraiNamaMaster = JSON.parse(savedNamaMaster);
-          // Migrate legacy `unit` → `unitBerbayar` + `unitTidakBerbayar` if needed
           senaraiNamaMaster = senaraiNamaMaster.map((m) => {
             if (!m.unitBerbayar && !m.unitTidakBerbayar && m.unit) {
               const val = (m.unit || '').toUpperCase();
@@ -3360,7 +3373,6 @@
             if (d.checklistPerkakas) senaraiChecklist = d.checklistPerkakas;
             if (d.senaraiNamaMaster) {
               senaraiNamaMaster = d.senaraiNamaMaster;
-              // Migrate legacy `unit` → `unitBerbayar` + `unitTidakBerbayar`
               senaraiNamaMaster = senaraiNamaMaster.map((m) => {
                 if (!m.unitBerbayar && !m.unitTidakBerbayar && m.unit) {
                   const val = (m.unit || '').toUpperCase();
@@ -3991,6 +4003,7 @@
           ['N/A', '', 'FIBER', 'BOT'],
           ['N/A', '', 'FIBER', 'BOT'],
           ['N/A', '', 'FIBER', 'BOT'],
+          ['N/A', '', 'FIBER', 'BOT'],
           ['WC 1', '', 'JETSKI', 'BOT'],
           ['WC 3', '', 'JETSKI', 'BOT'],
           ['KCB24', '', 'KEVLAR', 'BOT'],
@@ -4301,6 +4314,7 @@
         if (idx > -1) {
           namaAnggotaTerpilih.splice(idx, 1);
         } else {
+          // Default: NO role selected (all TIDAK)
           namaAnggotaTerpilih.push({
             nama,
             noTel: masterItem.noTel || '',
@@ -4358,6 +4372,42 @@
         kemaskiniAnggotaDipilihTable();
       }
 
+      // ============================================================
+      //  MUTUAL EXCLUSION FOR PERANAN (ROLE) - allows toggling off (no role)
+      // ============================================================
+      function setPeranan(rowIndex, fieldName) {
+        const currentValue = namaAnggotaTerpilih[rowIndex][fieldName];
+
+        // If clicked on the currently active one, turn it off (set all to TIDAK)
+        if (currentValue === 'YA') {
+          // Set all roles to TIDAK (no role)
+          const roleFields = [
+            'isKetuaBalai',
+            'isPegawaiOperasi',
+            'isPenyelia',
+            'isPemandu',
+            'isBkb',
+          ];
+          roleFields.forEach((f) => {
+            namaAnggotaTerpilih[rowIndex][f] = 'TIDAK';
+          });
+        } else {
+          // Set this one to YA, others to TIDAK
+          const roleFields = [
+            'isKetuaBalai',
+            'isPegawaiOperasi',
+            'isPenyelia',
+            'isPemandu',
+            'isBkb',
+          ];
+          roleFields.forEach((f) => {
+            namaAnggotaTerpilih[rowIndex][f] = f === fieldName ? 'YA' : 'TIDAK';
+          });
+        }
+
+        kemaskiniAnggotaDipilihTable();
+      }
+
       function kemaskiniAnggotaDipilihTable() {
         const tbody = document.getElementById('anggotaDipilihBody'),
           tags = document.getElementById('namaAnggotaSelectedTags'),
@@ -4380,6 +4430,20 @@
 
         tbody.innerHTML = namaAnggotaTerpilih
           .map((item, i) => {
+            // Determine if any role is YA
+            const roles = [
+              'isKetuaBalai',
+              'isPegawaiOperasi',
+              'isPenyelia',
+              'isPemandu',
+              'isBkb',
+            ];
+            const selectedRole = roles.find((r) => item[r] === 'YA');
+            // Display selected role name or "PEMADAM" if none
+            const roleDisplay = selectedRole
+              ? selectedRole.replace('is', '').toUpperCase()
+              : 'PEMADAM';
+
             return `<tr>
                     <td><strong class="text-slate-800 text-xs">${
                       item.nama
@@ -4426,33 +4490,54 @@
                     }</span></td>
                     <td>
                         <div class="flex flex-wrap gap-1 text-[8px] font-bold">
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${
+                              item.isKetuaBalai === 'YA'
+                                ? 'bg-red-100 border-red-400'
+                                : ''
+                            }">
                                 <input type="checkbox" ${
                                   item.isKetuaBalai === 'YA' ? 'checked' : ''
-                                } onchange="namaAnggotaTerpilih[${i}].isKetuaBalai = this.checked ? 'YA' : 'TIDAK'"> K.BALAI
+                                } onchange="setPeranan(${i}, 'isKetuaBalai')"> K.BALAI
                             </label>
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${
+                              item.isPegawaiOperasi === 'YA'
+                                ? 'bg-red-100 border-red-400'
+                                : ''
+                            }">
                                 <input type="checkbox" ${
                                   item.isPegawaiOperasi === 'YA'
                                     ? 'checked'
                                     : ''
-                                } onchange="namaAnggotaTerpilih[${i}].isPegawaiOperasi = this.checked ? 'YA' : 'TIDAK'"> P.OPERASI
+                                } onchange="setPeranan(${i}, 'isPegawaiOperasi')"> P.OPERASI
                             </label>
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${
+                              item.isPenyelia === 'YA'
+                                ? 'bg-red-100 border-red-400'
+                                : ''
+                            }">
                                 <input type="checkbox" ${
                                   item.isPenyelia === 'YA' ? 'checked' : ''
-                                } onchange="namaAnggotaTerpilih[${i}].isPenyelia = this.checked ? 'YA' : 'TIDAK'"> PENYELIA
+                                } onchange="setPeranan(${i}, 'isPenyelia')"> PENYELIA
                             </label>
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${
+                              item.isPemandu === 'YA'
+                                ? 'bg-red-100 border-red-400'
+                                : ''
+                            }">
                                 <input type="checkbox" ${
                                   item.isPemandu === 'YA' ? 'checked' : ''
-                                } onchange="namaAnggotaTerpilih[${i}].isPemandu = this.checked ? 'YA' : 'TIDAK'"> PEMANDU
+                                } onchange="setPeranan(${i}, 'isPemandu')"> PEMANDU
                             </label>
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5">
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${
+                              item.isBkb === 'YA'
+                                ? 'bg-red-100 border-red-400'
+                                : ''
+                            }">
                                 <input type="checkbox" ${
                                   item.isBkb === 'YA' ? 'checked' : ''
-                                } onchange="namaAnggotaTerpilih[${i}].isBkb = this.checked ? 'YA' : 'TIDAK'"> BKB
+                                } onchange="setPeranan(${i}, 'isBkb')"> BKB
                             </label>
+                            <span class="text-[9px] font-bold text-slate-500 ml-1">(${roleDisplay})</span>
                         </div>
                     </td>
                     <td>
@@ -4471,6 +4556,27 @@
       async function simpanAnggotaBaharu() {
         if (namaAnggotaTerpilih.length === 0) {
           tunjukCustomAlert('Sila pilih sekurang-kurangnya seorang anggota!');
+          return;
+        }
+
+        // Validate: if more than one role is selected, error (mutual exclusion should prevent this, but double-check)
+        const invalid = namaAnggotaTerpilih.filter((item) => {
+          const roles = [
+            'isKetuaBalai',
+            'isPegawaiOperasi',
+            'isPenyelia',
+            'isPemandu',
+            'isBkb',
+          ];
+          const selected = roles.filter((r) => item[r] === 'YA');
+          return selected.length > 1;
+        });
+
+        if (invalid.length > 0) {
+          const names = invalid.map((i) => i.nama).join(', ');
+          tunjukCustomAlert(
+            `Sila tetapkan hanya SATU peranan atau tiada peranan untuk: ${names}`
+          );
           return;
         }
 
@@ -4965,7 +5071,7 @@
                     <td>${formatCell(item.handphoneDetail)}</td>
                     <td>${item.shiftType || '12 JAM'}</td>
                     <td>${item.shiftTime || '0800-2000'}</td>
-                    <td class="no-print"><button class="btn btn-danger" onclick="padamChecklist('${
+                    <td class="no-print"><button class="btn btn-danger" onclick="mintaPassword('PADAM_CHECKLIST','${
                       item.id
                     }')">PADAM</button></td>`;
           tbody.appendChild(tr);
@@ -4973,13 +5079,54 @@
       }
 
       async function padamChecklist(id) {
-        tunjukCustomConfirm('Padam rekod semakan ini?', async (res) => {
-          if (res) {
-            senaraiChecklist = senaraiChecklist.filter((i) => i.id !== id);
-            await hantarDataSupabase();
-            paparChecklistTable();
-          }
-        });
+        senaraiChecklist = senaraiChecklist.filter((i) => i.id !== id);
+        await hantarDataSupabase();
+        paparChecklistTable();
+      }
+
+      // ============================================================
+      //  PASSWORD-BASED DELETE FUNCTIONS
+      // ============================================================
+      function mintaPassword(action, id = null) {
+        if (
+          action === 'PADAM_ANGGOTA' ||
+          action === 'PADAM_LOGISTIK' ||
+          action === 'PADAM_CHECKLIST'
+        ) {
+          // Store pending delete info
+          pendingDelete.type = action;
+          pendingDelete.id = id;
+          sasaranPasswordAction = 'PADAM_REKOD';
+        } else {
+          sasaranPasswordAction = action;
+          pendingDelete.type = null;
+          pendingDelete.id = null;
+        }
+
+        const inputPass = document.getElementById('inputPassword');
+        const errPass = document.getElementById('passwordErrorMsg');
+        if (inputPass) inputPass.value = '';
+        if (errPass) errPass.style.display = 'none';
+
+        let promptText = 'SILA MASUKKAN KATA LALUAN PENTADBIR:';
+        if (
+          action === 'PADAM_ANGGOTA' ||
+          action === 'PADAM_LOGISTIK' ||
+          action === 'PADAM_CHECKLIST'
+        ) {
+          promptText = 'PADAM REKOD! SILA MASUKKAN KATA LALUAN:';
+        } else if (action === 'MASTER_BERSIH') {
+          promptText = 'PROSES PEMBERSIHAN! SILA MASUKKAN KATA LALUAN:';
+        } else if (
+          action === 'URUS_KATEGORI' ||
+          action === 'URUS_JENTERA_MASTER'
+        ) {
+          promptText = 'PENGURUSAN MASTER! SILA MASUKKAN KATA LALUAN:';
+        }
+
+        const promptEl = document.getElementById('passwordPromptText');
+        if (promptEl) promptEl.innerText = promptText;
+        document.getElementById('passwordModal')?.classList.add('active');
       }
 
       function updateClock() {
@@ -5006,7 +5153,7 @@
             'SEPTEMBER',
             'OKTOBER',
             'NOVEMBER',
-            'DISEMBER',
+            'DESEMBER',
           ][n.getMonth()] +
           ' ' +
           n.getFullYear();
@@ -5042,6 +5189,8 @@
             i.isBkb === 'YA' ? 'BKB' : '',
             i.isPemandu === 'YA' ? 'PEMANDU' : '',
           ].join(' ');
+          // If none selected, show "PEMADAM"
+          if (perananStr.trim() === '') perananStr = 'PEMADAM';
           let fullText = `${i.pangkat || ''} ${i.nama || ''} ${i.noTel || ''} ${
             i.pasukan || ''
           } ${i.unitBerbayar || ''} ${
@@ -5106,6 +5255,10 @@
             peranan.push('<span class="badge badge-peranan">BKB</span>');
           if (item.isPemandu === 'YA')
             peranan.push('<span class="badge badge-peranan">PEMANDU</span>');
+          if (peranan.length === 0)
+            peranan.push(
+              '<span class="badge badge-peranan-pemadam">PEMADAM</span>'
+            );
 
           const tr = document.createElement('tr');
           tr.innerHTML = `<td>${idx + 1}</td>
@@ -5122,7 +5275,7 @@
                     <td><span class="badge badge-unit-gen">${
                       item.unitTidakBerbayar || 'PEMADAM'
                     }</span></td>
-                    <td>${peranan.join(' ') || '-'}</td>
+                    <td>${peranan.join(' ')}</td>
                     <td><span class="badge ${bs}">${item.status}</span></td>
                     <td><div class="catatan-box">${
                       item.catatan || '-'
@@ -5132,7 +5285,7 @@
                     } | ${
             item.shiftTime || '0800-2000'
           }</div><div class="font-extrabold">${item.balai}</div></td>
-                    <td class="no-print"><button class="btn btn-danger" onclick="padamAnggota('${
+                    <td class="no-print"><button class="btn btn-danger" onclick="mintaPassword('PADAM_ANGGOTA','${
                       item.id
                     }')">PADAM</button></td>`;
           tbody.appendChild(tr);
@@ -5140,13 +5293,9 @@
       }
 
       async function padamAnggota(id) {
-        tunjukCustomConfirm('Padam anggota ini?', async (res) => {
-          if (res) {
-            rekodAnggota = rekodAnggota.filter((i) => i.id !== id);
-            await hantarDataSupabase();
-            kemaskiniPaparData();
-          }
-        });
+        rekodAnggota = rekodAnggota.filter((i) => i.id !== id);
+        await hantarDataSupabase();
+        kemaskiniPaparData();
       }
 
       // ============================================================
@@ -5216,7 +5365,7 @@
                     <td><div class="catatan-box">${
                       item.catatan || '-'
                     }</div></td>
-                    <td class="no-print"><button class="btn btn-danger" onclick="padamLogistikBertugas('${
+                    <td class="no-print"><button class="btn btn-danger" onclick="mintaPassword('PADAM_LOGISTIK','${
                       item.id
                     }')">PADAM</button></td>`;
           tbody.appendChild(tr);
@@ -5224,13 +5373,9 @@
       }
 
       async function padamLogistikBertugas(id) {
-        tunjukCustomConfirm('Padam jentera ini?', async (res) => {
-          if (res) {
-            logistikBertugas = logistikBertugas.filter((i) => i.id !== id);
-            await hantarDataSupabase();
-            paparLogistikTable();
-          }
-        });
+        logistikBertugas = logistikBertugas.filter((i) => i.id !== id);
+        await hantarDataSupabase();
+        paparLogistikTable();
       }
 
       // ============================================================
@@ -5354,24 +5499,6 @@
       // ============================================================
       //  PASSWORD / ADMIN
       // ============================================================
-      function mintaPassword(a) {
-        sasaranPasswordAction = a;
-        const inputPass = document.getElementById('inputPassword');
-        const errPass = document.getElementById('passwordErrorMsg');
-        if (inputPass) inputPass.value = '';
-        if (errPass) errPass.style.display = 'none';
-
-        let promptText = 'SILA MASUKKAN KATA LALUAN PENTADBIR:';
-        if (a === 'MASTER_BERSIH')
-          promptText = 'PROSES PEMBERSIHAN! SILA MASUKKAN KATA LALUAN:';
-        else if (a === 'URUS_KATEGORI' || a === 'URUS_JENTERA_MASTER')
-          promptText = 'PENGURUSAN MASTER! SILA MASUKKAN KATA LALUAN:';
-
-        const promptEl = document.getElementById('passwordPromptText');
-        if (promptEl) promptEl.innerText = promptText;
-        document.getElementById('passwordModal')?.classList.add('active');
-      }
-
       function tutupModalPassword() {
         document.getElementById('passwordModal')?.classList.remove('active');
       }
@@ -5384,6 +5511,25 @@
         const inputPass = document.getElementById('inputPassword');
         if (inputPass && inputPass.value === KATA_LALUAN_TETAP) {
           tutupModalPassword();
+          // Check if it's a delete operation
+          if (
+            sasaranPasswordAction === 'PADAM_REKOD' &&
+            pendingDelete.type &&
+            pendingDelete.id
+          ) {
+            if (pendingDelete.type === 'PADAM_ANGGOTA') {
+              padamAnggota(pendingDelete.id);
+            } else if (pendingDelete.type === 'PADAM_LOGISTIK') {
+              padamLogistikBertugas(pendingDelete.id);
+            } else if (pendingDelete.type === 'PADAM_CHECKLIST') {
+              padamChecklist(pendingDelete.id);
+            }
+            pendingDelete.type = null;
+            pendingDelete.id = null;
+            return;
+          }
+
+          // Other admin actions
           if (sasaranPasswordAction === 'MASTER_BERSIH') {
             tunjukCustomConfirm('PADAM SEMUA REKOD?', async (res) => {
               if (res) {
@@ -5546,7 +5692,6 @@
         if (mod === 'ANGGOTA') {
           const regP = document.getElementById('regPangkat');
           const regB = document.getElementById('regBalai');
-          // regUnitBerbayar & regUnitTidakBerbayar are hardcoded in HTML
           if (regP)
             regP.innerHTML = senaraiPangkatMaster
               .map((p) => `<option value="${p}">${p}</option>`)
@@ -5615,6 +5760,7 @@
       window.pilihNamaAnggotaOption = pilihNamaAnggotaOption;
       window.pilihSemuaNamaAnggota = pilihSemuaNamaAnggota;
       window.kosongkanNamaAnggota = kosongkanNamaAnggota;
+      window.setPeranan = setPeranan;
 
       window.bukaModalLogistikJentera = bukaModalLogistikJentera;
       window.tutupModalLogistikJentera = tutupModalLogistikJentera;
