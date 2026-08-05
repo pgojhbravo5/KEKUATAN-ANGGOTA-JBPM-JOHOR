@@ -37,6 +37,9 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Supabase JS Client — digunakan HANYA untuk Realtime (dengar perubahan live).
+         Hantar data tulis kekal lalu Apps Script seperti sebelum ini. -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -3152,7 +3155,104 @@
 
       // GANTI dengan URL "Web app" dari Apps Script > Deploy > Manage deployments
       // Contoh: https://script.google.com/macros/s/AKfycb.../exec
-      const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwBOkshHDavaoKtXC--ozvzfn4FMKg5hp5GlYrFwaVwvoXLaGDopJnEMMFgGbXCl0wX/exec';
+      const APPS_SCRIPT_URL = 'https://script.google.com/a/macros/bomba.gov.my/s/AKfycbwBOkshHDavaoKtXC--ozvzfn4FMKg5hp5GlYrFwaVwvoXLaGDopJnEMMFgGbXCl0wX/exec';
+
+      // ---- REALTIME (baharu): sambungan terus ke Supabase untuk dengar
+      // perubahan LIVE. Anon key ni sengaja "public" — akses sebenar dikawal
+      // oleh RLS di Supabase, bukan oleh key ni dirahsiakan. Tulis data kekal
+      // lalu Apps Script (APPS_SCRIPT_URL) seperti sebelum ini, tak berubah.
+      const SUPABASE_URL = 'https://hglmbrqweijpguxfeloq.supabase.co';
+      const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnbG1icnF3ZWlqcGd1eGZlbG9xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU1NDcyNDAsImV4cCI6MjEwMTEyMzI0MH0.xBuhxHVmkuIPC34421QfuCERIpBPFiyVi1sSC-PQAiQ';
+      let supabaseRealtimeClient = null;
+      let salurRealtimeJbpm = null;
+
+      // Terapkan data yang diterima dari event realtime (sama struktur macam
+      // hasil getData) ke state tempatan + papar semula UI.
+      function terapkanDataDariRealtime_(d) {
+        if (!d) return;
+        if (d.rekodAnggota) rekodAnggota = d.rekodAnggota;
+        if (d.logistikBertugas) logistikBertugas = d.logistikBertugas;
+        if (d.checklistPerkakas) senaraiChecklist = d.checklistPerkakas;
+        if (d.senaraiNamaMaster) senaraiNamaMaster = d.senaraiNamaMaster;
+        if (d.senaraiBalaiMaster && d.senaraiBalaiMaster.length > 0) {
+          senaraiBalaiMaster = d.senaraiBalaiMaster;
+          DEFAULT_BALAI.forEach((b) => {
+            if (!senaraiBalaiMaster.includes(b)) senaraiBalaiMaster.push(b);
+          });
+        }
+        if (d.senaraiPangkatMaster && d.senaraiPangkatMaster.length > 0) {
+          senaraiPangkatMaster = d.senaraiPangkatMaster;
+          DEFAULT_PANGKAT.forEach((p) => {
+            if (!senaraiPangkatMaster.includes(p)) senaraiPangkatMaster.push(p);
+          });
+        }
+        if (d.senaraiUnitMaster && d.senaraiUnitMaster.length > 0) {
+          senaraiUnitMaster = d.senaraiUnitMaster;
+          DEFAULT_UNIT.forEach((u) => {
+            if (!senaraiUnitMaster.includes(u)) senaraiUnitMaster.push(u);
+          });
+        }
+        if (d.senaraiAuditTrail) senaraiAuditTrail = d.senaraiAuditTrail;
+
+        simpanKeLocalStorage();
+        kemaskiniSemuaPaparan();
+      }
+
+      // Mulakan sambungan realtime (websocket) ke Supabase. Kalau jadual
+      // belum diaktifkan Realtime di Supabase Dashboard, langganan akan gagal
+      // dengan senyap (status CHANNEL_ERROR) dan app terus jalan macam biasa
+      // guna butang muat turun manual sebagai gantian.
+      function initRealtimeSync() {
+        if (!window.supabase || typeof window.supabase.createClient !== 'function') {
+          console.warn('⚠️ Pustaka Supabase JS gagal dimuatkan — realtime dilangkau.');
+          return false;
+        }
+        if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return false;
+
+        try {
+          supabaseRealtimeClient = window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_ANON_KEY
+          );
+
+          salurRealtimeJbpm = supabaseRealtimeClient
+            .channel('jbpm_data_changes')
+            .on(
+              'postgres_changes',
+              { event: 'UPDATE', schema: 'public', table: 'jbpm_data', filter: 'id=eq.1' },
+              (payload) => {
+                console.log('🔴 LIVE: perubahan diterima dari Supabase', payload);
+                terapkanDataDariRealtime_(payload.new);
+              }
+            )
+            .subscribe((status) => {
+              if (status === 'SUBSCRIBED') {
+                kemaskiniStatusCloud(
+                  'active',
+                  '<i class="fa-solid fa-bolt text-[9px] text-emerald-500 mr-1"></i> CLOUD: LIVE'
+                );
+              } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
+                kemaskiniStatusCloud(
+                  'error',
+                  '<i class="fa-solid fa-triangle-exclamation text-[9px] text-red-500 mr-1"></i> LIVE TERPUTUS (guna refresh manual)'
+                );
+                console.warn(
+                  '⚠️ Realtime gagal sambung. Pastikan Realtime diaktifkan untuk jadual jbpm_data di Supabase Dashboard > Database > Replication.'
+                );
+              } else if (status === 'CLOSED') {
+                kemaskiniStatusCloud(
+                  'inactive',
+                  '<i class="fa-solid fa-circle text-[9px] text-amber-500 mr-1"></i> CLOUD: LIVE DIHENTIKAN'
+                );
+              }
+            });
+
+          return true;
+        } catch (err) {
+          console.error('Gagal mulakan realtime sync:', err);
+          return false;
+        }
+      }
 
       function initSupabaseClient() {
         if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'PASTE_URL_APPS_SCRIPT_DI_SINI') {
@@ -5532,6 +5632,7 @@
 
       window.hantarDataSupabase = hantarDataSupabase;
       window.tarikDataSupabase = tarikDataSupabase;
+      window.initRealtimeSync = initRealtimeSync;
       window.rekodAnggota = rekodAnggota;
 
       window.bukaModalTambahAnggota = bukaModalTambahAnggota;
@@ -5598,6 +5699,7 @@
 
         if (initSupabaseClient()) {
           autoTarikData().then(() => kemaskiniSemuaPaparan());
+          initRealtimeSync(); // mula dengar perubahan LIVE selepas data awal ditarik
         } else {
           kemaskiniSemuaPaparan();
         }
