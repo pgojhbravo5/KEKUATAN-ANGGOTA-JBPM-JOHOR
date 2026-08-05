@@ -1257,11 +1257,27 @@
           <div id="regFormContainer">
             <div class="form-group">
               <label>NAMA <span class="required-star">*</span></label>
-              <input type="text" id="regNama" class="form-control" required />
+              <input
+                type="text"
+                id="regNama"
+                class="form-control"
+                placeholder="CONTOH: MOHD ALI BIN ABDULLAH"
+                required
+              />
             </div>
             <div class="form-group">
-              <label>NO. TELEFON</label>
-              <input type="text" id="regTel" class="form-control" />
+              <label>NO. TELEFON <span class="required-star">*</span></label>
+              <input
+                type="text"
+                id="regTel"
+                class="form-control"
+                placeholder="CONTOH: 012-3456789"
+                required
+              />
+              <div class="text-[9px] text-slate-400 mt-1">
+                <i class="fa-regular fa-circle-question mr-1"></i> Format wajib:
+                012-3456789 (gunakan tanda - )
+              </div>
             </div>
             <!-- PANGKAT + UNIT BERBAYAR -->
             <div class="grid grid-cols-2 gap-2">
@@ -1290,10 +1306,12 @@
                   <option value="STOM/MUST">STOM/MUST</option>
                 </select>
                 <div class="text-[9px] text-slate-400 mt-1">
-                  <i class="fa-regular fa-circle-question mr-1"></i> TIADA = Ketua Balai / Pegawai Kanan (tiada unit)
+                  <i class="fa-regular fa-circle-question mr-1"></i> TIADA =
+                  Ketua Balai / Pegawai Kanan (tiada unit)
                 </div>
                 <div class="text-[9px] text-slate-400 mt-1">
-                  <i class="fa-regular fa-circle-question mr-1"></i> PEMADAM = Anggota(Tiada Unit)
+                  <i class="fa-regular fa-circle-question mr-1"></i> PEMADAM =
+                  Anggota(Tiada Unit)
                 </div>
               </div>
               <div class="form-group">
@@ -5713,13 +5731,30 @@
             tunjukCustomAlert('Sila isi nama!');
             return;
           }
+
+          // ---------- TAMBAH BAHAGIAN INI ----------
+          const tel = (document.getElementById('regTel')?.value || '').trim();
+          if (!tel) {
+            tunjukCustomAlert('Sila isi no. telefon!');
+            return;
+          }
+          // Semak format mesti mengandungi tanda '-' dan sekurang-kurangnya satu digit di kedua-dua belah
+          const telPattern = /^\d+-\d+$/;
+          if (!telPattern.test(tel)) {
+            tunjukCustomAlert(
+              'Format no. telefon tidak sah. Gunakan format seperti 012-3456789 (dengan tanda - )'
+            );
+            return;
+          }
+          // ----------------------------------------
+
           const unitBerbayar =
             document.getElementById('regUnitBerbayar')?.value || 'EMRS';
           const unitTidakBerbayar =
             document.getElementById('regUnitTidakBerbayar')?.value || 'PEMADAM';
           senaraiNamaMaster.push({
             nama: n,
-            noTel: (document.getElementById('regTel')?.value || '').trim(),
+            noTel: tel, // <-- Simpan no. telefon yang telah disahkan
             pangkat: document.getElementById('regPangkat')?.value || 'KB 1',
             unitBerbayar,
             unitTidakBerbayar,
