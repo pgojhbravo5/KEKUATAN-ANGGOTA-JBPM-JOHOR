@@ -3150,21 +3150,21 @@
       let senaraiUnitMaster = [...DEFAULT_UNIT];
       let logistikJentera = [];
 
-      let supabaseUrl = 'https://hglmbrqweijpguxfeloq.supabase.co';
-      let supabaseKey =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnbG1icnF3ZWlqcGd1eGZlbG9xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU1NDcyNDAsImV4cCI6MjEwMTEyMzI0MH0.xBuhxHVmkuIPC34421QfuCERIpBPFiyVi1sSC-PQAiQ';
+      // GANTI dengan URL "Web app" dari Apps Script > Deploy > Manage deployments
+      // Contoh: https://script.google.com/macros/s/AKfycb.../exec
+      const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby-7lP5aKB1Mc2QRjRPsDw-oc42wPm3nU0hQQQPkJv8CJy3sgtNnYIz0-azRjlCspkg/exec';
 
       function initSupabaseClient() {
-        if (supabaseUrl && supabaseKey) {
+        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'PASTE_URL_APPS_SCRIPT_DI_SINI') {
           kemaskiniStatusCloud(
             'active',
-            '<i class="fa-solid fa-circle text-[9px] text-emerald-500 mr-1"></i> SUPABASE: DISAMBUNG'
+            '<i class="fa-solid fa-circle text-[9px] text-emerald-500 mr-1"></i> CLOUD: DISAMBUNG'
           );
           return true;
         } else {
           kemaskiniStatusCloud(
             'inactive',
-            '<i class="fa-solid fa-circle text-[9px] text-amber-500 mr-1"></i> SUPABASE: BELUM DISAMBUNG'
+            '<i class="fa-solid fa-circle text-[9px] text-amber-500 mr-1"></i> CLOUD: URL BELUM DITETAPKAN'
           );
           return false;
         }
@@ -3189,24 +3189,23 @@
       }
 
       async function hantarDataSupabase() {
-        if (!supabaseUrl || !supabaseKey) {
+        if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'PASTE_URL_APPS_SCRIPT_DI_SINI') {
           simpanKeLocalStorage();
-          tunjukCustomAlert('Data disimpan dalam storan tempatan.');
+          tunjukCustomAlert('URL Apps Script belum ditetapkan. Data disimpan dalam storan tempatan sahaja.');
           return;
         }
         tunjukLoading();
         try {
-          const response = await fetch(
-            supabaseUrl + '/rest/v1/jbpm_data?id=eq.1',
-            {
-              method: 'PATCH',
-              headers: {
-                apikey: supabaseKey,
-                Authorization: 'Bearer ' + supabaseKey,
-                'Content-Type': 'application/json',
-                Prefer: 'return=representation',
-              },
-              body: JSON.stringify({
+          // PENTING: guna 'text/plain' bukan 'application/json' untuk elak
+          // isu CORS preflight — Apps Script tetap boleh JSON.parse() body ni.
+          const response = await fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'text/plain;charset=utf-8',
+            },
+            body: JSON.stringify({
+              action: 'hantarData',
+              payload: {
                 rekodAnggota,
                 logistikBertugas,
                 checklistPerkakas: senaraiChecklist,
@@ -3215,20 +3214,28 @@
                 senaraiPangkatMaster,
                 senaraiUnitMaster,
                 senaraiAuditTrail,
-                updated_at: new Date().toISOString(),
-              }),
-            }
-          );
+              },
+            }),
+          });
+
           if (!response.ok) throw new Error('HTTP ' + response.status);
 
+          const hasil = await response.json();
+
+          if (!hasil.success) {
+            throw new Error(hasil.error || 'Ralat tidak diketahui dari server.');
+          }
+
           simpanKeLocalStorage();
-          tunjukCustomAlert('Data berjaya dihantar ke Supabase Cloud!');
+          tunjukCustomAlert('Data berjaya dihantar ke Cloud!');
+          return true;
         } catch (err) {
           simpanKeLocalStorage();
           tunjukCustomAlert(
-            'Gagal hantar ke Supabase tetapi data disimpan secara tempatan.'
+            'Gagal hantar ke Cloud: ' + err.message + ' (Data disimpan secara tempatan.)'
           );
           console.error(err);
+          return false;
         } finally {
           sorokLoading();
         }
@@ -3330,26 +3337,20 @@
       }
 
       async function tarikDataSupabase() {
-        if (!supabaseUrl || !supabaseKey) {
-          tunjukCustomAlert('URL/Key Supabase tidak ditetapkan!');
+        if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'PASTE_URL_APPS_SCRIPT_DI_SINI') {
+          tunjukCustomAlert('URL Apps Script belum ditetapkan!');
           return;
         }
         tunjukLoading();
         try {
-          const response = await fetch(
-            supabaseUrl + '/rest/v1/jbpm_data?id=eq.1&select=*',
-            {
-              method: 'GET',
-              headers: {
-                apikey: supabaseKey,
-                Authorization: 'Bearer ' + supabaseKey,
-              },
-            }
-          );
+          const response = await fetch(APPS_SCRIPT_URL + '?action=getData', {
+            method: 'GET',
+          });
           if (!response.ok) throw new Error('HTTP ' + response.status);
-          const data = await response.json();
-          if (data && data.length > 0) {
-            const d = data[0];
+          const hasil = await response.json();
+          if (!hasil.success) throw new Error(hasil.error || 'Ralat tidak diketahui.');
+          const d = hasil.data;
+          if (d) {
             if (d.rekodAnggota) rekodAnggota = d.rekodAnggota;
             if (d.logistikBertugas) logistikBertugas = d.logistikBertugas;
             if (d.checklistPerkakas) senaraiChecklist = d.checklistPerkakas;
@@ -3392,20 +3393,13 @@
 
       async function autoTarikData() {
         try {
-          const response = await fetch(
-            supabaseUrl + '/rest/v1/jbpm_data?id=eq.1&select=*',
-            {
-              method: 'GET',
-              headers: {
-                apikey: supabaseKey,
-                Authorization: 'Bearer ' + supabaseKey,
-              },
-            }
-          );
+          const response = await fetch(APPS_SCRIPT_URL + '?action=getData', {
+            method: 'GET',
+          });
           if (response.ok) {
-            const data = await response.json();
-            if (data && data.length > 0) {
-              const d = data[0];
+            const hasil = await response.json();
+            if (hasil.success && hasil.data) {
+              const d = hasil.data;
               if (d.rekodAnggota) rekodAnggota = d.rekodAnggota;
               if (d.logistikBertugas) logistikBertugas = d.logistikBertugas;
               if (d.checklistPerkakas) senaraiChecklist = d.checklistPerkakas;
@@ -4428,12 +4422,14 @@
           });
         });
 
-        await hantarDataSupabase();
+        const berjaya = await hantarDataSupabase();
         kemaskiniPaparData();
         tutupModalTambahAnggota();
         namaAnggotaTerpilih = [];
         kemaskiniAnggotaDipilihTable();
-        tunjukCustomAlert('Rekod kekuatan anggota berjaya disimpan!');
+        if (berjaya) {
+          tunjukCustomAlert('Rekod kekuatan anggota berjaya disimpan!');
+        }
       }
 
       function bukaModalLogistikJentera() {
@@ -4641,12 +4637,14 @@
           })
         );
 
-        await hantarDataSupabase();
+        const berjaya = await hantarDataSupabase();
         paparLogistikTable();
         tutupModalLogistikJentera();
         logJenteraTerpilih = [];
         kemaskiniLogJenteraDipilihTable();
-        tunjukCustomAlert('Logistik Jentera Bertugas berjaya disimpan!');
+        if (berjaya) {
+          tunjukCustomAlert('Logistik Jentera Bertugas berjaya disimpan!');
+        }
       }
 
       function bukaModalChecklist() {
@@ -4755,13 +4753,15 @@
           timestamp: new Date().toISOString(),
         });
 
-        await hantarDataSupabase();
+        const berjaya = await hantarDataSupabase();
         paparChecklistTable();
         tutupModalChecklist();
 
         resetChecklistModalInputs();
 
-        tunjukCustomAlert('Checklist perkakas bilik kawalan berjaya disimpan!');
+        if (berjaya) {
+          tunjukCustomAlert('Checklist perkakas bilik kawalan berjaya disimpan!');
+        }
       }
 
       function paparChecklistTable() {
@@ -5457,8 +5457,10 @@
             balai: document.getElementById('regBalai')?.value || 'PGO JOHOR',
           });
           catatAuditTrail('TAMBAH', 'ANGGOTA', n);
-          await hantarDataSupabase();
-          tunjukCustomAlert('Anggota didaftarkan!');
+          const berjaya = await hantarDataSupabase();
+          if (berjaya) {
+            tunjukCustomAlert('Anggota didaftarkan!');
+          }
           const regNamaInput = document.getElementById('regNama');
           const regTelInput = document.getElementById('regTel');
           if (regNamaInput) regNamaInput.value = '';
