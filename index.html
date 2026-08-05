@@ -3280,15 +3280,30 @@
         const savedPangkatMaster = localStorage.getItem('senaraiPangkatMaster');
         if (savedPangkatMaster) {
           senaraiPangkatMaster = JSON.parse(savedPangkatMaster);
-          if (senaraiPangkatMaster.length === 0)
+          if (senaraiPangkatMaster.length === 0) {
             senaraiPangkatMaster = [...DEFAULT_PANGKAT];
+          } else {
+            DEFAULT_PANGKAT.forEach((p) => {
+              if (!senaraiPangkatMaster.includes(p))
+                senaraiPangkatMaster.push(p);
+            });
+          }
+        } else {
+          senaraiPangkatMaster = [...DEFAULT_PANGKAT];
         }
 
         const savedUnitMaster = localStorage.getItem('senaraiUnitMaster');
         if (savedUnitMaster) {
           senaraiUnitMaster = JSON.parse(savedUnitMaster);
-          if (senaraiUnitMaster.length === 0)
+          if (senaraiUnitMaster.length === 0) {
             senaraiUnitMaster = [...DEFAULT_UNIT];
+          } else {
+            DEFAULT_UNIT.forEach((u) => {
+              if (!senaraiUnitMaster.includes(u)) senaraiUnitMaster.push(u);
+            });
+          }
+        } else {
+          senaraiUnitMaster = [...DEFAULT_UNIT];
         }
 
         const savedLogJentera = localStorage.getItem('logistikJentera');
@@ -3327,10 +3342,19 @@
                 if (!senaraiBalaiMaster.includes(b)) senaraiBalaiMaster.push(b);
               });
             }
-            if (d.senaraiPangkatMaster && d.senaraiPangkatMaster.length > 0)
+            if (d.senaraiPangkatMaster && d.senaraiPangkatMaster.length > 0) {
               senaraiPangkatMaster = d.senaraiPangkatMaster;
-            if (d.senaraiUnitMaster && d.senaraiUnitMaster.length > 0)
+              DEFAULT_PANGKAT.forEach((p) => {
+                if (!senaraiPangkatMaster.includes(p))
+                  senaraiPangkatMaster.push(p);
+              });
+            }
+            if (d.senaraiUnitMaster && d.senaraiUnitMaster.length > 0) {
               senaraiUnitMaster = d.senaraiUnitMaster;
+              DEFAULT_UNIT.forEach((u) => {
+                if (!senaraiUnitMaster.includes(u)) senaraiUnitMaster.push(u);
+              });
+            }
 
             simpanKeLocalStorage();
             kemaskiniSemuaPaparan();
@@ -3373,10 +3397,19 @@
                     senaraiBalaiMaster.push(b);
                 });
               }
-              if (d.senaraiPangkatMaster && d.senaraiPangkatMaster.length > 0)
+              if (d.senaraiPangkatMaster && d.senaraiPangkatMaster.length > 0) {
                 senaraiPangkatMaster = d.senaraiPangkatMaster;
-              if (d.senaraiUnitMaster && d.senaraiUnitMaster.length > 0)
+                DEFAULT_PANGKAT.forEach((p) => {
+                  if (!senaraiPangkatMaster.includes(p))
+                    senaraiPangkatMaster.push(p);
+                });
+              }
+              if (d.senaraiUnitMaster && d.senaraiUnitMaster.length > 0) {
                 senaraiUnitMaster = d.senaraiUnitMaster;
+                DEFAULT_UNIT.forEach((u) => {
+                  if (!senaraiUnitMaster.includes(u)) senaraiUnitMaster.push(u);
+                });
+              }
 
               simpanKeLocalStorage();
             }
