@@ -1272,7 +1272,7 @@
               <div class="form-group">
                 <label>UNIT BERBAYAR</label>
                 <select id="regUnitBerbayar" class="form-control">
-                  <option value="PPDA">TIADA</option>
+                  <option value="EMRS">TIADA</option>
                   <option value="EMRS">EMRS</option>
                   <option value="HAZMAT">HAZMAT</option>
                   <option value="PPDA">PPDA</option>
@@ -1284,36 +1284,18 @@
               <div class="form-group">
                 <label>UNIT TIDAK BERBAYAR</label>
                 <select id="regUnitTidakBerbayar" class="form-control">
+                  <option value="EMRS">TIADA</option>
                   <option value="PEMADAM">PEMADAM</option>
                   <option value="RIM">RIM</option>
                   <option value="STOM/MUST">STOM/MUST</option>
-                  <option value="TIADA">TIADA</option>
                 </select>
-                <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1.5 pt-1.5 border-t border-slate-200/70 text-[10px] font-medium text-slate-500">
-                    
-                  <span class="flex items-center gap-1.5">
-                      <i class="fa-regular fa-circle-check text-emerald-600 text-[9px]"></i>
-                      <span><strong class="text-slate-700">PEMADAM</strong> : Anggota am (tiada unit khas)</span>
-                  </span>
-
-                  <span class="flex items-center gap-1.5">
-                      <i class="fa-regular fa-circle-check text-blue-600 text-[9px]"></i>
-                      <span><strong class="text-slate-700">RIM</strong> : Rapid Intervention Motorcycle</span>
-                  </span>
-
-                  <span class="flex items-center gap-1.5">
-                      <i class="fa-regular fa-circle-check text-purple-600 text-[9px]"></i>
-                      <span><strong class="text-slate-700">STOM/MUST</strong> : Pasukan Taktikal Khas</span>
-                  </span>
-
-                  <span class="flex items-center gap-1.5 px-2 py-0.5 bg-red-50 border border-red-200 rounded-full text-red-700">
-                      <i class="fa-solid fa-star text-amber-500 text-[8px]"></i>
-                      <span><strong>TIADA</strong> : Khusus untuk Ketua Balai / Pegawai Kanan</span>
-                  </span>
-
+                <div class="text-[9px] text-slate-400 mt-1">
+                  <i class="fa-regular fa-circle-question mr-1"></i> TIADA = Ketua Balai / Pegawai Kanan (tiada unit)
+                </div>
+                <div class="text-[9px] text-slate-400 mt-1">
+                  <i class="fa-regular fa-circle-question mr-1"></i> PEMADAM = Anggota(Tiada Unit)
+                </div>
               </div>
-          </div>
-            </div>
               <div class="form-group">
                 <label>BALAI</label>
                 <select id="regBalai" class="form-control"></select>
