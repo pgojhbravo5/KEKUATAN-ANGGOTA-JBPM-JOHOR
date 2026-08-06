@@ -3228,6 +3228,31 @@
         if (el) el.classList.remove('active');
       }
 
+      // ============================================================
+      //  MIGRATION: tambah masterId pada logistikBertugas sedia ada
+      // ============================================================
+      function migrateLogistikBertugasMasterId() {
+        logistikBertugas.forEach((item) => {
+          if (item.masterId === undefined || item.masterId === null) {
+            // Cuba padankan dengan callsign + plat dari master
+            const match = logistikJentera.find(
+              (j) => j.callsign === item.callsign && j.plate === item.plate
+            );
+            if (match) {
+              item.masterId = match.id;
+            } else {
+              // Jika tiada padanan, tandakan sebagai -1 (tidak akan ditapis)
+              console.warn(
+                'Tiada padanan master untuk:',
+                item.callsign,
+                item.plate
+              );
+              item.masterId = -1;
+            }
+          }
+        });
+      }
+
       async function hantarDataSupabase() {
         if (!supabaseUrl || !supabaseKey) {
           simpanKeLocalStorage();
@@ -3343,7 +3368,6 @@
                 unit: undefined,
               };
             }
-            // Perbaiki nilai "TIADA" jika pernah tersimpan sebagai "EMRS" (pembetulan)
             if (m.unitTidakBerbayar === 'EMRS' && !m.unitBerbayar) {
               m.unitTidakBerbayar = 'TIADA';
             }
@@ -3392,6 +3416,8 @@
 
         const savedLogJentera = localStorage.getItem('logistikJentera');
         if (savedLogJentera) logistikJentera = JSON.parse(savedLogJentera);
+        // Migration for masterId
+        migrateLogistikBertugasMasterId();
       }
 
       async function tarikDataSupabase() {
@@ -3471,7 +3497,8 @@
                 if (!senaraiUnitMaster.includes(u)) senaraiUnitMaster.push(u);
               });
             }
-
+            // Migration
+            migrateLogistikBertugasMasterId();
             simpanKeLocalStorage();
             kemaskiniSemuaPaparan();
             tunjukCustomAlert('Data berjaya dimuat turun!');
@@ -3558,6 +3585,7 @@
                   if (!senaraiUnitMaster.includes(u)) senaraiUnitMaster.push(u);
                 });
               }
+              migrateLogistikBertugasMasterId();
               simpanKeLocalStorage();
             }
           }
@@ -4057,6 +4085,7 @@
           ['N/A', '', 'FIBER', 'BOT'],
           ['N/A', '', 'FIBER', 'BOT'],
           ['N/A', '', 'FIBER', 'BOT'],
+          ['N/A', '', 'FIBER', 'BOT'],
           ['WC 1', '', 'JETSKI', 'BOT'],
           ['WC 3', '', 'JETSKI', 'BOT'],
           ['KCB24', '', 'KEVLAR', 'BOT'],
@@ -4367,7 +4396,6 @@
         if (idx > -1) {
           namaAnggotaTerpilih.splice(idx, 1);
         } else {
-          // Default: NO role selected (all TIDAK)
           namaAnggotaTerpilih.push({
             nama,
             noTel: masterItem.noTel || '',
@@ -4431,9 +4459,7 @@
       function setPeranan(rowIndex, fieldName) {
         const currentValue = namaAnggotaTerpilih[rowIndex][fieldName];
 
-        // If clicked on the currently active one, turn it off (set all to TIDAK)
         if (currentValue === 'YA') {
-          // Set all roles to TIDAK (no role)
           const roleFields = [
             'isKetuaBalai',
             'isPegawaiOperasi',
@@ -4445,7 +4471,6 @@
             namaAnggotaTerpilih[rowIndex][f] = 'TIDAK';
           });
         } else {
-          // Set this one to YA, others to TIDAK
           const roleFields = [
             'isKetuaBalai',
             'isPegawaiOperasi',
@@ -4483,7 +4508,6 @@
 
         tbody.innerHTML = namaAnggotaTerpilih
           .map((item, i) => {
-            // Determine if any role is YA
             const roles = [
               'isKetuaBalai',
               'isPegawaiOperasi',
@@ -4492,7 +4516,6 @@
               'isBkb',
             ];
             const selectedRole = roles.find((r) => item[r] === 'YA');
-            // Display selected role name or "PEMADAM" if none
             const roleDisplay = selectedRole
               ? selectedRole.replace('is', '').toUpperCase()
               : 'PEMADAM';
@@ -4612,7 +4635,6 @@
           return;
         }
 
-        // Validate: if more than one role is selected, error (mutual exclusion should prevent this, but double-check)
         const invalid = namaAnggotaTerpilih.filter((item) => {
           const roles = [
             'isKetuaBalai',
@@ -4633,7 +4655,6 @@
           return;
         }
 
-        // Ambil nilai shift dari dropdown
         const shiftType =
           document.getElementById('modalShiftType')?.value || '12 JAM';
         const shiftTime =
@@ -4720,15 +4741,28 @@
           );
       }
 
+      // ============================================================
+      //  JANA JENTERA DROPDOWN dengan pengecualian jentera yang sudah bertugas
+      // ============================================================
       function janaLogJenteraDropdown() {
         const f =
-            document.getElementById('logKategoriFilter')?.value || 'SEMUA',
-          b = document.getElementById('logModalBalai')?.value || '';
+          document.getElementById('logKategoriFilter')?.value || 'SEMUA';
+        const b = document.getElementById('logModalBalai')?.value || '';
+
+        // Kumpulan ID master yang telah ditugaskan
+        const assignedMasterIds = new Set(
+          logistikBertugas
+            .map((item) => item.masterId)
+            .filter((id) => id !== undefined && id !== null && id !== -1)
+        );
+
         const filtered = logistikJentera.filter(
           (i) =>
             (f === 'SEMUA' || i.kategori === f) &&
-            (!b || i.balai === 'UMUM / BEBAS' || i.balai === b)
+            (!b || i.balai === 'UMUM / BEBAS' || i.balai === b) &&
+            !assignedMasterIds.has(i.id) // Jangan papar jentera yang sudah ditugaskan
         );
+
         const container = document.getElementById('logJenteraOptionsContainer');
         if (!container) return;
         container.innerHTML = filtered
@@ -4739,18 +4773,18 @@
             return `<div class="multi-select-option ${s}" onclick="pilihLogJenteraOption(${
               i.id
             })">
-                    <div class="check-box">${
-                      s ? '<i class="fa-solid fa-check"></i>' : ''
-                    }</div>
-                    <div>
-                        <div class="font-bold text-red-700">${i.callsign} (${
-              i.plate
-            })</div>
-                        <div class="text-[10px] text-slate-500">${i.jenis} | ${
-              i.balai
-            }</div>
-                    </div>
-                </div>`;
+                        <div class="check-box">${
+                          s ? '<i class="fa-solid fa-check"></i>' : ''
+                        }</div>
+                        <div>
+                            <div class="font-bold text-red-700">${
+                              i.callsign
+                            } (${i.plate})</div>
+                            <div class="text-[10px] text-slate-500">${
+                              i.jenis
+                            } | ${i.balai}</div>
+                        </div>
+                    </div>`;
           })
           .join('');
       }
@@ -4772,13 +4806,19 @@
 
       function pilihSemuaLogJentera() {
         const f =
-            document.getElementById('logKategoriFilter')?.value || 'SEMUA',
-          b = document.getElementById('logModalBalai')?.value || '';
+          document.getElementById('logKategoriFilter')?.value || 'SEMUA';
+        const b = document.getElementById('logModalBalai')?.value || '';
+        const assignedMasterIds = new Set(
+          logistikBertugas
+            .map((item) => item.masterId)
+            .filter((id) => id !== undefined && id !== null && id !== -1)
+        );
         logistikJentera
           .filter(
             (i) =>
               (f === 'SEMUA' || i.kategori === f) &&
-              (!b || i.balai === 'UMUM / BEBAS' || i.balai === b)
+              (!b || i.balai === 'UMUM / BEBAS' || i.balai === b) &&
+              !assignedMasterIds.has(i.id)
           )
           .forEach((j) => {
             if (!logJenteraTerpilih.some((x) => x.id === j.id))
@@ -4868,6 +4908,9 @@
           .join('');
       }
 
+      // ============================================================
+      //  SIMPAN LOGISTIK BERTUGAS (tambah masterId)
+      // ============================================================
       async function simpanLogistikBertugas() {
         const balai = document.getElementById('logModalBalai')?.value;
         if (!balai) {
@@ -4886,6 +4929,7 @@
               Date.now() +
               '_' +
               Math.random().toString(36).substr(2, 4),
+            masterId: item.id, // <--- SIMPAN ID MASTER
             callsign: item.callsign,
             plate: item.plate,
             model: item.model,
@@ -5149,7 +5193,6 @@
           action === 'PADAM_LOGISTIK' ||
           action === 'PADAM_CHECKLIST'
         ) {
-          // Store pending delete info
           pendingDelete.type = action;
           pendingDelete.id = id;
           sasaranPasswordAction = 'PADAM_REKOD';
@@ -5245,7 +5288,6 @@
             i.isBkb === 'YA' ? 'BKB' : '',
             i.isPemandu === 'YA' ? 'PEMANDU' : '',
           ].join(' ');
-          // If none selected, show "PEMADAM"
           if (perananStr.trim() === '') perananStr = 'PEMADAM';
           let fullText = `${i.pangkat || ''} ${i.nama || ''} ${i.noTel || ''} ${
             i.pasukan || ''
@@ -5567,7 +5609,6 @@
         const inputPass = document.getElementById('inputPassword');
         if (inputPass && inputPass.value === KATA_LALUAN_TETAP) {
           tutupModalPassword();
-          // Check if it's a delete operation
           if (
             sasaranPasswordAction === 'PADAM_REKOD' &&
             pendingDelete.type &&
@@ -5585,7 +5626,6 @@
             return;
           }
 
-          // Other admin actions
           if (sasaranPasswordAction === 'MASTER_BERSIH') {
             tunjukCustomConfirm('PADAM SEMUA REKOD?', async (res) => {
               if (res) {
