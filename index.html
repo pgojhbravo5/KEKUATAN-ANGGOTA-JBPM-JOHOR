@@ -869,6 +869,7 @@
         z-index: 1500;
       }
 
+      /* MODAL UTAMA - DITAMBAH FLEX COLUMN & MAX-HEIGHT 95vh */
       .modal {
         background: white;
         border-top-left-radius: 24px;
@@ -879,7 +880,7 @@
         max-width: 880px;
         padding: 18px 16px calc(18px + var(--sab)) 16px;
         box-shadow: 0 -10px 25px -5px rgba(0, 0, 0, 0.2);
-        max-height: 92vh;
+        max-height: 95vh; /* DITINGKATKAN DARIPADA 92vh KEPADA 95vh */
         overflow-y: auto;
         display: flex;
         flex-direction: column;
@@ -921,6 +922,7 @@
         margin-bottom: 12px;
         padding-bottom: 8px;
         border-bottom: 2px solid var(--border-color);
+        flex-shrink: 0; /* PASTIKAN HEADER TIDAK MENGEcut */
       }
       .modal-header h3 {
         font-size: 0.92rem;
@@ -986,6 +988,7 @@
         display: flex;
         align-items: center;
         gap: 6px;
+        flex-shrink: 0; /* JANGAN MENGEcut */
       }
       .jentera-modal-table {
         width: 100%;
@@ -1031,6 +1034,7 @@
         display: flex;
         gap: 8px;
         margin-top: 12px;
+        flex-shrink: 0; /* PASTIKAN BUTANG TIDAK MENGEcut */
       }
 
       .mobile-bottom-nav {
@@ -1351,7 +1355,7 @@
               </div>
             </div>
 
-            <!-- ========== UNIT BARU: SENARAI SEMUA UNIT DENGAN CHECKBOX (DEFAULT KOSONG) ========== -->
+            <!-- UNIT CHECKBOX GRID (DEFAULT KOSONG) -->
             <div class="form-group">
               <label class="flex items-center justify-between">
                 <span>UNIT <span class="required-star">*</span></span>
@@ -1364,9 +1368,9 @@
               </div>
               <div class="text-[9px] text-slate-400 mt-1">
                 <i class="fa-regular fa-circle-question mr-1"></i>
-                <strong>PEMADAM</strong> — jika dipilih, unit
-                lain tidak boleh dipilih. Unit lain (EMRS, HAZMAT, PPDA, RIM,
-                STORM/MUST) boleh dipilih secara multi-select.
+                <strong>PEMADAM</strong> — jika dipilih, unit lain tidak boleh
+                dipilih. Unit lain (EMRS, HAZMAT, PPDA, RIM, STORM/MUST) boleh
+                dipilih secara multi-select.
               </div>
               <div
                 id="unitErrorMsg"
@@ -1891,9 +1895,9 @@
       </div>
     </div>
 
-    <!-- ========== MODAL: LOGISTIK JENTERA BERTUGAS ========== -->
+    <!-- ========== MODAL: LOGISTIK JENTERA BERTUGAS (DIPERBAIKI) ========== -->
     <div class="modal-overlay" id="logistikJenteraModal">
-      <div class="modal sm:!max-w-4xl">
+      <div class="modal sm:!max-w-4xl" style="max-height:95vh;">
         <div class="modal-header">
           <div class="flex items-center gap-2">
             <i class="fa-solid fa-truck-field text-amber-600 text-lg"></i>
@@ -1910,7 +1914,7 @@
             INVENTORI.</span
           >
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2 flex-shrink-0">
           <div class="form-group !mb-0">
             <label class="text-amber-900"
               >BALAI BERTUGAS <span class="required-star">*</span></label
@@ -1943,7 +1947,7 @@
             </select>
           </div>
         </div>
-        <div class="form-group my-2">
+        <div class="form-group my-2 flex-shrink-0">
           <label class="flex justify-between items-center">
             <span>PILIH JENTERA UNTUK BERTUGAS</span>
             <span
@@ -1997,7 +2001,7 @@
             </div>
           </div>
         </div>
-        <div class="flex items-center justify-between mb-1.5 mt-1">
+        <div class="flex items-center justify-between mb-1.5 mt-1 flex-shrink-0">
           <span class="font-extrabold text-xs text-slate-800"
             ><i class="fa-solid fa-list-check mr-1"></i> SENARAI JENTERA DIPILIH
             &amp; STATUS:</span
@@ -2009,18 +2013,31 @@
             <i class="fa-solid fa-bolt mr-1"></i> SET ALL BAIK & BEROPERASI
           </button>
         </div>
-        <!-- NOTA DEFINISI STATUS -->
-        <div class="text-[10px] bg-amber-50 border border-amber-200 rounded-lg p-1.5 mb-2 text-amber-800 font-semibold leading-relaxed">
+        <!-- NOTA DEFINISI STATUS - DIPERKECILKAN PADA TELEFON -->
+        <div
+          class="text-[9px] sm:text-[10px] bg-amber-50 border border-amber-200 rounded-lg p-1 sm:p-1.5 mb-2 text-amber-800 font-semibold leading-relaxed flex-shrink-0"
+        >
           <i class="fa-regular fa-circle-question mr-1"></i>
           <strong>Definisi Status:</strong>
-          <span class="font-bold text-emerald-700">Baik & Boleh Beroperasi</span> – tiada kerosakan;
-          <span class="font-bold text-amber-700">Rosak Minor & Boleh Beroperasi</span> – rosak pam, tangki bocor halus, siren rosak, beacon rosak, dsb.;
-          <span class="font-bold text-red-700">Rosak & Tidak Boleh Beroperasi</span> – tayar pecah, enjin rosak, radiator bocor, dsb.;
-          <span class="font-bold text-orange-700">Dalam Proses Lupus</span> – dalam proses pelupusan;
+          <span class="font-bold text-emerald-700"
+            >Baik & Boleh Beroperasi</span
+          >
+          – tiada kerosakan;
+          <span class="font-bold text-amber-700"
+            >Rosak Minor & Boleh Beroperasi</span
+          >
+          – rosak pam, tangki bocor halus, siren rosak, beacon rosak, dsb.;
+          <span class="font-bold text-red-700"
+            >Rosak & Tidak Boleh Beroperasi</span
+          >
+          – tayar pecah, enjin rosak, radiator bocor, dsb.;
+          <span class="font-bold text-orange-700">Dalam Proses Lupus</span> –
+          dalam proses pelupusan;
           <span class="font-bold text-red-800">Lupus</span> – sudah dilupuskan.
         </div>
+        <!-- JADUAL JENTERA DIPILIH - FLEX-1 UNTUK ISI RUANG -->
         <div
-          class="max-h-56 sm:max-h-60 overflow-y-auto border border-slate-200 rounded-xl mb-3 bg-white"
+          class="flex-1 overflow-y-auto min-h-[100px] border border-slate-200 rounded-xl mb-3 bg-white"
         >
           <table class="jentera-modal-table">
             <thead>
@@ -2046,7 +2063,7 @@
             </tbody>
           </table>
         </div>
-        <div class="btn-group">
+        <div class="btn-group flex-shrink-0">
           <button class="btn btn-orange" onclick="simpanLogistikBertugas()">
             <i class="fa-solid fa-floppy-disk mr-1.5"></i> SIMPAN LOGISTIK
             JENTERA
@@ -2373,13 +2390,13 @@
       class="text-center py-6 px-4 no-print border-t border-slate-200/80 mt-8 mb-16 lg:mb-0"
     >
       <p class="text-xs font-black text-slate-300 tracking-wider">
-        &copy; 2026 PGO JOHOR | Hak Cipta Terpelihara
+        &copy; 2026 PGO JOHOR
       </p>
-      <!--<p
+      <p
         class="text-[11px] font-extrabold text-yellow-400 tracking-widest mt-0.5"
       >
-        DIBANGUNKAN OLEH | PB MOHAMAD AIDIL
-      </p>-->
+        PB MOHAMAD AIDIL | Hak Cipta Terpelihara
+      </p>
     </footer>
 
     <script>
@@ -3336,6 +3353,7 @@
           ['N/A', '', 'FIBER', 'BOT'],
           ['N/A', '', 'FIBER', 'BOT'],
           ['N/A', '', 'FIBER', 'BOT'],
+          ['N/A', '', 'FIBER', 'BOT'],
           ['WC 1', '', 'JETSKI', 'BOT'],
           ['WC 3', '', 'JETSKI', 'BOT'],
           ['KCB24', '', 'KEVLAR', 'BOT'],
@@ -3726,10 +3744,16 @@
               : '';
             const unitDisplay = getUnitDisplay(a);
             return `<div class="multi-select-option ${s}" onclick="pilihNamaAnggotaOption('${a.nama}')">
-                        <div class="check-box">${s ? '<i class="fa-solid fa-check"></i>' : ''}</div>
+                        <div class="check-box">${
+                          s ? '<i class="fa-solid fa-check"></i>' : ''
+                        }</div>
                         <div>
-                            <div class="font-bold text-slate-800">${a.nama}</div>
-                            <div class="text-[10px] text-slate-500">${a.pangkat || 'KB 1'} | ${unitDisplay} | ${a.balai || 'PGO JOHOR'}</div>
+                            <div class="font-bold text-slate-800">${
+                              a.nama
+                            }</div>
+                            <div class="text-[10px] text-slate-500">${
+                              a.pangkat || 'KB 1'
+                            } | ${unitDisplay} | ${a.balai || 'PGO JOHOR'}</div>
                         </div>
                     </div>`;
           })
@@ -3876,46 +3900,102 @@
               : 'PEMADAM';
 
             return `<tr>
-                    <td><strong class="text-slate-800 text-xs">${item.nama}</strong><div class="text-[10px] text-slate-500 font-extrabold">${item.pangkat}</div></td>
-                    <td><strong class="text-red-800 text-[10px]">${item.balai}</strong></td>
+                    <td><strong class="text-slate-800 text-xs">${
+                      item.nama
+                    }</strong><div class="text-[10px] text-slate-500 font-extrabold">${
+              item.pangkat
+            }</div></td>
+                    <td><strong class="text-red-800 text-[10px]">${
+                      item.balai
+                    }</strong></td>
                     <td>
                         <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-bold" onchange="namaAnggotaTerpilih[${i}].pasukan=this.value">
-                            <option value="PASUKAN A" ${item.pasukan === 'PASUKAN A' ? 'selected' : ''}>PASUKAN A</option>
-                            <option value="PASUKAN B" ${item.pasukan === 'PASUKAN B' ? 'selected' : ''}>PASUKAN B</option>
-                            <option value="PASUKAN C" ${item.pasukan === 'PASUKAN C' ? 'selected' : ''}>PASUKAN C</option>
+                            <option value="PASUKAN A" ${
+                              item.pasukan === 'PASUKAN A' ? 'selected' : ''
+                            }>PASUKAN A</option>
+                            <option value="PASUKAN B" ${
+                              item.pasukan === 'PASUKAN B' ? 'selected' : ''
+                            }>PASUKAN B</option>
+                            <option value="PASUKAN C" ${
+                              item.pasukan === 'PASUKAN C' ? 'selected' : ''
+                            }>PASUKAN C</option>
                         </select>
                     </td>
                     <td>
                         <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-bold" onchange="namaAnggotaTerpilih[${i}].status=this.value">
-                            <option value="BERTUGAS" ${item.status === 'BERTUGAS' ? 'selected' : ''}>BERTUGAS</option>
-                            <option value="CUTI" ${item.status === 'CUTI' ? 'selected' : ''}>CUTI</option>
-                            <option value="CUTI SAKIT" ${item.status === 'CUTI SAKIT' ? 'selected' : ''}>CUTI SAKIT</option>
-                            <option value="TUGAS KHAS" ${item.status === 'TUGAS KHAS' ? 'selected' : ''}>TUGAS KHAS</option>
+                            <option value="BERTUGAS" ${
+                              item.status === 'BERTUGAS' ? 'selected' : ''
+                            }>BERTUGAS</option>
+                            <option value="CUTI" ${
+                              item.status === 'CUTI' ? 'selected' : ''
+                            }>CUTI</option>
+                            <option value="CUTI SAKIT" ${
+                              item.status === 'CUTI SAKIT' ? 'selected' : ''
+                            }>CUTI SAKIT</option>
+                            <option value="TUGAS KHAS" ${
+                              item.status === 'TUGAS KHAS' ? 'selected' : ''
+                            }>TUGAS KHAS</option>
                         </select>
                     </td>
-                    <td><div class="flex flex-wrap gap-1">${getUnitBadges(item.units)}</div></td>
+                    <td><div class="flex flex-wrap gap-1">${getUnitBadges(
+                      item.units
+                    )}</div></td>
                     <td>
                         <div class="flex flex-wrap gap-1 text-[8px] font-bold">
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${item.isKetuaBalai === 'YA' ? 'bg-red-100 border-red-400' : ''}">
-                                <input type="checkbox" ${item.isKetuaBalai === 'YA' ? 'checked' : ''} onchange="setPeranan(${i},'isKetuaBalai')"> K.BALAI
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${
+                              item.isKetuaBalai === 'YA'
+                                ? 'bg-red-100 border-red-400'
+                                : ''
+                            }">
+                                <input type="checkbox" ${
+                                  item.isKetuaBalai === 'YA' ? 'checked' : ''
+                                } onchange="setPeranan(${i},'isKetuaBalai')"> K.BALAI
                             </label>
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${item.isPegawaiOperasi === 'YA' ? 'bg-red-100 border-red-400' : ''}">
-                                <input type="checkbox" ${item.isPegawaiOperasi === 'YA' ? 'checked' : ''} onchange="setPeranan(${i},'isPegawaiOperasi')"> P.OPERASI
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${
+                              item.isPegawaiOperasi === 'YA'
+                                ? 'bg-red-100 border-red-400'
+                                : ''
+                            }">
+                                <input type="checkbox" ${
+                                  item.isPegawaiOperasi === 'YA'
+                                    ? 'checked'
+                                    : ''
+                                } onchange="setPeranan(${i},'isPegawaiOperasi')"> P.OPERASI
                             </label>
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${item.isPenyelia === 'YA' ? 'bg-red-100 border-red-400' : ''}">
-                                <input type="checkbox" ${item.isPenyelia === 'YA' ? 'checked' : ''} onchange="setPeranan(${i},'isPenyelia')"> PENYELIA
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${
+                              item.isPenyelia === 'YA'
+                                ? 'bg-red-100 border-red-400'
+                                : ''
+                            }">
+                                <input type="checkbox" ${
+                                  item.isPenyelia === 'YA' ? 'checked' : ''
+                                } onchange="setPeranan(${i},'isPenyelia')"> PENYELIA
                             </label>
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${item.isPemandu === 'YA' ? 'bg-red-100 border-red-400' : ''}">
-                                <input type="checkbox" ${item.isPemandu === 'YA' ? 'checked' : ''} onchange="setPeranan(${i},'isPemandu')"> PEMANDU
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${
+                              item.isPemandu === 'YA'
+                                ? 'bg-red-100 border-red-400'
+                                : ''
+                            }">
+                                <input type="checkbox" ${
+                                  item.isPemandu === 'YA' ? 'checked' : ''
+                                } onchange="setPeranan(${i},'isPemandu')"> PEMANDU
                             </label>
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${item.isBkb === 'YA' ? 'bg-red-100 border-red-400' : ''}">
-                                <input type="checkbox" ${item.isBkb === 'YA' ? 'checked' : ''} onchange="setPeranan(${i},'isBkb')"> BKB
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${
+                              item.isBkb === 'YA'
+                                ? 'bg-red-100 border-red-400'
+                                : ''
+                            }">
+                                <input type="checkbox" ${
+                                  item.isBkb === 'YA' ? 'checked' : ''
+                                } onchange="setPeranan(${i},'isBkb')"> BKB
                             </label>
                             <span class="text-[9px] font-bold text-slate-500 ml-1">(${roleDisplay})</span>
                         </div>
                     </td>
                     <td>
-                        <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${item.catatan === '-' ? '' : item.catatan || ''}" onchange="namaAnggotaTerpilih[${i}].catatan=this.value.toUpperCase()||'-'" placeholder="CATATAN"/>
+                        <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${
+                          item.catatan === '-' ? '' : item.catatan || ''
+                        }" onchange="namaAnggotaTerpilih[${i}].catatan=this.value.toUpperCase()||'-'" placeholder="CATATAN"/>
                     </td>
                     <td class="text-center">
                         <button class="px-1.5 py-0.5 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="namaAnggotaTerpilih.splice(${i},1);kemaskiniAnggotaDipilihTable();janaNamaAnggotaOptions();">✕</button>
@@ -4059,10 +4139,16 @@
               ? 'selected'
               : '';
             return `<div class="multi-select-option ${s}" onclick="pilihLogJenteraOption(${i.id})">
-                        <div class="check-box">${s ? '<i class="fa-solid fa-check"></i>' : ''}</div>
+                        <div class="check-box">${
+                          s ? '<i class="fa-solid fa-check"></i>' : ''
+                        }</div>
                         <div>
-                            <div class="font-bold text-red-700">${i.callsign} (${i.plate})</div>
-                            <div class="text-[10px] text-slate-500">${i.jenis} | ${i.balai}</div>
+                            <div class="font-bold text-red-700">${
+                              i.callsign
+                            } (${i.plate})</div>
+                            <div class="text-[10px] text-slate-500">${
+                              i.jenis
+                            } | ${i.balai}</div>
                         </div>
                     </div>`;
           })
@@ -4148,21 +4234,47 @@
         tbody.innerHTML = logJenteraTerpilih
           .map((item, i) => {
             return `<tr>
-                    <td><strong class="text-red-700">${item.callsign}</strong></td>
-                    <td><span class="bg-slate-100 border px-1.5 py-0.5 rounded text-[10px] font-black">${item.plate}</span></td>
+                    <td><strong class="text-red-700">${
+                      item.callsign
+                    }</strong></td>
+                    <td><span class="bg-slate-100 border px-1.5 py-0.5 rounded text-[10px] font-black">${
+                      item.plate
+                    }</span></td>
                     <td>${item.jenis}</td>
-                    <td><span class="badge badge-unit-gen">${item.kategori}</span></td>
+                    <td><span class="badge badge-unit-gen">${
+                      item.kategori
+                    }</span></td>
                     <td>
                         <select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-extrabold" onchange="logJenteraTerpilih[${i}].status=this.value">
-                            <option value="Baik & Boleh Beroperasi" ${item.status === 'Baik & Boleh Beroperasi' ? 'selected' : ''}>Baik & Boleh Beroperasi</option>
-                            <option value="Rosak Minor & Boleh Beroperasi" ${item.status === 'Rosak Minor & Boleh Beroperasi' ? 'selected' : ''}>Rosak Minor & Boleh Beroperasi</option>
-                            <option value="Rosak & Tidak Boleh Beroperasi" ${item.status === 'Rosak & Tidak Boleh Beroperasi' ? 'selected' : ''}>Rosak & Tidak Boleh Beroperasi</option>
-                            <option value="Dalam Proses Lupus" ${item.status === 'Dalam Proses Lupus' ? 'selected' : ''}>Dalam Proses Lupus</option>
-                            <option value="Lupus" ${item.status === 'Lupus' ? 'selected' : ''}>Lupus</option>
+                            <option value="Baik & Boleh Beroperasi" ${
+                              item.status === 'Baik & Boleh Beroperasi'
+                                ? 'selected'
+                                : ''
+                            }>Baik & Boleh Beroperasi</option>
+                            <option value="Rosak Minor & Boleh Beroperasi" ${
+                              item.status === 'Rosak Minor & Boleh Beroperasi'
+                                ? 'selected'
+                                : ''
+                            }>Rosak Minor & Boleh Beroperasi</option>
+                            <option value="Rosak & Tidak Boleh Beroperasi" ${
+                              item.status === 'Rosak & Tidak Boleh Beroperasi'
+                                ? 'selected'
+                                : ''
+                            }>Rosak & Tidak Boleh Beroperasi</option>
+                            <option value="Dalam Proses Lupus" ${
+                              item.status === 'Dalam Proses Lupus'
+                                ? 'selected'
+                                : ''
+                            }>Dalam Proses Lupus</option>
+                            <option value="Lupus" ${
+                              item.status === 'Lupus' ? 'selected' : ''
+                            }>Lupus</option>
                         </select>
                     </td>
                     <td>
-                        <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${item.catatan === '-' ? '' : item.catatan || ''}" onchange="logJenteraTerpilih[${i}].catatan=this.value.toUpperCase()||'-'" placeholder="CATATAN"/>
+                        <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${
+                          item.catatan === '-' ? '' : item.catatan || ''
+                        }" onchange="logJenteraTerpilih[${i}].catatan=this.value.toUpperCase()||'-'" placeholder="CATATAN"/>
                     </td>
                     <td class="text-center">
                         <button class="px-1.5 py-0.5 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="logJenteraTerpilih.splice(${i},1);kemaskiniLogJenteraDipilihTable();janaLogJenteraDropdown();">✕</button>
@@ -4733,21 +4845,13 @@
           const tr = document.createElement('tr');
           tr.innerHTML = `<td>${idx + 1}</td>
                     <td><strong>${item.pangkat}</strong></td>
-                    <td><div class="font-black">${item.nama}</div>${
-            item.noTel
-              ? `<span class="badge-tel"><i class="fa-solid fa-phone text-[9px]"></i> ${item.noTel}</span>`
-              : ''
-          }</td>
+                    <td><div class="font-black">${item.nama}</div>${item.noTel ? `<span class="badge-tel"><i class="fa-solid fa-phone text-[9px]"></i> ${item.noTel}</span>` : ''}</td>
                     <td><span class="badge ${bp}">${item.pasukan}</span></td>
                     <td><div class="flex flex-wrap gap-1">${unitBadges}</div></td>
                     <td>${peranan.join(' ')}</td>
                     <td><span class="badge ${bs}">${item.status}</span></td>
-                    <td><div class="catatan-box">${
-                      item.catatan || '-'
-                    }</div></td>
-                    <td><div class="text-[10px] font-bold text-slate-500">${
-                      item.shiftType || '12 JAM'
-                    } | ${item.shiftTime || '0800-2000'}</div><div class="font-extrabold">${item.balai}</div></td>
+                    <td><div class="catatan-box">${item.catatan || '-'}</div></td>
+                    <td><div class="text-[10px] font-bold text-slate-500">${item.shiftType || '12 JAM'} | ${item.shiftTime || '0800-2000'}</div><div class="font-extrabold">${item.balai}</div></td>
                     <td class="no-print"><button class="btn btn-danger" onclick="mintaPassword('PADAM_ANGGOTA','${item.id}')">PADAM</button></td>`;
           tbody.appendChild(tr);
         });
@@ -4789,7 +4893,11 @@
           (i) => i.status === 'Baik & Boleh Beroperasi'
         ).length;
         document.getElementById('statLogRosak').innerText = data.filter((i) =>
-          ['Rosak Minor & Boleh Beroperasi', 'Rosak & Tidak Boleh Beroperasi', 'Lupus'].includes(i.status)
+          [
+            'Rosak Minor & Boleh Beroperasi',
+            'Rosak & Tidak Boleh Beroperasi',
+            'Lupus',
+          ].includes(i.status)
         ).length;
         document.getElementById('statLogSelenggara').innerText = data.filter(
           (i) => i.status === 'Dalam Proses Lupus'
@@ -4809,10 +4917,12 @@
             tooltip = 'Baik & Boleh Beroperasi – tiada kerosakan';
           } else if (item.status === 'Rosak Minor & Boleh Beroperasi') {
             bs = 'badge-jentera-rosak';
-            tooltip = 'Rosak Minor & Boleh Beroperasi – rosak pam, tangki bocor halus, siren rosak, beacon rosak, dsb.';
+            tooltip =
+              'Rosak Minor & Boleh Beroperasi – rosak pam, tangki bocor halus, siren rosak, beacon rosak, dsb.';
           } else if (item.status === 'Rosak & Tidak Boleh Beroperasi') {
             bs = 'badge-jentera-rosak';
-            tooltip = 'Rosak & Tidak Boleh Beroperasi – tayar pecah, enjin rosak, radiator bocor, dsb.';
+            tooltip =
+              'Rosak & Tidak Boleh Beroperasi – tayar pecah, enjin rosak, radiator bocor, dsb.';
           } else if (item.status === 'Dalam Proses Lupus') {
             bs = 'badge-jentera-selenggara';
             tooltip = 'Dalam Proses Lupus – dalam proses pelupusan';
