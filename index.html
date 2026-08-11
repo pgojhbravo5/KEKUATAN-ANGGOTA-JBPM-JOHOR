@@ -1234,12 +1234,24 @@
         <div
           class="flex items-center justify-between w-full lg:w-auto gap-2 border-t border-red-800/50 pt-2 lg:pt-0 lg:border-0"
         >
+          <!-- SUPABASE STATUS -->
           <div id="cloudStatusBadge" class="sync-badge sync-inactive">
             <span
               ><i class="fa-solid fa-circle text-[9px] text-amber-500 mr-1"></i>
               SUPABASE: MENYAMBUNG...</span
             >
           </div>
+
+          <!-- BUTTON DASHBOARD (BARU) -->
+          <a
+            href="https://pgo-johor-dashboard-keseluruhan.vercel.app/dbanggota.html"
+            target="_blank"
+            class="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-extrabold flex items-center gap-1.5 transition border border-amber-500 shadow-md shadow-amber-900/20 whitespace-nowrap no-print"
+          >
+            <i class="fa-solid fa-chart-simple"></i> DASHBOARD
+          </a>
+
+          <!-- JAM & TARIKH -->
           <div
             class="bg-black/30 border border-white/20 px-2.5 py-1 rounded-xl text-right"
           >
@@ -1306,7 +1318,7 @@
           <div class="card-title">
             <span
               ><i class="fa-solid fa-users-gear text-slate-800 mr-1.5"></i> 2.
-              DAFTAR ANGGOTA &amp; MASTER</span
+              DAFTAR ANGGOTA <!--&amp;--> </span
             >
             <span
               class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-indigo-100 text-indigo-900"
@@ -1781,6 +1793,7 @@
             >
               <option value="0800-2000">0800-2000 (SIANG)</option>
               <option value="2000-0800">2000-0800 (MALAM)</option>
+              <option value="0800-0800">0800-0800 (24 JAM)</option>
             </select>
           </div>
         </div>
@@ -3942,49 +3955,49 @@
                     )}</div></td>
                     <td>
                         <div class="flex flex-wrap gap-1 text-[8px] font-bold">
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${(
                               item.isKetuaBalai === 'YA'
                                 ? 'bg-red-100 border-red-400'
                                 : ''
-                            }">
+                            )}">
                                 <input type="checkbox" ${
                                   item.isKetuaBalai === 'YA' ? 'checked' : ''
                                 } onchange="setPeranan(${i},'isKetuaBalai')"> K.BALAI
                             </label>
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${(
                               item.isPegawaiOperasi === 'YA'
                                 ? 'bg-red-100 border-red-400'
                                 : ''
-                            }">
+                            )}">
                                 <input type="checkbox" ${
                                   item.isPegawaiOperasi === 'YA'
                                     ? 'checked'
                                     : ''
                                 } onchange="setPeranan(${i},'isPegawaiOperasi')"> P.OPERASI
                             </label>
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${(
                               item.isPenyelia === 'YA'
                                 ? 'bg-red-100 border-red-400'
                                 : ''
-                            }">
+                            )}">
                                 <input type="checkbox" ${
                                   item.isPenyelia === 'YA' ? 'checked' : ''
                                 } onchange="setPeranan(${i},'isPenyelia')"> PENYELIA
                             </label>
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${(
                               item.isPemandu === 'YA'
                                 ? 'bg-red-100 border-red-400'
                                 : ''
-                            }">
+                            )}">
                                 <input type="checkbox" ${
                                   item.isPemandu === 'YA' ? 'checked' : ''
                                 } onchange="setPeranan(${i},'isPemandu')"> PEMANDU
                             </label>
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${(
                               item.isBkb === 'YA'
                                 ? 'bg-red-100 border-red-400'
                                 : ''
-                            }">
+                            )}">
                                 <input type="checkbox" ${
                                   item.isBkb === 'YA' ? 'checked' : ''
                                 } onchange="setPeranan(${i},'isBkb')"> BKB
