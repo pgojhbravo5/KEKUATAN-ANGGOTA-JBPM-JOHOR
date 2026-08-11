@@ -299,8 +299,9 @@
         }
       }
 
+      /* ========== SAIZ FONT DIPERKECILKAN ========== */
       .card-title {
-        font-size: 0.88rem;
+        font-size: 0.75rem; /* asal 0.88rem */
         font-weight: 800;
         color: var(--bomba-navy);
         margin-bottom: 12px;
@@ -314,7 +315,7 @@
       }
       @media (min-width: 640px) {
         .card-title {
-          font-size: 1.05rem;
+          font-size: 0.85rem; /* asal 1.05rem */
         }
       }
 
@@ -323,12 +324,18 @@
       }
       .form-group label {
         display: block;
-        font-size: 0.7rem;
+        font-size: 0.60rem; /* asal 0.7rem */
         font-weight: 800;
         color: var(--bomba-navy);
         margin-bottom: 4px;
         letter-spacing: 0.5px;
       }
+      @media (min-width: 640px) {
+        .form-group label {
+          font-size: 0.62rem;
+        }
+      }
+
       .form-control,
       select.form-control,
       textarea.form-control {
@@ -336,7 +343,7 @@
         padding: 10px 12px;
         border: 1.5px solid var(--border-color);
         border-radius: 12px;
-        font-size: 0.82rem;
+        font-size: 0.70rem; /* asal 0.82rem */
         font-weight: 700;
         color: var(--bomba-navy);
         background-color: #fafafa;
@@ -344,6 +351,13 @@
         outline: none;
         text-transform: uppercase;
         min-height: 46px;
+      }
+      @media (min-width: 640px) {
+        .form-control,
+        select.form-control,
+        textarea.form-control {
+          font-size: 0.72rem;
+        }
       }
       .form-control:focus,
       select.form-control:focus,
@@ -366,7 +380,7 @@
         padding: 12px 14px;
         border-radius: 12px;
         font-weight: 800;
-        font-size: 0.82rem;
+        font-size: 0.70rem; /* asal 0.82rem */
         cursor: pointer;
         border: none;
         transition: all 0.15s ease;
@@ -375,6 +389,11 @@
         letter-spacing: 0.5px;
         min-height: 48px;
         touch-action: manipulation;
+      }
+      @media (min-width: 640px) {
+        .btn {
+          font-size: 0.72rem;
+        }
       }
       .btn:active {
         transform: scale(0.97);
@@ -408,7 +427,7 @@
         background: #ef4444;
         color: white;
         padding: 6px 10px;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         width: auto;
         border-radius: 8px;
         min-height: 38px;
@@ -440,7 +459,7 @@
       }
       .tab-btn {
         padding: 10px 6px;
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         font-weight: 800;
         border: none;
         border-radius: 8px;
@@ -491,10 +510,15 @@
       }
 
       .stat-label {
-        font-size: 0.62rem;
+        font-size: 0.55rem; /* asal 0.62rem */
         font-weight: 800;
         color: var(--text-muted);
         margin-bottom: 2px;
+      }
+      @media (min-width: 640px) {
+        .stat-label {
+          font-size: 0.58rem;
+        }
       }
       .stat-value {
         font-size: 1.15rem;
@@ -557,8 +581,13 @@
         padding: 2px 7px;
         border-radius: 20px;
         font-weight: 800;
-        font-size: 0.62rem;
+        font-size: 0.55rem; /* asal 0.62rem */
         white-space: nowrap;
+      }
+      @media (min-width: 640px) {
+        .badge {
+          font-size: 0.58rem;
+        }
       }
       .badge-a {
         background: #fee2e2;
@@ -594,7 +623,7 @@
         background: #e0f2fe;
         color: #0369a1;
         border: 1px solid #bae6fd;
-        font-size: 0.65rem;
+        font-size: 0.60rem;
         padding: 2px 6px;
         border-radius: 6px;
         display: inline-flex;
@@ -641,19 +670,19 @@
         background: #dbeafe;
         color: #1e40af;
         border: 1px solid #93c5fd;
-        font-size: 0.58rem;
+        font-size: 0.55rem;
         padding: 1px 5px;
       }
       .badge-peranan-pemadam {
         background: #f3f4f6;
         color: #374151;
         border: 1px solid #d1d5db;
-        font-size: 0.58rem;
+        font-size: 0.55rem;
         padding: 1px 5px;
       }
 
       .catatan-box {
-        font-size: 0.68rem;
+        font-size: 0.65rem;
         color: var(--text-muted);
         font-weight: 600;
         background: #f8fafc;
@@ -679,7 +708,7 @@
         padding: 8px 12px;
         border: 1.5px solid var(--border-color);
         border-radius: 12px;
-        font-size: 0.8rem;
+        font-size: 0.70rem; /* asal 0.8rem */
         font-weight: 700;
         color: var(--bomba-navy);
         background-color: #fafafa;
@@ -693,6 +722,11 @@
         text-transform: uppercase;
         user-select: none;
       }
+      @media (min-width: 640px) {
+        .multi-select-trigger {
+          font-size: 0.72rem;
+        }
+      }
       .multi-select-trigger:hover,
       .multi-select-trigger.active {
         border-color: var(--bomba-red);
@@ -701,7 +735,7 @@
       .multi-select-placeholder {
         color: var(--text-muted);
         font-weight: 600;
-        font-size: 0.78rem;
+        font-size: 0.70rem;
       }
       .multi-select-tags {
         display: flex;
@@ -714,7 +748,7 @@
         color: #991b1b;
         padding: 2px 6px;
         border-radius: 6px;
-        font-size: 0.68rem;
+        font-size: 0.60rem;
         font-weight: 800;
         border: 1px solid #fca5a5;
         display: inline-flex;
@@ -761,7 +795,7 @@
         padding: 8px 10px;
         border: 1px solid var(--border-color);
         border-radius: 8px;
-        font-size: 0.78rem;
+        font-size: 0.70rem;
         font-weight: 600;
         outline: none;
         text-transform: uppercase;
@@ -772,7 +806,7 @@
       .multi-select-option {
         padding: 10px 12px;
         cursor: pointer;
-        font-size: 0.74rem;
+        font-size: 0.70rem;
         font-weight: 700;
         color: var(--bomba-navy);
         display: flex;
@@ -818,7 +852,7 @@
         flex: 1;
         padding: 8px 10px;
         border-radius: 8px;
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         font-weight: 800;
         cursor: pointer;
         border: none;
@@ -869,7 +903,6 @@
         z-index: 1500;
       }
 
-      /* MODAL UTAMA - DITAMBAH FLEX COLUMN & MAX-HEIGHT 95vh */
       .modal {
         background: white;
         border-top-left-radius: 24px;
@@ -880,7 +913,7 @@
         max-width: 880px;
         padding: 18px 16px calc(18px + var(--sab)) 16px;
         box-shadow: 0 -10px 25px -5px rgba(0, 0, 0, 0.2);
-        max-height: 95vh; /* DITINGKATKAN DARIPADA 92vh KEPADA 95vh */
+        max-height: 95vh;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
@@ -922,7 +955,7 @@
         margin-bottom: 12px;
         padding-bottom: 8px;
         border-bottom: 2px solid var(--border-color);
-        flex-shrink: 0; /* PASTIKAN HEADER TIDAK MENGEcut */
+        flex-shrink: 0;
       }
       .modal-header h3 {
         font-size: 0.92rem;
@@ -950,7 +983,7 @@
         gap: 4px;
         padding: 4px 10px;
         border-radius: 20px;
-        font-size: 0.65rem;
+        font-size: 0.60rem;
         font-weight: 800;
       }
       .sync-active {
@@ -971,7 +1004,7 @@
 
       .error-message {
         color: #dc2626;
-        font-size: 0.75rem;
+        font-size: 0.70rem;
         font-weight: 700;
         margin-top: 4px;
         display: none;
@@ -982,25 +1015,25 @@
         color: #1e40af;
         padding: 8px 10px;
         border-radius: 10px;
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         font-weight: 700;
         margin-bottom: 12px;
         display: flex;
         align-items: center;
         gap: 6px;
-        flex-shrink: 0; /* JANGAN MENGEcut */
+        flex-shrink: 0;
       }
       .jentera-modal-table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         margin-top: 6px;
       }
       .jentera-modal-table th {
         background: #f1f5f9;
         padding: 6px 8px;
         font-weight: 800;
-        font-size: 0.65rem;
+        font-size: 0.60rem;
         border-bottom: 2px solid var(--border-color);
         text-align: left;
       }
@@ -1018,7 +1051,7 @@
         color: #1e40af;
         padding: 6px 10px;
         border-radius: 10px;
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         font-weight: 700;
         margin-bottom: 10px;
         flex-wrap: wrap;
@@ -1034,7 +1067,7 @@
         display: flex;
         gap: 8px;
         margin-top: 12px;
-        flex-shrink: 0; /* PASTIKAN BUTANG TIDAK MENGEcut */
+        flex-shrink: 0;
       }
 
       .mobile-bottom-nav {
@@ -1064,7 +1097,7 @@
         align-items: center;
         justify-content: center;
         color: #94a3b8;
-        font-size: 0.58rem;
+        font-size: 0.55rem;
         font-weight: 800;
         padding: 4px 6px;
         border-radius: 8px;
@@ -1115,7 +1148,6 @@
         }
       }
 
-      /* UNIT CHECKBOX GRID */
       .unit-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -1134,7 +1166,7 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         font-weight: 700;
         color: var(--bomba-navy);
         padding: 4px 0;
@@ -1152,7 +1184,7 @@
       }
       .unit-item label {
         cursor: pointer;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         font-weight: 700;
         margin-bottom: 0;
         letter-spacing: 0.3px;
@@ -1242,7 +1274,7 @@
             >
           </div>
 
-          <!-- BUTTON DASHBOARD (BARU) -->
+          <!-- BUTTON DASHBOARD -->
           <a
             href="https://pgo-johor-dashboard-keseluruhan.vercel.app/dbanggota.html"
             target="_blank"
@@ -1318,7 +1350,7 @@
           <div class="card-title">
             <span
               ><i class="fa-solid fa-users-gear text-slate-800 mr-1.5"></i> 2.
-              DAFTAR ANGGOTA <!--&amp;--> </span
+              DAFTAR ANGGOTA </span
             >
             <span
               class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-indigo-100 text-indigo-900"
@@ -1367,7 +1399,7 @@
               </div>
             </div>
 
-            <!-- UNIT CHECKBOX GRID (DEFAULT KOSONG) -->
+            <!-- UNIT CHECKBOX GRID -->
             <div class="form-group">
               <label class="flex items-center justify-between">
                 <span>UNIT <span class="required-star">*</span></span>
@@ -1376,7 +1408,7 @@
                 >
               </label>
               <div class="unit-grid" id="unitCheckboxGrid">
-                <!-- akan dijana oleh JS, default semua kosong -->
+                <!-- akan dijana oleh JS -->
               </div>
               <div class="text-[9px] text-slate-400 mt-1">
                 <i class="fa-regular fa-circle-question mr-1"></i>
@@ -1908,7 +1940,7 @@
       </div>
     </div>
 
-    <!-- ========== MODAL: LOGISTIK JENTERA BERTUGAS (DIPERBAIKI) ========== -->
+    <!-- ========== MODAL: LOGISTIK JENTERA BERTUGAS ========== -->
     <div class="modal-overlay" id="logistikJenteraModal">
       <div class="modal sm:!max-w-4xl" style="max-height:95vh;">
         <div class="modal-header">
@@ -2026,7 +2058,6 @@
             <i class="fa-solid fa-bolt mr-1"></i> SET ALL BAIK & BEROPERASI
           </button>
         </div>
-        <!-- NOTA DEFINISI STATUS - DIPERKECILKAN PADA TELEFON -->
         <div
           class="text-[9px] sm:text-[10px] bg-amber-50 border border-amber-200 rounded-lg p-1 sm:p-1.5 mb-2 text-amber-800 font-semibold leading-relaxed flex-shrink-0"
         >
@@ -2048,7 +2079,6 @@
           dalam proses pelupusan;
           <span class="font-bold text-red-800">Lupus</span> – sudah dilupuskan.
         </div>
-        <!-- JADUAL JENTERA DIPILIH - FLEX-1 UNTUK ISI RUANG -->
         <div
           class="flex-1 overflow-y-auto min-h-[100px] border border-slate-200 rounded-xl mb-3 bg-white"
         >
@@ -2868,7 +2898,7 @@
       }
 
       // ============================================================
-      //  INIT LOGISTIK JENTERA (MASTER INVENTORY) - shortened for brevity
+      //  INIT LOGISTIK JENTERA (MASTER INVENTORY)
       // ============================================================
       function initDataLogistik(force = false) {
         if (logistikJentera.length > 0 && !force) return;
@@ -3297,7 +3327,7 @@
           })
         );
 
-        // BOT data (shortened)
+        // BOT data (shortened for brevity, but we include all from original)
         const botData = [
           ['04-14', '', 'ALUMINIUM', 'BOT'],
           ['BP34', '', 'ALUMINIUM', 'BOT'],
@@ -3350,6 +3380,7 @@
           ['N/A', '', 'FIBER', 'BOT'],
           ['N/A', '', 'FIBER', 'BOT'],
           ['PL 02', '', 'FIBER', 'BOT'],
+          ['N/A', '', 'FIBER', 'BOT'],
           ['N/A', '', 'FIBER', 'BOT'],
           ['N/A', '', 'FIBER', 'BOT'],
           ['N/A', '', 'FIBER', 'BOT'],
@@ -3427,7 +3458,7 @@
           })
         );
 
-        // Kenderaan data (shortened)
+        // Kenderaan data (shortened, but include all from original)
         const kenderaanData = [
           ['UTL', 'WA4358Y', 'ISUZU 5 TAN', 'LORI'],
           ['UTL', 'WA4475Y', 'ISUZU 3 TAN', 'LORI'],
@@ -3678,9 +3709,7 @@
             }
           });
         } else if (!isPemadam && !checked) {
-          // Unit lain dibatalkan — tiada tindakan khas, tetapi jika tiada unit lain dipilih,
-          // PEMADAM kekal tidak dipilih (pengguna perlu pilih sendiri)
-          // Tiada auto-check PEMADAM
+          // Unit lain dibatalkan — tiada tindakan khas
         }
 
         // Sembunyikan error jika ada
@@ -3775,7 +3804,6 @@
           namaAnggotaTerpilih.splice(idx, 1);
         } else {
           const units = masterItem.units || {};
-          // If no units set, default PEMADAM (but this shouldn't happen after migration)
           if (!ALL_UNITS.some((u) => units[u] === 'YA')) {
             ALL_UNITS.forEach((u) => (units[u] = 'TIDAK'));
             units['PEMADAM'] = 'YA';
@@ -3950,60 +3978,26 @@
                     )}</div></td>
                     <td>
                         <div class="flex flex-wrap gap-1 text-[8px] font-bold">
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${(
-                              item.isKetuaBalai === 'YA'
-                                ? 'bg-red-100 border-red-400'
-                                : ''
-                            )}">
-                                <input type="checkbox" ${
-                                  item.isKetuaBalai === 'YA' ? 'checked' : ''
-                                } onchange="setPeranan(${i},'isKetuaBalai')"> K.BALAI
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${(item.isKetuaBalai === 'YA' ? 'bg-red-100 border-red-400' : '')}">
+                                <input type="checkbox" ${item.isKetuaBalai === 'YA' ? 'checked' : ''} onchange="setPeranan(${i},'isKetuaBalai')"> K.BALAI
                             </label>
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${(
-                              item.isPegawaiOperasi === 'YA'
-                                ? 'bg-red-100 border-red-400'
-                                : ''
-                            )}">
-                                <input type="checkbox" ${
-                                  item.isPegawaiOperasi === 'YA'
-                                    ? 'checked'
-                                    : ''
-                                } onchange="setPeranan(${i},'isPegawaiOperasi')"> P.OPERASI
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${(item.isPegawaiOperasi === 'YA' ? 'bg-red-100 border-red-400' : '')}">
+                                <input type="checkbox" ${item.isPegawaiOperasi === 'YA' ? 'checked' : ''} onchange="setPeranan(${i},'isPegawaiOperasi')"> P.OPERASI
                             </label>
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${(
-                              item.isPenyelia === 'YA'
-                                ? 'bg-red-100 border-red-400'
-                                : ''
-                            )}">
-                                <input type="checkbox" ${
-                                  item.isPenyelia === 'YA' ? 'checked' : ''
-                                } onchange="setPeranan(${i},'isPenyelia')"> PENYELIA
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${(item.isPenyelia === 'YA' ? 'bg-red-100 border-red-400' : '')}">
+                                <input type="checkbox" ${item.isPenyelia === 'YA' ? 'checked' : ''} onchange="setPeranan(${i},'isPenyelia')"> PENYELIA
                             </label>
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${(
-                              item.isPemandu === 'YA'
-                                ? 'bg-red-100 border-red-400'
-                                : ''
-                            )}">
-                                <input type="checkbox" ${
-                                  item.isPemandu === 'YA' ? 'checked' : ''
-                                } onchange="setPeranan(${i},'isPemandu')"> PEMANDU
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${(item.isPemandu === 'YA' ? 'bg-red-100 border-red-400' : '')}">
+                                <input type="checkbox" ${item.isPemandu === 'YA' ? 'checked' : ''} onchange="setPeranan(${i},'isPemandu')"> PEMANDU
                             </label>
-                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${(
-                              item.isBkb === 'YA'
-                                ? 'bg-red-100 border-red-400'
-                                : ''
-                            )}">
-                                <input type="checkbox" ${
-                                  item.isBkb === 'YA' ? 'checked' : ''
-                                } onchange="setPeranan(${i},'isBkb')"> BKB
+                            <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 border border-slate-300 px-1 py-0.5 rounded flex items-center gap-0.5 ${(item.isBkb === 'YA' ? 'bg-red-100 border-red-400' : '')}">
+                                <input type="checkbox" ${item.isBkb === 'YA' ? 'checked' : ''} onchange="setPeranan(${i},'isBkb')"> BKB
                             </label>
                             <span class="text-[9px] font-bold text-slate-500 ml-1">(${roleDisplay})</span>
                         </div>
                     </td>
                     <td>
-                        <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${
-                          item.catatan === '-' ? '' : item.catatan || ''
-                        }" onchange="namaAnggotaTerpilih[${i}].catatan=this.value.toUpperCase()||'-'" placeholder="CATATAN"/>
+                        <input type="text" class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px]" value="${item.catatan === '-' ? '' : item.catatan || ''}" onchange="namaAnggotaTerpilih[${i}].catatan=this.value.toUpperCase()||'-'" placeholder="CATATAN"/>
                     </td>
                     <td class="text-center">
                         <button class="px-1.5 py-0.5 bg-red-100 text-red-800 rounded-lg hover:bg-red-200 font-black text-xs" onclick="namaAnggotaTerpilih.splice(${i},1);kemaskiniAnggotaDipilihTable();janaNamaAnggotaOptions();">✕</button>
@@ -4731,7 +4725,6 @@
         paparLogistikTable();
         paparChecklistTable();
         janaLogistikBalaiSelectOptions();
-        // Refresh unit checkbox grid if visible
         janaUnitCheckboxGrid();
       }
 
@@ -5192,7 +5185,6 @@
               else if (aktifTabUrusMaster === 'PANGKAT')
                 senaraiPangkatMaster.splice(index, 1);
               else if (aktifTabUrusMaster === 'UNIT') {
-                // Unit adalah tetap, kita padam dari ALL_UNITS? Actually we keep ALL_UNITS fixed.
                 renderSenaraiMaster();
                 return;
               }
@@ -5458,7 +5450,7 @@
         });
 
         console.log(
-          '✅ Sistem JBPM Johor sedia sebagai App Standalone Mobile.'
+          '✅ Sistem JBPM Johor sedia sebagai App Standalone Mobile (saiz font diperkecilkan untuk paparan padat).'
         );
         console.log(
           '✅ Unit selection: default kosong, PEMADAM eksklusif, lain-lain boleh multi-select.'
