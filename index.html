@@ -572,6 +572,14 @@
       .badge-peranan { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; font-size: 0.55rem; padding: 1px 5px; }
       .badge-peranan-pemadam { background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; font-size: 0.55rem; padding: 1px 5px; }
 
+      /* Badge ZON */
+      .badge-zon-1 { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+      .badge-zon-2 { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+      .badge-zon-3 { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+      .badge-zon-4 { background: #fce7f3; color: #9d174d; border: 1px solid #f9a8d4; }
+      .badge-zon-bengkel { background: #e0e7ff; color: #3730a3; border: 1px solid #a5b4fc; }
+      .badge-zon-pgo { background: #fef3c7; color: #78350f; border: 1px solid #fbbf24; }
+
       .catatan-box {
         font-size: 0.65rem;
         color: var(--text-muted);
@@ -1262,6 +1270,18 @@
                 </div>
               </div>
             </div>
+            <!-- FILTER ZON ANGGOTA -->
+            <div class="form-group flex-1 !mb-0">
+              <select id="filterZonAnggota" class="form-control" onchange="kemaskiniPaparData()">
+                <option value="SEMUA">SEMUA ZON</option>
+                <option value="ZON 1">ZON 1</option>
+                <option value="ZON 2">ZON 2</option>
+                <option value="ZON 3">ZON 3</option>
+                <option value="ZON 4">ZON 4</option>
+                <option value="BENGKEL">BENGKEL</option>
+                <option value="PGO JOHOR">PGO JOHOR</option>
+              </select>
+            </div>
             <button class="btn btn-secondary sm:!w-auto !px-5" onclick="kemaskiniPaparData()"><i class="fa-solid fa-magnifying-glass mr-1"></i> CARI</button>
           </div>
           <div class="filter-info-badge no-print" id="filterInfoBadge" style="display: none">
@@ -1270,7 +1290,20 @@
           </div>
           <div class="table-responsive">
             <table class="roster-table">
-              <thead><tr><th>BIL</th><th>PANGKAT</th><th>NAMA &amp; NO. TEL</th><th>PASUKAN</th><th>UNIT</th><th>PERANAN</th><th>STATUS</th><th>CATATAN</th><th>SHIF / BALAI</th><th class="no-print">TINDAKAN</th></tr></thead>
+              <thead><tr>
+                <th>BIL</th>
+                <th>PANGKAT</th>
+                <th>NAMA &amp; NO. TEL</th>
+                <th>PASUKAN</th>
+                <th>UNIT</th>
+                <th>PERANAN</th>
+                <th>STATUS</th>
+                <th>CATATAN</th>
+                <th>SHIF</th>
+                <th>BALAI</th>
+                <th>ZON</th>
+                <th class="no-print">TINDAKAN</th>
+              </tr></thead>
               <tbody id="rosterTableBody"></tbody>
             </table>
           </div>
@@ -1291,6 +1324,18 @@
                 <option value="SEMUA">SEMUA BALAI</option>
               </select>
             </div>
+            <!-- FILTER ZON LOGISTIK -->
+            <div class="form-group flex-1 !mb-0">
+              <select id="filterZonLogistik" class="form-control" onchange="paparLogistikTable()">
+                <option value="SEMUA">SEMUA ZON</option>
+                <option value="ZON 1">ZON 1</option>
+                <option value="ZON 2">ZON 2</option>
+                <option value="ZON 3">ZON 3</option>
+                <option value="ZON 4">ZON 4</option>
+                <option value="BENGKEL">BENGKEL</option>
+                <option value="PGO JOHOR">PGO JOHOR</option>
+              </select>
+            </div>
           </div>
           <div class="stats-grid no-print mb-3">
             <div class="stat-card border-l-emerald-500"><div class="stat-label">JUMLAH JENTERA</div><div class="stat-value" id="statLogTotal">0</div></div>
@@ -1300,7 +1345,19 @@
           </div>
           <div class="table-responsive">
             <table class="logistik-table">
-              <thead><tr><th>BIL</th><th>CALLSIGN</th><th>NO. PLAT</th><th>MODEL</th><th>JENIS JENTERA</th><th>KATEGORI</th><th>BALAI</th><th>STATUS</th><th>CATATAN</th><th class="no-print">TINDAKAN</th></tr></thead>
+              <thead><tr>
+                <th>BIL</th>
+                <th>CALLSIGN</th>
+                <th>NO. PLAT</th>
+                <th>MODEL</th>
+                <th>JENIS JENTERA</th>
+                <th>KATEGORI</th>
+                <th>BALAI</th>
+                <th>ZON</th>
+                <th>STATUS</th>
+                <th>CATATAN</th>
+                <th class="no-print">TINDAKAN</th>
+              </tr></thead>
               <tbody id="logistikTableBody"></tbody>
             </table>
           </div>
@@ -1321,6 +1378,18 @@
                 <option value="SEMUA">SEMUA BALAI</option>
               </select>
             </div>
+            <!-- FILTER ZON CHECKLIST -->
+            <div class="form-group flex-1 !mb-0">
+              <select id="filterZonChecklist" class="form-control" onchange="paparChecklistTable()">
+                <option value="SEMUA">SEMUA ZON</option>
+                <option value="ZON 1">ZON 1</option>
+                <option value="ZON 2">ZON 2</option>
+                <option value="ZON 3">ZON 3</option>
+                <option value="ZON 4">ZON 4</option>
+                <option value="BENGKEL">BENGKEL</option>
+                <option value="PGO JOHOR">PGO JOHOR</option>
+              </select>
+            </div>
           </div>
           <div class="stats-grid no-print mb-3">
             <div class="stat-card border-l-purple-500"><div class="stat-label">JUMLAH SEMAKAN</div><div class="stat-value" id="statChecklistTotal">0</div></div>
@@ -1329,7 +1398,22 @@
           </div>
           <div class="table-responsive">
             <table class="checklist-table">
-              <thead><tr><th>BIL</th><th>BALAI</th><th>CAD</th><th>WIC</th><th>BOMRA</th><th>D.GIRN</th><th>H.GIRN</th><th>V.GIRN</th><th>INET</th><th>HP</th><th>SHIF</th><th>WAKTU</th><th class="no-print">TINDAKAN</th></tr></thead>
+              <thead><tr>
+                <th>BIL</th>
+                <th>BALAI</th>
+                <th>CAD</th>
+                <th>WIC</th>
+                <th>BOMRA</th>
+                <th>D.GIRN</th>
+                <th>H.GIRN</th>
+                <th>V.GIRN</th>
+                <th>INET</th>
+                <th>HP</th>
+                <th>SHIF</th>
+                <th>WAKTU</th>
+                <th>ZON</th>
+                <th class="no-print">TINDAKAN</th>
+              </tr></thead>
               <tbody id="checklistTableBody"></tbody>
             </table>
           </div>
@@ -1463,7 +1547,6 @@
         </div>
         <div class="flex items-center justify-between mb-1.5 mt-1 flex-shrink-0">
           <span class="font-extrabold text-xs text-slate-800"><i class="fa-solid fa-list-check mr-1"></i> SENARAI JENTERA DIPILIH &amp; STATUS:</span>
-          <!-- BUTTON DIUBAH TEKS -->
           <button class="px-2 py-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-[10px] font-black rounded-lg border border-emerald-300 transition" onclick="setSemuaJenteraStatus('Baik & Boleh Beroperasi')">
             <i class="fa-solid fa-bolt mr-1"></i> SET ALL 1. BAIK & BEROPERASI
           </button>
@@ -1631,6 +1714,90 @@
 
     <script>
       // ============================================================
+      //  PEMETAAN ZON
+      // ============================================================
+      const ZON_MAP = {
+        // ZON PGO JOHOR (Khas)
+        'PGO JOHOR': 'PGO JOHOR',
+        // ZON 1
+        'LARKIN': 'ZON 1',
+        'PASIR GUDANG': 'ZON 1',
+        'JOHOR JAYA': 'ZON 1',
+        'SKUDAI': 'ZON 1',
+        'ISKANDAR PUTERI': 'ZON 1',
+        'TEBRAU': 'ZON 1',
+        'PEKAN NENAS': 'ZON 1',
+        'PONTIAN': 'ZON 1',
+        'PONTIAN BARU': 'ZON 1',
+        'KULAI': 'ZON 1',
+        'BANDAR BARU KULAI': 'ZON 1',
+        'KEMPAS': 'ZON 1',
+        'FIRE POST BENUT': 'ZON 1',
+        // ZON 2
+        'KOTA TINGGI': 'ZON 2',
+        'SUNGAI RENGIT': 'ZON 2',
+        'BANDAR PENAWAR': 'ZON 2',
+        'MERSING': 'ZON 2',
+        'ENDAU': 'ZON 2',
+        'SEBANA COVE': 'ZON 2',
+        'PUNGGAI': 'ZON 2',
+        'BANDAR TENGGARA': 'ZON 2',
+        // ZON 3
+        'PENGGARAM': 'ZON 3',
+        'KLUANG': 'ZON 3',
+        'BATU PAHAT': 'ZON 3',
+        'RENGIT': 'ZON 3',
+        'RENGGAM': 'ZON 3',
+        'YONG PENG': 'ZON 3',
+        'AYER HITAM': 'ZON 3',
+        'FIRE POST PARIT SULONG': 'ZON 3',
+        // ZON 4
+        'MUAR': 'ZON 4',
+        'BANDAR BARU SEGAMAT': 'ZON 4',
+        'SEGAMAT': 'ZON 4',
+        'LABIS': 'ZON 4',
+        'BUKIT GAMBIR': 'ZON 4',
+        'TANGKAK': 'ZON 4',
+        'PAGOH': 'ZON 4',
+        // ZON BENGKEL
+        'BENGKEL KEJURUTERAAN': 'BENGKEL',
+        'BENGKEL SWASTA': 'BENGKEL'
+      };
+
+      const ZON_DEFAULT = 'ZON 1';
+
+      // ============================================================
+      //  FUNGSI GET ZON
+      // ============================================================
+      function getZon(balai) {
+        if (!balai) return ZON_DEFAULT;
+        const balaiUpper = balai.toUpperCase().trim();
+        for (const [key, value] of Object.entries(ZON_MAP)) {
+          if (balaiUpper === key.toUpperCase().trim()) {
+            return value;
+          }
+        }
+        return ZON_DEFAULT;
+      }
+
+      // ============================================================
+      //  FUNGSI BADGE ZON
+      // ============================================================
+      function getZonBadge(zon) {
+        if (!zon) return '<span class="badge badge-unit-gen">-</span>';
+        const classMap = {
+          'ZON 1': 'badge-zon-1',
+          'ZON 2': 'badge-zon-2',
+          'ZON 3': 'badge-zon-3',
+          'ZON 4': 'badge-zon-4',
+          'BENGKEL': 'badge-zon-bengkel',
+          'PGO JOHOR': 'badge-zon-pgo'
+        };
+        const cls = classMap[zon] || 'badge-unit-gen';
+        return `<span class="badge ${cls}">${zon}</span>`;
+      }
+
+      // ============================================================
       //  SPLASH SCREEN
       // ============================================================
       window.addEventListener('load', function () {
@@ -1710,6 +1877,77 @@
       // ============================================================
       //  MIGRATIONS
       // ============================================================
+      function migrateZon() {
+        // Anggota
+        rekodAnggota = rekodAnggota.map((a) => {
+          if (!a.zon) {
+            a.zon = getZon(a.balai || '');
+          }
+          return a;
+        });
+        // Logistik
+        logistikBertugas = logistikBertugas.map((j) => {
+          if (!j.zon) {
+            j.zon = getZon(j.balai || '');
+          }
+          return j;
+        });
+        // Checklist
+        senaraiChecklist = senaraiChecklist.map((c) => {
+          if (!c.zon) {
+            c.zon = getZon(c.balai || '');
+          }
+          return c;
+        });
+        // Master
+        senaraiNamaMaster = senaraiNamaMaster.map((m) => {
+          if (!m.zon) {
+            m.zon = getZon(m.balai || '');
+          }
+          return m;
+        });
+      }
+
+      // ============================================================
+      //  MIGRASI NAMA ZON (ZON BENGKEL → BENGKEL, ZON PGO JOHOR → PGO JOHOR)
+      // ============================================================
+      function migrateZonNames() {
+        const zonMap = {
+          'ZON BENGKEL': 'BENGKEL',
+          'ZON PGO JOHOR': 'PGO JOHOR'
+        };
+
+        rekodAnggota = rekodAnggota.map((item) => {
+          if (item.zon && zonMap[item.zon]) {
+            item.zon = zonMap[item.zon];
+          }
+          return item;
+        });
+
+        logistikBertugas = logistikBertugas.map((item) => {
+          if (item.zon && zonMap[item.zon]) {
+            item.zon = zonMap[item.zon];
+          }
+          return item;
+        });
+
+        senaraiChecklist = senaraiChecklist.map((item) => {
+          if (item.zon && zonMap[item.zon]) {
+            item.zon = zonMap[item.zon];
+          }
+          return item;
+        });
+
+        senaraiNamaMaster = senaraiNamaMaster.map((item) => {
+          if (item.zon && zonMap[item.zon]) {
+            item.zon = zonMap[item.zon];
+          }
+          return item;
+        });
+
+        console.log('✅ Migrasi nama zon selesai: ZON BENGKEL → BENGKEL, ZON PGO JOHOR → PGO JOHOR');
+      }
+
       function migrateLogistikBertugasMasterId() {
         logistikBertugas.forEach((item) => {
           if (item.masterId === undefined || item.masterId === null) {
@@ -1734,7 +1972,8 @@
             noTel: m.noTel || '',
             pangkat: m.pangkat || 'KB 1',
             balai: m.balai || 'PGO JOHOR',
-            units: newUnits
+            units: newUnits,
+            zon: m.zon || getZon(m.balai || 'PGO JOHOR')
           };
         });
         simpanKeLocalStorage();
@@ -1830,6 +2069,10 @@
         if (savedLogJentera) logistikJentera = JSON.parse(savedLogJentera);
         migrateLogistikBertugasMasterId();
 
+        // Migrate zon
+        migrateZon();
+        migrateZonNames();
+
         rekodAnggota = rekodAnggota.map((a) => {
           if (a.unitBerbayar && !a.units) {
             const newUnits = {};
@@ -1843,6 +2086,8 @@
           }
           return a;
         });
+
+        simpanKeLocalStorage();
       }
 
       async function tarikDataSupabase() {
@@ -1888,6 +2133,8 @@
               }
               return a;
             });
+            migrateZon();
+            migrateZonNames();
             migrateLogistikBertugasMasterId();
             simpanKeLocalStorage();
             kemaskiniSemuaPaparan();
@@ -1941,6 +2188,8 @@
                 }
                 return a;
               });
+              migrateZon();
+              migrateZonNames();
               migrateLogistikBertugasMasterId();
               simpanKeLocalStorage();
             }
@@ -2123,7 +2372,6 @@
           kategori: 'KHAS/BOMPA', balai: 'UMUM / BEBAS', status: 'SEDIA BEROPERASI', catatan: '-'
         }));
 
-        // BOT data (shortened but include all from original)
         const botData = [
           ['04-14','','ALUMINIUM','BOT'], ['BP34','','ALUMINIUM','BOT'], ['34-14','','ALUMINIUM','BOT'],
           ['BP 048-10','','ALUMINIUM','BOT'], ['BP 059-10','','ALUMINIUM','BOT'], ['047-10','','ALUMINIUM','BOT'],
@@ -2177,7 +2425,6 @@
           kategori: 'RIM', balai: 'UMUM / BEBAS', status: 'SEDIA BEROPERASI', catatan: '-'
         }));
 
-        // Kenderaan data (shortened, include all from original)
         const kenderaanData = [
           ['UTL','WA4358Y','ISUZU 5 TAN','LORI'], ['UTL','WA4475Y','ISUZU 3 TAN','LORI'],
           ['UTL','BHX 483','HICOM HANDALAN - 5 TAN','LORI'], ['UTL','WFE4154','ISUZU 3 TAN','LORI'],
@@ -2366,11 +2613,12 @@
         container.innerHTML = senaraiNamaMaster.map((a) => {
           const s = namaAnggotaTerpilih.some(x => x.nama === a.nama) ? 'selected' : '';
           const unitDisplay = getUnitDisplay(a);
+          const zon = a.zon || getZon(a.balai || '');
           return `<div class="multi-select-option ${s}" onclick="pilihNamaAnggotaOption('${a.nama}')">
                     <div class="check-box">${s ? '<i class="fa-solid fa-check"></i>' : ''}</div>
                     <div>
                         <div class="font-bold text-slate-800">${a.nama}</div>
-                        <div class="text-[10px] text-slate-500">${a.pangkat || 'KB 1'} | ${unitDisplay} | ${a.balai || 'PGO JOHOR'}</div>
+                        <div class="text-[10px] text-slate-500">${a.pangkat || 'KB 1'} | ${unitDisplay} | ${a.balai || 'PGO JOHOR'} | ${zon}</div>
                     </div>
                   </div>`;
         }).join('');
@@ -2387,9 +2635,11 @@
             ALL_UNITS.forEach(u => units[u] = 'TIDAK');
             units['PEMADAM'] = 'YA';
           }
+          const balai = masterItem.balai || 'PGO JOHOR';
           namaAnggotaTerpilih.push({
             nama, noTel: masterItem.noTel || '', pangkat: masterItem.pangkat || 'KB 1',
-            units: { ...units }, balai: masterItem.balai || 'PGO JOHOR',
+            units: { ...units }, balai: balai,
+            zon: masterItem.zon || getZon(balai),
             pasukan: 'PASUKAN A', status: 'BERTUGAS',
             isKetuaBalai: 'TIDAK', isPegawaiOperasi: 'TIDAK', isPenyelia: 'TIDAK', isBkb: 'TIDAK', isPemandu: 'TIDAK',
             catatan: '-'
@@ -2407,9 +2657,11 @@
               ALL_UNITS.forEach(u => units[u] = 'TIDAK');
               units['PEMADAM'] = 'YA';
             }
+            const balai = a.balai || 'PGO JOHOR';
             namaAnggotaTerpilih.push({
               nama: a.nama, noTel: a.noTel || '', pangkat: a.pangkat || 'KB 1',
-              units: { ...units }, balai: a.balai || 'PGO JOHOR',
+              units: { ...units }, balai: balai,
+              zon: a.zon || getZon(balai),
               pasukan: 'PASUKAN A', status: 'BERTUGAS',
               isKetuaBalai: 'TIDAK', isPegawaiOperasi: 'TIDAK', isPenyelia: 'TIDAK', isBkb: 'TIDAK', isPemandu: 'TIDAK',
               catatan: '-'
@@ -2467,10 +2719,11 @@
           const roles = ['isKetuaBalai','isPegawaiOperasi','isPenyelia','isPemandu','isBkb'];
           const selectedRole = roles.find(r => item[r] === 'YA');
           const roleDisplay = selectedRole ? selectedRole.replace('is','').toUpperCase() : 'PEMADAM';
+          const zonBadge = getZonBadge(item.zon);
 
           return `<tr>
                     <td><strong class="text-slate-800 text-xs">${item.nama}</strong><div class="text-[10px] text-slate-500 font-extrabold">${item.pangkat}</div></td>
-                    <td><strong class="text-red-800 text-[10px]">${item.balai}</strong></td>
+                    <td><strong class="text-red-800 text-[10px]">${item.balai}</strong><br>${zonBadge}</td>
                     <td><select class="form-control !min-h-[30px] !py-0.5 !px-1.5 !text-[11px] font-bold" onchange="namaAnggotaTerpilih[${i}].pasukan=this.value">
                         <option value="PASUKAN A" ${item.pasukan === 'PASUKAN A' ? 'selected' : ''}>PASUKAN A</option>
                         <option value="PASUKAN B" ${item.pasukan === 'PASUKAN B' ? 'selected' : ''}>PASUKAN B</option>
@@ -2536,6 +2789,7 @@
             pangkat: item.pangkat || 'KB 1',
             units: { ...item.units },
             balai: item.balai || 'PGO JOHOR',
+            zon: item.zon || getZon(item.balai || 'PGO JOHOR'),
             shiftType, shiftTime,
             isKetuaBalai: item.isKetuaBalai || 'TIDAK',
             isPegawaiOperasi: item.isPegawaiOperasi || 'TIDAK',
@@ -2607,11 +2861,12 @@
         if (!container) return;
         container.innerHTML = filtered.map((i) => {
           const s = logJenteraTerpilih.some(x => x.id === i.id) ? 'selected' : '';
+          const zon = getZon(b || 'PGO JOHOR');
           return `<div class="multi-select-option ${s}" onclick="pilihLogJenteraOption(${i.id})">
                     <div class="check-box">${s ? '<i class="fa-solid fa-check"></i>' : ''}</div>
                     <div>
                         <div class="font-bold text-red-700">${i.callsign} (${i.plate})</div>
-                        <div class="text-[10px] text-slate-500">${i.jenis} | ${i.balai}</div>
+                        <div class="text-[10px] text-slate-500">${i.jenis} | ${i.balai} | ${zon}</div>
                     </div>
                   </div>`;
         }).join('');
@@ -2624,7 +2879,8 @@
         if (idx > -1) {
           logJenteraTerpilih.splice(idx, 1);
         } else {
-          logJenteraTerpilih.push({ ...j, status: 'Baik & Boleh Beroperasi', catatan: '-' });
+          const balai = document.getElementById('logModalBalai')?.value || 'PGO JOHOR';
+          logJenteraTerpilih.push({ ...j, status: 'Baik & Boleh Beroperasi', catatan: '-', zon: getZon(balai), balaiBertugas: balai });
         }
         kemaskiniLogJenteraDipilihTable();
         janaLogJenteraDropdown();
@@ -2642,7 +2898,8 @@
           !assignedMasterIds.has(i.id)
         ).forEach((j) => {
           if (!logJenteraTerpilih.some(x => x.id === j.id)) {
-            logJenteraTerpilih.push({ ...j, status: 'Baik & Boleh Beroperasi', catatan: '-' });
+            const balai = document.getElementById('logModalBalai')?.value || 'PGO JOHOR';
+            logJenteraTerpilih.push({ ...j, status: 'Baik & Boleh Beroperasi', catatan: '-', zon: getZon(balai), balaiBertugas: balai });
           }
         });
         kemaskiniLogJenteraDipilihTable();
@@ -2660,9 +2917,6 @@
         kemaskiniLogJenteraDipilihTable();
       }
 
-      // ============================================================
-      //  MODAL: LOGISTIK DIPILIH TABLE - UPDATED DROPDOWN WITH NUMBERS
-      // ============================================================
       function kemaskiniLogJenteraDipilihTable() {
         const tbody = document.getElementById('logJenteraDipilihBody'),
               tags = document.getElementById('logJenteraSelectedTags'),
@@ -2679,6 +2933,7 @@
         tags.innerHTML = logJenteraTerpilih.map(j => `<span class="multi-select-tag">${j.callsign}</span>`).join('');
 
         tbody.innerHTML = logJenteraTerpilih.map((item, i) => {
+          const zonBadge = getZonBadge(item.zon);
           return `<tr>
                     <td><strong class="text-red-700">${item.callsign}</strong></td>
                     <td><span class="bg-slate-100 border px-1.5 py-0.5 rounded text-[10px] font-black">${item.plate}</span></td>
@@ -2723,7 +2978,8 @@
             model: item.model,
             jenis: item.jenis,
             kategori: item.kategori,
-            balai,
+            balai: balai,
+            zon: getZon(balai),
             status: item.status,
             catatan: item.catatan || '-'
           });
@@ -2865,7 +3121,8 @@
 
         senaraiChecklist.push({
           id: 'CHK_' + Date.now(),
-          balai,
+          balai: balai,
+          zon: getZon(balai),
           cadDetail: cad,
           wicDetail: wic,
           bomraDetail: bomra,
@@ -2891,12 +3148,16 @@
       // ============================================================
       function paparChecklistTable() {
         const filterBalai = document.getElementById('checklistBalaiFilter')?.value || 'SEMUA';
+        const filterZon = document.getElementById('filterZonChecklist')?.value || 'SEMUA';
         const q = (document.getElementById('checklistSearchInput')?.value || '').toUpperCase().trim();
         const tbody = document.getElementById('checklistTableBody');
         if (!tbody) return;
         tbody.innerHTML = '';
         let data = senaraiChecklist || [];
+
         if (filterBalai !== 'SEMUA') data = data.filter(i => i.balai === filterBalai);
+        if (filterZon !== 'SEMUA') data = data.filter(i => i.zon === filterZon);
+
         if (q) {
           data = data.filter(i => {
             const getCat = (d) => (d && d.catatan ? d.catatan : '');
@@ -2905,7 +3166,7 @@
               getCat(i.desktopGirnDetail), getCat(i.handheldGirnDetail),
               getCat(i.vehicularGirnDetail), getCat(i.internetDetail), getCat(i.handphoneDetail)
             ].join(' ');
-            let fullText = `${i.balai || ''} ${i.shiftType || ''} ${i.shiftTime || ''} ${allCatatan}`.toUpperCase();
+            let fullText = `${i.balai || ''} ${i.shiftType || ''} ${i.shiftTime || ''} ${allCatatan} ${i.zon || ''}`.toUpperCase();
             return fullText.includes(q);
           });
         }
@@ -2949,6 +3210,7 @@
 
         data.forEach((item, index) => {
           const tr = document.createElement('tr');
+          const zonBadge = getZonBadge(item.zon);
           tr.innerHTML = `<td>${index+1}</td>
                     <td><strong>${item.balai || '-'}</strong></td>
                     <td>${formatCell(item.cadDetail)}</td>
@@ -2961,6 +3223,7 @@
                     <td>${formatCell(item.handphoneDetail)}</td>
                     <td>${item.shiftType || '12 JAM'}</td>
                     <td>${item.shiftTime || '0800-2000'}</td>
+                    <td>${zonBadge}</td>
                     <td class="no-print"><button class="btn btn-danger" onclick="mintaPassword('PADAM_CHECKLIST','${item.id}')">PADAM</button></td>`;
           tbody.appendChild(tr);
         });
@@ -3032,6 +3295,7 @@
       // ============================================================
       function kemaskiniPaparData() {
         const q = (document.getElementById('searchInput')?.value || '').toUpperCase().trim();
+        const filterZon = document.getElementById('filterZonAnggota')?.value || 'SEMUA';
         const tbody = document.getElementById('rosterTableBody');
         if (!tbody) return;
         tbody.innerHTML = '';
@@ -3050,8 +3314,12 @@
           } else {
             unitStr = (i.unitBerbayar || '') + ' ' + (i.unitTidakBerbayar || '');
           }
-          let fullText = `${i.pangkat || ''} ${i.nama || ''} ${i.noTel || ''} ${i.pasukan || ''} ${unitStr} ${perananStr} ${i.status || ''} ${i.catatan || ''} ${i.shiftType || ''} ${i.shiftTime || ''} ${i.balai || ''}`.toUpperCase();
-          return (balaiTerpilih.length === 0 || balaiTerpilih.includes(i.balai)) && (!q || fullText.includes(q));
+          let fullText = `${i.pangkat || ''} ${i.nama || ''} ${i.noTel || ''} ${i.pasukan || ''} ${unitStr} ${perananStr} ${i.status || ''} ${i.catatan || ''} ${i.shiftType || ''} ${i.shiftTime || ''} ${i.balai || ''} ${i.zon || ''}`.toUpperCase();
+
+          const zonMatch = filterZon === 'SEMUA' || (i.zon || '') === filterZon;
+          const balaiMatch = balaiTerpilih.length === 0 || balaiTerpilih.includes(i.balai);
+
+          return balaiMatch && zonMatch && (!q || fullText.includes(q));
         });
 
         document.getElementById('statTotal').innerText = f.length;
@@ -3094,6 +3362,8 @@
             if (!ub && !utb) unitBadges = '<span class="badge badge-unit-gen">PEMADAM</span>';
           }
 
+          const zonBadge = getZonBadge(item.zon);
+
           const tr = document.createElement('tr');
           tr.innerHTML = `<td>${idx+1}</td>
                     <td><strong>${item.pangkat}</strong></td>
@@ -3103,7 +3373,9 @@
                     <td>${peranan.join(' ')}</td>
                     <td><span class="badge ${bs}">${item.status}</span></td>
                     <td><div class="catatan-box">${item.catatan || '-'}</div></td>
-                    <td><div class="text-[10px] font-bold text-slate-500">${item.shiftType || '12 JAM'} | ${item.shiftTime || '0800-2000'}</div><div class="font-extrabold">${item.balai}</div></td>
+                    <td><div class="text-[10px] font-bold text-slate-500">${item.shiftType || '12 JAM'} | ${item.shiftTime || '0800-2000'}</div></td>
+                    <td><div class="font-extrabold">${item.balai}</div></td>
+                    <td>${zonBadge}</td>
                     <td class="no-print"><button class="btn btn-danger" onclick="mintaPassword('PADAM_ANGGOTA','${item.id}')">PADAM</button></td>`;
           tbody.appendChild(tr);
         });
@@ -3116,19 +3388,23 @@
       }
 
       // ============================================================
-      //  LOGISTIK TABLE - UPDATED BADGE & TOOLTIP WITH NUMBERS
+      //  LOGISTIK TABLE
       // ============================================================
       function paparLogistikTable() {
         const filterBalai = document.getElementById('logistikBalaiFilter')?.value || 'SEMUA';
+        const filterZon = document.getElementById('filterZonLogistik')?.value || 'SEMUA';
         const q = (document.getElementById('logistikSearchInput')?.value || '').toUpperCase().trim();
         const tbody = document.getElementById('logistikTableBody');
         if (!tbody) return;
         tbody.innerHTML = '';
         let data = logistikBertugas;
+
         if (filterBalai !== 'SEMUA') data = data.filter(i => i.balai === filterBalai);
+        if (filterZon !== 'SEMUA') data = data.filter(i => i.zon === filterZon);
+
         if (q) {
           data = data.filter(i => {
-            let fullText = `${i.callsign || ''} ${i.plate || ''} ${i.model || ''} ${i.jenis || ''} ${i.kategori || ''} ${i.balai || ''} ${i.status || ''} ${i.catatan || ''}`.toUpperCase();
+            let fullText = `${i.callsign || ''} ${i.plate || ''} ${i.model || ''} ${i.jenis || ''} ${i.kategori || ''} ${i.balai || ''} ${i.status || ''} ${i.catatan || ''} ${i.zon || ''}`.toUpperCase();
             return fullText.includes(q);
           });
         }
@@ -3171,6 +3447,9 @@
             displayText = item.status;
             tooltip = item.status;
           }
+
+          const zonBadge = getZonBadge(item.zon);
+
           const tr = document.createElement('tr');
           tr.innerHTML = `<td>${idx+1}</td>
                     <td><strong class="text-red-700">${item.callsign}</strong></td>
@@ -3179,6 +3458,7 @@
                     <td><strong>${item.jenis}</strong></td>
                     <td><span class="badge badge-unit-gen">${item.kategori}</span></td>
                     <td><strong>${item.balai}</strong></td>
+                    <td>${zonBadge}</td>
                     <td><span class="badge ${bs}" title="${tooltip}">${displayText}</span></td>
                     <td><div class="catatan-box">${item.catatan || '-'}</div></td>
                     <td class="no-print"><button class="btn btn-danger" onclick="mintaPassword('PADAM_LOGISTIK','${item.id}')">PADAM</button></td>`;
@@ -3364,7 +3644,8 @@
         if (aktifTabUrusMaster === 'ANGGOTA') {
           senarai = senaraiNamaMaster.map((a) => {
             const unitDisplay = getUnitDisplay(a);
-            return `<div class="font-bold">${a.nama}</div><div class="text-[10px] text-slate-500">${a.pangkat} | ${unitDisplay} | ${a.balai}</div>`;
+            const zon = a.zon || getZon(a.balai || '');
+            return `<div class="font-bold">${a.nama}</div><div class="text-[10px] text-slate-500">${a.pangkat} | ${unitDisplay} | ${a.balai} | ${zon}</div>`;
           });
         } else if (aktifTabUrusMaster === 'BALAI') senarai = senaraiBalaiMaster;
         else if (aktifTabUrusMaster === 'PANGKAT') senarai = senaraiPangkatMaster;
@@ -3481,12 +3762,15 @@
           const errMsg = document.getElementById('unitErrorMsg');
           if (errMsg) errMsg.style.display = 'none';
 
+          const zon = getZon(balai);
+
           senaraiNamaMaster.push({
             nama: n,
             noTel: tel,
             pangkat: pangkat,
             units: units,
-            balai: balai
+            balai: balai,
+            zon: zon
           });
 
           await hantarDataSupabase();
@@ -3609,9 +3893,9 @@
           });
         });
 
-        console.log('✅ Sistem JBPM Johor sedia sebagai App Standalone Mobile (saiz font diperkecilkan untuk paparan padat).');
-        console.log('✅ Unit selection: default kosong, PEMADAM eksklusif, lain-lain boleh multi-select.');
-        console.log('✅ Status jentera dipaparkan dengan nombor 1-5 mengikut susunan yang diminta.');
+        console.log('✅ Sistem JBPM Johor sedia sebagai App Standalone Mobile');
+        console.log('✅ ZON: PGO JOHOR dan BENGKEL telah dipendekkan di paparan dan data Supabase.');
+        console.log('✅ Migrasi nama zon akan dijalankan secara automatik.');
       };
     </script>
   </body>
