@@ -1278,23 +1278,34 @@
                 </div>
               </div>
             </div>
-            <!-- FILTER ZON ANGGOTA -->
+            <!-- FILTER ZON ANGGOTA (MULTI-SELECT) -->
             <div class="form-group flex-1 !mb-0">
-              <select id="filterZonAnggota" class="form-control" onchange="kemaskiniPaparData()">
-                <option value="SEMUA">SEMUA ZON</option>
-                <option value="ZON 1">ZON 1</option>
-                <option value="ZON 2">ZON 2</option>
-                <option value="ZON 3">ZON 3</option>
-                <option value="ZON 4">ZON 4</option>
-                <option value="BENGKEL">BENGKEL</option>
-                <option value="PGO JOHOR">PGO JOHOR</option>
-              </select>
+              <div class="multi-select-container" id="zonAnggotaMultiSelect">
+                <div class="multi-select-trigger" onclick="togolBalaiDropdown('zonAnggotaMultiSelect','zonAnggotaDropdown','zonAnggotaSelectedTags')">
+                  <div class="multi-select-tags" id="zonAnggotaSelectedTags"><span class="multi-select-placeholder"><i class="fa-solid fa-location-dot mr-1"></i> SEMUA ZON</span></div>
+                  <span class="multi-select-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="multi-select-dropdown" id="zonAnggotaDropdown">
+                  <div class="multi-select-search">
+                    <input type="text" id="zonAnggotaSearchInput" placeholder="CARI ZON..." onkeyup="tapisZonDropdown('zonAnggotaOptionsContainer','zonAnggotaSearchInput')" onclick="event.stopPropagation();" />
+                  </div>
+                  <div class="multi-select-options" id="zonAnggotaOptionsContainer"></div>
+                  <div class="multi-select-actions">
+                    <button class="btn-select-all" onclick="pilihSemuaZonAnggota();event.stopPropagation();"><i class="fa-solid fa-check-double mr-1"></i> PILIH SEMUA</button>
+                    <button class="btn-clear-all" onclick="kosongkanZonAnggota();event.stopPropagation();"><i class="fa-solid fa-xmark mr-1"></i> KOSONGKAN</button>
+                  </div>
+                </div>
+              </div>
             </div>
-            <button class="btn btn-secondary sm:!w-auto !px-5" onclick="kemaskiniPaparData()"><i class="fa-solid fa-magnifying-glass mr-1"></i> CARI</button>
+            <!-- BUANG BUTANG CARI -->
           </div>
           <div class="filter-info-badge no-print" id="filterInfoBadge" style="display: none">
             <span><i class="fa-solid fa-filter mr-1"></i> <strong>BALAI DITAPIS:</strong> <span id="filterBalaiList"></span></span>
             <span class="clear-filter-link" onclick="kosongkanBalai();kemaskiniPaparData();">✕ KOSONGKAN PENAPIS</span>
+          </div>
+          <div class="filter-info-badge no-print" id="zonFilterInfoBadge" style="display: none">
+            <span><i class="fa-solid fa-filter mr-1"></i> <strong>ZON DITAPIS:</strong> <span id="zonFilterList"></span></span>
+            <span class="clear-filter-link" onclick="kosongkanZonAnggota();kemaskiniPaparData();">✕ KOSONGKAN PENAPIS</span>
           </div>
           <div class="table-responsive">
             <table class="roster-table">
@@ -1346,17 +1357,24 @@
                 </div>
               </div>
             </div>
-            <!-- FILTER ZON LOGISTIK -->
+            <!-- FILTER ZON LOGISTIK (MULTI-SELECT) -->
             <div class="form-group flex-1 !mb-0">
-              <select id="filterZonLogistik" class="form-control" onchange="paparLogistikTable()">
-                <option value="SEMUA">SEMUA ZON</option>
-                <option value="ZON 1">ZON 1</option>
-                <option value="ZON 2">ZON 2</option>
-                <option value="ZON 3">ZON 3</option>
-                <option value="ZON 4">ZON 4</option>
-                <option value="BENGKEL">BENGKEL</option>
-                <option value="PGO JOHOR">PGO JOHOR</option>
-              </select>
+              <div class="multi-select-container" id="zonLogistikMultiSelect">
+                <div class="multi-select-trigger" onclick="togolBalaiDropdown('zonLogistikMultiSelect','zonLogistikDropdown','zonLogistikSelectedTags')">
+                  <div class="multi-select-tags" id="zonLogistikSelectedTags"><span class="multi-select-placeholder"><i class="fa-solid fa-location-dot mr-1"></i> SEMUA ZON</span></div>
+                  <span class="multi-select-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="multi-select-dropdown" id="zonLogistikDropdown">
+                  <div class="multi-select-search">
+                    <input type="text" id="zonLogistikSearchInput" placeholder="CARI ZON..." onkeyup="tapisZonDropdown('zonLogistikOptionsContainer','zonLogistikSearchInput')" onclick="event.stopPropagation();" />
+                  </div>
+                  <div class="multi-select-options" id="zonLogistikOptionsContainer"></div>
+                  <div class="multi-select-actions">
+                    <button class="btn-select-all" onclick="pilihSemuaZonLogistik();event.stopPropagation();"><i class="fa-solid fa-check-double mr-1"></i> PILIH SEMUA</button>
+                    <button class="btn-clear-all" onclick="kosongkanZonLogistik();event.stopPropagation();"><i class="fa-solid fa-xmark mr-1"></i> KOSONGKAN</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!-- STATS LOGISTIK -->
@@ -1377,6 +1395,10 @@
           <div class="filter-info-badge no-print" id="logFilterInfoBadge" style="display: none">
             <span><i class="fa-solid fa-filter mr-1"></i> <strong>BALAI DITAPIS:</strong> <span id="logFilterBalaiList"></span></span>
             <span class="clear-filter-link" onclick="kosongkanBalaiLogistik();paparLogistikTable();">✕ KOSONGKAN PENAPIS</span>
+          </div>
+          <div class="filter-info-badge no-print" id="zonLogistikFilterInfoBadge" style="display: none">
+            <span><i class="fa-solid fa-filter mr-1"></i> <strong>ZON DITAPIS:</strong> <span id="zonLogistikFilterList"></span></span>
+            <span class="clear-filter-link" onclick="kosongkanZonLogistik();paparLogistikTable();">✕ KOSONGKAN PENAPIS</span>
           </div>
           <div class="table-responsive">
             <table class="logistik-table">
@@ -1427,22 +1449,33 @@
                 </div>
               </div>
             </div>
-            <!-- FILTER ZON CHECKLIST -->
+            <!-- FILTER ZON CHECKLIST (MULTI-SELECT) -->
             <div class="form-group flex-1 !mb-0">
-              <select id="filterZonChecklist" class="form-control" onchange="paparChecklistTable()">
-                <option value="SEMUA">SEMUA ZON</option>
-                <option value="ZON 1">ZON 1</option>
-                <option value="ZON 2">ZON 2</option>
-                <option value="ZON 3">ZON 3</option>
-                <option value="ZON 4">ZON 4</option>
-                <option value="BENGKEL">BENGKEL</option>
-                <option value="PGO JOHOR">PGO JOHOR</option>
-              </select>
+              <div class="multi-select-container" id="zonChecklistMultiSelect">
+                <div class="multi-select-trigger" onclick="togolBalaiDropdown('zonChecklistMultiSelect','zonChecklistDropdown','zonChecklistSelectedTags')">
+                  <div class="multi-select-tags" id="zonChecklistSelectedTags"><span class="multi-select-placeholder"><i class="fa-solid fa-location-dot mr-1"></i> SEMUA ZON</span></div>
+                  <span class="multi-select-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="multi-select-dropdown" id="zonChecklistDropdown">
+                  <div class="multi-select-search">
+                    <input type="text" id="zonChecklistSearchInput" placeholder="CARI ZON..." onkeyup="tapisZonDropdown('zonChecklistOptionsContainer','zonChecklistSearchInput')" onclick="event.stopPropagation();" />
+                  </div>
+                  <div class="multi-select-options" id="zonChecklistOptionsContainer"></div>
+                  <div class="multi-select-actions">
+                    <button class="btn-select-all" onclick="pilihSemuaZonChecklist();event.stopPropagation();"><i class="fa-solid fa-check-double mr-1"></i> PILIH SEMUA</button>
+                    <button class="btn-clear-all" onclick="kosongkanZonChecklist();event.stopPropagation();"><i class="fa-solid fa-xmark mr-1"></i> KOSONGKAN</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="filter-info-badge no-print" id="chkFilterInfoBadge" style="display: none">
             <span><i class="fa-solid fa-filter mr-1"></i> <strong>BALAI DITAPIS:</strong> <span id="chkFilterBalaiList"></span></span>
             <span class="clear-filter-link" onclick="kosongkanBalaiChecklist();paparChecklistTable();">✕ KOSONGKAN PENAPIS</span>
+          </div>
+          <div class="filter-info-badge no-print" id="zonChecklistFilterInfoBadge" style="display: none">
+            <span><i class="fa-solid fa-filter mr-1"></i> <strong>ZON DITAPIS:</strong> <span id="zonChecklistFilterList"></span></span>
+            <span class="clear-filter-link" onclick="kosongkanZonChecklist();paparChecklistTable();">✕ KOSONGKAN PENAPIS</span>
           </div>
           <div class="stats-grid no-print mb-3">
             <div class="stat-card border-l-purple-500"><div class="stat-label">JUMLAH SEMAKAN</div><div class="stat-value" id="statChecklistTotal">0</div></div>
@@ -1812,6 +1845,7 @@
       };
 
       const ZON_DEFAULT = 'ZON 1';
+      const ZON_OPTIONS = ['ZON 1', 'ZON 2', 'ZON 3', 'ZON 4', 'BENGKEL', 'PGO JOHOR'];
 
       function getZon(balai) {
         if (!balai) return ZON_DEFAULT;
@@ -1875,10 +1909,14 @@
       const KATA_LALUAN_TETAP = 'PGO1234';
       let sasaranPasswordAction = '', confirmCallback = null, aktifTabUrusMaster = 'ANGGOTA';
 
-      // Array untuk pilihan balai multi-select (setiap panel berasingan)
+      // Array untuk pilihan balai dan zon (setiap panel berasingan)
       let balaiTerpilihAnggota = [];
       let balaiTerpilihLogistik = [];
       let balaiTerpilihChecklist = [];
+
+      let zonTerpilihAnggota = [];
+      let zonTerpilihLogistik = [];
+      let zonTerpilihChecklist = [];
 
       let logJenteraTerpilih = [], namaAnggotaTerpilih = [];
       let rekodAnggota = [], logistikBertugas = [], senaraiChecklist = [];
@@ -2227,7 +2265,7 @@
       }
 
       // ============================================================
-      //  INIT LOGISTIK JENTERA (MASTER INVENTORY) - dipendekkan untuk ruang
+      //  INIT LOGISTIK JENTERA (MASTER INVENTORY) - dipendekkan
       // ============================================================
       function initDataLogistik(force = false) {
         if (logistikJentera.length > 0 && !force) return;
@@ -2525,7 +2563,7 @@
         });
       }
 
-      // Fungsi untuk menjana pilihan dropdown bagi mana-mana container
+      // Fungsi untuk menjana pilihan dropdown bagi mana-mana container (Balai)
       function janaBalaiOptions(containerId, selectedArray) {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -2538,9 +2576,8 @@
         }).join('');
       }
 
-      // Fungsi untuk pilih / nyahpilih satu balai
+      // Fungsi untuk pilih / nyahpilih satu balai (generic)
       function pilihBalaiOptionGeneric(containerId, balai) {
-        // Tentukan array mana berdasarkan containerId
         let targetArray, tagsId, infoBadgeId, filterListId, refreshFunc;
         if (containerId === 'balaiOptionsContainer') {
           targetArray = balaiTerpilihAnggota;
@@ -2566,11 +2603,8 @@
         if (idx > -1) targetArray.splice(idx, 1);
         else targetArray.push(balai);
 
-        // Kemaskini tag dan badge
         kemaskiniBalaiTags(tagsId, infoBadgeId, filterListId, targetArray);
-        // Refresh dropdown options
         janaBalaiOptions(containerId, targetArray);
-        // Refresh jadual
         if (refreshFunc) refreshFunc();
       }
 
@@ -2591,7 +2625,7 @@
         }
       }
 
-      // Fungsi pilih semua / kosongkan untuk setiap panel
+      // Fungsi pilih semua / kosongkan untuk setiap panel (Balai)
       function pilihSemuaBalai() {
         balaiTerpilihAnggota = [...senaraiBalaiMaster];
         kemaskiniBalaiTags('balaiSelectedTags','filterInfoBadge','filterBalaiList', balaiTerpilihAnggota);
@@ -2631,6 +2665,119 @@
         balaiTerpilihChecklist = [];
         kemaskiniBalaiTags('chkBalaiSelectedTags','chkFilterInfoBadge','chkFilterBalaiList', balaiTerpilihChecklist);
         janaBalaiOptions('chkBalaiOptionsContainer', balaiTerpilihChecklist);
+        paparChecklistTable();
+      }
+
+      // ============================================================
+      //  FUNGSI MULTI-SELECT ZON (GENERIK)
+      // ============================================================
+      function tapisZonDropdown(optionsContainerId, searchInputId) {
+        const v = (document.getElementById(searchInputId)?.value || '').toUpperCase();
+        document.querySelectorAll('#' + optionsContainerId + ' .multi-select-option').forEach((o) => {
+          o.style.display = o.innerText.toUpperCase().includes(v) ? 'flex' : 'none';
+        });
+      }
+
+      function janaZonOptions(containerId, selectedArray) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = ZON_OPTIONS.map((z) => {
+          const s = selectedArray.includes(z) ? 'selected' : '';
+          return `<div class="multi-select-option ${s}" onclick="pilihZonOptionGeneric('${containerId}','${z}')">
+                    <div class="check-box">${s ? '<i class="fa-solid fa-check"></i>' : ''}</div>
+                    <span>${z}</span>
+                  </div>`;
+        }).join('');
+      }
+
+      function pilihZonOptionGeneric(containerId, zon) {
+        let targetArray, tagsId, infoBadgeId, filterListId, refreshFunc;
+        if (containerId === 'zonAnggotaOptionsContainer') {
+          targetArray = zonTerpilihAnggota;
+          tagsId = 'zonAnggotaSelectedTags';
+          infoBadgeId = 'zonFilterInfoBadge';
+          filterListId = 'zonFilterList';
+          refreshFunc = kemaskiniPaparData;
+        } else if (containerId === 'zonLogistikOptionsContainer') {
+          targetArray = zonTerpilihLogistik;
+          tagsId = 'zonLogistikSelectedTags';
+          infoBadgeId = 'zonLogistikFilterInfoBadge';
+          filterListId = 'zonLogistikFilterList';
+          refreshFunc = paparLogistikTable;
+        } else if (containerId === 'zonChecklistOptionsContainer') {
+          targetArray = zonTerpilihChecklist;
+          tagsId = 'zonChecklistSelectedTags';
+          infoBadgeId = 'zonChecklistFilterInfoBadge';
+          filterListId = 'zonChecklistFilterList';
+          refreshFunc = paparChecklistTable;
+        } else return;
+
+        const idx = targetArray.indexOf(zon);
+        if (idx > -1) targetArray.splice(idx, 1);
+        else targetArray.push(zon);
+
+        kemaskiniZonTags(tagsId, infoBadgeId, filterListId, targetArray);
+        janaZonOptions(containerId, targetArray);
+        if (refreshFunc) refreshFunc();
+      }
+
+      function kemaskiniZonTags(tagsId, infoBadgeId, filterListId, selectedArray) {
+        const t = document.getElementById(tagsId);
+        if (!t) return;
+        if (selectedArray.length === 0) {
+          t.innerHTML = '<span class="multi-select-placeholder"><i class="fa-solid fa-location-dot mr-1"></i> SEMUA ZON</span>';
+          const badge = document.getElementById(infoBadgeId);
+          if (badge) badge.style.display = 'none';
+        } else {
+          t.innerHTML = selectedArray.map(z => `<span class="multi-select-tag">${z}</span>`).join('');
+          const badge = document.getElementById(infoBadgeId);
+          if (badge) {
+            badge.style.display = 'inline-flex';
+            document.getElementById(filterListId).innerText = selectedArray.join(', ');
+          }
+        }
+      }
+
+      // Fungsi pilih semua / kosongkan untuk setiap panel (Zon)
+      function pilihSemuaZonAnggota() {
+        zonTerpilihAnggota = [...ZON_OPTIONS];
+        kemaskiniZonTags('zonAnggotaSelectedTags','zonFilterInfoBadge','zonFilterList', zonTerpilihAnggota);
+        janaZonOptions('zonAnggotaOptionsContainer', zonTerpilihAnggota);
+        kemaskiniPaparData();
+      }
+
+      function kosongkanZonAnggota() {
+        zonTerpilihAnggota = [];
+        kemaskiniZonTags('zonAnggotaSelectedTags','zonFilterInfoBadge','zonFilterList', zonTerpilihAnggota);
+        janaZonOptions('zonAnggotaOptionsContainer', zonTerpilihAnggota);
+        kemaskiniPaparData();
+      }
+
+      function pilihSemuaZonLogistik() {
+        zonTerpilihLogistik = [...ZON_OPTIONS];
+        kemaskiniZonTags('zonLogistikSelectedTags','zonLogistikFilterInfoBadge','zonLogistikFilterList', zonTerpilihLogistik);
+        janaZonOptions('zonLogistikOptionsContainer', zonTerpilihLogistik);
+        paparLogistikTable();
+      }
+
+      function kosongkanZonLogistik() {
+        zonTerpilihLogistik = [];
+        kemaskiniZonTags('zonLogistikSelectedTags','zonLogistikFilterInfoBadge','zonLogistikFilterList', zonTerpilihLogistik);
+        janaZonOptions('zonLogistikOptionsContainer', zonTerpilihLogistik);
+        paparLogistikTable();
+      }
+
+      function pilihSemuaZonChecklist() {
+        zonTerpilihChecklist = [...ZON_OPTIONS];
+        kemaskiniZonTags('zonChecklistSelectedTags','zonChecklistFilterInfoBadge','zonChecklistFilterList', zonTerpilihChecklist);
+        janaZonOptions('zonChecklistOptionsContainer', zonTerpilihChecklist);
+        paparChecklistTable();
+      }
+
+      function kosongkanZonChecklist() {
+        zonTerpilihChecklist = [];
+        kemaskiniZonTags('zonChecklistSelectedTags','zonChecklistFilterInfoBadge','zonChecklistFilterList', zonTerpilihChecklist);
+        janaZonOptions('zonChecklistOptionsContainer', zonTerpilihChecklist);
         paparChecklistTable();
       }
 
@@ -3285,7 +3432,6 @@
       //  PAPAR TABLES
       // ============================================================
       function paparChecklistTable() {
-        const filterZon = document.getElementById('filterZonChecklist')?.value || 'SEMUA';
         const q = (document.getElementById('checklistSearchInput')?.value || '').toUpperCase().trim();
         const tbody = document.getElementById('checklistTableBody');
         if (!tbody) return;
@@ -3296,7 +3442,10 @@
         if (balaiTerpilihChecklist.length > 0) {
           data = data.filter(i => balaiTerpilihChecklist.includes(i.balai));
         }
-        if (filterZon !== 'SEMUA') data = data.filter(i => i.zon === filterZon);
+        // Penapis zon (multi-select)
+        if (zonTerpilihChecklist.length > 0) {
+          data = data.filter(i => zonTerpilihChecklist.includes(i.zon));
+        }
 
         // ===== CARIAN MENYELURUH =====
         if (q) {
@@ -3441,6 +3590,15 @@
         kemaskiniBalaiTags('balaiSelectedTags','filterInfoBadge','filterBalaiList', balaiTerpilihAnggota);
         kemaskiniBalaiTags('logBalaiSelectedTags','logFilterInfoBadge','logFilterBalaiList', balaiTerpilihLogistik);
         kemaskiniBalaiTags('chkBalaiSelectedTags','chkFilterInfoBadge','chkFilterBalaiList', balaiTerpilihChecklist);
+
+        // Init dropdown options untuk semua multi-select zon
+        janaZonOptions('zonAnggotaOptionsContainer', zonTerpilihAnggota);
+        janaZonOptions('zonLogistikOptionsContainer', zonTerpilihLogistik);
+        janaZonOptions('zonChecklistOptionsContainer', zonTerpilihChecklist);
+        kemaskiniZonTags('zonAnggotaSelectedTags','zonFilterInfoBadge','zonFilterList', zonTerpilihAnggota);
+        kemaskiniZonTags('zonLogistikSelectedTags','zonLogistikFilterInfoBadge','zonLogistikFilterList', zonTerpilihLogistik);
+        kemaskiniZonTags('zonChecklistSelectedTags','zonChecklistFilterInfoBadge','zonChecklistFilterList', zonTerpilihChecklist);
+
         kemaskiniPaparData();
         paparLogistikTable();
         paparChecklistTable();
@@ -3458,7 +3616,6 @@
       // ============================================================
       function kemaskiniPaparData() {
         const q = (document.getElementById('searchInput')?.value || '').toUpperCase().trim();
-        const filterZon = document.getElementById('filterZonAnggota')?.value || 'SEMUA';
         const tbody = document.getElementById('rosterTableBody');
         if (!tbody) return;
         tbody.innerHTML = '';
@@ -3479,8 +3636,8 @@
           }
           let fullText = `${i.pangkat || ''} ${i.nama || ''} ${i.noTel || ''} ${i.pasukan || ''} ${unitStr} ${perananStr} ${i.status || ''} ${i.catatan || ''} ${i.shiftType || ''} ${i.shiftTime || ''} ${i.balai || ''} ${i.zon || ''}`.toUpperCase();
 
-          const zonMatch = filterZon === 'SEMUA' || (i.zon || '') === filterZon;
           const balaiMatch = balaiTerpilihAnggota.length === 0 || balaiTerpilihAnggota.includes(i.balai);
+          const zonMatch = zonTerpilihAnggota.length === 0 || zonTerpilihAnggota.includes(i.zon);
 
           return balaiMatch && zonMatch && (!q || fullText.includes(q));
         });
@@ -3554,7 +3711,6 @@
       //  LOGISTIK TABLE
       // ============================================================
       function paparLogistikTable() {
-        const filterZon = document.getElementById('filterZonLogistik')?.value || 'SEMUA';
         const q = (document.getElementById('logistikSearchInput')?.value || '').toUpperCase().trim();
         const tbody = document.getElementById('logistikTableBody');
         if (!tbody) return;
@@ -3566,7 +3722,10 @@
         if (balaiTerpilihLogistik.length > 0) {
           data = data.filter(i => balaiTerpilihLogistik.includes(i.balai));
         }
-        if (filterZon !== 'SEMUA') data = data.filter(i => i.zon === filterZon);
+        // Penapis zon (multi-select)
+        if (zonTerpilihLogistik.length > 0) {
+          data = data.filter(i => zonTerpilihLogistik.includes(i.zon));
+        }
 
         if (q) {
           data = data.filter(i => {
@@ -3955,12 +4114,19 @@
       window.kosongkanBalaiLogistik = kosongkanBalaiLogistik;
       window.pilihSemuaBalaiChecklist = pilihSemuaBalaiChecklist;
       window.kosongkanBalaiChecklist = kosongkanBalaiChecklist;
+      window.pilihSemuaZonAnggota = pilihSemuaZonAnggota;
+      window.kosongkanZonAnggota = kosongkanZonAnggota;
+      window.pilihSemuaZonLogistik = pilihSemuaZonLogistik;
+      window.kosongkanZonLogistik = kosongkanZonLogistik;
+      window.pilihSemuaZonChecklist = pilihSemuaZonChecklist;
+      window.kosongkanZonChecklist = kosongkanZonChecklist;
       window.pilihSemuaLogJentera = pilihSemuaLogJentera;
       window.kosongkanLogJentera = kosongkanLogJentera;
       window.pilihLogJenteraOption = pilihLogJenteraOption;
       window.togolBalaiDropdown = togolBalaiDropdown;
       window.togolLogJenteraDropdown = togolLogJenteraDropdown;
       window.tapisBalaiDropdown = tapisBalaiDropdown;
+      window.tapisZonDropdown = tapisZonDropdown;
       window.tapisLogJenteraDropdown = tapisLogJenteraDropdown;
       window.logJenteraTerpilih = logJenteraTerpilih;
       window.namaAnggotaTerpilih = namaAnggotaTerpilih;
@@ -3986,10 +4152,13 @@
         initDataLogistik();
         janaFormDaftar('ANGGOTA');
 
-        // Init balai dropdowns
+        // Init balai dan zon dropdowns
         balaiTerpilihAnggota = [];
         balaiTerpilihLogistik = [];
         balaiTerpilihChecklist = [];
+        zonTerpilihAnggota = [];
+        zonTerpilihLogistik = [];
+        zonTerpilihChecklist = [];
         kemaskiniSemuaPaparan();
 
         if (initSupabaseClient()) {
@@ -4002,7 +4171,7 @@
         updateClock();
 
         document.addEventListener('click', function (e) {
-          ['balai', 'logBalai', 'chkBalai', 'namaAnggota', 'logJentera'].forEach((id) => {
+          ['balai', 'logBalai', 'chkBalai', 'zonAnggota', 'zonLogistik', 'zonChecklist', 'namaAnggota', 'logJentera'].forEach((id) => {
             const sel = document.getElementById(id + 'MultiSelect');
             if (sel && !sel.contains(e.target)) {
               document.getElementById(id + 'Dropdown')?.classList.remove('show');
@@ -4012,8 +4181,10 @@
         });
 
         console.log('✅ Sistem JBPM Johor sedia sebagai App Standalone Mobile');
+        console.log('✅ Filter Zon Multi-Select (Pilih Semua & Kosongkan) telah ditambahkan ke semua panel.');
         console.log('✅ Filter Balai Multi-Select untuk Logistik & Checklist telah diaktifkan.');
         console.log('✅ Carian Checklist kini merangkumi status BAIK/ROSAK dan jumlah unit.');
+        console.log('✅ Butang CARI di panel Anggota telah dibuang (carian live sahaja).');
         console.log('✅ ZON: PGO JOHOR dan BENGKEL dipendekkan.');
       };
     </script>
