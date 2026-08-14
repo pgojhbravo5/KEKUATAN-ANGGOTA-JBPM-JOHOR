@@ -1109,17 +1109,24 @@
           </div>
         </div>
         <div class="flex items-center justify-between w-full lg:w-auto gap-2 border-t border-red-800/50 pt-2 lg:pt-0 lg:border-0">
-          <div id="cloudStatusBadge" class="sync-badge sync-inactive">
-            <span><i class="fa-solid fa-circle text-[9px] text-amber-500 mr-1"></i> SUPABASE: MENYAMBUNG...</span>
+
+          <!-- 1. SUPABASE BADGE (Uniform design) -->
+          <div id="cloudStatusBadge" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-extrabold text-white border shadow-sm bg-amber-600/90 border-amber-400/30">
+            <span><i class="fa-solid fa-circle text-[8px] text-amber-300 mr-0.5"></i> SUPABASE: MENYAMBUNG...</span>
           </div>
+
+          <!-- 2. BUTANG DASHBOARD (Uniform design) -->
           <a href="https://pgo-johor-dashboard-keseluruhan.vercel.app/dbanggota.html" target="_blank"
-             class="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-extrabold flex items-center gap-1.5 transition border border-amber-500 shadow-md shadow-amber-900/20 whitespace-nowrap no-print">
+             class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-extrabold bg-indigo-600/90 hover:bg-indigo-700/90 text-white border border-indigo-400/30 shadow-sm transition-all duration-200 no-print whitespace-nowrap">
             <i class="fa-solid fa-chart-simple"></i> DASHBOARD
           </a>
-          <div class="bg-black/30 border border-white/20 px-2.5 py-1 rounded-xl text-right">
-            <div class="text-[9px] sm:text-xs text-slate-200 font-semibold" id="currentDate">ISNIN, 01 JULAI 2026</div>
-            <div class="text-xs sm:text-sm font-black text-yellow-400 leading-none mt-0.5" id="currentTime">08:00:00 AM</div>
+
+          <!-- 3. TARIKH & MASA (Uniform design) -->
+          <div class="flex flex-col items-end px-3 py-1.5 rounded-lg bg-black/40 border border-white/10 shadow-sm">
+            <div class="text-[10px] font-semibold text-slate-300 leading-tight" id="currentDate">ISNIN, 01 JULAI 2026</div>
+            <div class="text-xs font-black text-yellow-400 leading-tight" id="currentTime">08:00:00 AM</div>
           </div>
+
         </div>
       </div>
     </header>
@@ -1854,14 +1861,14 @@
       let supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnbG1icnF3ZWlqcGd1eGZlbG9xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU1NDcyNDAsImV4cCI6MjEwMTEyMzI0MH0.xBuhxHVmkuIPC34421QfuCERIpBPFiyVi1sSC-PQAiQ';
 
       // ============================================================
-      //  SUPABASE HELPERS
+      //  SUPABASE HELPERS (DENGAN FUNGSI KEMASKINI STATUS YANG DIPERBAIKI)
       // ============================================================
       function initSupabaseClient() {
         if (supabaseUrl && supabaseKey) {
-          kemaskiniStatusCloud('active', '<i class="fa-solid fa-circle text-[9px] text-emerald-500 mr-1"></i> SUPABASE: DISAMBUNG');
+          kemaskiniStatusCloud('active', 'SUPABASE: DISAMBUNG');
           return true;
         } else {
-          kemaskiniStatusCloud('inactive', '<i class="fa-solid fa-circle text-[9px] text-amber-500 mr-1"></i> SUPABASE: BELUM DISAMBUNG');
+          kemaskiniStatusCloud('inactive', 'SUPABASE: BELUM DISAMBUNG');
           return false;
         }
       }
@@ -1869,8 +1876,18 @@
       function kemaskiniStatusCloud(s, t) {
         const b = document.getElementById('cloudStatusBadge');
         if (!b) return;
-        b.className = 'sync-badge sync-' + (s === 'active' ? 'active' : s === 'error' ? 'error' : 'inactive');
-        b.innerHTML = '<span>' + t + '</span>';
+        // Buang semua class lama, guna class asas yang seragam
+        b.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-extrabold text-white border shadow-sm';
+        if (s === 'active') {
+          b.classList.add('bg-emerald-600/90', 'border-emerald-400/30');
+          b.innerHTML = '<span><i class="fa-solid fa-circle text-[8px] text-emerald-300 mr-0.5"></i> SUPABASE: DISAMBUNG</span>';
+        } else if (s === 'error') {
+          b.classList.add('bg-red-600/90', 'border-red-400/30');
+          b.innerHTML = '<span><i class="fa-solid fa-circle text-[8px] text-red-300 mr-0.5"></i> SUPABASE: RALAT</span>';
+        } else {
+          b.classList.add('bg-amber-600/90', 'border-amber-400/30');
+          b.innerHTML = '<span><i class="fa-solid fa-circle text-[8px] text-amber-300 mr-0.5"></i> SUPABASE: MENYAMBUNG...</span>';
+        }
       }
 
       function tunjukLoading() {
@@ -2209,7 +2226,7 @@
       }
 
       // ============================================================
-      //  INIT LOGISTIK JENTERA (MASTER INVENTORY)
+      //  INIT LOGISTIK JENTERA (MASTER INVENTORY) - shortened for brevity
       // ============================================================
       function initDataLogistik(force = false) {
         if (logistikJentera.length > 0 && !force) return;
@@ -3920,6 +3937,7 @@
         console.log('✅ ZON: PGO JOHOR dan BENGKEL telah dipendekkan di paparan dan data Supabase.');
         console.log('✅ Migrasi nama zon akan dijalankan secara automatik.');
         console.log('✅ Logik Statistik Logistik: Jumlah (3 status aktif), Baik (Baik+Rosak Minor), Rosak (Rosak Berat sahaja).');
+        console.log('✅ Design header seragam: badge Supabase, butang Dashboard, tarikh/masa sama saiz dan padding.');
       };
     </script>
   </body>
