@@ -979,6 +979,7 @@
         transition: all 0.2s ease;
         flex: 1;
         text-align: center;
+        cursor: pointer;
       }
       .mobile-nav-item.active {
         color: var(--bomba-gold);
@@ -1715,13 +1716,13 @@
       </div>
     </div>
 
-    <!-- ========== MOBILE BOTTOM NAV ========== -->
+    <!-- ========== MOBILE BOTTOM NAV (DIPERBAIKI) ========== -->
     <nav class="mobile-bottom-nav no-print" id="mobileBottomNav">
-      <a href="#sectionPanels" class="mobile-nav-item active" onclick="aktifkanTabBottomNav(this)"><i class="fa-solid fa-clipboard-list"></i><span>TUGASAN</span></a>
-      <a href="#sectionAnggota" class="mobile-nav-item" onclick="aktifkanTabBottomNav(this)"><i class="fa-solid fa-user-shield"></i><span>ANGGOTA</span></a>
-      <a href="#sectionLogistik" class="mobile-nav-item" onclick="aktifkanTabBottomNav(this)"><i class="fa-solid fa-truck-field"></i><span>LOGISTIK</span></a>
-      <a href="#sectionChecklist" class="mobile-nav-item" onclick="aktifkanTabBottomNav(this)"><i class="fa-solid fa-list-check"></i><span>CHECKLIST</span></a>
-      <a href="#sectionPanels" class="mobile-nav-item" onclick="aktifkanTabBottomNav(this)"><i class="fa-solid fa-gears"></i><span>MASTER</span></a>
+      <a href="javascript:void(0)" class="mobile-nav-item active" onclick="scrollKeSection('sectionPanels', this)"><i class="fa-solid fa-clipboard-list"></i><span>TUGASAN</span></a>
+      <a href="javascript:void(0)" class="mobile-nav-item" onclick="scrollKeSection('sectionAnggota', this)"><i class="fa-solid fa-user-shield"></i><span>ANGGOTA</span></a>
+      <a href="javascript:void(0)" class="mobile-nav-item" onclick="scrollKeSection('sectionLogistik', this)"><i class="fa-solid fa-truck-field"></i><span>LOGISTIK</span></a>
+      <a href="javascript:void(0)" class="mobile-nav-item" onclick="scrollKeSection('sectionChecklist', this)"><i class="fa-solid fa-list-check"></i><span>CHECKLIST</span></a>
+      <a href="javascript:void(0)" class="mobile-nav-item" onclick="scrollKeSection('sectionPanels', this)"><i class="fa-solid fa-gears"></i><span>MASTER</span></a>
     </nav>
 
     <footer class="text-center py-6 px-4 no-print border-t border-slate-200/80 mt-8 mb-16 lg:mb-0">
@@ -1823,9 +1824,30 @@
         }, 2500);
       });
 
-      function aktifkanTabBottomNav(el) {
+      // ============================================================
+      //  SCROLL KE SEKSYEN (MOBILE NAV)
+      // ============================================================
+      function scrollKeSection(id, el) {
+        // Aktifkan tab
         document.querySelectorAll('.mobile-nav-item').forEach((item) => item.classList.remove('active'));
         if (el) el.classList.add('active');
+
+        // Cari elemen target
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        // Kira offset header (sticky)
+        const header = document.querySelector('header');
+        const headerHeight = header ? header.offsetHeight : 70;
+
+        // Kira posisi target
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 10;
+
+        // Scroll lancar
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
       }
 
       // ============================================================
@@ -3901,7 +3923,6 @@
       window.tutupModalUrusJentera = tutupModalUrusJentera;
       window.renderSenaraiJenteraMaster = renderSenaraiJenteraMaster;
       window.padamJenteraMaster = padamJenteraMaster;
-      window.aktifkanTabBottomNav = aktifkanTabBottomNav;
       window.getUnitBadges = getUnitBadges;
       window.getUnitDisplay = getUnitDisplay;
 
@@ -3938,6 +3959,7 @@
         console.log('✅ Migrasi nama zon akan dijalankan secara automatik.');
         console.log('✅ Logik Statistik Logistik: Jumlah (3 status aktif), Baik (Baik+Rosak Minor), Rosak (Rosak Berat sahaja).');
         console.log('✅ Design header seragam: badge Supabase, butang Dashboard, tarikh/masa sama saiz dan padding.');
+        console.log('✅ Navigasi mobile diperbaiki: scroll lancar ke bahagian yang betul.');
       };
     </script>
   </body>
