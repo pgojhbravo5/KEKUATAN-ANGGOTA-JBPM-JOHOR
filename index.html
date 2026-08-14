@@ -1111,18 +1111,18 @@
         </div>
         <div class="flex items-center justify-between w-full lg:w-auto gap-2 border-t border-red-800/50 pt-2 lg:pt-0 lg:border-0">
 
-          <!-- 1. SUPABASE BADGE (Uniform design) -->
+          <!-- SUPABASE BADGE -->
           <div id="cloudStatusBadge" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-extrabold text-white border shadow-sm bg-amber-600/90 border-amber-400/30">
             <span><i class="fa-solid fa-circle text-[8px] text-amber-300 mr-0.5"></i> SUPABASE: MENYAMBUNG...</span>
           </div>
 
-          <!-- 2. BUTANG DASHBOARD (Uniform design) -->
+          <!-- DASHBOARD BUTTON -->
           <a href="https://pgo-johor-dashboard-keseluruhan.vercel.app/dbanggota.html" target="_blank"
              class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-extrabold bg-indigo-600/90 hover:bg-indigo-700/90 text-white border border-indigo-400/30 shadow-sm transition-all duration-200 no-print whitespace-nowrap">
             <i class="fa-solid fa-chart-simple"></i> DASHBOARD
           </a>
 
-          <!-- 3. TARIKH & MASA (Uniform design) -->
+          <!-- DATE & TIME -->
           <div class="flex flex-col items-end px-3 py-1.5 rounded-lg bg-black/40 border border-white/10 shadow-sm">
             <div class="text-[10px] font-semibold text-slate-300 leading-tight" id="currentDate">ISNIN, 01 JULAI 2026</div>
             <div class="text-xs font-black text-yellow-400 leading-tight" id="currentTime">08:00:00 AM</div>
@@ -1262,13 +1262,13 @@
             </div>
             <div class="form-group flex-1 !mb-0">
               <div class="multi-select-container" id="balaiMultiSelect">
-                <div class="multi-select-trigger" onclick="togolBalaiDropdown()">
+                <div class="multi-select-trigger" onclick="togolBalaiDropdown('balaiMultiSelect','balaiDropdown','balaiSelectedTags')">
                   <div class="multi-select-tags" id="balaiSelectedTags"><span class="multi-select-placeholder"><i class="fa-solid fa-building mr-1"></i> SEMUA BALAI</span></div>
                   <span class="multi-select-arrow"><i class="fa-solid fa-chevron-down"></i></span>
                 </div>
                 <div class="multi-select-dropdown" id="balaiDropdown">
                   <div class="multi-select-search">
-                    <input type="text" id="balaiSearchInput" placeholder="CARI BALAI..." onkeyup="tapisBalaiDropdown()" onclick="event.stopPropagation();" />
+                    <input type="text" id="balaiSearchInput" placeholder="CARI BALAI..." onkeyup="tapisBalaiDropdown('balaiOptionsContainer','balaiSearchInput')" onclick="event.stopPropagation();" />
                   </div>
                   <div class="multi-select-options" id="balaiOptionsContainer"></div>
                   <div class="multi-select-actions">
@@ -1327,10 +1327,24 @@
             <div class="form-group flex-1 !mb-0">
               <input type="text" id="logistikSearchInput" class="form-control" placeholder="CARI CALLSIGN / PLAT / MODEL / JENIS / KATEGORI / STATUS..." onkeyup="paparLogistikTable()" />
             </div>
+            <!-- MULTI-SELECT BALAI UNTUK LOGISTIK -->
             <div class="form-group flex-1 !mb-0">
-              <select id="logistikBalaiFilter" class="form-control" onchange="paparLogistikTable()">
-                <option value="SEMUA">SEMUA BALAI</option>
-              </select>
+              <div class="multi-select-container" id="logBalaiMultiSelect">
+                <div class="multi-select-trigger" onclick="togolBalaiDropdown('logBalaiMultiSelect','logBalaiDropdown','logBalaiSelectedTags')">
+                  <div class="multi-select-tags" id="logBalaiSelectedTags"><span class="multi-select-placeholder"><i class="fa-solid fa-building mr-1"></i> SEMUA BALAI</span></div>
+                  <span class="multi-select-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="multi-select-dropdown" id="logBalaiDropdown">
+                  <div class="multi-select-search">
+                    <input type="text" id="logBalaiSearchInput" placeholder="CARI BALAI..." onkeyup="tapisBalaiDropdown('logBalaiOptionsContainer','logBalaiSearchInput')" onclick="event.stopPropagation();" />
+                  </div>
+                  <div class="multi-select-options" id="logBalaiOptionsContainer"></div>
+                  <div class="multi-select-actions">
+                    <button class="btn-select-all" onclick="pilihSemuaBalaiLogistik();event.stopPropagation();"><i class="fa-solid fa-check-double mr-1"></i> PILIH SEMUA</button>
+                    <button class="btn-clear-all" onclick="kosongkanBalaiLogistik();event.stopPropagation();"><i class="fa-solid fa-xmark mr-1"></i> KOSONGKAN</button>
+                  </div>
+                </div>
+              </div>
             </div>
             <!-- FILTER ZON LOGISTIK -->
             <div class="form-group flex-1 !mb-0">
@@ -1345,7 +1359,7 @@
               </select>
             </div>
           </div>
-          <!-- STATS LOGISTIK: HANYA 3 METRIK (JUMLAH, BAIK, ROSAK) -->
+          <!-- STATS LOGISTIK -->
           <div class="stats-grid no-print mb-3">
             <div class="stat-card border-l-emerald-500">
               <div class="stat-label">JUMLAH JENTERA</div>
@@ -1359,6 +1373,10 @@
               <div class="stat-label">STATUS ROSAK</div>
               <div class="stat-value" id="statLogRosak">0</div>
             </div>
+          </div>
+          <div class="filter-info-badge no-print" id="logFilterInfoBadge" style="display: none">
+            <span><i class="fa-solid fa-filter mr-1"></i> <strong>BALAI DITAPIS:</strong> <span id="logFilterBalaiList"></span></span>
+            <span class="clear-filter-link" onclick="kosongkanBalaiLogistik();paparLogistikTable();">✕ KOSONGKAN PENAPIS</span>
           </div>
           <div class="table-responsive">
             <table class="logistik-table">
@@ -1388,12 +1406,26 @@
           </div>
           <div class="no-print flex flex-col sm:flex-row gap-2 mb-3">
             <div class="form-group flex-1 !mb-0">
-              <input type="text" id="checklistSearchInput" class="form-control" placeholder="CARI BALAI / SHIF / WAKTU / CATATAN PERKAKAS..." onkeyup="paparChecklistTable()" />
+              <input type="text" id="checklistSearchInput" class="form-control" placeholder="CARI BALAI / SHIF / WAKTU / CATATAN PERKAKAS / STATUS..." onkeyup="paparChecklistTable()" />
             </div>
+            <!-- MULTI-SELECT BALAI UNTUK CHECKLIST -->
             <div class="form-group flex-1 !mb-0">
-              <select id="checklistBalaiFilter" class="form-control" onchange="paparChecklistTable()">
-                <option value="SEMUA">SEMUA BALAI</option>
-              </select>
+              <div class="multi-select-container" id="chkBalaiMultiSelect">
+                <div class="multi-select-trigger" onclick="togolBalaiDropdown('chkBalaiMultiSelect','chkBalaiDropdown','chkBalaiSelectedTags')">
+                  <div class="multi-select-tags" id="chkBalaiSelectedTags"><span class="multi-select-placeholder"><i class="fa-solid fa-building mr-1"></i> SEMUA BALAI</span></div>
+                  <span class="multi-select-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="multi-select-dropdown" id="chkBalaiDropdown">
+                  <div class="multi-select-search">
+                    <input type="text" id="chkBalaiSearchInput" placeholder="CARI BALAI..." onkeyup="tapisBalaiDropdown('chkBalaiOptionsContainer','chkBalaiSearchInput')" onclick="event.stopPropagation();" />
+                  </div>
+                  <div class="multi-select-options" id="chkBalaiOptionsContainer"></div>
+                  <div class="multi-select-actions">
+                    <button class="btn-select-all" onclick="pilihSemuaBalaiChecklist();event.stopPropagation();"><i class="fa-solid fa-check-double mr-1"></i> PILIH SEMUA</button>
+                    <button class="btn-clear-all" onclick="kosongkanBalaiChecklist();event.stopPropagation();"><i class="fa-solid fa-xmark mr-1"></i> KOSONGKAN</button>
+                  </div>
+                </div>
+              </div>
             </div>
             <!-- FILTER ZON CHECKLIST -->
             <div class="form-group flex-1 !mb-0">
@@ -1407,6 +1439,10 @@
                 <option value="PGO JOHOR">PGO JOHOR</option>
               </select>
             </div>
+          </div>
+          <div class="filter-info-badge no-print" id="chkFilterInfoBadge" style="display: none">
+            <span><i class="fa-solid fa-filter mr-1"></i> <strong>BALAI DITAPIS:</strong> <span id="chkFilterBalaiList"></span></span>
+            <span class="clear-filter-link" onclick="kosongkanBalaiChecklist();paparChecklistTable();">✕ KOSONGKAN PENAPIS</span>
           </div>
           <div class="stats-grid no-print mb-3">
             <div class="stat-card border-l-purple-500"><div class="stat-label">JUMLAH SEMAKAN</div><div class="stat-value" id="statChecklistTotal">0</div></div>
@@ -1716,7 +1752,7 @@
       </div>
     </div>
 
-    <!-- ========== MOBILE BOTTOM NAV (DIPERBAIKI) ========== -->
+    <!-- ========== MOBILE BOTTOM NAV ========== -->
     <nav class="mobile-bottom-nav no-print" id="mobileBottomNav">
       <a href="javascript:void(0)" class="mobile-nav-item active" onclick="scrollKeSection('sectionPanels', this)"><i class="fa-solid fa-clipboard-list"></i><span>TUGASAN</span></a>
       <a href="javascript:void(0)" class="mobile-nav-item" onclick="scrollKeSection('sectionAnggota', this)"><i class="fa-solid fa-user-shield"></i><span>ANGGOTA</span></a>
@@ -1734,9 +1770,7 @@
       //  PEMETAAN ZON
       // ============================================================
       const ZON_MAP = {
-        // ZON PGO JOHOR (Khas)
         'PGO JOHOR': 'PGO JOHOR',
-        // ZON 1
         'LARKIN': 'ZON 1',
         'PASIR GUDANG': 'ZON 1',
         'JOHOR JAYA': 'ZON 1',
@@ -1750,7 +1784,6 @@
         'BANDAR BARU KULAI': 'ZON 1',
         'KEMPAS': 'ZON 1',
         'FIRE POST BENUT': 'ZON 1',
-        // ZON 2
         'KOTA TINGGI': 'ZON 2',
         'SUNGAI RENGIT': 'ZON 2',
         'BANDAR PENAWAR': 'ZON 2',
@@ -1759,7 +1792,6 @@
         'SEBANA COVE': 'ZON 2',
         'PUNGGAI': 'ZON 2',
         'BANDAR TENGGARA': 'ZON 2',
-        // ZON 3
         'PENGGARAM': 'ZON 3',
         'KLUANG': 'ZON 3',
         'BATU PAHAT': 'ZON 3',
@@ -1768,7 +1800,6 @@
         'YONG PENG': 'ZON 3',
         'AYER HITAM': 'ZON 3',
         'FIRE POST PARIT SULONG': 'ZON 3',
-        // ZON 4
         'MUAR': 'ZON 4',
         'BANDAR BARU SEGAMAT': 'ZON 4',
         'SEGAMAT': 'ZON 4',
@@ -1776,16 +1807,12 @@
         'BUKIT GAMBIR': 'ZON 4',
         'TANGKAK': 'ZON 4',
         'PAGOH': 'ZON 4',
-        // ZON BENGKEL
         'BENGKEL KEJURUTERAAN': 'BENGKEL',
         'BENGKEL SWASTA': 'BENGKEL'
       };
 
       const ZON_DEFAULT = 'ZON 1';
 
-      // ============================================================
-      //  FUNGSI GET ZON
-      // ============================================================
       function getZon(balai) {
         if (!balai) return ZON_DEFAULT;
         const balaiUpper = balai.toUpperCase().trim();
@@ -1797,9 +1824,6 @@
         return ZON_DEFAULT;
       }
 
-      // ============================================================
-      //  FUNGSI BADGE ZON
-      // ============================================================
       function getZonBadge(zon) {
         if (!zon) return '<span class="badge badge-unit-gen">-</span>';
         const classMap = {
@@ -1828,22 +1852,17 @@
       //  SCROLL KE SEKSYEN (MOBILE NAV)
       // ============================================================
       function scrollKeSection(id, el) {
-        // Aktifkan tab
         document.querySelectorAll('.mobile-nav-item').forEach((item) => item.classList.remove('active'));
         if (el) el.classList.add('active');
 
-        // Cari elemen target
         const target = document.getElementById(id);
         if (!target) return;
 
-        // Kira offset header (sticky)
         const header = document.querySelector('header');
         const headerHeight = header ? header.offsetHeight : 70;
 
-        // Kira posisi target
         const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 10;
 
-        // Scroll lancar
         window.scrollTo({
           top: targetPosition,
           behavior: 'smooth'
@@ -1854,11 +1873,16 @@
       //  GLOBAL STATE
       // ============================================================
       const KATA_LALUAN_TETAP = 'PGO1234';
-      let sasaranPasswordAction = '', confirmCallback = null, aktifTabMaster = 'ANGGOTA', aktifTabUrusMaster = 'ANGGOTA', balaiTerpilih = [];
+      let sasaranPasswordAction = '', confirmCallback = null, aktifTabUrusMaster = 'ANGGOTA';
+
+      // Array untuk pilihan balai multi-select (setiap panel berasingan)
+      let balaiTerpilihAnggota = [];
+      let balaiTerpilihLogistik = [];
+      let balaiTerpilihChecklist = [];
+
       let logJenteraTerpilih = [], namaAnggotaTerpilih = [];
       let rekodAnggota = [], logistikBertugas = [], senaraiChecklist = [];
       let senaraiNamaMaster = [];
-
       let pendingDelete = { type: null, id: null };
 
       const DEFAULT_BALAI = [
@@ -1883,7 +1907,7 @@
       let supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnbG1icnF3ZWlqcGd1eGZlbG9xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU1NDcyNDAsImV4cCI6MjEwMTEyMzI0MH0.xBuhxHVmkuIPC34421QfuCERIpBPFiyVi1sSC-PQAiQ';
 
       // ============================================================
-      //  SUPABASE HELPERS (DENGAN FUNGSI KEMASKINI STATUS YANG DIPERBAIKI)
+      //  SUPABASE HELPERS
       // ============================================================
       function initSupabaseClient() {
         if (supabaseUrl && supabaseKey) {
@@ -1898,7 +1922,6 @@
       function kemaskiniStatusCloud(s, t) {
         const b = document.getElementById('cloudStatusBadge');
         if (!b) return;
-        // Buang semua class lama, guna class asas yang seragam
         b.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-extrabold text-white border shadow-sm';
         if (s === 'active') {
           b.classList.add('bg-emerald-600/90', 'border-emerald-400/30');
@@ -1926,74 +1949,31 @@
       //  MIGRATIONS
       // ============================================================
       function migrateZon() {
-        // Anggota
         rekodAnggota = rekodAnggota.map((a) => {
-          if (!a.zon) {
-            a.zon = getZon(a.balai || '');
-          }
+          if (!a.zon) a.zon = getZon(a.balai || '');
           return a;
         });
-        // Logistik
         logistikBertugas = logistikBertugas.map((j) => {
-          if (!j.zon) {
-            j.zon = getZon(j.balai || '');
-          }
+          if (!j.zon) j.zon = getZon(j.balai || '');
           return j;
         });
-        // Checklist
         senaraiChecklist = senaraiChecklist.map((c) => {
-          if (!c.zon) {
-            c.zon = getZon(c.balai || '');
-          }
+          if (!c.zon) c.zon = getZon(c.balai || '');
           return c;
         });
-        // Master
         senaraiNamaMaster = senaraiNamaMaster.map((m) => {
-          if (!m.zon) {
-            m.zon = getZon(m.balai || '');
-          }
+          if (!m.zon) m.zon = getZon(m.balai || '');
           return m;
         });
       }
 
-      // ============================================================
-      //  MIGRASI NAMA ZON (ZON BENGKEL → BENGKEL, ZON PGO JOHOR → PGO JOHOR)
-      // ============================================================
       function migrateZonNames() {
-        const zonMap = {
-          'ZON BENGKEL': 'BENGKEL',
-          'ZON PGO JOHOR': 'PGO JOHOR'
-        };
-
-        rekodAnggota = rekodAnggota.map((item) => {
-          if (item.zon && zonMap[item.zon]) {
-            item.zon = zonMap[item.zon];
-          }
-          return item;
+        const zonMap = { 'ZON BENGKEL': 'BENGKEL', 'ZON PGO JOHOR': 'PGO JOHOR' };
+        [rekodAnggota, logistikBertugas, senaraiChecklist, senaraiNamaMaster].forEach(arr => {
+          arr.forEach(item => {
+            if (item.zon && zonMap[item.zon]) item.zon = zonMap[item.zon];
+          });
         });
-
-        logistikBertugas = logistikBertugas.map((item) => {
-          if (item.zon && zonMap[item.zon]) {
-            item.zon = zonMap[item.zon];
-          }
-          return item;
-        });
-
-        senaraiChecklist = senaraiChecklist.map((item) => {
-          if (item.zon && zonMap[item.zon]) {
-            item.zon = zonMap[item.zon];
-          }
-          return item;
-        });
-
-        senaraiNamaMaster = senaraiNamaMaster.map((item) => {
-          if (item.zon && zonMap[item.zon]) {
-            item.zon = zonMap[item.zon];
-          }
-          return item;
-        });
-
-        console.log('✅ Migrasi nama zon selesai: ZON BENGKEL → BENGKEL, ZON PGO JOHOR → PGO JOHOR');
       }
 
       function migrateLogistikBertugasMasterId() {
@@ -2117,7 +2097,6 @@
         if (savedLogJentera) logistikJentera = JSON.parse(savedLogJentera);
         migrateLogistikBertugasMasterId();
 
-        // Migrate zon
         migrateZon();
         migrateZonNames();
 
@@ -2248,7 +2227,7 @@
       }
 
       // ============================================================
-      //  INIT LOGISTIK JENTERA (MASTER INVENTORY) - shortened for brevity
+      //  INIT LOGISTIK JENTERA (MASTER INVENTORY) - dipendekkan untuk ruang
       // ============================================================
       function initDataLogistik(force = false) {
         if (logistikJentera.length > 0 && !force) return;
@@ -2323,9 +2302,7 @@
           ['N/A','WEH 3365','NISSAN UD CPB14FHRT','01. FIRE RESCUE TENDER (FRT)'],
           ['N/A','WDF 2113','NISSAN UD CPB14FHRT','01. FIRE RESCUE TENDER (FRT)']
         ];
-        const rfrtData = [
-          ['N/A','BGR 6274','FORD F350','04. RAPID FIRE RESCUE TENDER (RFRT)']
-        ];
+        const rfrtData = [['N/A','BGR 6274','FORD F350','04. RAPID FIRE RESCUE TENDER (RFRT)']];
         const sitrakData = [
           ['SITRAK 1','BSJ 6359','SITRAK','01. FIRE RESCUE TENDER (FRT)'],
           ['SITRAK 2','BSL 7836','SITRAK','01. FIRE RESCUE TENDER (FRT)'],
@@ -2336,9 +2313,7 @@
           ['SITRAK 7','BSL 7895','SITRAK','01. FIRE RESCUE TENDER (FRT)'],
           ['SITRAK 8','BSL 7906','SITRAK','01. FIRE RESCUE TENDER (FRT)']
         ];
-        const scaniaP94Data = [
-          ['W1-35','WHK 9429','SCANIA P94','01. FIRE RESCUE TENDER (FRT)']
-        ];
+        const scaniaP94Data = [['W1-35','WHK 9429','SCANIA P94','01. FIRE RESCUE TENDER (FRT)']];
         const semuaPemadam = [...cfrtData, ...frtData, ...rfrtData, ...sitrakData, ...scaniaP94Data];
         semuaPemadam.forEach((d) => logistikJentera.push({
           id: ++id, callsign: d[0], plate: d[1], model: d[2], jenis: d[3],
@@ -2534,14 +2509,129 @@
       }
 
       // ============================================================
-      //  FILTER BALAI OPTIONS
+      //  FUNGSI MULTI-SELECT BALAI (GENERIK)
       // ============================================================
-      function janaFilterBalaiOptions() {
-        const opt = '<option value="SEMUA">SEMUA BALAI</option>' + senaraiBalaiMaster.map(b => `<option value="${b}">${b}</option>`).join('');
-        const f1 = document.getElementById('logistikBalaiFilter');
-        const f2 = document.getElementById('checklistBalaiFilter');
-        if (f1) f1.innerHTML = opt;
-        if (f2) f2.innerHTML = opt;
+      function togolBalaiDropdown(containerId, dropdownId, tagsId) {
+        const trigger = document.querySelector('#' + containerId + ' .multi-select-trigger');
+        const dropdown = document.getElementById(dropdownId);
+        if (trigger) trigger.classList.toggle('active');
+        if (dropdown) dropdown.classList.toggle('show');
+      }
+
+      function tapisBalaiDropdown(optionsContainerId, searchInputId) {
+        const v = (document.getElementById(searchInputId)?.value || '').toUpperCase();
+        document.querySelectorAll('#' + optionsContainerId + ' .multi-select-option').forEach((o) => {
+          o.style.display = o.innerText.toUpperCase().includes(v) ? 'flex' : 'none';
+        });
+      }
+
+      // Fungsi untuk menjana pilihan dropdown bagi mana-mana container
+      function janaBalaiOptions(containerId, selectedArray) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = senaraiBalaiMaster.map((b) => {
+          const s = selectedArray.includes(b) ? 'selected' : '';
+          return `<div class="multi-select-option ${s}" onclick="pilihBalaiOptionGeneric('${containerId}','${b}')">
+                    <div class="check-box">${s ? '<i class="fa-solid fa-check"></i>' : ''}</div>
+                    <span>${b}</span>
+                  </div>`;
+        }).join('');
+      }
+
+      // Fungsi untuk pilih / nyahpilih satu balai
+      function pilihBalaiOptionGeneric(containerId, balai) {
+        // Tentukan array mana berdasarkan containerId
+        let targetArray, tagsId, infoBadgeId, filterListId, refreshFunc;
+        if (containerId === 'balaiOptionsContainer') {
+          targetArray = balaiTerpilihAnggota;
+          tagsId = 'balaiSelectedTags';
+          infoBadgeId = 'filterInfoBadge';
+          filterListId = 'filterBalaiList';
+          refreshFunc = kemaskiniPaparData;
+        } else if (containerId === 'logBalaiOptionsContainer') {
+          targetArray = balaiTerpilihLogistik;
+          tagsId = 'logBalaiSelectedTags';
+          infoBadgeId = 'logFilterInfoBadge';
+          filterListId = 'logFilterBalaiList';
+          refreshFunc = paparLogistikTable;
+        } else if (containerId === 'chkBalaiOptionsContainer') {
+          targetArray = balaiTerpilihChecklist;
+          tagsId = 'chkBalaiSelectedTags';
+          infoBadgeId = 'chkFilterInfoBadge';
+          filterListId = 'chkFilterBalaiList';
+          refreshFunc = paparChecklistTable;
+        } else return;
+
+        const idx = targetArray.indexOf(balai);
+        if (idx > -1) targetArray.splice(idx, 1);
+        else targetArray.push(balai);
+
+        // Kemaskini tag dan badge
+        kemaskiniBalaiTags(tagsId, infoBadgeId, filterListId, targetArray);
+        // Refresh dropdown options
+        janaBalaiOptions(containerId, targetArray);
+        // Refresh jadual
+        if (refreshFunc) refreshFunc();
+      }
+
+      function kemaskiniBalaiTags(tagsId, infoBadgeId, filterListId, selectedArray) {
+        const t = document.getElementById(tagsId);
+        if (!t) return;
+        if (selectedArray.length === 0) {
+          t.innerHTML = '<span class="multi-select-placeholder"><i class="fa-solid fa-building mr-1"></i> SEMUA BALAI</span>';
+          const badge = document.getElementById(infoBadgeId);
+          if (badge) badge.style.display = 'none';
+        } else {
+          t.innerHTML = selectedArray.map(b => `<span class="multi-select-tag">${b}</span>`).join('');
+          const badge = document.getElementById(infoBadgeId);
+          if (badge) {
+            badge.style.display = 'inline-flex';
+            document.getElementById(filterListId).innerText = selectedArray.join(', ');
+          }
+        }
+      }
+
+      // Fungsi pilih semua / kosongkan untuk setiap panel
+      function pilihSemuaBalai() {
+        balaiTerpilihAnggota = [...senaraiBalaiMaster];
+        kemaskiniBalaiTags('balaiSelectedTags','filterInfoBadge','filterBalaiList', balaiTerpilihAnggota);
+        janaBalaiOptions('balaiOptionsContainer', balaiTerpilihAnggota);
+        kemaskiniPaparData();
+      }
+
+      function kosongkanBalai() {
+        balaiTerpilihAnggota = [];
+        kemaskiniBalaiTags('balaiSelectedTags','filterInfoBadge','filterBalaiList', balaiTerpilihAnggota);
+        janaBalaiOptions('balaiOptionsContainer', balaiTerpilihAnggota);
+        kemaskiniPaparData();
+      }
+
+      function pilihSemuaBalaiLogistik() {
+        balaiTerpilihLogistik = [...senaraiBalaiMaster];
+        kemaskiniBalaiTags('logBalaiSelectedTags','logFilterInfoBadge','logFilterBalaiList', balaiTerpilihLogistik);
+        janaBalaiOptions('logBalaiOptionsContainer', balaiTerpilihLogistik);
+        paparLogistikTable();
+      }
+
+      function kosongkanBalaiLogistik() {
+        balaiTerpilihLogistik = [];
+        kemaskiniBalaiTags('logBalaiSelectedTags','logFilterInfoBadge','logFilterBalaiList', balaiTerpilihLogistik);
+        janaBalaiOptions('logBalaiOptionsContainer', balaiTerpilihLogistik);
+        paparLogistikTable();
+      }
+
+      function pilihSemuaBalaiChecklist() {
+        balaiTerpilihChecklist = [...senaraiBalaiMaster];
+        kemaskiniBalaiTags('chkBalaiSelectedTags','chkFilterInfoBadge','chkFilterBalaiList', balaiTerpilihChecklist);
+        janaBalaiOptions('chkBalaiOptionsContainer', balaiTerpilihChecklist);
+        paparChecklistTable();
+      }
+
+      function kosongkanBalaiChecklist() {
+        balaiTerpilihChecklist = [];
+        kemaskiniBalaiTags('chkBalaiSelectedTags','chkFilterInfoBadge','chkFilterBalaiList', balaiTerpilihChecklist);
+        janaBalaiOptions('chkBalaiOptionsContainer', balaiTerpilihChecklist);
+        paparChecklistTable();
       }
 
       // ============================================================
@@ -3195,7 +3285,6 @@
       //  PAPAR TABLES
       // ============================================================
       function paparChecklistTable() {
-        const filterBalai = document.getElementById('checklistBalaiFilter')?.value || 'SEMUA';
         const filterZon = document.getElementById('filterZonChecklist')?.value || 'SEMUA';
         const q = (document.getElementById('checklistSearchInput')?.value || '').toUpperCase().trim();
         const tbody = document.getElementById('checklistTableBody');
@@ -3203,18 +3292,34 @@
         tbody.innerHTML = '';
         let data = senaraiChecklist || [];
 
-        if (filterBalai !== 'SEMUA') data = data.filter(i => i.balai === filterBalai);
+        // Penapis balai (multi-select)
+        if (balaiTerpilihChecklist.length > 0) {
+          data = data.filter(i => balaiTerpilihChecklist.includes(i.balai));
+        }
         if (filterZon !== 'SEMUA') data = data.filter(i => i.zon === filterZon);
 
+        // ===== CARIAN MENYELURUH =====
         if (q) {
           data = data.filter(i => {
             const getCat = (d) => (d && d.catatan ? d.catatan : '');
+            // Kumpul semua catatan
             let allCatatan = [
               getCat(i.cadDetail), getCat(i.wicDetail), getCat(i.bomraDetail),
               getCat(i.desktopGirnDetail), getCat(i.handheldGirnDetail),
               getCat(i.vehicularGirnDetail), getCat(i.internetDetail), getCat(i.handphoneDetail)
             ].join(' ');
-            let fullText = `${i.balai || ''} ${i.shiftType || ''} ${i.shiftTime || ''} ${allCatatan} ${i.zon || ''}`.toUpperCase();
+
+            // Kumpul status dan jumlah unit
+            const detailItems = [i.cadDetail, i.wicDetail, i.bomraDetail, i.desktopGirnDetail,
+              i.handheldGirnDetail, i.vehicularGirnDetail, i.internetDetail, i.handphoneDetail];
+            let statusText = '';
+            detailItems.forEach(d => {
+              if (d) {
+                statusText += ` BAIK ${d.baik} ROSAK ${d.rosak}`;
+              }
+            });
+
+            let fullText = `${i.balai || ''} ${i.shiftType || ''} ${i.shiftTime || ''} ${allCatatan} ${statusText} ${i.zon || ''}`.toUpperCase();
             return fullText.includes(q);
           });
         }
@@ -3329,13 +3434,23 @@
       }
 
       function kemaskiniSemuaPaparan() {
-        janaBalaiDropdownOptions();
-        janaFilterBalaiOptions();
+        // Init dropdown options untuk semua multi-select balai
+        janaBalaiOptions('balaiOptionsContainer', balaiTerpilihAnggota);
+        janaBalaiOptions('logBalaiOptionsContainer', balaiTerpilihLogistik);
+        janaBalaiOptions('chkBalaiOptionsContainer', balaiTerpilihChecklist);
+        kemaskiniBalaiTags('balaiSelectedTags','filterInfoBadge','filterBalaiList', balaiTerpilihAnggota);
+        kemaskiniBalaiTags('logBalaiSelectedTags','logFilterInfoBadge','logFilterBalaiList', balaiTerpilihLogistik);
+        kemaskiniBalaiTags('chkBalaiSelectedTags','chkFilterInfoBadge','chkFilterBalaiList', balaiTerpilihChecklist);
         kemaskiniPaparData();
         paparLogistikTable();
         paparChecklistTable();
         janaLogistikBalaiSelectOptions();
         janaUnitCheckboxGrid();
+        // Daftar form
+        const regP = document.getElementById('regPangkat');
+        const regB = document.getElementById('regBalai');
+        if (regP) regP.innerHTML = senaraiPangkatMaster.map(p => `<option value="${p}">${p}</option>`).join('');
+        if (regB) regB.innerHTML = senaraiBalaiMaster.map(b => `<option value="${b}">${b}</option>`).join('');
       }
 
       // ============================================================
@@ -3365,7 +3480,7 @@
           let fullText = `${i.pangkat || ''} ${i.nama || ''} ${i.noTel || ''} ${i.pasukan || ''} ${unitStr} ${perananStr} ${i.status || ''} ${i.catatan || ''} ${i.shiftType || ''} ${i.shiftTime || ''} ${i.balai || ''} ${i.zon || ''}`.toUpperCase();
 
           const zonMatch = filterZon === 'SEMUA' || (i.zon || '') === filterZon;
-          const balaiMatch = balaiTerpilih.length === 0 || balaiTerpilih.includes(i.balai);
+          const balaiMatch = balaiTerpilihAnggota.length === 0 || balaiTerpilihAnggota.includes(i.balai);
 
           return balaiMatch && zonMatch && (!q || fullText.includes(q));
         });
@@ -3436,10 +3551,9 @@
       }
 
       // ============================================================
-      //  LOGISTIK TABLE — DIPERBAIKI DENGAN LOGIK BAHARU
+      //  LOGISTIK TABLE
       // ============================================================
       function paparLogistikTable() {
-        const filterBalai = document.getElementById('logistikBalaiFilter')?.value || 'SEMUA';
         const filterZon = document.getElementById('filterZonLogistik')?.value || 'SEMUA';
         const q = (document.getElementById('logistikSearchInput')?.value || '').toUpperCase().trim();
         const tbody = document.getElementById('logistikTableBody');
@@ -3448,7 +3562,10 @@
 
         let data = logistikBertugas;
 
-        if (filterBalai !== 'SEMUA') data = data.filter(i => i.balai === filterBalai);
+        // Penapis balai (multi-select)
+        if (balaiTerpilihLogistik.length > 0) {
+          data = data.filter(i => balaiTerpilihLogistik.includes(i.balai));
+        }
         if (filterZon !== 'SEMUA') data = data.filter(i => i.zon === filterZon);
 
         if (q) {
@@ -3458,18 +3575,14 @@
           });
         }
 
-        // 🔹 1. JUMLAH JENTERA — Hanya 3 status aktif
+        // Statistik
         const activeStatuses = ['Baik & Boleh Beroperasi', 'Rosak Minor & Boleh Beroperasi', 'Rosak & Tidak Boleh Beroperasi'];
         const totalActive = data.filter(i => activeStatuses.includes(i.status)).length;
         document.getElementById('statLogTotal').innerText = totalActive;
 
-        // 🔹 2. STATUS BAIK — Baik + Rosak Minor
-        const baikCount = data.filter(i =>
-          i.status === 'Baik & Boleh Beroperasi' || i.status === 'Rosak Minor & Boleh Beroperasi'
-        ).length;
+        const baikCount = data.filter(i => i.status === 'Baik & Boleh Beroperasi' || i.status === 'Rosak Minor & Boleh Beroperasi').length;
         document.getElementById('statLogBaik').innerText = baikCount;
 
-        // 🔹 3. STATUS ROSAK — Hanya Rosak & Tidak Boleh Beroperasi
         const rosakCount = data.filter(i => i.status === 'Rosak & Tidak Boleh Beroperasi').length;
         document.getElementById('statLogRosak').innerText = rosakCount;
 
@@ -3480,11 +3593,10 @@
         }
         if (emptyLogMsg) emptyLogMsg.style.display = 'none';
 
-        // 🔹 4. BADGE & TOOLTIP
         data.forEach((item, idx) => {
           let bs, tooltip, displayText;
           if (item.status === 'Baik & Boleh Beroperasi' || item.status === 'Rosak Minor & Boleh Beroperasi') {
-            bs = 'badge-jentera-baik'; // 🟢 HIJAU untuk kedua-dua
+            bs = 'badge-jentera-baik';
             if (item.status === 'Baik & Boleh Beroperasi') {
               displayText = '1. BAIK & BOLEH BEROPERASI';
               tooltip = '1. BAIK & BOLEH BEROPERASI – tiada kerosakan';
@@ -3493,15 +3605,15 @@
               tooltip = '2. ROSAK MINOR & BOLEH BEROPERASI – rosak pam, tangki bocor halus, siren rosak, beacon rosak, dsb. tetapi masih boleh beroperasi';
             }
           } else if (item.status === 'Rosak & Tidak Boleh Beroperasi') {
-            bs = 'badge-jentera-rosak'; // 🔴 MERAH
+            bs = 'badge-jentera-rosak';
             displayText = '3. ROSAK & TIDAK BOLEH BEROPERASI';
             tooltip = '3. ROSAK & TIDAK BOLEH BEROPERASI – tayar pecah, enjin rosak, radiator bocor, dsb.';
           } else if (item.status === 'Dalam Proses Lupus') {
-            bs = 'badge-jentera-selenggara'; // 🟠 OREN
+            bs = 'badge-jentera-selenggara';
             displayText = '4. DALAM PROSES LUPUS';
             tooltip = '4. DALAM PROSES LUPUS – dalam proses pelupusan';
           } else if (item.status === 'Lupus') {
-            bs = 'badge-jentera-rosak'; // 🔴 MERAH
+            bs = 'badge-jentera-rosak';
             displayText = '5. LUPUS';
             tooltip = '5. LUPUS – sudah dilupuskan';
           } else {
@@ -3532,69 +3644,6 @@
         logistikBertugas = logistikBertugas.filter(i => i.id !== id);
         await hantarDataSupabase();
         paparLogistikTable();
-      }
-
-      // ============================================================
-      //  BALAI MULTI-SELECT
-      // ============================================================
-      function togolBalaiDropdown() {
-        document.querySelector('#balaiMultiSelect .multi-select-trigger')?.classList.toggle('active');
-        document.getElementById('balaiDropdown')?.classList.toggle('show');
-      }
-
-      function tapisBalaiDropdown() {
-        const v = (document.getElementById('balaiSearchInput')?.value || '').toUpperCase();
-        document.querySelectorAll('#balaiOptionsContainer .multi-select-option').forEach((o) => {
-          o.style.display = o.innerText.toUpperCase().includes(v) ? 'flex' : 'none';
-        });
-      }
-
-      function pilihSemuaBalai() {
-        balaiTerpilih = [...senaraiBalaiMaster];
-        kemaskiniBalaiTags();
-        kemaskiniPaparData();
-      }
-
-      function kosongkanBalai() {
-        balaiTerpilih = [];
-        kemaskiniBalaiTags();
-        kemaskiniPaparData();
-      }
-
-      function kemaskiniBalaiTags() {
-        const t = document.getElementById('balaiSelectedTags');
-        if (!t) return;
-        if (balaiTerpilih.length === 0) {
-          t.innerHTML = '<span class="multi-select-placeholder"><i class="fa-solid fa-building mr-1"></i> SEMUA BALAI</span>';
-          const infoBadge = document.getElementById('filterInfoBadge');
-          if (infoBadge) infoBadge.style.display = 'none';
-        } else {
-          t.innerHTML = balaiTerpilih.map(b => `<span class="multi-select-tag">${b}</span>`).join('');
-          const infoBadge = document.getElementById('filterInfoBadge');
-          if (infoBadge) infoBadge.style.display = 'inline-flex';
-          const balaiListEl = document.getElementById('filterBalaiList');
-          if (balaiListEl) balaiListEl.innerText = balaiTerpilih.join(', ');
-        }
-        janaBalaiDropdownOptions();
-      }
-
-      function janaBalaiDropdownOptions() {
-        const container = document.getElementById('balaiOptionsContainer');
-        if (!container) return;
-        container.innerHTML = senaraiBalaiMaster.map((b) => {
-          const s = balaiTerpilih.includes(b) ? 'selected' : '';
-          return `<div class="multi-select-option ${s}" onclick="pilihBalaiOption('${b}')">
-                    <div class="check-box">${s ? '<i class="fa-solid fa-check"></i>' : ''}</div>
-                    <span>${b}</span>
-                  </div>`;
-        }).join('');
-      }
-
-      function pilihBalaiOption(b) {
-        if (balaiTerpilih.includes(b)) balaiTerpilih = balaiTerpilih.filter(x => x !== b);
-        else balaiTerpilih.push(b);
-        kemaskiniBalaiTags();
-        kemaskiniPaparData();
       }
 
       // ============================================================
@@ -3681,7 +3730,7 @@
       // ============================================================
       function bukaModalUrusMaster() {
         document.getElementById('urusMasterModal')?.classList.add('active');
-        tukarTabUrusMaster(aktifTabUrusMaster);
+        tukarTabUrusMaster('ANGGOTA');
       }
 
       function tutupModalUrusMaster() {
@@ -3862,7 +3911,7 @@
       }
 
       // ============================================================
-      //  EXPOSE GLOBALS
+      //  EXPOSE GLOBALS (untuk event handler)
       // ============================================================
       window.hantarDataSupabase = hantarDataSupabase;
       window.tarikDataSupabase = tarikDataSupabase;
@@ -3900,9 +3949,12 @@
       window.sahkanPassword = sahkanPassword;
       window.simpanDaftarMaster = simpanDaftarMaster;
       window.kemaskiniPaparData = kemaskiniPaparData;
-      window.pilihBalaiOption = pilihBalaiOption;
       window.pilihSemuaBalai = pilihSemuaBalai;
       window.kosongkanBalai = kosongkanBalai;
+      window.pilihSemuaBalaiLogistik = pilihSemuaBalaiLogistik;
+      window.kosongkanBalaiLogistik = kosongkanBalaiLogistik;
+      window.pilihSemuaBalaiChecklist = pilihSemuaBalaiChecklist;
+      window.kosongkanBalaiChecklist = kosongkanBalaiChecklist;
       window.pilihSemuaLogJentera = pilihSemuaLogJentera;
       window.kosongkanLogJentera = kosongkanLogJentera;
       window.pilihLogJenteraOption = pilihLogJenteraOption;
@@ -3933,7 +3985,12 @@
         muatDariLocalStorage();
         initDataLogistik();
         janaFormDaftar('ANGGOTA');
-        janaFilterBalaiOptions();
+
+        // Init balai dropdowns
+        balaiTerpilihAnggota = [];
+        balaiTerpilihLogistik = [];
+        balaiTerpilihChecklist = [];
+        kemaskiniSemuaPaparan();
 
         if (initSupabaseClient()) {
           autoTarikData().then(() => kemaskiniSemuaPaparan());
@@ -3945,7 +4002,7 @@
         updateClock();
 
         document.addEventListener('click', function (e) {
-          ['balai', 'namaAnggota', 'logJentera'].forEach((id) => {
+          ['balai', 'logBalai', 'chkBalai', 'namaAnggota', 'logJentera'].forEach((id) => {
             const sel = document.getElementById(id + 'MultiSelect');
             if (sel && !sel.contains(e.target)) {
               document.getElementById(id + 'Dropdown')?.classList.remove('show');
@@ -3955,11 +4012,9 @@
         });
 
         console.log('✅ Sistem JBPM Johor sedia sebagai App Standalone Mobile');
-        console.log('✅ ZON: PGO JOHOR dan BENGKEL telah dipendekkan di paparan dan data Supabase.');
-        console.log('✅ Migrasi nama zon akan dijalankan secara automatik.');
-        console.log('✅ Logik Statistik Logistik: Jumlah (3 status aktif), Baik (Baik+Rosak Minor), Rosak (Rosak Berat sahaja).');
-        console.log('✅ Design header seragam: badge Supabase, butang Dashboard, tarikh/masa sama saiz dan padding.');
-        console.log('✅ Navigasi mobile diperbaiki: scroll lancar ke bahagian yang betul.');
+        console.log('✅ Filter Balai Multi-Select untuk Logistik & Checklist telah diaktifkan.');
+        console.log('✅ Carian Checklist kini merangkumi status BAIK/ROSAK dan jumlah unit.');
+        console.log('✅ ZON: PGO JOHOR dan BENGKEL dipendekkan.');
       };
     </script>
   </body>
