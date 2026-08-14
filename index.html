@@ -1847,11 +1847,14 @@
       const ZON_DEFAULT = 'ZON 1';
       const ZON_OPTIONS = ['ZON 1', 'ZON 2', 'ZON 3', 'ZON 4', 'BENGKEL', 'PGO JOHOR'];
 
+      // --- FUNGSI GETZON YANG DIPERBAIKI ---
       function getZon(balai) {
         if (!balai) return ZON_DEFAULT;
-        const balaiUpper = balai.toUpperCase().trim();
+        let balaiClean = balai.toUpperCase().trim();
+        // Buang awalan "BBP " dan "FIRE POST "
+        balaiClean = balaiClean.replace(/^BBP\s+/, '').replace(/^FIRE\s+POST\s+/, '');
         for (const [key, value] of Object.entries(ZON_MAP)) {
-          if (balaiUpper === key.toUpperCase().trim()) {
+          if (balaiClean === key.toUpperCase().trim()) {
             return value;
           }
         }
@@ -2003,6 +2006,16 @@
           if (!m.zon) m.zon = getZon(m.balai || '');
           return m;
         });
+      }
+
+      // --- FUNGSI BARU: PAKSA KEMASKINI SEMUA ZON ---
+      function forceUpdateZon() {
+        rekodAnggota.forEach(a => { a.zon = getZon(a.balai); });
+        logistikBertugas.forEach(j => { j.zon = getZon(j.balai); });
+        senaraiChecklist.forEach(c => { c.zon = getZon(c.balai); });
+        senaraiNamaMaster.forEach(m => { m.zon = getZon(m.balai); });
+        simpanKeLocalStorage();
+        kemaskiniSemuaPaparan();
       }
 
       function migrateZonNames() {
@@ -4149,6 +4162,10 @@
       // ============================================================
       window.onload = function () {
         muatDariLocalStorage();
+
+        // --- PAKSA KEMASKINI SEMUA ZON ---
+        forceUpdateZon();
+
         initDataLogistik();
         janaFormDaftar('ANGGOTA');
 
@@ -4186,6 +4203,7 @@
         console.log('✅ Carian Checklist kini merangkumi status BAIK/ROSAK dan jumlah unit.');
         console.log('✅ Butang CARI di panel Anggota telah dibuang (carian live sahaja).');
         console.log('✅ ZON: PGO JOHOR dan BENGKEL dipendekkan.');
+        console.log('✅ Fungsi forceUpdateZon() dipanggil untuk membetulkan semua zon.');
       };
     </script>
   </body>
