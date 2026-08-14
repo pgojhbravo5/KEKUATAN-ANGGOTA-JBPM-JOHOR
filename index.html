@@ -1337,11 +1337,20 @@
               </select>
             </div>
           </div>
+          <!-- STATS LOGISTIK: HANYA 3 METRIK (JUMLAH, BAIK, ROSAK) -->
           <div class="stats-grid no-print mb-3">
-            <div class="stat-card border-l-emerald-500"><div class="stat-label">JUMLAH JENTERA</div><div class="stat-value" id="statLogTotal">0</div></div>
-            <div class="stat-card green"><div class="stat-label">STATUS BAIK</div><div class="stat-value" id="statLogBaik">0</div></div>
-            <div class="stat-card orange"><div class="stat-label">STATUS ROSAK</div><div class="stat-value" id="statLogRosak">0</div></div>
-            <div class="stat-card purple"><div class="stat-label">DALAM SELENGGARA</div><div class="stat-value" id="statLogSelenggara">0</div></div>
+            <div class="stat-card border-l-emerald-500">
+              <div class="stat-label">JUMLAH JENTERA</div>
+              <div class="stat-value" id="statLogTotal">0</div>
+            </div>
+            <div class="stat-card green">
+              <div class="stat-label">STATUS BAIK</div>
+              <div class="stat-value" id="statLogBaik">0</div>
+            </div>
+            <div class="stat-card" style="border-left-color: #ef4444">
+              <div class="stat-label">STATUS ROSAK</div>
+              <div class="stat-value" id="statLogRosak">0</div>
+            </div>
           </div>
           <div class="table-responsive">
             <table class="logistik-table">
@@ -1555,7 +1564,7 @@
           <i class="fa-regular fa-circle-question mr-1"></i>
           <strong>Definisi Status:</strong>
           <span class="font-bold text-emerald-700">1. BAIK & BOLEH BEROPERASI</span> – tiada kerosakan;
-          <span class="font-bold text-amber-700">2. ROSAK MINOR & BOLEH BEROPERASI</span> – rosak pam, tangki bocor halus, siren rosak, beacon rosak, dsb.;
+          <span class="font-bold text-emerald-700">2. ROSAK MINOR & BOLEH BEROPERASI</span> – rosak pam, tangki bocor halus, siren rosak, beacon rosak, dsb.;
           <span class="font-bold text-red-700">3. ROSAK & TIDAK BOLEH BEROPERASI</span> – tayar pecah, enjin rosak, radiator bocor, dsb.;
           <span class="font-bold text-orange-700">4. DALAM PROSES LUPUS</span> – dalam proses pelupusan;
           <span class="font-bold text-red-800">5. LUPUS</span> – sudah dilupuskan.
@@ -3388,7 +3397,7 @@
       }
 
       // ============================================================
-      //  LOGISTIK TABLE
+      //  LOGISTIK TABLE — DIPERBAIKI DENGAN LOGIK BAHARU
       // ============================================================
       function paparLogistikTable() {
         const filterBalai = document.getElementById('logistikBalaiFilter')?.value || 'SEMUA';
@@ -3397,6 +3406,7 @@
         const tbody = document.getElementById('logistikTableBody');
         if (!tbody) return;
         tbody.innerHTML = '';
+
         let data = logistikBertugas;
 
         if (filterBalai !== 'SEMUA') data = data.filter(i => i.balai === filterBalai);
@@ -3408,10 +3418,21 @@
             return fullText.includes(q);
           });
         }
-        document.getElementById('statLogTotal').innerText = data.length;
-        document.getElementById('statLogBaik').innerText = data.filter(i => i.status === 'Baik & Boleh Beroperasi').length;
-        document.getElementById('statLogRosak').innerText = data.filter(i => ['Rosak Minor & Boleh Beroperasi', 'Rosak & Tidak Boleh Beroperasi', 'Lupus'].includes(i.status)).length;
-        document.getElementById('statLogSelenggara').innerText = data.filter(i => i.status === 'Dalam Proses Lupus').length;
+
+        // 🔹 1. JUMLAH JENTERA — Hanya 3 status aktif
+        const activeStatuses = ['Baik & Boleh Beroperasi', 'Rosak Minor & Boleh Beroperasi', 'Rosak & Tidak Boleh Beroperasi'];
+        const totalActive = data.filter(i => activeStatuses.includes(i.status)).length;
+        document.getElementById('statLogTotal').innerText = totalActive;
+
+        // 🔹 2. STATUS BAIK — Baik + Rosak Minor
+        const baikCount = data.filter(i =>
+          i.status === 'Baik & Boleh Beroperasi' || i.status === 'Rosak Minor & Boleh Beroperasi'
+        ).length;
+        document.getElementById('statLogBaik').innerText = baikCount;
+
+        // 🔹 3. STATUS ROSAK — Hanya Rosak & Tidak Boleh Beroperasi
+        const rosakCount = data.filter(i => i.status === 'Rosak & Tidak Boleh Beroperasi').length;
+        document.getElementById('statLogRosak').innerText = rosakCount;
 
         const emptyLogMsg = document.getElementById('emptyLogMessage');
         if (data.length === 0) {
@@ -3420,26 +3441,28 @@
         }
         if (emptyLogMsg) emptyLogMsg.style.display = 'none';
 
+        // 🔹 4. BADGE & TOOLTIP
         data.forEach((item, idx) => {
           let bs, tooltip, displayText;
-          if (item.status === 'Baik & Boleh Beroperasi') {
-            bs = 'badge-jentera-baik';
-            displayText = '1. BAIK & BOLEH BEROPERASI';
-            tooltip = '1. BAIK & BOLEH BEROPERASI – tiada kerosakan';
-          } else if (item.status === 'Rosak Minor & Boleh Beroperasi') {
-            bs = 'badge-jentera-rosak';
-            displayText = '2. ROSAK MINOR & BOLEH BEROPERASI';
-            tooltip = '2. ROSAK MINOR & BOLEH BEROPERASI – rosak pam, tangki bocor halus, siren rosak, beacon rosak, dsb.';
+          if (item.status === 'Baik & Boleh Beroperasi' || item.status === 'Rosak Minor & Boleh Beroperasi') {
+            bs = 'badge-jentera-baik'; // 🟢 HIJAU untuk kedua-dua
+            if (item.status === 'Baik & Boleh Beroperasi') {
+              displayText = '1. BAIK & BOLEH BEROPERASI';
+              tooltip = '1. BAIK & BOLEH BEROPERASI – tiada kerosakan';
+            } else {
+              displayText = '2. ROSAK MINOR & BOLEH BEROPERASI';
+              tooltip = '2. ROSAK MINOR & BOLEH BEROPERASI – rosak pam, tangki bocor halus, siren rosak, beacon rosak, dsb. tetapi masih boleh beroperasi';
+            }
           } else if (item.status === 'Rosak & Tidak Boleh Beroperasi') {
-            bs = 'badge-jentera-rosak';
+            bs = 'badge-jentera-rosak'; // 🔴 MERAH
             displayText = '3. ROSAK & TIDAK BOLEH BEROPERASI';
             tooltip = '3. ROSAK & TIDAK BOLEH BEROPERASI – tayar pecah, enjin rosak, radiator bocor, dsb.';
           } else if (item.status === 'Dalam Proses Lupus') {
-            bs = 'badge-jentera-selenggara';
+            bs = 'badge-jentera-selenggara'; // 🟠 OREN
             displayText = '4. DALAM PROSES LUPUS';
             tooltip = '4. DALAM PROSES LUPUS – dalam proses pelupusan';
           } else if (item.status === 'Lupus') {
-            bs = 'badge-jentera-rosak';
+            bs = 'badge-jentera-rosak'; // 🔴 MERAH
             displayText = '5. LUPUS';
             tooltip = '5. LUPUS – sudah dilupuskan';
           } else {
@@ -3896,6 +3919,7 @@
         console.log('✅ Sistem JBPM Johor sedia sebagai App Standalone Mobile');
         console.log('✅ ZON: PGO JOHOR dan BENGKEL telah dipendekkan di paparan dan data Supabase.');
         console.log('✅ Migrasi nama zon akan dijalankan secara automatik.');
+        console.log('✅ Logik Statistik Logistik: Jumlah (3 status aktif), Baik (Baik+Rosak Minor), Rosak (Rosak Berat sahaja).');
       };
     </script>
   </body>
